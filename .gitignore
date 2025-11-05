@@ -1,45 +1,105 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+generated_plugin_registrant.dart
 
-# IntelliJ related
+# IntelliJ / Android Studio
+.idea/
 *.iml
 *.ipr
 *.iws
-.idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code
+.vscode/
+.history/
+*.code-workspace
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Symbolication related
-app.*.symbols
+# Thumbnails
+._*
 
-# Obfuscation related
-app.*.map.json
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# Linux
+*~
+
+# Android
+.gradle/
+local.properties
+**/captures/
+**/.cxx/
+**/output.json
+*.keystore
+*.jks
+key.properties
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+ios/Flutter/App.framework
+ios/Flutter/ephemeral/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/Generated.xcconfig.dSYM
+ios/ServiceDefinitions.json
+ios/Runner.xcworkspace/
+ios/Runner.xcodeproj/project.xcworkspace/
+ios/build/
+ios/.generated/
+ios/DerivedData/
+*.xcuserstate
+*.xcscmblueprint
+
+# Web
+lib/generated_plugin_registrant.dart
+web/.dart_tool/
+web/.idea/
+web/build/
+
+# Windows
+windows/.vs/
+windows/Flutter/ephemeral/
+windows/flutter/ephemeral/
+windows/build/
+
+# Linux
+linux/flutter/ephemeral/
+linux/build/
+
+# Coverage
+coverage/
+
+# Firebase / Keys (keep private)
+*.env
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+
+# Logs & temp files
+*.log
+*.tmp
+*.swp
+*.lock
+
+# Other
+.merged/
+.svn/
+.hg/
+.cache/
+.tmp/
+*.bak
+*.old
