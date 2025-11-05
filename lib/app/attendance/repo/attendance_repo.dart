@@ -1,0 +1,153 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
+
+import '../../../common/networking/api_url.dart';
+import '../../../common/networking/common_repo.dart';
+import '../models/monthly_attendance_model.dart';
+import '../helper/attendance_helper.dart';
+import '../models/daily_attendance_model.dart';
+
+class AttendanceRepo {
+  Future<String> getAddressFromLatLngIndiaMap({
+    required double latitude,
+    required double longitude,
+  }) async {
+    final url = Uri.parse(
+      "https://search.mappls.com/search/address/rev-geocode?lat=$latitude&lng=$longitude&access_token=wjvrovmzcmmhktdmiknvfytfywagssalaaph",
+    );
+
+    final response = await http.get(url);
+
+    log(
+      "Reverse geocoding API response: status=${response.statusCode}, body=${response.body}",
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      // Check responseCode from Mappls API
+      if (data['responseCode'] == 200 &&
+          data['results'] != null &&
+          data['results'].isNotEmpty) {
+        final result = data['results'][0];
+        final formattedAddress = result['formatted_address'] ?? '';
+
+        log("Formatted address: $formattedAddress");
+        return formattedAddress;
+      } else {
+        throw Exception(
+          'No address found or API error: ${data['responseCode']}',
+        );
+      }
+    } else {
+      throw Exception(
+        'Failed to fetch reverse geocode data. Status: ${response.statusCode}',
+      );
+    }
+  }
+
+  Future<ApiResponse<DailyAttendanceModel>> fetchAttendanceData({
+    required int? userId,
+    required String isoDateTime,
+  }) async {
+    try {
+      var response = CommonRepository.getRequest(
+        url:
+            "${ApiUrl.fetchAttendanceDateWise}AttendanceDate=$isoDateTime&EmployeeId=${userId ?? ""}",
+        fromJson: (json) => DailyAttendanceModel.fromJson(json!),
+        params: {},
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse<Map<String, dynamic>>> checkIn({
+    required File imageFile,
+    required int employeeId,
+    required String addressText,
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      var response = CommonRepository.postMultipartRequest(
+        url: ApiUrl.punchInOut,
+        body: {
+          'EmployeeId': employeeId.toString(),
+          'AttendanceDate': AttendanceHelper.convertCurrentDate(DateTime.now()),
+          'InTime': AttendanceHelper.convertCurrentTime(DateTime.now()),
+          'OutOnDutyStatus': 'false',
+          'OutTime': '',
+          'OutTimeLocation': '',
+          'OutTimeLatitude': '',
+          'OutTimeLongitude': '',
+          'InTimeLocation': addressText,
+          'IntimeLatitude': latitude.toString(),
+          'IntimeLongitude': longitude.toString(),
+        },
+        fromJson: (json) => json as Map<String, dynamic>,
+        file: imageFile,
+        fileKey: "InTimePicCapture",
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse<Map<String, dynamic>>> checkOut({
+    required int employeeId,
+    required String addressText,
+    required double latitude,
+    required double longitude,
+    required File imageFile,
+  }) async {
+    try {
+      var response = CommonRepository.postMultipartRequest(
+        url: ApiUrl.punchInOut,
+        body: {
+          'EmployeeId': employeeId.toString(),
+          'AttendanceDate': AttendanceHelper.convertCurrentDate(DateTime.now()),
+          'OutTime': AttendanceHelper.convertCurrentTime(DateTime.now()),
+          'OutOnDutyStatus': 'true',
+          'InTime': '',
+          'InTimeLocation': "",
+          'IntimeLatitude': "",
+          'IntimeLongitude': "",
+          'OutTimeLocation': addressText,
+          'OutTimeLatitude': latitude.toString(),
+          'OutTimeLongitude': longitude.toString(),
+        },
+        fromJson: (json) => json as Map<String, dynamic>,
+        file: imageFile,
+        fileKey: "OutTimePicCapture",
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+  Future<ApiResponse<MonthlyAttendanceModel>> getMonthlyAttendance({
+    required int? userId,
+    required int month,
+    required int year,
+  }) async {
+    try {
+      var response = CommonRepository.getRequest(
+        url:
+        "${ApiUrl.getMonthlyAttendance}month=$month&year=$year&EmployeeId=${userId ?? ""}",
+        fromJson: (json) => MonthlyAttendanceModel.fromJson(json!),
+        params: {},
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+}

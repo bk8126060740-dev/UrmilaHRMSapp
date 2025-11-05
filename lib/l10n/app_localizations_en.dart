@@ -1,0 +1,103 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get loginTitle => 'Sign in to your Account';
+
+  @override
+  String get loginDesc => 'Enter your email and password to log in';
+
+  @override
+  String get userId => 'User Id';
+
+  @override
+  String get userIdHint => 'Enter User Id';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get passwordHint => 'Enter Password';
+
+  @override
+  String get rememberMe => 'Remember Me';
+
+  @override
+  String get forgotPassQ => 'Forgot Password?';
+
+  @override
+  String get dontWorryItHappens => 'Don’t worry ! it happens. Please enter the address associated with your account.';
+
+  @override
+  String get submit => 'Submit';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get grievance => 'Grievance';
+
+  @override
+  String get attendance => 'Attendance';
+
+  @override
+  String get attendanceMV => 'Attendance Monthly View';
+
+  @override
+  String get changePass => 'Change  Password';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get monthlyView => 'Monthly View';
+
+  @override
+  String get manageAttendance => 'Manage Attendance';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get noInternet => 'No Internet...';
+
+  @override
+  String get slowOrNoInternet => 'Slow or no internet connection.\nPlease check your internet connection.';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get logout => 'Log Out';
+
+  @override
+  String get areYouSureYouWant => 'Are you sure you want to log out?';
+
+  @override
+  String get viewAttendance => 'View Attendance';
+
+  @override
+  String get attendanceMGR => 'Atten. Mgr.';
+
+  @override
+  String get approveAttendance => 'Approve Attendance';
+
+  @override
+  String get preview => 'Preview';
+}
