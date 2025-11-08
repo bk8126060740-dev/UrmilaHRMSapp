@@ -53,7 +53,7 @@ class MaterialSquareIcon extends StatelessWidget {
               alignment: Alignment.center,
               decoration: AppDecorations.card(
                 radius: BorderRadiusGeometry.circular(AppSizes.borderRadius12),
-                color: AppColors.surfaceContainer,
+                color: AppColors.surfaceColor,
               ),
               child: child,
             ),

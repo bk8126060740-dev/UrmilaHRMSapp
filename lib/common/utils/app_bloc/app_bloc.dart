@@ -38,7 +38,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     on<_LogoutUser>((event, emit) async {
       emit(state.copyWith(status: AppStatus.logoutLoading));
-      await Future.delayed(Duration(seconds: 12));
       await HiveService.clear();
       emit(
         state.copyWith(

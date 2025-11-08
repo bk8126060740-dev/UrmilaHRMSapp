@@ -40,7 +40,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 height: AppDeviceUtils.getScreenHeight(context) * 0.55,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: AppSizes.padding24,
+                    horizontal: AppSizes.padding20,
                     vertical: 0,
                   ),
                   child: Form(

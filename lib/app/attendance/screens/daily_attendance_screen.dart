@@ -4,10 +4,10 @@ import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
+import 'package:hrms_uis/common/utils/global_internet_check/network_observer.dart';
 
 import '../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../common/widgets/custom/custom_refresh_indicator.dart';
-import '../../../common/widgets/placeholder/no_internet.dart';
 import '../widgets/date_navigation_view.dart';
 import '../widgets/date_wise_attendance_list.dart';
 import '../widgets/user_details_card.dart';
@@ -26,18 +26,18 @@ class _DailyAttendanceScreenState extends State<DailyAttendanceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        elevation: 0,
-        title: context.loc.manageAttendance,
-        showAvatar: false,
-        showBackButton: true,
-        showNavigation: false,
-        showCalendarIcon: false,
+    return NetworkObserver(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          elevation: 0,
+          title: context.loc.manageAttendance,
+          showAvatar: false,
+          showBackButton: true,
+          showNavigation: false,
+          showCalendarIcon: false,
+        ),
+        body: _buildMainPage(context),
       ),
-      body: hasInternet
-          ? _buildMainPage(context)
-          : NoInternetUi(context: context),
     );
   }
 
@@ -54,7 +54,7 @@ class _DailyAttendanceScreenState extends State<DailyAttendanceScreen> {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(AppSizes.padding24),
+        padding: const EdgeInsets.all(AppSizes.padding20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

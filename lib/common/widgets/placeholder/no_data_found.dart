@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
+import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 import 'package:lottie/lottie.dart';
 
@@ -19,8 +20,9 @@ class NoDataFound extends StatelessWidget {
           width: 150,
           height: 150,
           repeat: true,
+          fit: BoxFit.fill,
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: AppSizes.space4),
         Text(
           message,
           style: AppTextStyles.w400_14(context),

@@ -280,6 +280,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Preview'**
   String get preview;
+
+  /// No description provided for @salarySlip.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary Slip'**
+  String get salarySlip;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

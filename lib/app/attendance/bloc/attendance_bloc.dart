@@ -10,6 +10,7 @@ import 'package:hrms_uis/common/utils/helpers/custom_image_file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../common/networking/common_repo.dart';
+import '../../../common/utils/constants/constants.dart';
 import '../models/monthly_attendance_model.dart';
 
 part 'attendance_bloc.freezed.dart';
@@ -69,22 +70,24 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         // 3️⃣ Now we’re allowed to get location
         final pos = await Geolocator.getCurrentPosition(
           locationSettings: const LocationSettings(
-            accuracy: LocationAccuracy.best,
+            accuracy: LocationAccuracy.high,
           ),
         );
 
+        if (pos.isMocked == true) {
+          emit(
+            state.copyWith(
+              status: AttendanceStatus.error,
+              message: 'Fake GPS detected. Please disable mock location.',
+            ),
+          );
+          return;
+        }
         // 4️⃣ Reverse geocode
         String? address;
         try {
-          // final placemarks = await geo.placemarkFromCoordinates(
-          //   pos.latitude,
-          //   pos.longitude,
-          // );
-          // if (placemarks.isNotEmpty) {
-          //   address = CaptureHelper.formatAddress(placemarks.first);
-          // }
           final addressFromApi = await state.attendanceRepo
-              .getAddressFromLatLngIndiaMap(
+              .getAddressFromLatLng(
                 latitude: pos.latitude,
                 longitude: pos.longitude,
               );
@@ -103,7 +106,6 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         } catch (_) {
           address = null;
         }
-
         // 5️⃣ Success
         emit(
           state.copyWith(
@@ -258,6 +260,26 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         return;
       }
 
+      final distance = Geolocator.distanceBetween(
+        AppConstant.officeLatitude,
+        AppConstant.officeLongitude,
+        state.latitude!,
+        state.longitude!,
+      );
+
+      if (distance > AppConstant.allowedRadius) {
+        log("distanceafterif checkin ===>>  $distance");
+        emit(
+          state.copyWith(
+            status: AttendanceStatus.error,
+            message: 'You are outside the 50-meter allowed check-in area.',
+          ),
+        );
+        return;
+      } else {
+        log("distanceafterelse checkin ===>>  $distance");
+      }
+
       emit(state.copyWith(status: AttendanceStatus.checkInOutLoading));
       try {
         ApiResponse<Map<String, dynamic>>? response = await state.attendanceRepo
@@ -322,6 +344,26 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
           ),
         );
         return;
+      }
+
+      final distance = Geolocator.distanceBetween(
+        AppConstant.officeLatitude,
+        AppConstant.officeLongitude,
+        state.latitude!,
+        state.longitude!,
+      );
+
+      if (distance > AppConstant.allowedRadius) {
+        log("distanceafterif checkin ===>>  $distance");
+        emit(
+          state.copyWith(
+            status: AttendanceStatus.error,
+            message: 'You are outside the 50-meter allowed check-in area.',
+          ),
+        );
+        return;
+      } else {
+        log("distanceafterelse checkin ===>>  $distance");
       }
 
       emit(state.copyWith(status: AttendanceStatus.checkInOutLoading));

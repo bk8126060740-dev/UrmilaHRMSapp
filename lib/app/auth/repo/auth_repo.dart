@@ -10,7 +10,7 @@ class AuthRepo {
     try {
       var response = CommonRepository.postRequest(
         url: ApiUrl.login,
-        request: {"userName": userName, "password": password, "platform": 1},
+        request: {"userName": userName, "password": password, "platform": 2},
         fromJson: (json) => LoginResponseModel.fromJson(json!),
       );
       return response;

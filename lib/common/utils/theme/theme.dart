@@ -14,7 +14,7 @@ class CustomAppTheme {
   static ThemeData lightTheme = ThemeData(
     // fontFamily: GoogleFonts.mukta().fontFamily,
     useMaterial3: true,
-    disabledColor: AppColors.dividerColor,
+    disabledColor: AppColors.borderColor,
     brightness: Brightness.light,
     dialogTheme: AppDialogTheme.lightDialogTheme,
     primaryColor: AppColors.primaryColor,
@@ -22,7 +22,7 @@ class CustomAppTheme {
     // chipTheme: AppChipTheme.lightChipTheme,
     appBarTheme: AppAppBarTheme.lightAppBarTheme,
     checkboxTheme: AppCheckboxTheme.lightCheckboxTheme,
-    scaffoldBackgroundColor: AppColors.scaffoldBgColor,
+    scaffoldBackgroundColor: AppColors.bgColor,
     bottomSheetTheme: AppBottomSheetTheme.lightBottomSheetTheme,
     // elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     // outlinedButtonTheme: AppOutlinedButtonTheme.lightOutlinedButtonTheme,
@@ -35,7 +35,7 @@ class CustomAppTheme {
   static ThemeData darkTheme = ThemeData(
     // fontFamily: GoogleFonts.mukta().fontFamily,
     useMaterial3: true,
-    disabledColor: AppColors.dividerColor,
+    disabledColor: AppColors.borderColor,
     brightness: Brightness.dark,
     primaryColor: AppColors.primaryColor,
     dialogTheme: AppDialogTheme.darkDialogTheme,

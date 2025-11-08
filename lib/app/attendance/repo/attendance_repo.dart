@@ -9,8 +9,88 @@ import '../../../common/networking/common_repo.dart';
 import '../models/monthly_attendance_model.dart';
 import '../helper/attendance_helper.dart';
 import '../models/daily_attendance_model.dart';
+import 'package:geocoding/geocoding.dart' as geo;
 
 class AttendanceRepo {
+
+  Future<String> getAddressFromLatLng({
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      // Try Mappls API first
+      final url = Uri.parse(
+        "https://search.mappls.com/search/address/rev-geocode?lat=$latitude&lng=$longitude&access_token=wjvrovmzcmmhktdmiknvfytfywagssalaaph",
+      );
+
+      final response = await http.get(url);
+
+      log(
+        "Reverse geocoding API response: status=${response.statusCode}, body=${response.body}",
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        if (data['responseCode'] == 200 &&
+            data['results'] != null &&
+            data['results'].isNotEmpty) {
+          final result = data['results'][0];
+          final formattedAddress = result['formatted_address'] ?? '';
+
+          if (formattedAddress.isNotEmpty) {
+            log("Address from Mappls: $formattedAddress");
+            return formattedAddress;
+          }
+        }
+      }
+
+      // If Mappls fails or gives empty result, fallback to Geocoding
+      log("Falling back to geocoding package...");
+
+      final placemarks = await geo.placemarkFromCoordinates(
+        latitude,
+        longitude,
+      );
+
+      if (placemarks.isNotEmpty) {
+        final place = placemarks.first;
+        final address =
+        "${place.name ?? ''}, ${place.subLocality ?? ''}, ${place.locality ?? ''}, ${place.administrativeArea ?? ''}, ${place.postalCode ?? ''}, ${place.country ?? ''}"
+            .replaceAll(RegExp(r',\s+,'), ',')
+            .trim();
+
+        log("Address from geocoding: $address");
+        return address;
+      } else {
+        throw Exception("No address found using geocoding package.");
+      }
+    } catch (e, st) {
+      log("Error getting address: $e\n$st");
+      // Final fallback — try geocoding again if even Mappls request threw an exception
+      try {
+        final placemarks = await geo.placemarkFromCoordinates(
+          latitude,
+          longitude,
+        );
+        if (placemarks.isNotEmpty) {
+          final place = placemarks.first;
+          final address =
+          "${place.name ?? ''}, ${place.subLocality ?? ''}, ${place.locality ?? ''}, ${place.administrativeArea ?? ''}, ${place.postalCode ?? ''}, ${place.country ?? ''}"
+              .replaceAll(RegExp(r',\s+,'), ',')
+              .trim();
+
+          log("Address from geocoding (exception fallback): $address");
+          return address;
+        }
+      } catch (innerError) {
+        log("Geocoding fallback also failed: $innerError");
+      }
+
+      return "Address not available";
+    }
+  }
+
   Future<String> getAddressFromLatLngIndiaMap({
     required double latitude,
     required double longitude,

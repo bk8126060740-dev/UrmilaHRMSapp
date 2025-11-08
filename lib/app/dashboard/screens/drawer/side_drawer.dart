@@ -32,143 +32,143 @@ class SideDrawer extends StatelessWidget {
           bottomRight: Radius.circular(0),
         ),
       ),
-      child: SafeArea(
-        child: BlocBuilder<AppBloc, AppState>(
-          builder: (context, appState) {
-            return Column(
-              children: [
-                SizedBox(height: AppSizes.space16),
-                CustomAppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  title: 'John Doe',
-                  subtitle: 'Software Engineer',
-                  avatarImage: appState.userProfileModel?.profilePath ?? "",
-                  showAvatar: true,
-                  showBackButton: false,
-                  actions: [
-                    InkWell(
-                      onTap: () {
-                        Scaffold.of(context).closeDrawer();
-                      },
-                      child: SvgPicture.asset(
-                        width: AppSizes.iconSize44,
-                        height: AppSizes.iconSize44,
-                        AppImages.backButton,
+      child: BlocBuilder<AppBloc, AppState>(
+        builder: (context, appState) {
+          return Column(
+            children: [
+              CustomAppBar(
+                title:
+                    "${appState.userProfileModel?.firstName ?? ""} ${appState.userProfileModel?.lastName ?? ""}",
+                subtitle: appState.userProfileModel?.designationName ?? "",
+                avatarImage: appState.userProfileModel?.profilePath ?? "",
+                showAvatar: true,
+                showBackButton: false,
+                actions: [
+                  InkWell(
+                    onTap: () {
+                      Scaffold.of(context).closeDrawer();
+                    },
+                    child: SvgPicture.asset(
+                      width: AppSizes.iconSize44,
+                      height: AppSizes.iconSize44,
+                      AppImages.backButton,
+                      colorFilter: ColorFilter.mode(
+                        AppColors.whiteIconColor,
+                        BlendMode.srcIn,
                       ),
                     ),
-                  ],
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppSizes.padding16,
-                      vertical: AppSizes.padding16,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ListView(
-                            padding: EdgeInsets.zero,
-                            children: [
-                              // profile
-                              _buildNavItemView(
-                                context,
-                                onTap: () {
-                                  NavigationService.navigateTo(
-                                    ProfileScreen.route,
-                                  );
-                                },
-                                navIcon: AppImages.profileIconSN,
-                                navTitle: context.loc.profile,
-                              ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.padding16,
+                    vertical: AppSizes.padding16,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          children: [
+                            // profile
+                            _buildNavItemView(
+                              context,
+                              onTap: () {
+                                NavigationService.navigateTo(
+                                  ProfileScreen.route,
+                                );
+                              },
+                              navIcon: AppImages.profileIconSN,
+                              navTitle: context.loc.profile,
+                            ),
 
-                              // Attendance
-                              _buildNavItemView(
-                                context,
-                                onTap: () {
-                                  NavigationService.navigateTo(
-                                    DailyAttendanceScreen.route,
-                                  );
-                                },
-                                navIcon: AppImages.attendanceIconSN,
-                                navTitle: context.loc.attendance,
-                              ),
+                            // Attendance
+                            _buildNavItemView(
+                              context,
+                              onTap: () {
+                                NavigationService.navigateTo(
+                                  DailyAttendanceScreen.route,
+                                );
+                              },
+                              navIcon: AppImages.attendanceIconSN,
+                              navTitle: context.loc.attendance,
+                            ),
 
-                              // Attendance Monthly View
-                              _buildNavItemView(
-                                context,
-                                onTap: () {
-                                  NavigationService.navigateTo(
-                                    MonthlyAttendanceScreen.route,
-                                  );
-                                },
-                                navIcon: AppImages.monthViewIconSN,
-                                navTitle: context.loc.viewAttendance,
-                              ),
+                            // Attendance Monthly View
+                            _buildNavItemView(
+                              context,
+                              onTap: () {
+                                NavigationService.navigateTo(
+                                  MonthlyAttendanceScreen.route,
+                                );
+                              },
+                              navIcon: AppImages.monthViewIconSN,
+                              navTitle: context.loc.viewAttendance,
+                            ),
 
-                              // change password
-                              // _buildNavItemView(
-                              //   context,
-                              //   onTap: () {},
-                              //   navIcon: AppImages.changePassIconSN,
-                              //   navTitle: context.loc.changePass,
-                              // ),
+                            // change password
+                            // _buildNavItemView(
+                            //   context,
+                            //   onTap: () {},
+                            //   navIcon: AppImages.changePassIconSN,
+                            //   navTitle: context.loc.changePass,
+                            // ),
 
-                              // privacyPolicy
-                              _buildNavItemView(
-                                context,
-                                onTap: () {
-                                  AppHelperFunctions.launchExternal(
-                                    ApiUrl.privacyPolicyUrl,
-                                  );
-                                },
-                                navIcon: AppImages.policyIconSN,
-                                navTitle: context.loc.privacyPolicy,
-                              ),
+                            // privacyPolicy
+                            _buildNavItemView(
+                              context,
+                              onTap: () {
+                                AppHelperFunctions.launchExternal(
+                                  ApiUrl.privacyPolicyUrl,
+                                );
+                              },
+                              navIcon: AppImages.policyIconSN,
+                              navTitle: context.loc.privacyPolicy,
+                            ),
 
-                              // delete
-                              // _buildNavItemView(
-                              //   context,
-                              //   onTap: () {
-                              //     AppHelperFunctions.launchExternal(
-                              //       ApiUrl.deleteAccountUrl,
-                              //     );
-                              //   },
-                              //   navIcon: AppImages.deleteIconSN,
-                              //   navTitle: context.loc.delete,
-                              // ),
-                            ],
-                          ),
+                            // delete
+                            // _buildNavItemView(
+                            //   context,
+                            //   onTap: () {
+                            //     AppHelperFunctions.launchExternal(
+                            //       ApiUrl.deleteAccountUrl,
+                            //     );
+                            //   },
+                            //   navIcon: AppImages.deleteIconSN,
+                            //   navTitle: context.loc.delete,
+                            // ),
+                          ],
                         ),
-                        // Logout
-                        _buildNavItemView(
-                          context,
-                          onTap: () {
-                            CustomDialogs.showCommonDialog(
-                              context: context,
-                              child: CommonDialog(
-                                title: context.loc.logout,
-                                message: context.loc.areYouSureYouWant,
-                                child: LogoutDialog(),
-                              ),
-                            );
-                          },
-                          navIcon: AppImages.logoutIconSN,
-                          navTitle: context.loc.logout,
-                          textColor: AppColors.error,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        ),
-                      ],
-                    ),
+                      ),
+                      // Logout
+                      _buildNavItemView(
+                        context,
+                        onTap: () {
+                          CustomDialogs.showCommonDialog(
+                            context: context,
+                            child: CommonDialog(
+                              title: context.loc.logout,
+                              message: context.loc.areYouSureYouWant,
+                              child: LogoutDialog(),
+                            ),
+                          );
+                        },
+                        navIcon: AppImages.logoutIconSN,
+                        navTitle: context.loc.logout,
+                        textColor: AppColors.error,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -14,7 +14,7 @@ class ComingSoonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(AppSizes.padding24),
+        padding: const EdgeInsets.all(AppSizes.padding20),
         child: Column(
           children: [
             SizedBox(

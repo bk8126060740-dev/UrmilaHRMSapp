@@ -7,15 +7,16 @@ import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 import '../../app/attendance/models/daily_attendance_model.dart';
 import '../../app/attendance/screens/approve_attend_emp_details.dart';
 import '../../app/attendance/screens/approve_attend_emp_list_screen.dart';
+import '../../app/attendance/screens/approve_attendance_screen.dart';
 import '../../app/attendance/screens/daily_attendance_details_screen.dart';
 import '../../app/attendance/screens/daily_attendance_screen.dart';
-import '../../app/attendance/screens/approve_attendance_screen.dart';
 import '../../app/attendance/screens/monthly_attendance_screen.dart';
 import '../../app/auth/bloc/auth_bloc.dart';
 import '../../app/auth/screens/forgot_password_screen.dart';
 import '../../app/auth/screens/login_screen.dart';
 import '../../app/dashboard/screens/dashboard_screen.dart';
 import '../../app/profile/screens/profile_screen.dart';
+import '../../app/salary_slip/screens/salary_slip_screen.dart';
 import '../../app/splash/screens/splash_screen.dart';
 
 class AppRoutes {
@@ -56,8 +57,7 @@ class AppRoutes {
             return BlocProvider(
               create: (context) => DashboardBloc(userId: loginModel?.user?.id)
                 ..add(DashboardEvent.getUserData())
-                ..add(DashboardEvent.getUserProfileData())
-                ,
+                ..add(DashboardEvent.getUserProfileData()),
               // ..add(
               //   DashboardEvent.getMonthlyAttendance(
               //     month: now.month,
@@ -137,6 +137,18 @@ class AppRoutes {
             final employeeSwipeModel =
                 settings.arguments as EmployeeSwipeModel?;
             return ApproveAttendEmpDetails(employee: employeeSwipeModel);
+          },
+        );
+      case SalarySlipScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            var loginModel = context.read<AppBloc>().state.loginResponse;
+            return BlocProvider(
+              create: (context) =>
+                  DashboardBloc(userId: loginModel?.user?.id)
+                    ..add(DashboardEvent.getUserProfileData()),
+              child: SalarySlipScreen(),
+            );
           },
         );
       default:

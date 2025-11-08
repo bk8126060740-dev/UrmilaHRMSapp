@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:hrms_uis/app/app_dependencies.dart';
 
 import 'app/app.dart';
 import 'common/utils/constants/colors.dart';
@@ -20,7 +21,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: AppColors.primaryColor, // status bar color
-      statusBarBrightness: Brightness.light,
+      // statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
     ),
   );
@@ -32,5 +33,5 @@ void main() async {
   await HiveService.init();
 
   // Run the app
-  runApp(App());
+  runApp(AppDependencies(child: App()));
 }

@@ -50,7 +50,7 @@ class CustomBaseScreen extends StatelessWidget {
       endDrawer: endDrawer,
       body: Stack(
         children: [
-          // 🌄 Background Image
+          //  Background Image
           Image.asset(
             width: AppDeviceUtils.getScreenWidth(context),
             height: AppDeviceUtils.getScreenHeight(context),
@@ -68,7 +68,7 @@ class CustomBaseScreen extends StatelessWidget {
       bottomSheet: bottomSheet,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBody: extendBody,
-      // extendBodyBehindAppBar: extendBodyBehindAppBar,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
     );
   }
 }

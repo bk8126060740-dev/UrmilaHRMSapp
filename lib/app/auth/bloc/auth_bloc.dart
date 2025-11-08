@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hrms_uis/app/dashboard/model/user_response_model.dart';
 
 import '../../../common/networking/common_repo.dart';
 import '../../../common/utils/constants/constants.dart';
@@ -13,9 +12,7 @@ import '../model/login_response_model.dart';
 import '../repo/auth_repo.dart';
 
 part 'auth_bloc.freezed.dart';
-
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -42,9 +39,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<_FetchRememberMe>((event, emit) async {
-      String? userId = await HiveService.readBox2(kLoginUserId);
-      String? password = await HiveService.readBox2(kLoginUserPassword);
-      bool? rememberMe = await HiveService.readBox2(kRememberMe);
+      String? userId = await HiveService.readBox2(AppConstant.kLoginUserId);
+      String? password = await HiveService.readBox2(AppConstant.kLoginUserPassword);
+      bool? rememberMe = await HiveService.readBox2(AppConstant.kRememberMe);
       usernameController.text = userId ?? "";
       passwordController.text = password ?? "";
       emit(
@@ -79,15 +76,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         if (response.isSuccess && response.data != null) {
           if (state.rememberMe) {
-            await HiveService.writeBox2(kLoginUserId, username);
-            await HiveService.writeBox2(kLoginUserPassword, password);
-            await HiveService.writeBox2(kRememberMe, state.rememberMe);
+            await HiveService.writeBox2(AppConstant.kLoginUserId, username);
+            await HiveService.writeBox2(AppConstant.kLoginUserPassword, password);
+            await HiveService.writeBox2(AppConstant.kRememberMe, state.rememberMe);
           } else {
-            await HiveService.writeBox2(kLoginUserId, "");
-            await HiveService.writeBox2(kLoginUserPassword, "");
-            await HiveService.writeBox2(kRememberMe, false);
+            await HiveService.writeBox2(AppConstant.kLoginUserId, "");
+            await HiveService.writeBox2(AppConstant.kLoginUserPassword, "");
+            await HiveService.writeBox2(AppConstant.kRememberMe, false);
           }
-          await HiveService.write(kLoginResponseKey, response.data ?? "");
+          await HiveService.write(AppConstant.kLoginResponseKey, response.data ?? "");
           emit(
             state.copyWith(
               status: AuthStatus.loginSuccess,

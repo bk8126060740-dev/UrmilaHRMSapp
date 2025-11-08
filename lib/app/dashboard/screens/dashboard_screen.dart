@@ -134,6 +134,7 @@ import 'package:hrms_uis/app/dashboard/screens/tabs/grievance_tab.dart';
 import 'package:hrms_uis/app/dashboard/screens/tabs/home_tab.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
+import 'package:hrms_uis/common/utils/global_internet_check/network_observer.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 
 import '../../../common/navigation_service/navigation_service.dart';
@@ -183,120 +184,128 @@ class _DashboardScreenState extends State<DashboardScreen> {
       builder: (_, appState) {
         return BlocBuilder<DashboardBloc, DashboardState>(
           builder: (_, dashboardState) {
-            return Scaffold(
-              key: scaffoldKey,
-              appBar: CustomAppBar(
-                elevation: 0,
-                showCalendarIcon: false,
-                onCalendarTap: () {
-                  if (dashboardState.userProfileLoading ||
-                      dashboardState.userResponseLoading) {
-                    return;
-                  }
-                  NavigationService.navigateTo(DailyAttendanceScreen.route);
-                },
-                onNavigationTap: () {
-                  if (dashboardState.userProfileLoading ||
-                      dashboardState.userResponseLoading) {
-                    return;
-                  }
-                  scaffoldKey.currentState?.openDrawer();
+            return NetworkObserver(
+              onRetry: () {
+                context.read<DashboardBloc>().add(
+                  DashboardEvent.getUserProfileData(),
+                );
+                context.read<DashboardBloc>().add(DashboardEvent.getUserData());
+              },
+              child: Scaffold(
+                key: scaffoldKey,
+                appBar: CustomAppBar(
+                  elevation: 0,
+                  showCalendarIcon: false,
+                  onCalendarTap: () {
+                    if (dashboardState.userProfileLoading ||
+                        dashboardState.userResponseLoading) {
+                      return;
+                    }
+                    NavigationService.navigateTo(DailyAttendanceScreen.route);
+                  },
+                  onNavigationTap: () {
+                    if (dashboardState.userProfileLoading ||
+                        dashboardState.userResponseLoading) {
+                      return;
+                    }
+                    scaffoldKey.currentState?.openDrawer();
 
-                  // Scaffold.of(context).openDrawer();
-                },
-                title:
-                    '${appState.userProfileModel?.firstName ?? ""} ${appState.userProfileModel?.lastName ?? ""}',
-                subtitle: appState.userProfileModel?.designationName ?? "",
-                avatarImage: AppImages.logo,
-                showAvatar: true,
-                showBackButton: false,
-                showNavigation: true,
-              ),
-              drawer: const SideDrawer(),
-              body: SafeArea(
-                child: MultiBlocListener(
-                  listeners: [
-                    /// Listen to DashboardBloc events for profile/user updates
-                    BlocListener<DashboardBloc, DashboardState>(
-                      listener: (context, state) {
-                        if (state.status == DashboardStatus.userSuccess) {
-                          context.read<AppBloc>().add(
-                            AppEvent.updateUserResponse(
-                              state.userResponseModel,
-                            ),
-                          );
-                        }
-
-                        if (state.status == DashboardStatus.profileSuccess) {
-                          context.read<AppBloc>().add(
-                            AppEvent.updateUserProfileData(
-                              state.userProfileDataModel,
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ],
-                  child: BlocBuilder<DashboardBloc, DashboardState>(
-                    builder: (context, dashboardState) {
-                      if (dashboardState.userProfileLoading ||
-                          dashboardState.userResponseLoading) {
-                        return const Center(child: CustomCircularProgress());
-                      }
-
-                      // Reactively listen to tab index changes from AppBloc
-                      return BlocBuilder<AppBloc, AppState>(
-                        buildWhen: (prev, curr) =>
-                            prev.currentTabIndex != curr.currentTabIndex,
-                        builder: (context, appState) {
-                          return _getBody(appState.currentTabIndex);
-                        },
-                      );
-                    },
-                  ),
+                    // Scaffold.of(context).openDrawer();
+                  },
+                  title:
+                      '${appState.userProfileModel?.firstName ?? ""} ${appState.userProfileModel?.lastName ?? ""}',
+                  subtitle: appState.userProfileModel?.designationName ?? "",
+                  avatarImage: AppImages.logo,
+                  showAvatar: true,
+                  showBackButton: false,
+                  showNavigation: true,
                 ),
-              ),
-              bottomNavigationBar: BlocBuilder<AppBloc, AppState>(
-                buildWhen: (prev, curr) =>
-                    prev.currentTabIndex != curr.currentTabIndex,
-                builder: (context, appState) {
-                  final dashboardState = context.watch<DashboardBloc>().state;
+                drawer: const SideDrawer(),
+                body: SafeArea(
+                  child: MultiBlocListener(
+                    listeners: [
+                      /// Listen to DashboardBloc events for profile/user updates
+                      BlocListener<DashboardBloc, DashboardState>(
+                        listener: (context, state) {
+                          if (state.status == DashboardStatus.userSuccess) {
+                            context.read<AppBloc>().add(
+                              AppEvent.updateUserResponse(
+                                state.userResponseModel,
+                              ),
+                            );
+                          }
 
-                  return AbsorbPointer(
-                    absorbing:
-                        dashboardState.userProfileLoading ||
-                        dashboardState.userResponseLoading,
-                    child: CustomBottomBar(
-                      backgroundColor: AppColors.secondaryColor,
-                      color: AppColors.iconColor,
-                      selectedColor: AppColors.primaryColor,
-                      selectedIndex: appState.currentTabIndex,
-                      onTabSelected: (index) {
-                        context.read<AppBloc>().add(
-                          AppEvent.updateTabIndex(tabIndex: index),
+                          if (state.status == DashboardStatus.profileSuccess) {
+                            context.read<AppBloc>().add(
+                              AppEvent.updateUserProfileData(
+                                state.userProfileDataModel,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                    child: BlocBuilder<DashboardBloc, DashboardState>(
+                      builder: (context, dashboardState) {
+                        if (dashboardState.userProfileLoading ||
+                            dashboardState.userResponseLoading) {
+                          return const Center(child: CustomCircularProgress());
+                        }
+
+                        // Reactively listen to tab index changes from AppBloc
+                        return BlocBuilder<AppBloc, AppState>(
+                          buildWhen: (prev, curr) =>
+                              prev.currentTabIndex != curr.currentTabIndex,
+                          builder: (context, appState) {
+                            return _getBody(appState.currentTabIndex);
+                          },
                         );
                       },
-                      items: [
-                        CustomBottomBarItem(
-                          icon: AppImages.calenderIcon,
-                          text: "Home",
-                        ),
-                        CustomBottomBarItem(
-                          icon: AppImages.calenderIcon,
-                          text: "Home",
-                        ),
-                        CustomBottomBarItem(
-                          icon: AppImages.calenderIcon,
-                          text: "Home",
-                        ),
-                        CustomBottomBarItem(
-                          icon: AppImages.calenderIcon,
-                          text: "Home",
-                        ),
-                      ],
                     ),
-                  );
-                },
+                  ),
+                ),
+                bottomNavigationBar: BlocBuilder<AppBloc, AppState>(
+                  buildWhen: (prev, curr) =>
+                      prev.currentTabIndex != curr.currentTabIndex,
+                  builder: (context, appState) {
+                    final dashboardState = context.watch<DashboardBloc>().state;
+
+                    return AbsorbPointer(
+                      absorbing:
+                          dashboardState.userProfileLoading ||
+                          dashboardState.userResponseLoading,
+                      child: CustomBottomBar(
+                        backgroundColor: AppColors.secondaryColor,
+                        color: AppColors.iconColor,
+                        selectedColor: AppColors.primaryColor,
+                        selectedIndex: appState.currentTabIndex,
+                        onTabSelected: (index) {
+                          context.read<AppBloc>().add(
+                            AppEvent.updateTabIndex(tabIndex: index),
+                          );
+                        },
+                        items: [
+                          CustomBottomBarItem(
+                            icon: AppImages.calenderIcon,
+                            text: "Home",
+                          ),
+                          CustomBottomBarItem(
+                            icon: AppImages.calenderIcon,
+                            text: "Home",
+                          ),
+                          CustomBottomBarItem(
+                            icon: AppImages.calenderIcon,
+                            text: "Home",
+                          ),
+                          CustomBottomBarItem(
+                            icon: AppImages.calenderIcon,
+                            text: "Home",
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           },

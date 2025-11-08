@@ -25,8 +25,8 @@ class DailyAttendanceDetailsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(
-          left: AppSizes.padding24,
-          right: AppSizes.padding24,
+          left: AppSizes.padding20,
+          right: AppSizes.padding20,
           // left: AppSizes.padding24,
           // left: AppSizes.padding24,
         ),

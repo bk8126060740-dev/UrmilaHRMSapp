@@ -13,6 +13,7 @@ import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/utils/formatters/date_formats.dart';
 import 'package:hrms_uis/common/utils/formatters/formatter.dart';
+import 'package:hrms_uis/common/utils/global_internet_check/network_observer.dart';
 import 'package:hrms_uis/common/utils/popups/custom_toast.dart';
 import 'package:hrms_uis/common/widgets/custom/custom_refresh_indicator.dart';
 import 'package:hrms_uis/common/widgets/divider/horizontal_divider.dart';
@@ -36,118 +37,270 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        elevation: 0,
-        title: context.loc.profile,
-        showAvatar: false,
-        showBackButton: true,
-        showNavigation: false,
-        showCalendarIcon: false,
-      ),
-      body: Container(
-        margin: const EdgeInsets.symmetric(
-          vertical: AppSizes.padding16,
-          horizontal: AppSizes.padding16,
+    return NetworkObserver(
+      onRetry: () {
+        context.read<DashboardBloc>().add(DashboardEvent.getUserProfileData());
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          elevation: 0,
+          title: context.loc.profile,
+          showAvatar: false,
+          showBackButton: true,
+          showNavigation: false,
+          showCalendarIcon: false,
         ),
-        child: BlocConsumer<DashboardBloc, DashboardState>(
-          listener: (context, state) {
-            if (state.status == DashboardStatus.profileSuccess) {
-              context.read<AppBloc>().add(
-                AppEvent.updateUserProfileData(state.userProfileDataModel),
-              );
-            }
-          },
-          builder: (context, state) {
-            var profileModel = state.userProfileDataModel;
-            return state.status == DashboardStatus.profileLoading
-                ? Center(child: CustomCircularProgress())
-                : CustomRefreshIndicator(
-                    backgroundColor: AppColors.bgColor,
-                    onRefresh: () async {
-                      var dashboardBloc = context.read<DashboardBloc>();
-                      dashboardBloc.add(DashboardEvent.getUserProfileData());
-                    },
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: AppSizes.padding16,
-                              horizontal: AppSizes.padding16,
+        body: Container(
+          margin: const EdgeInsets.symmetric(
+            vertical: AppSizes.padding16,
+            horizontal: AppSizes.padding16,
+          ),
+          child: BlocConsumer<DashboardBloc, DashboardState>(
+            listener: (context, state) {
+              if (state.status == DashboardStatus.profileSuccess) {
+                context.read<AppBloc>().add(
+                  AppEvent.updateUserProfileData(state.userProfileDataModel),
+                );
+              }
+            },
+            builder: (context, state) {
+              var profileModel = state.userProfileDataModel;
+              return state.status == DashboardStatus.profileLoading
+                  ? Center(child: CustomCircularProgress())
+                  : CustomRefreshIndicator(
+                      backgroundColor: AppColors.bgColor,
+                      onRefresh: () async {
+                        var dashboardBloc = context.read<DashboardBloc>();
+                        dashboardBloc.add(DashboardEvent.getUserProfileData());
+                      },
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: AppSizes.padding16,
+                                horizontal: AppSizes.padding16,
+                              ),
+                              decoration: AppDecorations.card(),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  BlocBuilder<AppBloc, AppState>(
+                                    builder: (context, appState) {
+                                      return Center(
+                                        child: CustomImage(
+                                          imageUrl:
+                                              appState
+                                                  .userProfileModel
+                                                  ?.profilePath ??
+                                              "",
+                                          fallbackAsset: AppImages.profileImage,
+                                          size: 100,
+                                          borderColor: Colors.white,
+                                          borderWidth: 2,
+                                          useShimmer: true,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  const SizedBox(height: AppSizes.space16),
+                                  _infoField(
+                                    "Name",
+                                    "${profileModel?.firstName ?? ""} ${profileModel?.midName ?? ""} ${profileModel?.lastName ?? ""}",
+                                  ),
+                                  const SizedBox(height: AppSizes.space8),
+                                  CustomHorizontalDivider(),
+                                  const SizedBox(height: AppSizes.space8),
+                                  _infoField(
+                                    "Designation",
+                                    profileModel?.designationName ?? "",
+                                  ),
+                                  const SizedBox(height: AppSizes.space8),
+                                  CustomHorizontalDivider(),
+                                  const SizedBox(height: AppSizes.space8),
+                                  _infoField(
+                                    "Join Date",
+                                    AppFormatter.formatDateString(
+                                          "${profileModel?.doj ?? ""}",
+                                          format: DateFormats.fullMonth,
+                                        ) ??
+                                        "--",
+                                  ),
+                                  const SizedBox(height: AppSizes.space8),
+                                  CustomHorizontalDivider(),
+                                  const SizedBox(height: AppSizes.space8),
+                                  _offerLetterView(
+                                    title: "Offer Letter",
+                                    offerLetter:
+                                        profileModel?.offerLetter ?? "",
+                                  ),
+                                ],
+                              ),
                             ),
-                            decoration: AppDecorations.card(),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                BlocBuilder<AppBloc, AppState>(
-                                  builder: (context, appState) {
-                                    return Center(
-                                      child: CustomImage(
-                                        imageUrl:
-                                            appState
-                                                .userProfileModel
-                                                ?.profilePath ??
-                                            "",
-                                        fallbackAsset: AppImages.profileImage,
-                                        size: 100,
-                                        borderColor: Colors.white,
-                                        borderWidth: 2,
-                                        useShimmer: true,
-                                      ),
-                                    );
-                                  },
-                                ),
-                                const SizedBox(height: AppSizes.space16),
-                                _infoField(
-                                  "Name",
-                                  "${profileModel?.firstName ?? ""} ${profileModel?.midName ?? ""} ${profileModel?.lastName ?? ""}",
-                                ),
-                                const SizedBox(height: AppSizes.space8),
-                                CustomHorizontalDivider(),
-                                const SizedBox(height: AppSizes.space8),
-                                _infoField(
-                                  "Designation",
-                                  profileModel?.designationName ?? "",
-                                ),
-                                const SizedBox(height: AppSizes.space8),
-                                CustomHorizontalDivider(),
-                                const SizedBox(height: AppSizes.space8),
-                                _infoField(
-                                  "Join Date",
-                                  AppFormatter.formatDateString(
-                                        "${profileModel?.doj ?? ""}",
-                                        format: DateFormats.fullMonth,
-                                      ) ??
-                                      "--",
-                                ),
-                                const SizedBox(height: AppSizes.space8),
-                                CustomHorizontalDivider(),
-                                const SizedBox(height: AppSizes.space8),
-                                _offerLetterView(
-                                  title: "Offer Letter",
-                                  offerLetter: profileModel?.offerLetter ?? "",
-                                ),
-                              ],
+
+                            AppSizes.space16.vGap,
+
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: AppSizes.padding16,
+                                horizontal: AppSizes.padding16,
+                              ),
+                              decoration: AppDecorations.card(),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildSectionTitle("Personal Information"),
+                                  _buildInfoCard([
+                                    _infoField(
+                                      "Gender",
+                                      profileModel?.genderName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Date of Birth",
+                                      AppFormatter.formatDateString(
+                                            "${profileModel?.dateOfBirth ?? ""}",
+                                            format: DateFormats.fullMonth,
+                                          ) ??
+                                          "--",
+                                    ),
+                                    _infoField(
+                                      "Age",
+                                      "${profileModel?.age ?? "--"}",
+                                    ),
+                                    _infoField(
+                                      "Marital Status",
+                                      profileModel?.maritalStatusName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Nationality",
+                                      profileModel?.nationalityName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Blood Group",
+                                      profileModel?.bloodGroup ?? "--",
+                                    ),
+                                  ]),
+                                ],
+                              ),
                             ),
-                          ),
-                          // AppSizes.space16.vGap,
-                          // Container(
-                          //   width: AppDeviceUtils.getScreenWidth(context),
-                          //   padding: EdgeInsets.symmetric(
-                          //     vertical: AppSizes.padding16,
-                          //     horizontal: AppSizes.padding16,
-                          //   ),
-                          //   decoration: AppDecorations.card(),
-                          //   child: _salarySlipView(
-                          //     title: "Salary Slip Download",
-                          //   ),
-                          // ),
-                        ],
+
+                            AppSizes.space16.vGap,
+
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: AppSizes.padding16,
+                                horizontal: AppSizes.padding16,
+                              ),
+                              decoration: AppDecorations.card(),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildSectionTitle("Employment Information"),
+                                  _buildInfoCard([
+                                    _infoField(
+                                      "Designation",
+                                      profileModel?.designationName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Department",
+                                      profileModel?.departmentName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Employee Code",
+                                      profileModel?.employeeCode ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Status",
+                                      profileModel?.statusName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Join Date",
+                                      AppFormatter.formatDateString(
+                                            "${profileModel?.doj ?? ""}",
+                                            format: DateFormats.fullMonth,
+                                          ) ??
+                                          "--",
+                                    ),
+                                    _infoField(
+                                      "Current Project",
+                                      profileModel
+                                              ?.currentProject
+                                              ?.projectName ??
+                                          "--",
+                                    ),
+                                    _infoField(
+                                      "Project Role",
+                                      profileModel?.currentProject?.role ??
+                                          "--",
+                                    ),
+                                    _infoField(
+                                      "Project Start Date",
+                                      AppFormatter.formatDateString(
+                                            "${profileModel?.currentProject?.startDate ?? ""}",
+                                            format: DateFormats.fullMonth,
+                                          ) ??
+                                          "--",
+                                    ),
+                                  ]),
+                                ],
+                              ),
+                            ),
+
+                            AppSizes.space16.vGap,
+
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: AppSizes.padding16,
+                                horizontal: AppSizes.padding16,
+                              ),
+                              decoration: AppDecorations.card(),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildSectionTitle("Bank & Document Details"),
+                                  _buildInfoCard([
+                                    _infoField(
+                                      "Bank Name",
+                                      profileModel?.bankName ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Account Number",
+                                      profileModel?.accountNumber ?? "--",
+                                    ),
+                                    _infoField(
+                                      "IFSC Code",
+                                      profileModel?.ifscCode ?? "--",
+                                    ),
+                                    _infoField(
+                                      "PAN Number",
+                                      profileModel?.panNumber ?? "--",
+                                    ),
+                                    _infoField(
+                                      "Aadhar Number",
+                                      profileModel?.aadharCardNumber ?? "--",
+                                    ),
+                                  ]),
+                                ],
+                              ),
+                            ),
+                            // AppSizes.space16.vGap,
+                            // Container(
+                            //   width: AppDeviceUtils.getScreenWidth(context),
+                            //   padding: EdgeInsets.symmetric(
+                            //     vertical: AppSizes.padding16,
+                            //     horizontal: AppSizes.padding16,
+                            //   ),
+                            //   decoration: AppDecorations.card(),
+                            //   child: _salarySlipView(
+                            //     title: "Salary Slip Download",
+                            //   ),
+                            // ),
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-          },
+                    );
+            },
+          ),
         ),
       ),
     );
@@ -372,6 +525,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         ),
       ],
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        title,
+        style: AppTextStyles.w500_16(context, color: AppColors.textColor),
+      ),
+    );
+  }
+
+  Widget _buildInfoCard(List<Widget> children) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(top: AppSizes.space8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (int i = 0; i < children.length; i++) ...[
+            children[i],
+            if (i != children.length - 1) ...[
+              const SizedBox(height: AppSizes.space8),
+              CustomHorizontalDivider(),
+              const SizedBox(height: AppSizes.space8),
+            ],
+          ],
+        ],
+      ),
     );
   }
 }

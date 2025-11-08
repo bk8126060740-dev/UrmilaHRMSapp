@@ -18,61 +18,59 @@ class LoginContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // app logo
-            SizedBox(
-              height: AppDeviceUtils.getScreenHeight(context) * 0.30,
-              width: AppDeviceUtils.getScreenWidth(context),
-              child: Center(child: AppLogo()),
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // app logo
+          SizedBox(
+            height: AppDeviceUtils.getScreenHeight(context) * 0.30,
+            width: AppDeviceUtils.getScreenWidth(context),
+            child: Center(child: AppLogo()),
+          ),
 
-            // input fields and buttons
-            SizedBox(
-              height: AppDeviceUtils.getScreenHeight(context) * 0.70,
-              child: SingleChildScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppSizes.padding24,
-                    vertical: 0,
-                  ),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${context.loc.loginTitle}!",
-                          style: AppTextStyles.w500_20(
-                            context,
-                          ).copyWith(fontSize: AppSizes.fontSize24),
+          // input fields and buttons
+          SizedBox(
+            height: AppDeviceUtils.getScreenHeight(context) * 0.70,
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.padding20,
+                  vertical: 0,
+                ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${context.loc.loginTitle}!",
+                        style: AppTextStyles.w500_20(
+                          context,
+                        ).copyWith(fontSize: AppSizes.fontSize24),
+                      ),
+                      SizedBox(height: AppSizes.space4),
+                      Text(
+                        context.loc.loginDesc,
+                        style: AppTextStyles.w400_14(
+                          context,
+                          color: AppColors.secondaryTextColor,
                         ),
-                        SizedBox(height: AppSizes.space4),
-                        Text(
-                          context.loc.loginDesc,
-                          style: AppTextStyles.w400_14(
-                            context,
-                            color: AppColors.secondaryTextColor,
-                          ),
-                        ),
-                        const SizedBox(height: AppSizes.space20),
-                        LoginInput(formKey: _formKey),
-                        const SizedBox(height: AppSizes.space12),
-                        ForgotRememberWidget(),
-                        const SizedBox(height: AppSizes.space20),
-                        LoginButton(formKey: _formKey),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: AppSizes.space20),
+                      LoginInput(formKey: _formKey),
+                      const SizedBox(height: AppSizes.space12),
+                      ForgotRememberWidget(),
+                      const SizedBox(height: AppSizes.space20),
+                      LoginButton(formKey: _formKey),
+                    ],
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

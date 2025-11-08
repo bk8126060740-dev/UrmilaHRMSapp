@@ -22,7 +22,7 @@ class BaseCenterDialog extends StatelessWidget {
         decoration: ShapeDecoration(
           color: AppColors.bgColor,
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: AppColors.dividerColor),
+            side: BorderSide(width: 1, color: AppColors.borderColor),
             borderRadius: BorderRadius.circular(AppSizes.borderRadius4),
           ),
           shadows: [

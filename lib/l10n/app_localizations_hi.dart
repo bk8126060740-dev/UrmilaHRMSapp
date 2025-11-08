@@ -100,4 +100,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get preview => 'Preview';
+
+  @override
+  String get salarySlip => 'Salary Slip';
 }

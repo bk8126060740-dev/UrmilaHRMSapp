@@ -122,7 +122,7 @@ class _CustomImageCameraScreenState extends State<CustomImageCameraScreen> {
                             child: ElevatedButton(
                               onPressed: _takePicture,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.surfaceContainer,
+                                backgroundColor: AppColors.surfaceColor,
                                 minimumSize: const Size(0, 0),
                                 // avoid full-width themes
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,

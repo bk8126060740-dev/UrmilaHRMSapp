@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/app/attendance/screens/daily_attendance_screen.dart';
 import 'package:hrms_uis/app/attendance/screens/approve_attendance_screen.dart';
 import 'package:hrms_uis/app/attendance/screens/monthly_attendance_screen.dart';
+import 'package:hrms_uis/app/salary_slip/screens/salary_slip_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
@@ -50,7 +51,7 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
     ).copyWith(fontSize: 11);
     ValueNotifier<List<MaterialSquareIcon>> items = ValueNotifier([
       MaterialSquareIcon(
-        squareColor: AppColors.surfaceContainer,
+        squareColor: AppColors.surfaceColor,
         title: context.loc.attendance,
         textStyle: serviceTextStyle,
         iconTextGap: 8.0,
@@ -63,7 +64,7 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         },
       ),
       MaterialSquareIcon(
-        squareColor: AppColors.surfaceContainer,
+        squareColor: AppColors.surfaceColor,
         title: "View Atten.",
         textStyle: serviceTextStyle,
         iconTextGap: 8.0,
@@ -76,12 +77,25 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         ),
       ),
       MaterialSquareIcon(
-        squareColor: AppColors.surfaceContainer,
+        squareColor: AppColors.surfaceColor,
         title: context.loc.attendanceMGR,
         textStyle: serviceTextStyle,
         iconTextGap: 8.0,
         onTap: () {
           NavigationService.navigateTo(ApproveAttendanceScreen.route);
+        },
+        child: SvgPicture.asset(
+          colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+          AppImages.monthViewIconSN,
+        ),
+      ),
+      MaterialSquareIcon(
+        squareColor: AppColors.surfaceColor,
+        title: "salary Slip",
+        textStyle: serviceTextStyle,
+        iconTextGap: 8.0,
+        onTap: () {
+          NavigationService.navigateTo(SalarySlipScreen.route);
         },
         child: SvgPicture.asset(
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),

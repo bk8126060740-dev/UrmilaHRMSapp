@@ -138,7 +138,7 @@ class _GrievanceTabState extends State<GrievanceTab> {
   // ----------------------------------------
   Widget _buildMainContent() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.padding24),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.padding20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
