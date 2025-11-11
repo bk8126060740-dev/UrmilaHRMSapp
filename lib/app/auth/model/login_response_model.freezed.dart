@@ -23,13 +23,19 @@ mixin _$LoginResponseModel {
   @HiveField(0)
   String? get token => throw _privateConstructorUsedError;
   @HiveField(1)
-  String? get tokenType => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   @HiveField(2)
-  int? get expiresIn => throw _privateConstructorUsedError;
+  int? get employeeId => throw _privateConstructorUsedError;
   @HiveField(3)
-  String? get refreshToken => throw _privateConstructorUsedError;
+  int? get projectId => throw _privateConstructorUsedError;
   @HiveField(4)
-  User? get user => throw _privateConstructorUsedError;
+  String? get projectName => throw _privateConstructorUsedError;
+  @HiveField(5)
+  double? get baseLatitude => throw _privateConstructorUsedError;
+  @HiveField(6)
+  double? get baseLongitude => throw _privateConstructorUsedError;
+  @HiveField(7)
+  String? get fullName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,12 +51,13 @@ abstract class $LoginResponseModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) String? token,
-      @HiveField(1) String? tokenType,
-      @HiveField(2) int? expiresIn,
-      @HiveField(3) String? refreshToken,
-      @HiveField(4) User? user});
-
-  $UserCopyWith<$Res>? get user;
+      @HiveField(1) int? userId,
+      @HiveField(2) int? employeeId,
+      @HiveField(3) int? projectId,
+      @HiveField(4) String? projectName,
+      @HiveField(5) double? baseLatitude,
+      @HiveField(6) double? baseLongitude,
+      @HiveField(7) String? fullName});
 }
 
 /// @nodoc
@@ -67,45 +74,48 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
   @override
   $Res call({
     Object? token = freezed,
-    Object? tokenType = freezed,
-    Object? expiresIn = freezed,
-    Object? refreshToken = freezed,
-    Object? user = freezed,
+    Object? userId = freezed,
+    Object? employeeId = freezed,
+    Object? projectId = freezed,
+    Object? projectName = freezed,
+    Object? baseLatitude = freezed,
+    Object? baseLongitude = freezed,
+    Object? fullName = freezed,
   }) {
     return _then(_value.copyWith(
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      tokenType: freezed == tokenType
-          ? _value.tokenType
-          : tokenType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expiresIn: freezed == expiresIn
-          ? _value.expiresIn
-          : expiresIn // ignore: cast_nullable_to_non_nullable
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
-      refreshToken: freezed == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+      baseLatitude: freezed == baseLatitude
+          ? _value.baseLatitude
+          : baseLatitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      baseLongitude: freezed == baseLongitude
+          ? _value.baseLongitude
+          : baseLongitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -119,13 +129,13 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@HiveField(0) String? token,
-      @HiveField(1) String? tokenType,
-      @HiveField(2) int? expiresIn,
-      @HiveField(3) String? refreshToken,
-      @HiveField(4) User? user});
-
-  @override
-  $UserCopyWith<$Res>? get user;
+      @HiveField(1) int? userId,
+      @HiveField(2) int? employeeId,
+      @HiveField(3) int? projectId,
+      @HiveField(4) String? projectName,
+      @HiveField(5) double? baseLatitude,
+      @HiveField(6) double? baseLongitude,
+      @HiveField(7) String? fullName});
 }
 
 /// @nodoc
@@ -140,32 +150,47 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = freezed,
-    Object? tokenType = freezed,
-    Object? expiresIn = freezed,
-    Object? refreshToken = freezed,
-    Object? user = freezed,
+    Object? userId = freezed,
+    Object? employeeId = freezed,
+    Object? projectId = freezed,
+    Object? projectName = freezed,
+    Object? baseLatitude = freezed,
+    Object? baseLongitude = freezed,
+    Object? fullName = freezed,
   }) {
     return _then(_$LoginResponseModelImpl(
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      tokenType: freezed == tokenType
-          ? _value.tokenType
-          : tokenType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expiresIn: freezed == expiresIn
-          ? _value.expiresIn
-          : expiresIn // ignore: cast_nullable_to_non_nullable
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
-      refreshToken: freezed == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+      baseLatitude: freezed == baseLatitude
+          ? _value.baseLatitude
+          : baseLatitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      baseLongitude: freezed == baseLongitude
+          ? _value.baseLongitude
+          : baseLongitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -176,10 +201,13 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
 class _$LoginResponseModelImpl implements _LoginResponseModel {
   _$LoginResponseModelImpl(
       {@HiveField(0) this.token,
-      @HiveField(1) this.tokenType,
-      @HiveField(2) this.expiresIn,
-      @HiveField(3) this.refreshToken,
-      @HiveField(4) this.user});
+      @HiveField(1) this.userId,
+      @HiveField(2) this.employeeId,
+      @HiveField(3) this.projectId,
+      @HiveField(4) this.projectName,
+      @HiveField(5) this.baseLatitude,
+      @HiveField(6) this.baseLongitude,
+      @HiveField(7) this.fullName});
 
   factory _$LoginResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginResponseModelImplFromJson(json);
@@ -189,20 +217,29 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   final String? token;
   @override
   @HiveField(1)
-  final String? tokenType;
+  final int? userId;
   @override
   @HiveField(2)
-  final int? expiresIn;
+  final int? employeeId;
   @override
   @HiveField(3)
-  final String? refreshToken;
+  final int? projectId;
   @override
   @HiveField(4)
-  final User? user;
+  final String? projectName;
+  @override
+  @HiveField(5)
+  final double? baseLatitude;
+  @override
+  @HiveField(6)
+  final double? baseLongitude;
+  @override
+  @HiveField(7)
+  final String? fullName;
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, tokenType: $tokenType, expiresIn: $expiresIn, refreshToken: $refreshToken, user: $user)';
+    return 'LoginResponseModel(token: $token, userId: $userId, employeeId: $employeeId, projectId: $projectId, projectName: $projectName, baseLatitude: $baseLatitude, baseLongitude: $baseLongitude, fullName: $fullName)';
   }
 
   @override
@@ -211,19 +248,25 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
         (other.runtimeType == runtimeType &&
             other is _$LoginResponseModelImpl &&
             (identical(other.token, token) || other.token == token) &&
-            (identical(other.tokenType, tokenType) ||
-                other.tokenType == tokenType) &&
-            (identical(other.expiresIn, expiresIn) ||
-                other.expiresIn == expiresIn) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.baseLatitude, baseLatitude) ||
+                other.baseLatitude == baseLatitude) &&
+            (identical(other.baseLongitude, baseLongitude) ||
+                other.baseLongitude == baseLongitude) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, token, tokenType, expiresIn, refreshToken, user);
+  int get hashCode => Object.hash(runtimeType, token, userId, employeeId,
+      projectId, projectName, baseLatitude, baseLongitude, fullName);
 
   @JsonKey(ignore: true)
   @override
@@ -243,10 +286,13 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
 abstract class _LoginResponseModel implements LoginResponseModel {
   factory _LoginResponseModel(
       {@HiveField(0) final String? token,
-      @HiveField(1) final String? tokenType,
-      @HiveField(2) final int? expiresIn,
-      @HiveField(3) final String? refreshToken,
-      @HiveField(4) final User? user}) = _$LoginResponseModelImpl;
+      @HiveField(1) final int? userId,
+      @HiveField(2) final int? employeeId,
+      @HiveField(3) final int? projectId,
+      @HiveField(4) final String? projectName,
+      @HiveField(5) final double? baseLatitude,
+      @HiveField(6) final double? baseLongitude,
+      @HiveField(7) final String? fullName}) = _$LoginResponseModelImpl;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$LoginResponseModelImpl.fromJson;
@@ -256,382 +302,27 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   String? get token;
   @override
   @HiveField(1)
-  String? get tokenType;
+  int? get userId;
   @override
   @HiveField(2)
-  int? get expiresIn;
+  int? get employeeId;
   @override
   @HiveField(3)
-  String? get refreshToken;
+  int? get projectId;
   @override
   @HiveField(4)
-  User? get user;
+  String? get projectName;
+  @override
+  @HiveField(5)
+  double? get baseLatitude;
+  @override
+  @HiveField(6)
+  double? get baseLongitude;
+  @override
+  @HiveField(7)
+  String? get fullName;
   @override
   @JsonKey(ignore: true)
   _$$LoginResponseModelImplCopyWith<_$LoginResponseModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
-/// @nodoc
-mixin _$User {
-  @HiveField(0)
-  int? get id => throw _privateConstructorUsedError;
-  @HiveField(1)
-  String? get fullName => throw _privateConstructorUsedError;
-  @HiveField(2)
-  String? get emailId => throw _privateConstructorUsedError;
-  @HiveField(3)
-  String? get profilePic => throw _privateConstructorUsedError;
-  @HiveField(4)
-  int? get userTypeId => throw _privateConstructorUsedError;
-  @HiveField(5)
-  int? get designationId => throw _privateConstructorUsedError;
-  @HiveField(6)
-  String? get designationName => throw _privateConstructorUsedError;
-  @HiveField(7)
-  bool? get isCheckIn => throw _privateConstructorUsedError;
-  @HiveField(8)
-  bool? get isOnboardComplete => throw _privateConstructorUsedError;
-  @HiveField(9)
-  bool? get isHo => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
-  @useResult
-  $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? fullName,
-      @HiveField(2) String? emailId,
-      @HiveField(3) String? profilePic,
-      @HiveField(4) int? userTypeId,
-      @HiveField(5) int? designationId,
-      @HiveField(6) String? designationName,
-      @HiveField(7) bool? isCheckIn,
-      @HiveField(8) bool? isOnboardComplete,
-      @HiveField(9) bool? isHo});
-}
-
-/// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? fullName = freezed,
-    Object? emailId = freezed,
-    Object? profilePic = freezed,
-    Object? userTypeId = freezed,
-    Object? designationId = freezed,
-    Object? designationName = freezed,
-    Object? isCheckIn = freezed,
-    Object? isOnboardComplete = freezed,
-    Object? isHo = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      emailId: freezed == emailId
-          ? _value.emailId
-          : emailId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profilePic: freezed == profilePic
-          ? _value.profilePic
-          : profilePic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userTypeId: freezed == userTypeId
-          ? _value.userTypeId
-          : userTypeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      designationId: freezed == designationId
-          ? _value.designationId
-          : designationId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      designationName: freezed == designationName
-          ? _value.designationName
-          : designationName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isCheckIn: freezed == isCheckIn
-          ? _value.isCheckIn
-          : isCheckIn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isOnboardComplete: freezed == isOnboardComplete
-          ? _value.isOnboardComplete
-          : isOnboardComplete // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isHo: freezed == isHo
-          ? _value.isHo
-          : isHo // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$UserImplCopyWith(
-          _$UserImpl value, $Res Function(_$UserImpl) then) =
-      __$$UserImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@HiveField(0) int? id,
-      @HiveField(1) String? fullName,
-      @HiveField(2) String? emailId,
-      @HiveField(3) String? profilePic,
-      @HiveField(4) int? userTypeId,
-      @HiveField(5) int? designationId,
-      @HiveField(6) String? designationName,
-      @HiveField(7) bool? isCheckIn,
-      @HiveField(8) bool? isOnboardComplete,
-      @HiveField(9) bool? isHo});
-}
-
-/// @nodoc
-class __$$UserImplCopyWithImpl<$Res>
-    extends _$UserCopyWithImpl<$Res, _$UserImpl>
-    implements _$$UserImplCopyWith<$Res> {
-  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? fullName = freezed,
-    Object? emailId = freezed,
-    Object? profilePic = freezed,
-    Object? userTypeId = freezed,
-    Object? designationId = freezed,
-    Object? designationName = freezed,
-    Object? isCheckIn = freezed,
-    Object? isOnboardComplete = freezed,
-    Object? isHo = freezed,
-  }) {
-    return _then(_$UserImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      emailId: freezed == emailId
-          ? _value.emailId
-          : emailId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profilePic: freezed == profilePic
-          ? _value.profilePic
-          : profilePic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userTypeId: freezed == userTypeId
-          ? _value.userTypeId
-          : userTypeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      designationId: freezed == designationId
-          ? _value.designationId
-          : designationId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      designationName: freezed == designationName
-          ? _value.designationName
-          : designationName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isCheckIn: freezed == isCheckIn
-          ? _value.isCheckIn
-          : isCheckIn // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isOnboardComplete: freezed == isOnboardComplete
-          ? _value.isOnboardComplete
-          : isOnboardComplete // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isHo: freezed == isHo
-          ? _value.isHo
-          : isHo // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-@HiveType(typeId: 2, adapterName: 'UserAdapter')
-class _$UserImpl implements _User {
-  _$UserImpl(
-      {@HiveField(0) this.id,
-      @HiveField(1) this.fullName,
-      @HiveField(2) this.emailId,
-      @HiveField(3) this.profilePic,
-      @HiveField(4) this.userTypeId,
-      @HiveField(5) this.designationId,
-      @HiveField(6) this.designationName,
-      @HiveField(7) this.isCheckIn,
-      @HiveField(8) this.isOnboardComplete,
-      @HiveField(9) this.isHo});
-
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
-
-  @override
-  @HiveField(0)
-  final int? id;
-  @override
-  @HiveField(1)
-  final String? fullName;
-  @override
-  @HiveField(2)
-  final String? emailId;
-  @override
-  @HiveField(3)
-  final String? profilePic;
-  @override
-  @HiveField(4)
-  final int? userTypeId;
-  @override
-  @HiveField(5)
-  final int? designationId;
-  @override
-  @HiveField(6)
-  final String? designationName;
-  @override
-  @HiveField(7)
-  final bool? isCheckIn;
-  @override
-  @HiveField(8)
-  final bool? isOnboardComplete;
-  @override
-  @HiveField(9)
-  final bool? isHo;
-
-  @override
-  String toString() {
-    return 'User(id: $id, fullName: $fullName, emailId: $emailId, profilePic: $profilePic, userTypeId: $userTypeId, designationId: $designationId, designationName: $designationName, isCheckIn: $isCheckIn, isOnboardComplete: $isOnboardComplete, isHo: $isHo)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.emailId, emailId) || other.emailId == emailId) &&
-            (identical(other.profilePic, profilePic) ||
-                other.profilePic == profilePic) &&
-            (identical(other.userTypeId, userTypeId) ||
-                other.userTypeId == userTypeId) &&
-            (identical(other.designationId, designationId) ||
-                other.designationId == designationId) &&
-            (identical(other.designationName, designationName) ||
-                other.designationName == designationName) &&
-            (identical(other.isCheckIn, isCheckIn) ||
-                other.isCheckIn == isCheckIn) &&
-            (identical(other.isOnboardComplete, isOnboardComplete) ||
-                other.isOnboardComplete == isOnboardComplete) &&
-            (identical(other.isHo, isHo) || other.isHo == isHo));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      fullName,
-      emailId,
-      profilePic,
-      userTypeId,
-      designationId,
-      designationName,
-      isCheckIn,
-      isOnboardComplete,
-      isHo);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _User implements User {
-  factory _User(
-      {@HiveField(0) final int? id,
-      @HiveField(1) final String? fullName,
-      @HiveField(2) final String? emailId,
-      @HiveField(3) final String? profilePic,
-      @HiveField(4) final int? userTypeId,
-      @HiveField(5) final int? designationId,
-      @HiveField(6) final String? designationName,
-      @HiveField(7) final bool? isCheckIn,
-      @HiveField(8) final bool? isOnboardComplete,
-      @HiveField(9) final bool? isHo}) = _$UserImpl;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
-
-  @override
-  @HiveField(0)
-  int? get id;
-  @override
-  @HiveField(1)
-  String? get fullName;
-  @override
-  @HiveField(2)
-  String? get emailId;
-  @override
-  @HiveField(3)
-  String? get profilePic;
-  @override
-  @HiveField(4)
-  int? get userTypeId;
-  @override
-  @HiveField(5)
-  int? get designationId;
-  @override
-  @HiveField(6)
-  String? get designationName;
-  @override
-  @HiveField(7)
-  bool? get isCheckIn;
-  @override
-  @HiveField(8)
-  bool? get isOnboardComplete;
-  @override
-  @HiveField(9)
-  bool? get isHo;
-  @override
-  @JsonKey(ignore: true)
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -15,7 +15,7 @@ class HiveService {
 
       // Register adapters
       Hive.registerAdapter(LoginResponseAdapter());
-      Hive.registerAdapter(UserAdapter());
+      // Hive.registerAdapter(UserAdapter());
 
       box = await Hive.openBox('box');
       box2 = await Hive.openBox('box2');
