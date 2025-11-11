@@ -23,7 +23,12 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.route:
-        return MaterialPageRoute(builder: (context) => const SplashScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => AuthBloc(),
+            child: SplashScreen(),
+          ),
+        );
       case LoginScreen.route:
         return MaterialPageRoute(
           builder: (context) {
@@ -52,12 +57,12 @@ class AppRoutes {
                 ? args['index'] as int
                 : 0;
 
-            var loginModel = context.read<AppBloc>().state.loginResponse;
+            var userModel = context.read<AppBloc>().state.userResponse;
             var now = DateTime.now();
             return BlocProvider(
-              create: (context) => DashboardBloc(userId: loginModel?.user?.id)
-                ..add(DashboardEvent.getUserData())
-                ..add(DashboardEvent.getUserProfileData()),
+              create: (context) =>
+                  DashboardBloc(userId: userModel?.employeeId)
+                    /*..add(DashboardEvent.getUserProfileData())*/,
               // ..add(
               //   DashboardEvent.getMonthlyAttendance(
               //     month: now.month,
@@ -71,10 +76,10 @@ class AppRoutes {
       case ProfileScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var loginModel = context.read<AppBloc>().state.loginResponse;
+            var userModel = context.read<AppBloc>().state.userResponse;
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: loginModel?.user?.id)
+                  DashboardBloc(userId: userModel?.employeeId)
                     ..add(DashboardEvent.getUserProfileData()),
               child: ProfileScreen(),
             );
@@ -83,10 +88,10 @@ class AppRoutes {
       case MonthlyAttendanceScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var loginModel = context.read<AppBloc>().state.loginResponse;
+            var userModel = context.read<AppBloc>().state.userResponse;
             var now = DateTime.now();
             return BlocProvider(
-              create: (context) => AttendanceBloc(userId: loginModel?.user?.id)
+              create: (context) => AttendanceBloc(userId: userModel?.employeeId)
                 ..add(
                   AttendanceEvent.getMonthlyAttendance(
                     month: now.month,
@@ -102,11 +107,11 @@ class AppRoutes {
       case DailyAttendanceScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var loginModel = context.read<AppBloc>().state.loginResponse;
+            var userModel = context.read<AppBloc>().state.userResponse;
 
             return BlocProvider(
               create: (context) =>
-                  AttendanceBloc(userId: loginModel?.user?.id)
+                  AttendanceBloc(userId: userModel?.employeeId)
                     ..add(AttendanceEvent.initDate()),
               child: DailyAttendanceScreen(),
             );
@@ -128,7 +133,15 @@ class AppRoutes {
       case ApproveAttendEmpListScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            return ApproveAttendEmpListScreen();
+            return BlocProvider(
+              create: (context) {
+                var userModel = context.read<AppBloc>().state.userResponse;
+                return AttendanceBloc(userId: userModel?.employeeId)..add(
+                  AttendanceEvent.selectFilterType(selectedFilterType: "Daily"),
+                );
+              },
+              child: ApproveAttendEmpListScreen(),
+            );
           },
         );
       case ApproveAttendEmpDetails.route:
@@ -142,10 +155,10 @@ class AppRoutes {
       case SalarySlipScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var loginModel = context.read<AppBloc>().state.loginResponse;
+            var userModel = context.read<AppBloc>().state.userResponse;
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: loginModel?.user?.id)
+                  DashboardBloc(userId: userModel?.employeeId)
                     ..add(DashboardEvent.getUserProfileData()),
               child: SalarySlipScreen(),
             );

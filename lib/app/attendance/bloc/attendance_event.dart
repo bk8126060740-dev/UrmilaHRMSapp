@@ -29,4 +29,25 @@ class AttendanceEvent with _$AttendanceEvent {
     required int year,
     required DateTime dateTime,
   }) = _GetMonthlyAttendance;
+
+  // filter approval attendance list
+  const factory AttendanceEvent.selectDate({
+    required DateTime selectedDate,
+    required bool isFromDate,
+  }) = _SelectDate;
+
+  const factory AttendanceEvent.selectFilterType({
+    required String selectedFilterType,
+  }) = _SelectFilterType;
+
+  // 🔹 Select All / Individual
+  const factory AttendanceEvent.toggleAllSelection(bool value) =
+      _ToggleAllSelection;
+
+  const factory AttendanceEvent.toggleSingleSelection({
+    required String employeeId,
+  }) = _ToggleSingleSelection;
+
+  const factory AttendanceEvent.searchEmployeeFromList(String query) =
+      _SearchEmployeeFromList;
 }

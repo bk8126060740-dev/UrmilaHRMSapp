@@ -68,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               return state.status == DashboardStatus.profileLoading
                   ? Center(child: CustomCircularProgress())
                   : CustomRefreshIndicator(
-                      backgroundColor: AppColors.bgColor,
+                      backgroundColor: AppColors.scaffoldBgColor,
                       onRefresh: () async {
                         var dashboardBloc = context.read<DashboardBloc>();
                         dashboardBloc.add(DashboardEvent.getUserProfileData());

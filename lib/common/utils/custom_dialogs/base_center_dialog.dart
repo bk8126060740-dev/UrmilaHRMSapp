@@ -20,7 +20,7 @@ class BaseCenterDialog extends StatelessWidget {
       ),
       child: Container(
         decoration: ShapeDecoration(
-          color: AppColors.bgColor,
+          color: AppColors.scaffoldBgColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 1, color: AppColors.borderColor),
             borderRadius: BorderRadius.circular(AppSizes.borderRadius4),

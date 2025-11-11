@@ -14,10 +14,10 @@ class UserProfileDataModel {
   int? id;
   String? profilePath;
   String? firstName;
-  String? midName;
+  dynamic midName;
   String? lastName;
   DateTime? dateOfBirth;
-  int? gender;
+  dynamic gender;
   String? genderName;
   int? status;
   String? statusName;
@@ -30,15 +30,15 @@ class UserProfileDataModel {
   String? nationalityName;
   dynamic preferanceType;
   String? preferanceName;
-  String? bloodGroup;
+  dynamic bloodGroup;
   int? designation;
   String? designationName;
-  dynamic employeeCode;
+  String? employeeCode;
   bool? isActive;
   dynamic deactiveDateTime;
-  dynamic departmentId;
+  int? departmentId;
   String? departmentName;
-  dynamic bkcRegNo;
+  String? bkcRegNo;
   int? age;
   bool? isRailwayRetired;
   bool? isWagesRate;
@@ -101,10 +101,10 @@ class UserProfileDataModel {
     int? id,
     String? profilePath,
     String? firstName,
-    String? midName,
+    dynamic midName,
     String? lastName,
     DateTime? dateOfBirth,
-    int? gender,
+    dynamic gender,
     String? genderName,
     int? status,
     String? statusName,
@@ -117,15 +117,15 @@ class UserProfileDataModel {
     String? nationalityName,
     dynamic preferanceType,
     String? preferanceName,
-    String? bloodGroup,
+    dynamic bloodGroup,
     int? designation,
     String? designationName,
-    dynamic employeeCode,
+    String? employeeCode,
     bool? isActive,
     dynamic deactiveDateTime,
-    dynamic departmentId,
+    int? departmentId,
     String? departmentName,
-    dynamic bkcRegNo,
+    String? bkcRegNo,
     int? age,
     bool? isRailwayRetired,
     bool? isWagesRate,
@@ -231,7 +231,9 @@ class UserProfileDataModel {
             : CurrentProject.fromJson(json["currentProject"]),
         salarySlips: json["salarySlips"] == null
             ? []
-            : List<SalarySlip>.from(json["salarySlips"]!.map((x) => x)),
+            : List<SalarySlip>.from(
+                json["salarySlips"]!.map((x) => SalarySlip.fromJson(x)),
+              ),
       );
 
   Map<String, dynamic> toJson() => {
@@ -277,7 +279,7 @@ class UserProfileDataModel {
     "currentProject": currentProject?.toJson(),
     "salarySlips": salarySlips == null
         ? []
-        : List<SalarySlip>.from(salarySlips!.map((x) => x)),
+        : List<dynamic>.from(salarySlips!.map((x) => x.toJson())),
   };
 }
 
@@ -288,7 +290,7 @@ class CurrentProject {
   String? projectName;
   DateTime? startDate;
   dynamic endDate;
-  String? role;
+  dynamic role;
 
   CurrentProject({
     this.id,
@@ -307,7 +309,7 @@ class CurrentProject {
     String? projectName,
     DateTime? startDate,
     dynamic endDate,
-    String? role,
+    dynamic role,
   }) => CurrentProject(
     id: id ?? this.id,
     employeeId: employeeId ?? this.employeeId,
@@ -342,17 +344,27 @@ class CurrentProject {
 }
 
 class SalarySlip {
-  final int monthId;
-  final String month;
-  final int year;
+  int? monthId;
+  String? month;
+  int? year;
 
-  SalarySlip({required this.monthId, required this.month, required this.year});
+  SalarySlip({this.monthId, this.month, this.year});
 
-  factory SalarySlip.fromJson(Map<String, dynamic> json) {
-    return SalarySlip(
-      monthId: json['monthId'],
-      month: json['month'],
-      year: json['year'],
-    );
-  }
+  SalarySlip copyWith({int? monthId, String? month, int? year}) => SalarySlip(
+    monthId: monthId ?? this.monthId,
+    month: month ?? this.month,
+    year: year ?? this.year,
+  );
+
+  factory SalarySlip.fromJson(Map<String, dynamic> json) => SalarySlip(
+    monthId: json["monthId"],
+    month: json["month"],
+    year: json["year"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "monthId": monthId,
+    "month": month,
+    "year": year,
+  };
 }

@@ -1,5 +1,7 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:hrms_uis/common/utils/extensions/extension.dart';
+
 import '../../utils/constants/colors.dart';
 
 class CustomAnimatedDropdown<T> extends StatelessWidget {
@@ -56,9 +58,9 @@ class CustomAnimatedDropdown<T> extends StatelessWidget {
                 expandedFillColor: AppColors.bgColor,
                 expandedShadow: [
                   BoxShadow(
-                    color: AppColors.inputBorderColor,
-                    offset: const Offset(0, 0),
-                    blurRadius: 6,
+                    color: Colors.black.withFixedOpacity(0.25),
+                    offset: const Offset(0, 4),
+                    blurRadius: 12,
                     spreadRadius: 2,
                   ),
                 ],
@@ -164,7 +166,7 @@ class CustomMultiSelectDropdown extends StatelessWidget {
           right: BorderSide(color: AppColors.inputBorderColor),
         ),
         listItemDecoration: ListItemDecoration(
-          selectedIconColor: AppColors.bgColor,
+          selectedIconColor: AppColors.scaffoldBgColor,
         ),
         headerStyle: const TextStyle(color: Colors.black),
         listItemStyle: const TextStyle(color: Colors.black),

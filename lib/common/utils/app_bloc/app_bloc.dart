@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hrms_uis/app/dashboard/model/user_profile_data_model.dart';
-import 'package:hrms_uis/app/dashboard/model/user_response_model.dart';
+import 'package:hrms_uis/app/auth/model/user_response_model.dart';
 
 import '../../../app/auth/model/login_response_model.dart';
 import '../hive/hive_service.dart';

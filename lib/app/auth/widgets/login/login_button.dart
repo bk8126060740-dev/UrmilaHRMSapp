@@ -25,10 +25,20 @@ class LoginButton extends StatelessWidget {
         }
 
         if (state.status == AuthStatus.loginSuccess) {
-          CustomSnackBar.showSuccess(context: context, message: state.message);
-
           context.read<AppBloc>().add(
             AppEvent.updateLoginResponse(state.loginResponseModel),
+          );
+          context.read<AuthBloc>().add(AuthEvent.getUserData());
+        }
+
+        if (state.status == AuthStatus.userSuccess) {
+          CustomSnackBar.showSuccess(
+            context: context,
+            message: "Login Successfully",
+          );
+
+          context.read<AppBloc>().add(
+            AppEvent.updateUserResponse(state.userResponseModel),
           );
 
           final result = await NavigationService.navigateAndRemoveAll(
@@ -42,7 +52,7 @@ class LoginButton extends StatelessWidget {
       },
       builder: (context, state) {
         return CustomButton(
-          isLoading: state.loginLoading,
+          isLoading: state.loginLoading || state.userResponseLoading,
           onTap: () async {
             if (_formKey.currentState!.validate()) {
               context.read<AuthBloc>().add(const AuthEvent.login());

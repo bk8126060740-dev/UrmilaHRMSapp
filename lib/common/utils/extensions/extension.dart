@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
 
@@ -145,4 +146,8 @@ extension DateFormatter on DateTime {
     ];
     return "${day.toString().padLeft(2, '0')} ${months[month - 1]}, $year";
   }
+}
+
+extension DateFormatExtension on DateTime {
+  String formatTo(String pattern) => DateFormat(pattern).format(this);
 }

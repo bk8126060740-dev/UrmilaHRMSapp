@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:image/image.dart' as img;
-import 'package:image_cropper/image_cropper.dart';
+// import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../navigation_service/navigation_service.dart';
@@ -159,24 +159,24 @@ class CustomImageFilePicker {
       }
 
       // ---------- CROPPING ----------
-      if (crop) {
-        final croppedFile = await ImageCropper().cropImage(
-          sourcePath: workingFile.path,
-          uiSettings: [
-            AndroidUiSettings(
-              toolbarTitle: 'Crop Image',
-              toolbarColor: AppColors.primaryColor,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false,
-            ),
-            IOSUiSettings(title: 'Crop Image'),
-          ],
-        );
-        if (croppedFile != null) {
-          workingFile = XFile(croppedFile.path);
-        }
-      }
+      // if (crop) {
+      //   final croppedFile = await ImageCropper().cropImage(
+      //     sourcePath: workingFile.path,
+      //     uiSettings: [
+      //       AndroidUiSettings(
+      //         toolbarTitle: 'Crop Image',
+      //         toolbarColor: AppColors.primaryColor,
+      //         toolbarWidgetColor: Colors.white,
+      //         initAspectRatio: CropAspectRatioPreset.original,
+      //         lockAspectRatio: false,
+      //       ),
+      //       IOSUiSettings(title: 'Crop Image'),
+      //     ],
+      //   );
+      //   if (croppedFile != null) {
+      //     workingFile = XFile(croppedFile.path);
+      //   }
+      // }
 
       // ---------- COMPRESSION ----------
       if (isCompressed) {

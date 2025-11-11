@@ -3,22 +3,9 @@ import 'package:hrms_uis/app/dashboard/model/user_profile_data_model.dart';
 
 import '../../../common/networking/api_url.dart';
 import '../../../common/networking/common_repo.dart';
-import '../model/user_response_model.dart';
+import '../../auth/model/user_response_model.dart';
 
 class DashboardRepo {
-  Future<ApiResponse<UserResponseModel>> getUserData() async {
-    try {
-      var response = CommonRepository.getRequest(
-        url: ApiUrl.getUserData,
-        fromJson: (json) => UserResponseModel.fromJson(json!),
-        params: {},
-      );
-      return response;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   Future<ApiResponse<UserProfileDataModel>> getUserProfileData({
     required int? userId,
   }) async {

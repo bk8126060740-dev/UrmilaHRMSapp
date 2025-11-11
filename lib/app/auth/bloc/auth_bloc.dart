@@ -9,10 +9,13 @@ import '../../../common/networking/common_repo.dart';
 import '../../../common/utils/constants/constants.dart';
 import '../../../common/utils/hive/hive_service.dart';
 import '../model/login_response_model.dart';
+import '../model/user_response_model.dart';
 import '../repo/auth_repo.dart';
 
 part 'auth_bloc.freezed.dart';
+
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -40,7 +43,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<_FetchRememberMe>((event, emit) async {
       String? userId = await HiveService.readBox2(AppConstant.kLoginUserId);
-      String? password = await HiveService.readBox2(AppConstant.kLoginUserPassword);
+      String? password = await HiveService.readBox2(
+        AppConstant.kLoginUserPassword,
+      );
       bool? rememberMe = await HiveService.readBox2(AppConstant.kRememberMe);
       usernameController.text = userId ?? "";
       passwordController.text = password ?? "";
@@ -67,7 +72,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       log(
         "userFields==============>> userName :- $username , password :-  $password",
       );
-      emit(state.copyWith(status: AuthStatus.loginLoading,loginLoading: true));
+      emit(state.copyWith(status: AuthStatus.loginLoading, loginLoading: true));
       try {
         ApiResponse<LoginResponseModel> response = await state.authRepo.login(
           password: password,
@@ -77,14 +82,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (response.isSuccess && response.data != null) {
           if (state.rememberMe) {
             await HiveService.writeBox2(AppConstant.kLoginUserId, username);
-            await HiveService.writeBox2(AppConstant.kLoginUserPassword, password);
-            await HiveService.writeBox2(AppConstant.kRememberMe, state.rememberMe);
+            await HiveService.writeBox2(
+              AppConstant.kLoginUserPassword,
+              password,
+            );
+            await HiveService.writeBox2(
+              AppConstant.kRememberMe,
+              state.rememberMe,
+            );
           } else {
             await HiveService.writeBox2(AppConstant.kLoginUserId, "");
             await HiveService.writeBox2(AppConstant.kLoginUserPassword, "");
             await HiveService.writeBox2(AppConstant.kRememberMe, false);
           }
-          await HiveService.write(AppConstant.kLoginResponseKey, response.data ?? "");
+          await HiveService.write(
+            AppConstant.kLoginResponseKey,
+            response.data ?? "",
+          );
           emit(
             state.copyWith(
               status: AuthStatus.loginSuccess,
@@ -111,6 +125,50 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             loginResponseModel: null,
             status: AuthStatus.loginError,
             loginLoading: false,
+            message: e.toString(),
+          ),
+        );
+      }
+    });
+
+    on<_GetUserData>((event, emit) async {
+      emit(
+        state.copyWith(
+          status: AuthStatus.userLoading,
+          userResponseLoading: true,
+        ),
+      );
+      try {
+        ApiResponse<UserResponseModel> response = await state.authRepo
+            .getUserData();
+
+        if (response.isSuccess && response.data != null) {
+          emit(
+            state.copyWith(
+              status: AuthStatus.userSuccess,
+              userResponseLoading: false,
+              userResponseModel: response.data,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              userResponseModel: null,
+              status: AuthStatus.userError,
+              userResponseLoading: false,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            userResponseModel: null,
+            status: AuthStatus.userError,
+            userResponseLoading: false,
             message: e.toString(),
           ),
         );

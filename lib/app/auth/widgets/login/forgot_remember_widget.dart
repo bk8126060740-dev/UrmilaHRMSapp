@@ -33,22 +33,22 @@ class ForgotRememberWidget extends StatelessWidget {
             );
           },
         ),
-        const Spacer(),
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () {
-              AppDeviceUtils.unFocus();
-              NavigationService.navigateTo(ForgotPasswordScreen.route);
-            },
-            child: Text(
-              AppLocalizations.of(context)!.forgotPassQ,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.primaryColor),
-            ),
-          ),
-        ),
+        // const Spacer(),
+        // MouseRegion(
+        //   cursor: SystemMouseCursors.click,
+        //   child: GestureDetector(
+        //     onTap: () {
+        //       AppDeviceUtils.unFocus();
+        //       NavigationService.navigateTo(ForgotPasswordScreen.route);
+        //     },
+        //     child: Text(
+        //       AppLocalizations.of(context)!.forgotPassQ,
+        //       style: Theme.of(
+        //         context,
+        //       ).textTheme.bodyMedium?.copyWith(color: AppColors.primaryColor),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

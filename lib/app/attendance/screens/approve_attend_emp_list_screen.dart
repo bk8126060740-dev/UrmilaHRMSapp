@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/constants/decorations.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/widgets/button/custom_button.dart';
 import 'package:hrms_uis/common/widgets/checkbox/custom_checkbox.dart';
+import 'package:hrms_uis/common/widgets/dialog/common_bottom_sheet.dart';
+import 'package:intl/intl.dart';
 
 import '../../../common/utils/constants/colors.dart';
 import '../../../common/utils/constants/text_styles.dart';
+import '../../../common/utils/custom_dialogs/bottomSheets.dart';
 import '../../../common/widgets/appbar/custom_appbar.dart';
+import '../widgets/custom_filter_bottom_sheet.dart';
 import 'approve_attend_emp_details.dart';
 
 class ApproveAttendEmpListScreen extends StatefulWidget {
@@ -23,103 +29,82 @@ class ApproveAttendEmpListScreen extends StatefulWidget {
 
 class _ApproveAttendEmpListScreenState
     extends State<ApproveAttendEmpListScreen> {
-  final List<Map<String, dynamic>> employees = [
-    {
-      "name": "KUNDAN KUMAR - UISPAT332",
-      "date": "04-Nov-2025 09:54 AM",
-      "status": "IN",
-      "selected": false,
-    },
-    {
-      "name": "KUNDAN KUMAR - UISPAT332",
-      "date": "03-Nov-2025 06:12 PM",
-      "status": "OUT",
-      "selected": false,
-    },
-    {
-      "name": "KUNDAN KUMAR - UISPAT332",
-      "date": "02-Nov-2025 10:05 AM",
-      "status": "IN",
-      "selected": false,
-    },
-  ];
-
-  bool selectAll = false;
   final TextEditingController remarkController = TextEditingController();
   final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Colors.blue.shade700;
-
-    final filteredEmployees = employees
-        .where(
-          (e) => e["name"].toString().toLowerCase().contains(
-            searchController.text.toLowerCase(),
+    return BlocConsumer<AttendanceBloc, AttendanceState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          // resizeToAvoidBottomInset: false,
+          appBar: CustomAppBar(
+            elevation: 0,
+            title: context.loc.approveAttendance,
+            subtitle: _buildSubtitle(state),
+            showAvatar: false,
+            showBackButton: true,
+            showNavigation: false,
+            showCalendarIcon: false,
           ),
-        )
-        .toList();
-
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(
-        elevation: 0,
-        title: context.loc.approveAttendance,
-        subtitle: "02-Nov-25 - 08-Nov-25",
-        showAvatar: false,
-        showBackButton: true,
-        showNavigation: false,
-        showCalendarIcon: false,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: AppSizes.padding16,
-            horizontal: AppSizes.padding16,
-          ),
-          child: Column(
-            children: [
-              // Date range
-              Column(
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSizes.padding16,
+                horizontal: AppSizes.padding16,
+              ),
+              child: Column(
                 children: [
-                  // Select all + Search
-                  Row(
-                    children: [
-                      CustomCheckBox(
-                        value: selectAll,
-                        title: "Select All",
-                        scale: 1,
-                        onChanged: (value) {
-                          setState(() {
-                            selectAll = value;
-                            for (var e in employees) {
-                              e["selected"] = selectAll;
-                            }
-                          });
-                        },
-                      ),
-                      // const Spacer(),
-                      // InkWell(
-                      //   onTap: () {
-                      //     setState(() {
-                      //       searchController.clear();
-                      //     });
-                      //   },
-                      //   child: const Icon(
-                      //     Icons.refresh_rounded,
-                      //     color: Colors.grey,
-                      //   ),
-                      // ),
-                    ],
+                  // 🔹 Select All
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.padding12,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomCheckBox(
+                          value: state.selectAll,
+                          title: "Select All",
+                          scale: 1,
+                          onChanged: (value) {
+                            context.read<AttendanceBloc>().add(
+                              AttendanceEvent.toggleAllSelection(value),
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 10),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.filter_list,
+                            size: 24,
+                            color: AppColors.iconColor,
+                          ),
+                          onPressed: () {
+                            CustomBottomSheet.showCommonBottomSheet(
+                              context: context,
+                              child: BlocProvider.value(
+                                value: context.read<AttendanceBloc>(),
+                                child: CommonBottomSheet(
+                                  title: "Attendance Filter",
+                                  child: CustomFilterDialog(),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
 
-                  SizedBox(height: AppSizes.space8),
+                  const SizedBox(height: 8),
 
-                  // Search bar
+                  // 🔹 Filter + Search Bar
                   TextField(
                     controller: searchController,
                     decoration: InputDecoration(
-                      hintText: "Search...",
+                      hintText: "Search employee...",
                       prefixIcon: const Icon(Icons.search),
                       filled: true,
                       fillColor: Colors.white,
@@ -131,173 +116,192 @@ class _ApproveAttendEmpListScreenState
                         borderSide: BorderSide.none,
                       ),
                     ),
-                    onChanged: (value) => setState(() {}),
+                    onChanged: (value) {
+                      context.read<AttendanceBloc>().add(
+                        AttendanceEvent.searchEmployeeFromList(value),
+                      );
+                    },
                   ),
-                  SizedBox(height: AppSizes.space16),
+
+                  const SizedBox(height: 16),
+
+                  // 🔹 Employee list
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: state.employees.length,
+                      itemBuilder: (context, index) {
+                        final emp = state.employees[index];
+                        final isSelected = state.selectedEmployeeIds.contains(
+                          emp['id'].toString(),
+                        );
+
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(14),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withFixedOpacity(0.05),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: ListTile(
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: AppSizes.padding12,
+                              vertical: AppSizes.padding4,
+                            ),
+                            leading: CustomCheckBox(
+                              value: isSelected,
+                              onChanged: (_) {
+                                final bloc = context.read<AttendanceBloc>();
+                                bloc.add(
+                                  AttendanceEvent.toggleSingleSelection(
+                                    employeeId: emp['id'].toString(),
+                                  ),
+                                );
+                              },
+                            ),
+                            title: Text(
+                              emp["name"],
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.textColor,
+                              ),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.calendar_month,
+                                      size: 16,
+                                      color: AppColors.iconColor,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      emp["date"],
+                                      style: AppTextStyles.w400_12(
+                                        context,
+                                        color: AppColors.secondaryTextColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.access_time,
+                                      size: 16,
+                                      color: AppColors.iconColor,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      emp["status"],
+                                      style: AppTextStyles.w400_12(
+                                        context,
+                                        color: AppColors.secondaryTextColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            trailing: InkWell(
+                              onTap: () {
+                                NavigationService.navigateTo(
+                                  ApproveAttendEmpDetails.route,
+                                  arguments: EmployeeSwipeModel(
+                                    name: "KUNDAN KUMAR",
+                                    empCode: "UISPAT332",
+                                    department: "IT",
+                                    dateTime: DateTime(2025, 11, 4, 9, 54),
+                                    inOut: "IN",
+                                    remark: "On time swipe",
+                                    location:
+                                        "AIIMS - DIGHA Service road, Patna, Bihar, 801503, India",
+                                    imageUrl: "https://example.com/photo.jpg",
+                                  ),
+                                );
+                              },
+                              child: const Icon(
+                                Icons.visibility_outlined,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                  // 🔹 Remark + Approve Button
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: AppDecorations.card(),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextField(
+                          controller: remarkController,
+                          maxLines: 2,
+                          decoration: InputDecoration(
+                            hintText: "Enter remarks...",
+                            filled: true,
+                            fillColor: Colors.grey.shade100,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          width: double.infinity,
+                          child: CustomButton(
+                            text: "Approve Selected",
+                            onTap: _approveSelected,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-
-              // Employee list
-              Expanded(
-                child: ListView.separated(
-                  itemCount: filteredEmployees.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 0),
-                  itemBuilder: (context, index) {
-                    final emp = filteredEmployees[index];
-                    return Container(
-                      margin: EdgeInsets.only(bottom: AppSizes.space16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withFixedOpacity(0.05),
-                            blurRadius: 6,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: ListTile(
-                        leading: CustomCheckBox(
-                          value: emp["selected"],
-                          scale: 1,
-                          onChanged: (value) {
-                            setState(() {
-                              emp["selected"] = value;
-                              selectAll = employees.every((e) => e["selected"]);
-                            });
-                          },
-                        ),
-                        title: Text(
-                          emp["name"],
-                          style: AppTextStyles.w400_14(
-                            context,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.calendar_month,
-                                  size: 16,
-                                  color: AppColors.iconColor,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  emp["date"],
-                                  style: AppTextStyles.w400_12(
-                                    context,
-                                    color: AppColors.secondaryTextColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.access_time,
-                                  size: 16,
-                                  color: AppColors.iconColor,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  emp["status"],
-                                  style: AppTextStyles.w400_12(
-                                    context,
-                                    color: AppColors.secondaryTextColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            NavigationService.navigateTo(
-                              ApproveAttendEmpDetails.route,
-                              arguments: EmployeeSwipeModel(
-                                name: "KUNDAN KUMAR",
-                                empCode: "UISPAT332",
-                                department: "IT",
-                                dateTime: DateTime(2025, 11, 4, 9, 54),
-                                inOut: "IN",
-                                remark: "On time swipe",
-                                location:
-                                    "AIIMS - DIGHA Service road, Patna, Bihar, 801503, India",
-                                imageUrl: "https://example.com/photo.jpg",
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            Icons.visibility_outlined,
-                            color: primaryColor,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-              // Bottom remark + button
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: AppDecorations.card(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(
-                      controller: remarkController,
-                      maxLines: 2,
-                      decoration: InputDecoration(
-                        hintText: "Enter remarks...",
-                        filled: true,
-                        fillColor: Colors.grey.shade100,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    SizedBox(
-                      width: double.infinity,
-                      child: CustomButton(
-                        // icon: const Icon(Icons.check_circle_outline),
-                        // label: const Text(
-                        //   "Approve Selected",
-                        //   style: TextStyle(
-                        //     fontSize: 16,
-                        //     fontWeight: FontWeight.w600,
-                        //   ),
-                        // ),
-                        text: "Approve Selected",
-                        onTap: () {
-                          final selected = employees
-                              .where((e) => e["selected"])
-                              .toList();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                "${selected.length} requests approved",
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
+    );
+  }
+
+  // 🔹 Subtitle builder
+  String _buildSubtitle(AttendanceState state) {
+    if (state.selectedFilter == "Custom" &&
+        state.fromDate != null &&
+        state.toDate != null) {
+      return "${DateFormat('dd-MMM').format(state.fromDate!)} - ${DateFormat('dd-MMM').format(state.toDate!)}";
+    }
+    if (state.selectedFilter == "Daily") {
+      return "Today (${DateFormat('dd-MMM-yyyy').format(DateTime.now())})";
+    }
+    if (state.selectedFilter == "Weekly") return "This Week";
+    if (state.selectedFilter == "Monthly") return "This Month";
+    return "";
+  }
+
+  // Approve button logic
+  void _approveSelected() {
+    var bloc = context.read<AttendanceBloc>();
+
+    final selected = bloc.state.employees.where((e) => e["selected"]).toList();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("${selected.length} requests approved")),
     );
   }
 }

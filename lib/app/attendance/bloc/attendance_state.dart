@@ -15,6 +15,17 @@ class AttendanceState with _$AttendanceState {
     @Default(null) DateTime? selectedDate,
     @Default(null) DateTime? today,
 
+    // Filter Info
+    @Default('Daily') String selectedFilter,
+    DateTime? fromDate,
+    DateTime? toDate,
+
+    // 🔹 Employee Selection
+    @Default([]) List<Map<String, dynamic>> employees,
+    @Default([]) List<Map<String, dynamic>> fetchedEmployees,
+    @Default(<String>{}) Set<String> selectedEmployeeIds,
+    @Default(false) bool selectAll,
+
     // daily attendance
     DailyAttendanceModel? dailyAttendanceModel,
 
@@ -33,19 +44,15 @@ enum AttendanceStatus {
   compressing,
   success,
   error,
-
   locationServiceDisabled,
   permissionDenied,
   permissionDeniedForever,
-
   getAttendanceLoading,
   getAttendanceError,
   getAttendanceSuccess,
-
   checkInOutLoading,
   checkInOutError,
   checkInOutSuccess,
-
   monthlyAttendanceLoading,
   monthlyAttendanceError,
   monthlyAttendanceSuccess,

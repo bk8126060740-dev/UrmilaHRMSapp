@@ -189,7 +189,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context.read<DashboardBloc>().add(
                   DashboardEvent.getUserProfileData(),
                 );
-                context.read<DashboardBloc>().add(DashboardEvent.getUserData());
               },
               child: Scaffold(
                 key: scaffoldKey,
@@ -197,15 +196,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   elevation: 0,
                   showCalendarIcon: false,
                   onCalendarTap: () {
-                    if (dashboardState.userProfileLoading ||
-                        dashboardState.userResponseLoading) {
+                    if (dashboardState.userProfileLoading) {
                       return;
                     }
                     NavigationService.navigateTo(DailyAttendanceScreen.route);
                   },
                   onNavigationTap: () {
-                    if (dashboardState.userProfileLoading ||
-                        dashboardState.userResponseLoading) {
+                    if (dashboardState.userProfileLoading) {
                       return;
                     }
                     scaffoldKey.currentState?.openDrawer();
@@ -227,14 +224,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       /// Listen to DashboardBloc events for profile/user updates
                       BlocListener<DashboardBloc, DashboardState>(
                         listener: (context, state) {
-                          if (state.status == DashboardStatus.userSuccess) {
-                            context.read<AppBloc>().add(
-                              AppEvent.updateUserResponse(
-                                state.userResponseModel,
-                              ),
-                            );
-                          }
-
                           if (state.status == DashboardStatus.profileSuccess) {
                             context.read<AppBloc>().add(
                               AppEvent.updateUserProfileData(
@@ -247,8 +236,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                     child: BlocBuilder<DashboardBloc, DashboardState>(
                       builder: (context, dashboardState) {
-                        if (dashboardState.userProfileLoading ||
-                            dashboardState.userResponseLoading) {
+                        if (dashboardState.userProfileLoading) {
                           return const Center(child: CustomCircularProgress());
                         }
 
@@ -271,9 +259,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     final dashboardState = context.watch<DashboardBloc>().state;
 
                     return AbsorbPointer(
-                      absorbing:
-                          dashboardState.userProfileLoading ||
-                          dashboardState.userResponseLoading,
+                      absorbing: dashboardState.userProfileLoading,
                       child: CustomBottomBar(
                         backgroundColor: AppColors.secondaryColor,
                         color: AppColors.iconColor,

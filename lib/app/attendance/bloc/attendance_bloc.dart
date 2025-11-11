@@ -21,7 +21,13 @@ part 'attendance_state.dart';
 
 class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
   AttendanceBloc({required int? userId})
-    : super(AttendanceState(attendanceRepo: AttendanceRepo())) {
+    : super(
+        AttendanceState(
+          attendanceRepo: AttendanceRepo(),
+          employees: AppConstant.staticEmpList,
+          fetchedEmployees: AppConstant.staticEmpList,
+        ),
+      ) {
     on<_RequestLocation>((event, emit) async {
       emit(state.copyWith(status: AttendanceStatus.locationLoading));
 
@@ -477,6 +483,143 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
           ),
         );
       }
+    });
+
+    // filter approve attendance
+    on<_SelectDate>((event, emit) {
+      if (event.isFromDate) {
+        final fromDate = event.selectedDate;
+        final toDate = state.toDate;
+        emit(
+          state.copyWith(
+            fromDate: fromDate,
+            toDate: (toDate != null && toDate.isBefore(fromDate))
+                ? null
+                : toDate,
+            status: AttendanceStatus.initial,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            toDate: event.selectedDate,
+            status: AttendanceStatus.initial,
+          ),
+        );
+      }
+    });
+
+    on<_SelectFilterType>((event, emit) {
+      final now = DateTime.now();
+      DateTime? fromDate;
+      DateTime? toDate;
+
+      switch (event.selectedFilterType) {
+        case "Daily":
+          fromDate = DateTime(now.year, now.month, now.day);
+          toDate = DateTime(now.year, now.month, now.day);
+          break;
+
+        case "Weekly":
+          // Assuming Monday = first day of the week
+          final weekStart = now.subtract(Duration(days: now.weekday - 1));
+          final weekEnd = weekStart.add(const Duration(days: 6));
+          fromDate = DateTime(weekStart.year, weekStart.month, weekStart.day);
+          toDate = DateTime(weekEnd.year, weekEnd.month, weekEnd.day);
+          break;
+
+        case "Monthly":
+          final firstDay = DateTime(now.year, now.month, 1);
+          final lastDay = DateTime(now.year, now.month + 1, 0);
+          fromDate = firstDay;
+          toDate = lastDay;
+          break;
+
+        case "Custom":
+          // In Custom, we don’t pre-set dates — user will choose manually
+          fromDate = null;
+          toDate = null;
+          break;
+
+        default:
+          fromDate = null;
+          toDate = null;
+      }
+
+      emit(
+        state.copyWith(
+          selectedFilter: event.selectedFilterType,
+          fromDate: fromDate,
+          toDate: toDate,
+          status: AttendanceStatus.initial,
+        ),
+      );
+    });
+
+    // on<_SelectFilterType>((event, emit) {
+    //   emit(
+    //     state.copyWith(
+    //       selectedFilter: event.selectedFilterType,
+    //       status: AttendanceStatus.initial,
+    //     ),
+    //   );
+    // });
+
+    // toggle single or all selection
+    on<_ToggleSingleSelection>((event, emit) {
+      final updated = {...state.selectedEmployeeIds};
+      if (updated.contains(event.employeeId)) {
+        updated.remove(event.employeeId);
+      } else {
+        updated.add(event.employeeId);
+      }
+
+      final allSelected =
+          updated.length == state.employees.length &&
+          state.employees.isNotEmpty;
+
+      emit(
+        state.copyWith(selectedEmployeeIds: updated, selectAll: allSelected),
+      );
+    });
+
+    on<_ToggleAllSelection>((event, emit) {
+      if (event.value) {
+        // Select all employees by ID
+        final allIds = state.employees.map((e) => e['id'].toString()).toSet();
+        emit(state.copyWith(selectAll: true, selectedEmployeeIds: allIds));
+      } else {
+        emit(state.copyWith(selectAll: false, selectedEmployeeIds: {}));
+      }
+    });
+
+    on<_SearchEmployeeFromList>((event, emit) {
+      final query = event.query.toLowerCase();
+
+      // If empty -> restore full list
+      if (query.isEmpty) {
+        emit(
+          state.copyWith(
+            employees: List<Map<String, dynamic>>.from(state.fetchedEmployees),
+            status: AttendanceStatus.initial,
+          ),
+        );
+        return;
+      }
+
+      // Otherwise, filter
+      final filtered = state.fetchedEmployees.where((emp) {
+        final name = emp["name"]?.toString().toLowerCase() ?? "";
+        final status = emp["status"]?.toString().toLowerCase() ?? "";
+        final date = emp["date"]?.toString().toLowerCase() ?? "";
+        return name.contains(query) ||
+            status.contains(query) ||
+            date.contains(query);
+      }).toList();
+
+      emit(
+        state.copyWith(employees: filtered, status: AttendanceStatus.initial),
+      );
     });
   }
 }

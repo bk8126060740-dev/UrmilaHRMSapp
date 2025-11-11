@@ -7,6 +7,7 @@ import 'package:hrms_uis/common/widgets/custom/custom_base_screen.dart';
 import '../../../common/navigation_service/navigation_service.dart';
 import '../../../common/utils/app_bloc/app_bloc.dart';
 import '../../../common/widgets/custom/app_logo.dart';
+import '../../auth/bloc/auth_bloc.dart';
 import '../../auth/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,19 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _navigateToNextScreen();
-    });
-  }
-
-  /// Navigates to the next screens depending on the app state
-  void _navigateToNextScreen() {
-    Future.delayed(const Duration(milliseconds: 1000), () {
-      if (mounted) {
-        NavigationService.navigateAndRemoveAll(
-          context.read<AppBloc>().state.loginResponse == null
-              ? LoginScreen.route
-              : DashboardScreen.route,
-        );
+      var loginResponse = context.read<AppBloc>().state.loginResponse;
+      if (loginResponse == null) {
+        NavigationService.navigateAndRemoveAll(LoginScreen.route);
+      } else {
+        context.read<AuthBloc>().add(const AuthEvent.getUserData());
       }
     });
   }
@@ -43,11 +36,27 @@ class _SplashScreenState extends State<SplashScreen> {
   /// Builds the splash screens UI
   @override
   Widget build(BuildContext context) {
-    return CustomBaseScreen(
-      body: AppLogo(
-        width: AppSizes.imageSize150,
-        height: AppSizes.imageSize150,
-      ),
+    return BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state.status == AuthStatus.userSuccess) {
+          context.read<AppBloc>().add(
+            AppEvent.updateUserResponse(state.userResponseModel),
+          );
+          NavigationService.navigateAndRemoveAll(
+            context.read<AppBloc>().state.loginResponse == null
+                ? LoginScreen.route
+                : DashboardScreen.route,
+          );
+        }
+      },
+      builder: (context, state) {
+        return CustomBaseScreen(
+          body: AppLogo(
+            width: AppSizes.imageSize150,
+            height: AppSizes.imageSize150,
+          ),
+        );
+      },
     );
   }
 }

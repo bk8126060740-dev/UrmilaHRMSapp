@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/app/attendance/screens/daily_attendance_screen.dart';
-import 'package:hrms_uis/app/attendance/screens/approve_attendance_screen.dart';
 import 'package:hrms_uis/app/attendance/screens/monthly_attendance_screen.dart';
 import 'package:hrms_uis/app/salary_slip/screens/salary_slip_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
@@ -12,6 +11,7 @@ import 'package:hrms_uis/common/utils/extensions/extension.dart';
 
 import '../../../../common/utils/constants/image_strings.dart';
 import '../../../../common/widgets/image/custom_material_icon.dart';
+import '../../../attendance/screens/approve_attend_emp_list_screen.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -82,7 +82,8 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         textStyle: serviceTextStyle,
         iconTextGap: 8.0,
         onTap: () {
-          NavigationService.navigateTo(ApproveAttendanceScreen.route);
+          // NavigationService.navigateTo(ApproveAttendanceScreen.route);
+          NavigationService.navigateTo(ApproveAttendEmpListScreen.route);
         },
         child: SvgPicture.asset(
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),

@@ -6,7 +6,7 @@ class AppPopupMenuTheme {
   AppPopupMenuTheme._();
 
   static PopupMenuThemeData lightPopupMenuTheme = PopupMenuThemeData(
-    color: AppColors.bgColor,
+    color: AppColors.scaffoldBgColor,
     elevation: 8,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppSizes.borderRadius8),
@@ -15,7 +15,7 @@ class AppPopupMenuTheme {
   );
 
   static PopupMenuThemeData darkPopupMenuTheme = PopupMenuThemeData(
-    color: AppColors.bgColor,
+    color: AppColors.scaffoldBgColor,
     elevation: 8,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppSizes.borderRadius8),

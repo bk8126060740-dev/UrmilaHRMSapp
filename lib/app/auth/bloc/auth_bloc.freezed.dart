@@ -22,6 +22,7 @@ mixin _$AuthEvent {
     required TResult Function(bool isConfirmPassword) togglePasswordVisibility,
     required TResult Function(bool isRemember) rememberMe,
     required TResult Function() login,
+    required TResult Function() getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$AuthEvent {
     TResult? Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult? Function(bool isRemember)? rememberMe,
     TResult? Function()? login,
+    TResult? Function()? getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$AuthEvent {
     TResult Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult Function(bool isRemember)? rememberMe,
     TResult Function()? login,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +51,7 @@ mixin _$AuthEvent {
         togglePasswordVisibility,
     required TResult Function(_RememberMe value) rememberMe,
     required TResult Function(_Login value) login,
+    required TResult Function(_GetUserData value) getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +61,7 @@ mixin _$AuthEvent {
         togglePasswordVisibility,
     TResult? Function(_RememberMe value)? rememberMe,
     TResult? Function(_Login value)? login,
+    TResult? Function(_GetUserData value)? getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +70,7 @@ mixin _$AuthEvent {
     TResult Function(_TogglePasswordVisibility value)? togglePasswordVisibility,
     TResult Function(_RememberMe value)? rememberMe,
     TResult Function(_Login value)? login,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +135,7 @@ class _$FetchRememberMeImpl implements _FetchRememberMe {
     required TResult Function(bool isConfirmPassword) togglePasswordVisibility,
     required TResult Function(bool isRemember) rememberMe,
     required TResult Function() login,
+    required TResult Function() getUserData,
   }) {
     return fetchRememberMe();
   }
@@ -140,6 +147,7 @@ class _$FetchRememberMeImpl implements _FetchRememberMe {
     TResult? Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult? Function(bool isRemember)? rememberMe,
     TResult? Function()? login,
+    TResult? Function()? getUserData,
   }) {
     return fetchRememberMe?.call();
   }
@@ -151,6 +159,7 @@ class _$FetchRememberMeImpl implements _FetchRememberMe {
     TResult Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult Function(bool isRemember)? rememberMe,
     TResult Function()? login,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) {
     if (fetchRememberMe != null) {
@@ -167,6 +176,7 @@ class _$FetchRememberMeImpl implements _FetchRememberMe {
         togglePasswordVisibility,
     required TResult Function(_RememberMe value) rememberMe,
     required TResult Function(_Login value) login,
+    required TResult Function(_GetUserData value) getUserData,
   }) {
     return fetchRememberMe(this);
   }
@@ -179,6 +189,7 @@ class _$FetchRememberMeImpl implements _FetchRememberMe {
         togglePasswordVisibility,
     TResult? Function(_RememberMe value)? rememberMe,
     TResult? Function(_Login value)? login,
+    TResult? Function(_GetUserData value)? getUserData,
   }) {
     return fetchRememberMe?.call(this);
   }
@@ -190,6 +201,7 @@ class _$FetchRememberMeImpl implements _FetchRememberMe {
     TResult Function(_TogglePasswordVisibility value)? togglePasswordVisibility,
     TResult Function(_RememberMe value)? rememberMe,
     TResult Function(_Login value)? login,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) {
     if (fetchRememberMe != null) {
@@ -276,6 +288,7 @@ class _$TogglePasswordVisibilityImpl implements _TogglePasswordVisibility {
     required TResult Function(bool isConfirmPassword) togglePasswordVisibility,
     required TResult Function(bool isRemember) rememberMe,
     required TResult Function() login,
+    required TResult Function() getUserData,
   }) {
     return togglePasswordVisibility(isConfirmPassword);
   }
@@ -287,6 +300,7 @@ class _$TogglePasswordVisibilityImpl implements _TogglePasswordVisibility {
     TResult? Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult? Function(bool isRemember)? rememberMe,
     TResult? Function()? login,
+    TResult? Function()? getUserData,
   }) {
     return togglePasswordVisibility?.call(isConfirmPassword);
   }
@@ -298,6 +312,7 @@ class _$TogglePasswordVisibilityImpl implements _TogglePasswordVisibility {
     TResult Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult Function(bool isRemember)? rememberMe,
     TResult Function()? login,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) {
     if (togglePasswordVisibility != null) {
@@ -314,6 +329,7 @@ class _$TogglePasswordVisibilityImpl implements _TogglePasswordVisibility {
         togglePasswordVisibility,
     required TResult Function(_RememberMe value) rememberMe,
     required TResult Function(_Login value) login,
+    required TResult Function(_GetUserData value) getUserData,
   }) {
     return togglePasswordVisibility(this);
   }
@@ -326,6 +342,7 @@ class _$TogglePasswordVisibilityImpl implements _TogglePasswordVisibility {
         togglePasswordVisibility,
     TResult? Function(_RememberMe value)? rememberMe,
     TResult? Function(_Login value)? login,
+    TResult? Function(_GetUserData value)? getUserData,
   }) {
     return togglePasswordVisibility?.call(this);
   }
@@ -337,6 +354,7 @@ class _$TogglePasswordVisibilityImpl implements _TogglePasswordVisibility {
     TResult Function(_TogglePasswordVisibility value)? togglePasswordVisibility,
     TResult Function(_RememberMe value)? rememberMe,
     TResult Function(_Login value)? login,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) {
     if (togglePasswordVisibility != null) {
@@ -426,6 +444,7 @@ class _$RememberMeImpl implements _RememberMe {
     required TResult Function(bool isConfirmPassword) togglePasswordVisibility,
     required TResult Function(bool isRemember) rememberMe,
     required TResult Function() login,
+    required TResult Function() getUserData,
   }) {
     return rememberMe(isRemember);
   }
@@ -437,6 +456,7 @@ class _$RememberMeImpl implements _RememberMe {
     TResult? Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult? Function(bool isRemember)? rememberMe,
     TResult? Function()? login,
+    TResult? Function()? getUserData,
   }) {
     return rememberMe?.call(isRemember);
   }
@@ -448,6 +468,7 @@ class _$RememberMeImpl implements _RememberMe {
     TResult Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult Function(bool isRemember)? rememberMe,
     TResult Function()? login,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) {
     if (rememberMe != null) {
@@ -464,6 +485,7 @@ class _$RememberMeImpl implements _RememberMe {
         togglePasswordVisibility,
     required TResult Function(_RememberMe value) rememberMe,
     required TResult Function(_Login value) login,
+    required TResult Function(_GetUserData value) getUserData,
   }) {
     return rememberMe(this);
   }
@@ -476,6 +498,7 @@ class _$RememberMeImpl implements _RememberMe {
         togglePasswordVisibility,
     TResult? Function(_RememberMe value)? rememberMe,
     TResult? Function(_Login value)? login,
+    TResult? Function(_GetUserData value)? getUserData,
   }) {
     return rememberMe?.call(this);
   }
@@ -487,6 +510,7 @@ class _$RememberMeImpl implements _RememberMe {
     TResult Function(_TogglePasswordVisibility value)? togglePasswordVisibility,
     TResult Function(_RememberMe value)? rememberMe,
     TResult Function(_Login value)? login,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) {
     if (rememberMe != null) {
@@ -547,6 +571,7 @@ class _$LoginImpl implements _Login {
     required TResult Function(bool isConfirmPassword) togglePasswordVisibility,
     required TResult Function(bool isRemember) rememberMe,
     required TResult Function() login,
+    required TResult Function() getUserData,
   }) {
     return login();
   }
@@ -558,6 +583,7 @@ class _$LoginImpl implements _Login {
     TResult? Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult? Function(bool isRemember)? rememberMe,
     TResult? Function()? login,
+    TResult? Function()? getUserData,
   }) {
     return login?.call();
   }
@@ -569,6 +595,7 @@ class _$LoginImpl implements _Login {
     TResult Function(bool isConfirmPassword)? togglePasswordVisibility,
     TResult Function(bool isRemember)? rememberMe,
     TResult Function()? login,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -585,6 +612,7 @@ class _$LoginImpl implements _Login {
         togglePasswordVisibility,
     required TResult Function(_RememberMe value) rememberMe,
     required TResult Function(_Login value) login,
+    required TResult Function(_GetUserData value) getUserData,
   }) {
     return login(this);
   }
@@ -597,6 +625,7 @@ class _$LoginImpl implements _Login {
         togglePasswordVisibility,
     TResult? Function(_RememberMe value)? rememberMe,
     TResult? Function(_Login value)? login,
+    TResult? Function(_GetUserData value)? getUserData,
   }) {
     return login?.call(this);
   }
@@ -608,6 +637,7 @@ class _$LoginImpl implements _Login {
     TResult Function(_TogglePasswordVisibility value)? togglePasswordVisibility,
     TResult Function(_RememberMe value)? rememberMe,
     TResult Function(_Login value)? login,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -622,6 +652,128 @@ abstract class _Login implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$$GetUserDataImplCopyWith<$Res> {
+  factory _$$GetUserDataImplCopyWith(
+          _$GetUserDataImpl value, $Res Function(_$GetUserDataImpl) then) =
+      __$$GetUserDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetUserDataImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$GetUserDataImpl>
+    implements _$$GetUserDataImplCopyWith<$Res> {
+  __$$GetUserDataImplCopyWithImpl(
+      _$GetUserDataImpl _value, $Res Function(_$GetUserDataImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetUserDataImpl implements _GetUserData {
+  const _$GetUserDataImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.getUserData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetUserDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchRememberMe,
+    required TResult Function(bool isConfirmPassword) togglePasswordVisibility,
+    required TResult Function(bool isRemember) rememberMe,
+    required TResult Function() login,
+    required TResult Function() getUserData,
+  }) {
+    return getUserData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchRememberMe,
+    TResult? Function(bool isConfirmPassword)? togglePasswordVisibility,
+    TResult? Function(bool isRemember)? rememberMe,
+    TResult? Function()? login,
+    TResult? Function()? getUserData,
+  }) {
+    return getUserData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchRememberMe,
+    TResult Function(bool isConfirmPassword)? togglePasswordVisibility,
+    TResult Function(bool isRemember)? rememberMe,
+    TResult Function()? login,
+    TResult Function()? getUserData,
+    required TResult orElse(),
+  }) {
+    if (getUserData != null) {
+      return getUserData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchRememberMe value) fetchRememberMe,
+    required TResult Function(_TogglePasswordVisibility value)
+        togglePasswordVisibility,
+    required TResult Function(_RememberMe value) rememberMe,
+    required TResult Function(_Login value) login,
+    required TResult Function(_GetUserData value) getUserData,
+  }) {
+    return getUserData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchRememberMe value)? fetchRememberMe,
+    TResult? Function(_TogglePasswordVisibility value)?
+        togglePasswordVisibility,
+    TResult? Function(_RememberMe value)? rememberMe,
+    TResult? Function(_Login value)? login,
+    TResult? Function(_GetUserData value)? getUserData,
+  }) {
+    return getUserData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchRememberMe value)? fetchRememberMe,
+    TResult Function(_TogglePasswordVisibility value)? togglePasswordVisibility,
+    TResult Function(_RememberMe value)? rememberMe,
+    TResult Function(_Login value)? login,
+    TResult Function(_GetUserData value)? getUserData,
+    required TResult orElse(),
+  }) {
+    if (getUserData != null) {
+      return getUserData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUserData implements AuthEvent {
+  const factory _GetUserData() = _$GetUserDataImpl;
+}
+
+/// @nodoc
 mixin _$AuthState {
   AuthStatus get status => throw _privateConstructorUsedError;
   AuthRepo get authRepo => throw _privateConstructorUsedError;
@@ -633,6 +785,9 @@ mixin _$AuthState {
   bool get confirmVisibility => throw _privateConstructorUsedError;
   dynamic get rememberMe => throw _privateConstructorUsedError;
   dynamic get loginLoading => throw _privateConstructorUsedError;
+  UserResponseModel? get userResponseModel =>
+      throw _privateConstructorUsedError;
+  dynamic get userResponseLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -653,7 +808,9 @@ abstract class $AuthStateCopyWith<$Res> {
       bool visibility,
       bool confirmVisibility,
       dynamic rememberMe,
-      dynamic loginLoading});
+      dynamic loginLoading,
+      UserResponseModel? userResponseModel,
+      dynamic userResponseLoading});
 
   $LoginResponseModelCopyWith<$Res>? get loginResponseModel;
 }
@@ -680,6 +837,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? confirmVisibility = null,
     Object? rememberMe = freezed,
     Object? loginLoading = freezed,
+    Object? userResponseModel = freezed,
+    Object? userResponseLoading = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -718,6 +877,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.loginLoading
           : loginLoading // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      userResponseModel: freezed == userResponseModel
+          ? _value.userResponseModel
+          : userResponseModel // ignore: cast_nullable_to_non_nullable
+              as UserResponseModel?,
+      userResponseLoading: freezed == userResponseLoading
+          ? _value.userResponseLoading
+          : userResponseLoading // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 
@@ -752,7 +919,9 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       bool visibility,
       bool confirmVisibility,
       dynamic rememberMe,
-      dynamic loginLoading});
+      dynamic loginLoading,
+      UserResponseModel? userResponseModel,
+      dynamic userResponseLoading});
 
   @override
   $LoginResponseModelCopyWith<$Res>? get loginResponseModel;
@@ -778,6 +947,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? confirmVisibility = null,
     Object? rememberMe = freezed,
     Object? loginLoading = freezed,
+    Object? userResponseModel = freezed,
+    Object? userResponseLoading = freezed,
   }) {
     return _then(_$AuthStateImpl(
       status: null == status
@@ -811,6 +982,13 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       rememberMe: freezed == rememberMe ? _value.rememberMe! : rememberMe,
       loginLoading:
           freezed == loginLoading ? _value.loginLoading! : loginLoading,
+      userResponseModel: freezed == userResponseModel
+          ? _value.userResponseModel
+          : userResponseModel // ignore: cast_nullable_to_non_nullable
+              as UserResponseModel?,
+      userResponseLoading: freezed == userResponseLoading
+          ? _value.userResponseLoading!
+          : userResponseLoading,
     ));
   }
 }
@@ -827,7 +1005,9 @@ class _$AuthStateImpl implements _AuthState {
       this.visibility = true,
       this.confirmVisibility = true,
       this.rememberMe = false,
-      this.loginLoading = false});
+      this.loginLoading = false,
+      this.userResponseModel,
+      this.userResponseLoading = false});
 
   @override
   @JsonKey()
@@ -854,10 +1034,15 @@ class _$AuthStateImpl implements _AuthState {
   @override
   @JsonKey()
   final dynamic loginLoading;
+  @override
+  final UserResponseModel? userResponseModel;
+  @override
+  @JsonKey()
+  final dynamic userResponseLoading;
 
   @override
   String toString() {
-    return 'AuthState(status: $status, authRepo: $authRepo, message: $message, loginResponseModel: $loginResponseModel, uniqueKey: $uniqueKey, visibility: $visibility, confirmVisibility: $confirmVisibility, rememberMe: $rememberMe, loginLoading: $loginLoading)';
+    return 'AuthState(status: $status, authRepo: $authRepo, message: $message, loginResponseModel: $loginResponseModel, uniqueKey: $uniqueKey, visibility: $visibility, confirmVisibility: $confirmVisibility, rememberMe: $rememberMe, loginLoading: $loginLoading, userResponseModel: $userResponseModel, userResponseLoading: $userResponseLoading)';
   }
 
   @override
@@ -880,7 +1065,11 @@ class _$AuthStateImpl implements _AuthState {
             const DeepCollectionEquality()
                 .equals(other.rememberMe, rememberMe) &&
             const DeepCollectionEquality()
-                .equals(other.loginLoading, loginLoading));
+                .equals(other.loginLoading, loginLoading) &&
+            (identical(other.userResponseModel, userResponseModel) ||
+                other.userResponseModel == userResponseModel) &&
+            const DeepCollectionEquality()
+                .equals(other.userResponseLoading, userResponseLoading));
   }
 
   @override
@@ -894,7 +1083,9 @@ class _$AuthStateImpl implements _AuthState {
       visibility,
       confirmVisibility,
       const DeepCollectionEquality().hash(rememberMe),
-      const DeepCollectionEquality().hash(loginLoading));
+      const DeepCollectionEquality().hash(loginLoading),
+      userResponseModel,
+      const DeepCollectionEquality().hash(userResponseLoading));
 
   @JsonKey(ignore: true)
   @override
@@ -913,7 +1104,9 @@ abstract class _AuthState implements AuthState {
       final bool visibility,
       final bool confirmVisibility,
       final dynamic rememberMe,
-      final dynamic loginLoading}) = _$AuthStateImpl;
+      final dynamic loginLoading,
+      final UserResponseModel? userResponseModel,
+      final dynamic userResponseLoading}) = _$AuthStateImpl;
 
   @override
   AuthStatus get status;
@@ -933,6 +1126,10 @@ abstract class _AuthState implements AuthState {
   dynamic get rememberMe;
   @override
   dynamic get loginLoading;
+  @override
+  UserResponseModel? get userResponseModel;
+  @override
+  dynamic get userResponseLoading;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

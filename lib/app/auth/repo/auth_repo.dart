@@ -1,5 +1,6 @@
 import '../../../common/networking/api_url.dart';
 import '../../../common/networking/common_repo.dart';
+import '../model/user_response_model.dart';
 import '../model/login_response_model.dart';
 
 class AuthRepo {
@@ -12,6 +13,19 @@ class AuthRepo {
         url: ApiUrl.login,
         request: {"userName": userName, "password": password, "platform": 2},
         fromJson: (json) => LoginResponseModel.fromJson(json!),
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse<UserResponseModel>> getUserData() async {
+    try {
+      var response = CommonRepository.getRequest(
+        url: ApiUrl.getUserData,
+        fromJson: (json) => UserResponseModel.fromJson(json!),
+        params: {},
       );
       return response;
     } catch (e) {

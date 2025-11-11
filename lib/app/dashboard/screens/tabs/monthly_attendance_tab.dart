@@ -23,7 +23,7 @@ class _MonthlyAttendanceTabState extends State<MonthlyAttendanceTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: AppColors.scaffoldBgColor,
       appBar: CustomAppBar(
         elevation: 0,
         title: context.loc.monthlyView,

@@ -44,7 +44,7 @@ class _DailyAttendanceScreenState extends State<DailyAttendanceScreen> {
   // Main Attendance Page
   Widget _buildMainPage(BuildContext context) {
     return CustomRefreshIndicator(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: AppColors.scaffoldBgColor,
       onRefresh: () async {
         var attendanceBloc = context.read<AttendanceBloc>();
         attendanceBloc.add(

@@ -36,7 +36,7 @@ class FullScreenImageView extends StatelessWidget {
             imageProvider: isNetwork
                 ? CachedNetworkImageProvider(imageUrl)
                 : AssetImage(imageUrl) as ImageProvider,
-            backgroundDecoration: const BoxDecoration(color: AppColors.bgColor),
+            backgroundDecoration: const BoxDecoration(color: AppColors.scaffoldBgColor),
             minScale: PhotoViewComputedScale.contained,
             maxScale: PhotoViewComputedScale.covered * 2,
             heroAttributes: PhotoViewHeroAttributes(tag: heroTag ?? imageUrl),

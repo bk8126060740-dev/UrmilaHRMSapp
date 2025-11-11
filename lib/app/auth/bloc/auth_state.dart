@@ -12,6 +12,8 @@ class AuthState with _$AuthState {
     @Default(true) bool confirmVisibility,
     @Default(false) rememberMe,
     @Default(false) loginLoading,
+    UserResponseModel? userResponseModel,
+    @Default(false) userResponseLoading,
   }) = _AuthState;
 }
 
@@ -20,4 +22,7 @@ enum AuthStatus {
   loginLoading,
   loginError,
   loginSuccess,
+  userLoading,
+  userError,
+  userSuccess,
 }

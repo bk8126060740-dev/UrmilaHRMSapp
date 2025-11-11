@@ -18,21 +18,18 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DashboardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserData,
     required TResult Function() getUserProfileData,
     required TResult Function(int month, int year) getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserData,
     TResult? Function()? getUserProfileData,
     TResult? Function(int month, int year)? getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserData,
     TResult Function()? getUserProfileData,
     TResult Function(int month, int year)? getMonthlyAttendance,
     required TResult orElse(),
@@ -40,21 +37,18 @@ mixin _$DashboardEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_GetUserProfileData value) getUserProfileData,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_GetUserProfileData value)? getUserProfileData,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUserData value)? getUserData,
     TResult Function(_GetUserProfileData value)? getUserProfileData,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
     required TResult orElse(),
@@ -78,114 +72,6 @@ class _$DashboardEventCopyWithImpl<$Res, $Val extends DashboardEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$GetUserDataImplCopyWith<$Res> {
-  factory _$$GetUserDataImplCopyWith(
-          _$GetUserDataImpl value, $Res Function(_$GetUserDataImpl) then) =
-      __$$GetUserDataImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetUserDataImplCopyWithImpl<$Res>
-    extends _$DashboardEventCopyWithImpl<$Res, _$GetUserDataImpl>
-    implements _$$GetUserDataImplCopyWith<$Res> {
-  __$$GetUserDataImplCopyWithImpl(
-      _$GetUserDataImpl _value, $Res Function(_$GetUserDataImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetUserDataImpl implements _GetUserData {
-  const _$GetUserDataImpl();
-
-  @override
-  String toString() {
-    return 'DashboardEvent.getUserData()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetUserDataImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUserData,
-    required TResult Function() getUserProfileData,
-    required TResult Function(int month, int year) getMonthlyAttendance,
-  }) {
-    return getUserData();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserData,
-    TResult? Function()? getUserProfileData,
-    TResult? Function(int month, int year)? getMonthlyAttendance,
-  }) {
-    return getUserData?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserData,
-    TResult Function()? getUserProfileData,
-    TResult Function(int month, int year)? getMonthlyAttendance,
-    required TResult orElse(),
-  }) {
-    if (getUserData != null) {
-      return getUserData();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetUserData value) getUserData,
-    required TResult Function(_GetUserProfileData value) getUserProfileData,
-    required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
-  }) {
-    return getUserData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUserData value)? getUserData,
-    TResult? Function(_GetUserProfileData value)? getUserProfileData,
-    TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
-  }) {
-    return getUserData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUserData value)? getUserData,
-    TResult Function(_GetUserProfileData value)? getUserProfileData,
-    TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
-    required TResult orElse(),
-  }) {
-    if (getUserData != null) {
-      return getUserData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetUserData implements DashboardEvent {
-  const factory _GetUserData() = _$GetUserDataImpl;
 }
 
 /// @nodoc
@@ -226,7 +112,6 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserData,
     required TResult Function() getUserProfileData,
     required TResult Function(int month, int year) getMonthlyAttendance,
   }) {
@@ -236,7 +121,6 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserData,
     TResult? Function()? getUserProfileData,
     TResult? Function(int month, int year)? getMonthlyAttendance,
   }) {
@@ -246,7 +130,6 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserData,
     TResult Function()? getUserProfileData,
     TResult Function(int month, int year)? getMonthlyAttendance,
     required TResult orElse(),
@@ -260,7 +143,6 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_GetUserProfileData value) getUserProfileData,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
   }) {
@@ -270,7 +152,6 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_GetUserProfileData value)? getUserProfileData,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
   }) {
@@ -280,7 +161,6 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUserData value)? getUserData,
     TResult Function(_GetUserProfileData value)? getUserProfileData,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
     required TResult orElse(),
@@ -370,7 +250,6 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUserData,
     required TResult Function() getUserProfileData,
     required TResult Function(int month, int year) getMonthlyAttendance,
   }) {
@@ -380,7 +259,6 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUserData,
     TResult? Function()? getUserProfileData,
     TResult? Function(int month, int year)? getMonthlyAttendance,
   }) {
@@ -390,7 +268,6 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUserData,
     TResult Function()? getUserProfileData,
     TResult Function(int month, int year)? getMonthlyAttendance,
     required TResult orElse(),
@@ -404,7 +281,6 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_GetUserProfileData value) getUserProfileData,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
   }) {
@@ -414,7 +290,6 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_GetUserProfileData value)? getUserProfileData,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
   }) {
@@ -424,7 +299,6 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUserData value)? getUserData,
     TResult Function(_GetUserProfileData value)? getUserProfileData,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
     required TResult orElse(),
@@ -453,14 +327,11 @@ mixin _$DashboardState {
   DashboardStatus get status => throw _privateConstructorUsedError;
   DashboardRepo get dashboardRepo => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  UserResponseModel? get userResponseModel =>
-      throw _privateConstructorUsedError;
   UserProfileDataModel? get userProfileDataModel =>
       throw _privateConstructorUsedError;
   MonthlyAttendanceModel? get monthlyAttendanceModel =>
       throw _privateConstructorUsedError;
   dynamic get userProfileLoading => throw _privateConstructorUsedError;
-  dynamic get userResponseLoading => throw _privateConstructorUsedError;
   dynamic get monthlyAttendanceLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -478,11 +349,9 @@ abstract class $DashboardStateCopyWith<$Res> {
       {DashboardStatus status,
       DashboardRepo dashboardRepo,
       String message,
-      UserResponseModel? userResponseModel,
       UserProfileDataModel? userProfileDataModel,
       MonthlyAttendanceModel? monthlyAttendanceModel,
       dynamic userProfileLoading,
-      dynamic userResponseLoading,
       dynamic monthlyAttendanceLoading});
 }
 
@@ -502,11 +371,9 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? status = null,
     Object? dashboardRepo = null,
     Object? message = null,
-    Object? userResponseModel = freezed,
     Object? userProfileDataModel = freezed,
     Object? monthlyAttendanceModel = freezed,
     Object? userProfileLoading = freezed,
-    Object? userResponseLoading = freezed,
     Object? monthlyAttendanceLoading = freezed,
   }) {
     return _then(_value.copyWith(
@@ -522,10 +389,6 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      userResponseModel: freezed == userResponseModel
-          ? _value.userResponseModel
-          : userResponseModel // ignore: cast_nullable_to_non_nullable
-              as UserResponseModel?,
       userProfileDataModel: freezed == userProfileDataModel
           ? _value.userProfileDataModel
           : userProfileDataModel // ignore: cast_nullable_to_non_nullable
@@ -537,10 +400,6 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
       userProfileLoading: freezed == userProfileLoading
           ? _value.userProfileLoading
           : userProfileLoading // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      userResponseLoading: freezed == userResponseLoading
-          ? _value.userResponseLoading
-          : userResponseLoading // ignore: cast_nullable_to_non_nullable
               as dynamic,
       monthlyAttendanceLoading: freezed == monthlyAttendanceLoading
           ? _value.monthlyAttendanceLoading
@@ -562,11 +421,9 @@ abstract class _$$DashboardStateImplCopyWith<$Res>
       {DashboardStatus status,
       DashboardRepo dashboardRepo,
       String message,
-      UserResponseModel? userResponseModel,
       UserProfileDataModel? userProfileDataModel,
       MonthlyAttendanceModel? monthlyAttendanceModel,
       dynamic userProfileLoading,
-      dynamic userResponseLoading,
       dynamic monthlyAttendanceLoading});
 }
 
@@ -584,11 +441,9 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? dashboardRepo = null,
     Object? message = null,
-    Object? userResponseModel = freezed,
     Object? userProfileDataModel = freezed,
     Object? monthlyAttendanceModel = freezed,
     Object? userProfileLoading = freezed,
-    Object? userResponseLoading = freezed,
     Object? monthlyAttendanceLoading = freezed,
   }) {
     return _then(_$DashboardStateImpl(
@@ -604,10 +459,6 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      userResponseModel: freezed == userResponseModel
-          ? _value.userResponseModel
-          : userResponseModel // ignore: cast_nullable_to_non_nullable
-              as UserResponseModel?,
       userProfileDataModel: freezed == userProfileDataModel
           ? _value.userProfileDataModel
           : userProfileDataModel // ignore: cast_nullable_to_non_nullable
@@ -619,9 +470,6 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
       userProfileLoading: freezed == userProfileLoading
           ? _value.userProfileLoading!
           : userProfileLoading,
-      userResponseLoading: freezed == userResponseLoading
-          ? _value.userResponseLoading!
-          : userResponseLoading,
       monthlyAttendanceLoading: freezed == monthlyAttendanceLoading
           ? _value.monthlyAttendanceLoading!
           : monthlyAttendanceLoading,
@@ -636,11 +484,9 @@ class _$DashboardStateImpl implements _DashboardState {
       {this.status = DashboardStatus.initial,
       required this.dashboardRepo,
       this.message = '',
-      this.userResponseModel,
       this.userProfileDataModel,
       this.monthlyAttendanceModel,
       this.userProfileLoading = false,
-      this.userResponseLoading = false,
       this.monthlyAttendanceLoading = false});
 
   @override
@@ -652,8 +498,6 @@ class _$DashboardStateImpl implements _DashboardState {
   @JsonKey()
   final String message;
   @override
-  final UserResponseModel? userResponseModel;
-  @override
   final UserProfileDataModel? userProfileDataModel;
   @override
   final MonthlyAttendanceModel? monthlyAttendanceModel;
@@ -662,14 +506,11 @@ class _$DashboardStateImpl implements _DashboardState {
   final dynamic userProfileLoading;
   @override
   @JsonKey()
-  final dynamic userResponseLoading;
-  @override
-  @JsonKey()
   final dynamic monthlyAttendanceLoading;
 
   @override
   String toString() {
-    return 'DashboardState(status: $status, dashboardRepo: $dashboardRepo, message: $message, userResponseModel: $userResponseModel, userProfileDataModel: $userProfileDataModel, monthlyAttendanceModel: $monthlyAttendanceModel, userProfileLoading: $userProfileLoading, userResponseLoading: $userResponseLoading, monthlyAttendanceLoading: $monthlyAttendanceLoading)';
+    return 'DashboardState(status: $status, dashboardRepo: $dashboardRepo, message: $message, userProfileDataModel: $userProfileDataModel, monthlyAttendanceModel: $monthlyAttendanceModel, userProfileLoading: $userProfileLoading, monthlyAttendanceLoading: $monthlyAttendanceLoading)';
   }
 
   @override
@@ -681,16 +522,12 @@ class _$DashboardStateImpl implements _DashboardState {
             (identical(other.dashboardRepo, dashboardRepo) ||
                 other.dashboardRepo == dashboardRepo) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.userResponseModel, userResponseModel) ||
-                other.userResponseModel == userResponseModel) &&
             (identical(other.userProfileDataModel, userProfileDataModel) ||
                 other.userProfileDataModel == userProfileDataModel) &&
             (identical(other.monthlyAttendanceModel, monthlyAttendanceModel) ||
                 other.monthlyAttendanceModel == monthlyAttendanceModel) &&
             const DeepCollectionEquality()
                 .equals(other.userProfileLoading, userProfileLoading) &&
-            const DeepCollectionEquality()
-                .equals(other.userResponseLoading, userResponseLoading) &&
             const DeepCollectionEquality().equals(
                 other.monthlyAttendanceLoading, monthlyAttendanceLoading));
   }
@@ -701,11 +538,9 @@ class _$DashboardStateImpl implements _DashboardState {
       status,
       dashboardRepo,
       message,
-      userResponseModel,
       userProfileDataModel,
       monthlyAttendanceModel,
       const DeepCollectionEquality().hash(userProfileLoading),
-      const DeepCollectionEquality().hash(userResponseLoading),
       const DeepCollectionEquality().hash(monthlyAttendanceLoading));
 
   @JsonKey(ignore: true)
@@ -721,11 +556,9 @@ abstract class _DashboardState implements DashboardState {
       {final DashboardStatus status,
       required final DashboardRepo dashboardRepo,
       final String message,
-      final UserResponseModel? userResponseModel,
       final UserProfileDataModel? userProfileDataModel,
       final MonthlyAttendanceModel? monthlyAttendanceModel,
       final dynamic userProfileLoading,
-      final dynamic userResponseLoading,
       final dynamic monthlyAttendanceLoading}) = _$DashboardStateImpl;
 
   @override
@@ -735,15 +568,11 @@ abstract class _DashboardState implements DashboardState {
   @override
   String get message;
   @override
-  UserResponseModel? get userResponseModel;
-  @override
   UserProfileDataModel? get userProfileDataModel;
   @override
   MonthlyAttendanceModel? get monthlyAttendanceModel;
   @override
   dynamic get userProfileLoading;
-  @override
-  dynamic get userResponseLoading;
   @override
   dynamic get monthlyAttendanceLoading;
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
 import '../loader/custom_circular_progress.dart';
@@ -7,11 +6,16 @@ import '../loader/custom_circular_progress.dart';
 class CustomButton extends StatefulWidget {
   const CustomButton({
     super.key,
+    required this.text,
+    required this.onTap,
     this.isLoading = false,
+    this.isBorderButton = false, // 👈 NEW
     this.backgroundColor,
     this.borderColor,
-    this.fontWeight = FontWeight.w600,
     this.textColor,
+    this.fontWeight = FontWeight.w600,
+    this.fontSize = AppSizes.fontSize14,
+    this.borderRadius = AppSizes.borderRadius8,
     this.width,
     this.height,
     this.image,
@@ -20,26 +24,20 @@ class CustomButton extends StatefulWidget {
     this.leftImage,
     this.leftImageHeight,
     this.leftImageWidth,
-    this.borderRadius = AppSizes.borderRadius8,
-    required this.text,
-    required this.onTap,
-    this.fontSize = AppSizes.fontSize14,
     this.debounceDuration = const Duration(seconds: 1),
   });
 
-  final double fontSize;
+  final bool isLoading;
+  final bool isBorderButton; // 👈 new flag
+  final Color? backgroundColor, borderColor, textColor;
+  final double borderRadius, fontSize;
   final FontWeight fontWeight;
-  final Color? backgroundColor, borderColor;
-  final double borderRadius;
-  final String? image;
-  final String? leftImage;
-  final Color? textColor;
+  final double? width, height;
   final String text;
+  final String? image, leftImage;
   final double? imageHeight, imageWidth;
   final double? leftImageHeight, leftImageWidth;
-  final double? width, height;
   final Function()? onTap;
-  final bool isLoading;
   final Duration debounceDuration;
 
   @override
@@ -51,6 +49,21 @@ class _CustomButtonState extends State<CustomButton> {
 
   @override
   Widget build(BuildContext context) {
+    // 🎨 Define defaults depending on button type
+    final bool isBorder = widget.isBorderButton;
+
+    final Color bgColor =
+        widget.backgroundColor ??
+        (isBorder ? AppColors.surfaceColor : AppColors.primaryColor);
+
+    final Color txtColor =
+        widget.textColor ??
+        (isBorder ? AppColors.textColor : AppColors.whiteTextColor);
+
+    final Color borderClr =
+        widget.borderColor ??
+        (isBorder ? AppColors.inputBorderColor : Colors.transparent);
+
     return AbsorbPointer(
       absorbing: widget.isLoading,
       child: ElevatedButton(
@@ -59,22 +72,16 @@ class _CustomButtonState extends State<CustomButton> {
           fixedSize: widget.width != null
               ? Size(widget.width!, widget.height ?? AppSizes.buttonHeight)
               : null,
-          // minimumSize: Size(
-          //   widget.width ?? double.infinity,
-          //   widget.height ?? AppSizes.buttonHeight,
-          // ),
-          disabledBackgroundColor:
-              widget.backgroundColor ?? AppColors.disabledColor,
-          backgroundColor: widget.backgroundColor ?? AppColors.primaryColor,
+          backgroundColor: bgColor,
+          disabledBackgroundColor: AppColors.disabledColor,
           shape: RoundedRectangleBorder(
-            side: widget.borderColor == null
-                ? BorderSide.none
-                : BorderSide(color: widget.borderColor!),
             borderRadius: BorderRadius.circular(widget.borderRadius),
+            side: BorderSide(color: borderClr),
           ),
+          elevation: isBorder ? 0 : 2,
         ),
         child: widget.isLoading
-            ? CustomCircularProgress()
+            ? const CustomCircularProgress()
             : FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Row(
@@ -86,20 +93,17 @@ class _CustomButtonState extends State<CustomButton> {
                         width: widget.leftImageWidth ?? 14,
                         height: widget.leftImageHeight ?? 14,
                       ),
-                    SizedBox(width: 6),
+                    const SizedBox(width: 6),
                     Text(
                       widget.text,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: /*widget.onTap == null || isDisabled
-                      ? Theme.of(context).colorScheme.secondary
-                      :*/
-                            widget.textColor ?? AppColors.whiteTextColor,
+                        color: txtColor,
                         fontWeight: widget.fontWeight,
                         fontSize: widget.fontSize,
                       ),
                     ),
-                    SizedBox(width: 6),
+                    const SizedBox(width: 6),
                     if (widget.image != null)
                       Image.asset(
                         widget.image!,

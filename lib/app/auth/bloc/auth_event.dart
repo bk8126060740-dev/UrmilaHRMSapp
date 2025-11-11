@@ -12,4 +12,6 @@ class AuthEvent with _$AuthEvent {
       _RememberMe;
 
   const factory AuthEvent.login() = _Login;
+
+  const factory AuthEvent.getUserData() = _GetUserData;
 }

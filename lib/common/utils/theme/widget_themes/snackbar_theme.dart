@@ -6,7 +6,7 @@ class AppSnackBarTheme {
   AppSnackBarTheme._();
 
   static SnackBarThemeData lightSnackBarTheme = SnackBarThemeData(
-    backgroundColor: AppColors.bgColor,
+    backgroundColor: AppColors.scaffoldBgColor,
     contentTextStyle: const TextStyle(color: AppColors.textColor, fontSize: 15),
     behavior: SnackBarBehavior.floating,
     elevation: 8,
@@ -16,7 +16,7 @@ class AppSnackBarTheme {
   );
 
   static SnackBarThemeData darkSnackBarTheme = SnackBarThemeData(
-    backgroundColor: AppColors.bgColor,
+    backgroundColor: AppColors.scaffoldBgColor,
     contentTextStyle: const TextStyle(color: AppColors.textColor, fontSize: 15),
     behavior: SnackBarBehavior.floating,
     elevation: 8,
