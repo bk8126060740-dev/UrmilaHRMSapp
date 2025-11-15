@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return NetworkObserver(
       onRetry: () {
-        context.read<DashboardBloc>().add(DashboardEvent.getUserProfileData());
+        // context.read<DashboardBloc>().add(DashboardEvent.getUserProfileData());
       },
       child: Scaffold(
         appBar: CustomAppBar(

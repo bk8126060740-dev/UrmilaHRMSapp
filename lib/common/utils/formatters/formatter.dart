@@ -1,11 +1,46 @@
 import 'package:intl/intl.dart';
 
 import 'date_formats.dart';
+import 'time_formats.dart';
 
 class AppFormatter {
-  static String? formatTime(DateTime? date) {
+  /// 🕒 Format a DateTime object to time string
+  static String? formatTime(
+    DateTime? date, {
+    String format = TimeFormats.time12h,
+  }) {
     if (date == null) return null;
-    return DateFormat('hh:mm a').format(date);
+    return DateFormat(format).format(date);
+  }
+
+  /// 🕒 Format a string (time-only or ISO date-time) to time string
+  static String? formatTimeString(
+    String? timeString, {
+    String format = TimeFormats.time12h,
+  }) {
+    if (timeString == null || timeString.isEmpty) return null;
+
+    try {
+      DateTime date;
+      if (timeString.contains('T')) {
+        // ISO 8601 e.g., "2025-11-11T06:43:51.348454Z"
+        date = DateTime.parse(timeString).toLocal();
+      } else {
+        // Raw time e.g., "06:43:51.3484540"
+        final now = DateTime.now();
+        final parts = timeString.split(':');
+        final hour = int.tryParse(parts[0]) ?? 0;
+        final minute = int.tryParse(parts[1]) ?? 0;
+        final second = (parts.length > 2)
+            ? int.tryParse(parts[2].split('.').first) ?? 0
+            : 0;
+        date = DateTime(now.year, now.month, now.day, hour, minute, second);
+      }
+
+      return DateFormat(format).format(date);
+    } catch (e) {
+      return timeString; // fallback for invalid strings
+    }
   }
 
   static String? formatDate(

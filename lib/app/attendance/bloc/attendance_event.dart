@@ -15,6 +15,10 @@ class AttendanceEvent with _$AttendanceEvent {
 
   const factory AttendanceEvent.nextDate() = _NextDate;
 
+  const factory AttendanceEvent.selectDailyDate({
+    required DateTime selectedDate,
+  }) = _SelectDailyDate;
+
   //<<---------------- fetch attendance api call ------------------------>>
   const factory AttendanceEvent.getDailyAttendance({required DateTime date}) =
       _GetDailyAttendance;
@@ -29,6 +33,12 @@ class AttendanceEvent with _$AttendanceEvent {
     required int year,
     required DateTime dateTime,
   }) = _GetMonthlyAttendance;
+
+  const factory AttendanceEvent.updateCalendarSelection({
+    DateTime? selectedDay,
+    required DateTime focusedDay,
+    @Default(false) bool resetSelection,
+  }) = _UpdateCalendarSelection;
 
   // filter approval attendance list
   const factory AttendanceEvent.selectDate({
@@ -50,4 +60,11 @@ class AttendanceEvent with _$AttendanceEvent {
 
   const factory AttendanceEvent.searchEmployeeFromList(String query) =
       _SearchEmployeeFromList;
+
+  const factory AttendanceEvent.getApproveAttendanceList() =
+      _GetApproveAttendanceList;
+
+  const factory AttendanceEvent.approveAttendanceByManager({
+    required bool isApprove,
+  }) = _ApproveAttendanceByManager;
 }

@@ -134,14 +134,17 @@ import 'package:hrms_uis/app/dashboard/screens/tabs/grievance_tab.dart';
 import 'package:hrms_uis/app/dashboard/screens/tabs/home_tab.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
+import 'package:hrms_uis/common/utils/constants/sizes.dart';
+import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/utils/global_internet_check/network_observer.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 
-import '../../../common/navigation_service/navigation_service.dart';
 import '../../../common/utils/app_bloc/app_bloc.dart';
+import '../../../common/utils/custom_dialogs/dialogs.dart';
 import '../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../common/widgets/bottom_bar/custom_bottom_bar.dart';
-import '../../attendance/screens/daily_attendance_screen.dart';
+import '../../../common/widgets/dialog/common_dialog.dart';
+import '../widgets/logout_dialog.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key, this.initialIndex = 0});
@@ -186,36 +189,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
           builder: (_, dashboardState) {
             return NetworkObserver(
               onRetry: () {
-                context.read<DashboardBloc>().add(
-                  DashboardEvent.getUserProfileData(),
-                );
+                // context.read<DashboardBloc>().add(
+                //   DashboardEvent.getUserProfileData(),
+                // );
               },
               child: Scaffold(
                 key: scaffoldKey,
                 appBar: CustomAppBar(
                   elevation: 0,
                   showCalendarIcon: false,
-                  onCalendarTap: () {
-                    if (dashboardState.userProfileLoading) {
-                      return;
-                    }
-                    NavigationService.navigateTo(DailyAttendanceScreen.route);
-                  },
+                  onCalendarTap: () {},
                   onNavigationTap: () {
                     if (dashboardState.userProfileLoading) {
                       return;
                     }
                     scaffoldKey.currentState?.openDrawer();
-
-                    // Scaffold.of(context).openDrawer();
                   },
-                  title:
-                      '${appState.userProfileModel?.firstName ?? ""} ${appState.userProfileModel?.lastName ?? ""}',
-                  subtitle: appState.userProfileModel?.designationName ?? "",
+                  title: appState.loginResponse?.fullName ?? "",
+                  subtitle: appState.loginResponse?.projectName ?? "",
                   avatarImage: AppImages.logo,
                   showAvatar: true,
                   showBackButton: false,
                   showNavigation: true,
+                  actions: [
+                    InkWell(
+                      onTap: () {
+                        CustomDialogs.showCommonDialog(
+                          context: context,
+                          child: CommonDialog(
+                            title: context.loc.logout,
+                            message: context.loc.areYouSureYouWant,
+                            child: LogoutDialog(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(size: AppSizes.iconSize20, Icons.logout),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 drawer: const SideDrawer(),
                 body: SafeArea(

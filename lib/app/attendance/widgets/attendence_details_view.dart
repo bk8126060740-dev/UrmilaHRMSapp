@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/constants/decorations.dart';
+import 'package:hrms_uis/common/utils/extensions/extension.dart';
+import 'package:hrms_uis/common/utils/formatters/formatter.dart';
 
 import '../../../common/utils/constants/colors.dart';
 import '../../../common/utils/constants/image_strings.dart';
 import '../../../common/utils/constants/sizes.dart';
 import '../../../common/utils/constants/text_styles.dart';
+import '../../../common/utils/formatters/duration_formatter.dart';
 import '../../../common/widgets/image/custom_image.dart';
 import '../models/daily_attendance_model.dart';
 
-class AttendanceDetailsView extends StatelessWidget {
+class DailyAttendanceDetailsView extends StatelessWidget {
   final DailyAttendanceData? attendanceData;
 
-  const AttendanceDetailsView({super.key, this.attendanceData});
+  const DailyAttendanceDetailsView({super.key, this.attendanceData});
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +33,23 @@ class AttendanceDetailsView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Duration :-",
-                  style: AppTextStyles.w500_14(
-                    context,
-                    color: AppColors.secondaryTextColor,
+                Expanded(
+                  child: Text(
+                    "Duration :-",
+                    style: AppTextStyles.w500_14(
+                      context,
+                      color: AppColors.secondaryTextColor,
+                    ),
                   ),
                 ),
-                Text(
-                  attendanceData?.duration ?? "",
-                  style: AppTextStyles.w400_14(
-                    context,
-                    color: AppColors.textColor,
+                Expanded(
+                  child: Text(
+                    textAlign: TextAlign.end,
+                    DurationFormatter.formatDuration(attendanceData?.duration ?? ""),
+                    style: AppTextStyles.w400_14(
+                      context,
+                      color: AppColors.textColor,
+                    ),
                   ),
                 ),
               ],
@@ -72,25 +80,29 @@ class AttendanceDetailsView extends StatelessWidget {
                         useShimmer: true,
                       ),
                       const SizedBox(width: 14),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Clock In",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.secondaryTextColor,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Clock In",
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.secondaryTextColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: AppSizes.space4),
-                          Text(
-                            attendanceData?.inTime ?? "--",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.textColor,
+                            const SizedBox(height: AppSizes.space4),
+                            Text(
+                              AppFormatter.formatTimeString(
+                                attendanceData?.inTime ?? "--",
+                              ).withDefault("N/A"),
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.textColor,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -111,25 +123,29 @@ class AttendanceDetailsView extends StatelessWidget {
                         useShimmer: true,
                       ),
                       const SizedBox(width: 14),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Clock Out",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.secondaryTextColor,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Clock Out",
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.secondaryTextColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: AppSizes.space4),
-                          Text(
-                            attendanceData?.outTime ?? "--",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.textColor,
+                            const SizedBox(height: AppSizes.space4),
+                            Text(
+                              AppFormatter.formatTimeString(
+                                attendanceData?.outTime ?? "--",
+                              ).withDefault("N/A"),
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.textColor,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -18,12 +18,21 @@ class ApiUrl {
   static String getUserProfileData = '$_base/Employee/';
 
   // mark attendance screen
+  static String checkIn = '$_base/Attendance/checkin';
+  static String checkOut = '$_base/Attendance/checkout';
+
   static String fetchAttendanceDateWise =
-      '$_base/EmployeeAttendance/GetEmployeeAttendanceByDate?';
-  static String punchInOut = '$_base/EmployeeAttendance';
+      '$_base/Attendance/GetEmployeeAttendanceByDate?';
 
   static String getMonthlyAttendance =
-      '$_base/EmployeeAttendance/GetByMonthAndYearEmployeeAttendance?';
+      '$_base/calendar/month?';
+
+  static String getApproveAttendanceList =
+      '$_base/Attendance/GetAttendanceByManagerID/';
+
+  static String approveAttendanceByManager =
+      '$_base/manager/attendance/record/ApproveAttendances_byAttendenceIds';
+
   static String getSalarySlip = '$_base/Payroll/GetEmployeeSalarySlip?';
 
   static String privacyPolicyUrl = 'https://hrmsuistech.in/privacypolicy';

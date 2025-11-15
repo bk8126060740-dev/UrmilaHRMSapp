@@ -21,8 +21,8 @@ class AttendanceState with _$AttendanceState {
     DateTime? toDate,
 
     // 🔹 Employee Selection
-    @Default([]) List<Map<String, dynamic>> employees,
-    @Default([]) List<Map<String, dynamic>> fetchedEmployees,
+    ApproveAttendanceModel? approveAttendanceListModel,
+    ApproveAttendanceModel? fetchedAttendanceListModel,
     @Default(<String>{}) Set<String> selectedEmployeeIds,
     @Default(false) bool selectAll,
 
@@ -31,9 +31,12 @@ class AttendanceState with _$AttendanceState {
 
     // monthly attendance
     MonthlyAttendanceModel? monthlyAttendanceModel,
+    required DateTime focusedDay,
+    DateTime? selectedDay,
 
     @Default(false) monthlyAttendanceLoading,
     @Default(false) dailyAttendanceLoading,
+    @Default(false) getApproveAttendanceLoading,
   }) = _AttendanceState;
 }
 
@@ -56,4 +59,10 @@ enum AttendanceStatus {
   monthlyAttendanceLoading,
   monthlyAttendanceError,
   monthlyAttendanceSuccess,
+  getApproveAttendanceLoading,
+  getApproveAttendanceError,
+  getApproveAttendanceSuccess,
+  approveAttendanceLoading,
+  approveAttendanceError,
+  approveAttendanceSuccess,
 }

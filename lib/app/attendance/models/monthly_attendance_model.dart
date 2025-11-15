@@ -11,109 +11,130 @@ String monthlyAttendanceModelToJson(MonthlyAttendanceModel data) =>
     json.encode(data.toJson());
 
 class MonthlyAttendanceModel {
-  Status? status;
-  List<MonthlyCalendarReport>? calendarReport;
+  Summary? summary;
+  List<MonthlyAttendanceData>? days;
 
-  MonthlyAttendanceModel({this.status, this.calendarReport});
+  MonthlyAttendanceModel({this.summary, this.days});
 
   MonthlyAttendanceModel copyWith({
-    Status? status,
-    List<MonthlyCalendarReport>? calendarReport,
+    Summary? summary,
+    List<MonthlyAttendanceData>? days,
   }) => MonthlyAttendanceModel(
-    status: status ?? this.status,
-    calendarReport: calendarReport ?? this.calendarReport,
+    summary: summary ?? this.summary,
+    days: days ?? this.days,
   );
 
   factory MonthlyAttendanceModel.fromJson(Map<String, dynamic> json) =>
       MonthlyAttendanceModel(
-        status: json["status"] == null ? null : Status.fromJson(json["status"]),
-        calendarReport: json["calendarReport"] == null
+        summary: json["summary"] == null
+            ? null
+            : Summary.fromJson(json["summary"]),
+        days: json["days"] == null
             ? []
-            : List<MonthlyCalendarReport>.from(
-                json["calendarReport"]!.map(
-                  (x) => MonthlyCalendarReport.fromJson(x),
-                ),
+            : List<MonthlyAttendanceData>.from(
+                json["days"]!.map((x) => MonthlyAttendanceData.fromJson(x)),
               ),
       );
 
   Map<String, dynamic> toJson() => {
-    "status": status?.toJson(),
-    "calendarReport": calendarReport == null
+    "summary": summary?.toJson(),
+    "days": days == null
         ? []
-        : List<dynamic>.from(calendarReport!.map((x) => x.toJson())),
+        : List<dynamic>.from(days!.map((x) => x.toJson())),
   };
 }
 
-class MonthlyCalendarReport {
+class MonthlyAttendanceData {
   DateTime? date;
-  int? statusId;
-  String? colorCode;
-  String? name;
-  bool? isHoliday;
+  String? status;
+  String? color;
+  String? tooltip;
 
-  MonthlyCalendarReport({
-    this.date,
-    this.statusId,
-    this.colorCode,
-    this.name,
-    this.isHoliday,
-  });
+  MonthlyAttendanceData({this.date, this.status, this.color, this.tooltip});
 
-  MonthlyCalendarReport copyWith({
+  MonthlyAttendanceData copyWith({
     DateTime? date,
-    int? statusId,
-    String? colorCode,
-    String? name,
-    bool? isHoliday,
-  }) => MonthlyCalendarReport(
+    String? status,
+    String? color,
+    String? tooltip,
+  }) => MonthlyAttendanceData(
     date: date ?? this.date,
-    statusId: statusId ?? this.statusId,
-    colorCode: colorCode ?? this.colorCode,
-    name: name ?? this.name,
-    isHoliday: isHoliday ?? this.isHoliday,
+    status: status ?? this.status,
+    color: color ?? this.color,
+    tooltip: tooltip ?? this.tooltip,
   );
 
-  factory MonthlyCalendarReport.fromJson(Map<String, dynamic> json) =>
-      MonthlyCalendarReport(
+  factory MonthlyAttendanceData.fromJson(Map<String, dynamic> json) =>
+      MonthlyAttendanceData(
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        statusId: json["statusId"],
-        colorCode: json["colorCode"],
-        name: json["name"],
-        isHoliday: json["isHoliday"],
+        status: json["status"],
+        color: json["color"],
+        tooltip: json["tooltip"],
       );
 
   Map<String, dynamic> toJson() => {
-    "date": date?.toIso8601String(),
-    "statusId": statusId,
-    "colorCode": colorCode,
-    "name": name,
-    "isHoliday": isHoliday,
+    "date":
+        "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
+    "status": status,
+    "color": color,
+    "tooltip": tooltip,
   };
 }
 
-class Status {
+class Summary {
+  int? totalWorkingDays;
   int? presentDays;
   int? absentDays;
-  int? onLeaveDays;
+  int? leaveDays;
+  int? pendingApprovals;
+  int? holidayDays;
+  int? holidayPresentDays;
 
-  Status({this.presentDays, this.absentDays, this.onLeaveDays});
+  Summary({
+    this.totalWorkingDays,
+    this.presentDays,
+    this.absentDays,
+    this.leaveDays,
+    this.pendingApprovals,
+    this.holidayDays,
+    this.holidayPresentDays,
+  });
 
-  Status copyWith({int? presentDays, int? absentDays, int? onLeaveDays}) =>
-      Status(
-        presentDays: presentDays ?? this.presentDays,
-        absentDays: absentDays ?? this.absentDays,
-        onLeaveDays: onLeaveDays ?? this.onLeaveDays,
-      );
+  Summary copyWith({
+    int? totalWorkingDays,
+    int? presentDays,
+    int? absentDays,
+    int? leaveDays,
+    int? pendingApprovals,
+    int? holidayDays,
+    int? holidayPresentDays,
+  }) => Summary(
+    totalWorkingDays: totalWorkingDays ?? this.totalWorkingDays,
+    presentDays: presentDays ?? this.presentDays,
+    absentDays: absentDays ?? this.absentDays,
+    leaveDays: leaveDays ?? this.leaveDays,
+    pendingApprovals: pendingApprovals ?? this.pendingApprovals,
+    holidayDays: holidayDays ?? this.holidayDays,
+    holidayPresentDays: holidayPresentDays ?? this.holidayPresentDays,
+  );
 
-  factory Status.fromJson(Map<String, dynamic> json) => Status(
+  factory Summary.fromJson(Map<String, dynamic> json) => Summary(
+    totalWorkingDays: json["totalWorkingDays"],
     presentDays: json["presentDays"],
     absentDays: json["absentDays"],
-    onLeaveDays: json["onLeaveDays"],
+    leaveDays: json["leaveDays"],
+    pendingApprovals: json["pendingApprovals"],
+    holidayDays: json["holidayDays"],
+    holidayPresentDays: json["holidayPresentDays"],
   );
 
   Map<String, dynamic> toJson() => {
+    "totalWorkingDays": totalWorkingDays,
     "presentDays": presentDays,
     "absentDays": absentDays,
-    "onLeaveDays": onLeaveDays,
+    "leaveDays": leaveDays,
+    "pendingApprovals": pendingApprovals,
+    "holidayDays": holidayDays,
+    "holidayPresentDays": holidayPresentDays,
   };
 }

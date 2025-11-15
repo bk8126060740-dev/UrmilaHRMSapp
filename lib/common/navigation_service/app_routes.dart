@@ -4,6 +4,7 @@ import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/app/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 
+import '../../app/attendance/models/approve_attendance_model.dart';
 import '../../app/attendance/models/daily_attendance_model.dart';
 import '../../app/attendance/screens/approve_attend_emp_details.dart';
 import '../../app/attendance/screens/approve_attend_emp_list_screen.dart';
@@ -57,12 +58,12 @@ class AppRoutes {
                 ? args['index'] as int
                 : 0;
 
-            var userModel = context.read<AppBloc>().state.userResponse;
+            var loginModel = context.read<AppBloc>().state.loginResponse;
             var now = DateTime.now();
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: userModel?.employeeId)
-                    /*..add(DashboardEvent.getUserProfileData())*/,
+                  DashboardBloc(userId: loginModel?.employeeId),
+              /*..add(DashboardEvent.getUserProfileData())*/
               // ..add(
               //   DashboardEvent.getMonthlyAttendance(
               //     month: now.month,
@@ -76,10 +77,10 @@ class AppRoutes {
       case ProfileScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var userModel = context.read<AppBloc>().state.userResponse;
+            var loginModel = context.read<AppBloc>().state.loginResponse;
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: userModel?.employeeId)
+                  DashboardBloc(userId: loginModel?.employeeId)
                     ..add(DashboardEvent.getUserProfileData()),
               child: ProfileScreen(),
             );
@@ -88,18 +89,18 @@ class AppRoutes {
       case MonthlyAttendanceScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var userModel = context.read<AppBloc>().state.userResponse;
+            var loginModel = context.read<AppBloc>().state.loginResponse;
             var now = DateTime.now();
             return BlocProvider(
-              create: (context) => AttendanceBloc(userId: userModel?.employeeId)
-                ..add(
-                  AttendanceEvent.getMonthlyAttendance(
-                    month: now.month,
-                    year: now.year,
-                    dateTime: now,
+              create: (context) =>
+                  AttendanceBloc(userId: loginModel?.employeeId)..add(
+                    AttendanceEvent.getMonthlyAttendance(
+                      month: now.month,
+                      year: now.year,
+                      dateTime: now,
+                    ),
                   ),
-                )
-                ..add(AttendanceEvent.getDailyAttendance(date: now)),
+              /*..add(AttendanceEvent.getDailyAttendance(date: now))*/
               child: MonthlyAttendanceScreen(),
             );
           },
@@ -107,11 +108,11 @@ class AppRoutes {
       case DailyAttendanceScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var userModel = context.read<AppBloc>().state.userResponse;
+            var loginModel = context.read<AppBloc>().state.loginResponse;
 
             return BlocProvider(
               create: (context) =>
-                  AttendanceBloc(userId: userModel?.employeeId)
+                  AttendanceBloc(userId: loginModel?.employeeId)
                     ..add(AttendanceEvent.initDate()),
               child: DailyAttendanceScreen(),
             );
@@ -135,8 +136,8 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) {
-                var userModel = context.read<AppBloc>().state.userResponse;
-                return AttendanceBloc(userId: userModel?.employeeId)..add(
+                var loginModel = context.read<AppBloc>().state.loginResponse;
+                return AttendanceBloc(userId: loginModel?.employeeId)..add(
                   AttendanceEvent.selectFilterType(selectedFilterType: "Daily"),
                 );
               },
@@ -147,18 +148,19 @@ class AppRoutes {
       case ApproveAttendEmpDetails.route:
         return MaterialPageRoute(
           builder: (context) {
-            final employeeSwipeModel =
-                settings.arguments as EmployeeSwipeModel?;
-            return ApproveAttendEmpDetails(employee: employeeSwipeModel);
+            final employeeSwipeModel = settings.arguments as AttendecList?;
+            return ApproveAttendEmpDetails(
+              employeeAttendData: employeeSwipeModel,
+            );
           },
         );
       case SalarySlipScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            var userModel = context.read<AppBloc>().state.userResponse;
+            var loginModel = context.read<AppBloc>().state.loginResponse;
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: userModel?.employeeId)
+                  DashboardBloc(userId: loginModel?.employeeId)
                     ..add(DashboardEvent.getUserProfileData()),
               child: SalarySlipScreen(),
             );

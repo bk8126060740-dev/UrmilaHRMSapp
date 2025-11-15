@@ -36,6 +36,8 @@ mixin _$LoginResponseModel {
   double? get baseLongitude => throw _privateConstructorUsedError;
   @HiveField(7)
   String? get fullName => throw _privateConstructorUsedError;
+  @HiveField(8)
+  String? get employeeType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +59,8 @@ abstract class $LoginResponseModelCopyWith<$Res> {
       @HiveField(4) String? projectName,
       @HiveField(5) double? baseLatitude,
       @HiveField(6) double? baseLongitude,
-      @HiveField(7) String? fullName});
+      @HiveField(7) String? fullName,
+      @HiveField(8) String? employeeType});
 }
 
 /// @nodoc
@@ -81,6 +84,7 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
     Object? baseLatitude = freezed,
     Object? baseLongitude = freezed,
     Object? fullName = freezed,
+    Object? employeeType = freezed,
   }) {
     return _then(_value.copyWith(
       token: freezed == token
@@ -115,6 +119,10 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      employeeType: freezed == employeeType
+          ? _value.employeeType
+          : employeeType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -135,7 +143,8 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
       @HiveField(4) String? projectName,
       @HiveField(5) double? baseLatitude,
       @HiveField(6) double? baseLongitude,
-      @HiveField(7) String? fullName});
+      @HiveField(7) String? fullName,
+      @HiveField(8) String? employeeType});
 }
 
 /// @nodoc
@@ -157,6 +166,7 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
     Object? baseLatitude = freezed,
     Object? baseLongitude = freezed,
     Object? fullName = freezed,
+    Object? employeeType = freezed,
   }) {
     return _then(_$LoginResponseModelImpl(
       token: freezed == token
@@ -191,6 +201,10 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      employeeType: freezed == employeeType
+          ? _value.employeeType
+          : employeeType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -207,7 +221,8 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
       @HiveField(4) this.projectName,
       @HiveField(5) this.baseLatitude,
       @HiveField(6) this.baseLongitude,
-      @HiveField(7) this.fullName});
+      @HiveField(7) this.fullName,
+      @HiveField(8) this.employeeType});
 
   factory _$LoginResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginResponseModelImplFromJson(json);
@@ -236,10 +251,13 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   @override
   @HiveField(7)
   final String? fullName;
+  @override
+  @HiveField(8)
+  final String? employeeType;
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, userId: $userId, employeeId: $employeeId, projectId: $projectId, projectName: $projectName, baseLatitude: $baseLatitude, baseLongitude: $baseLongitude, fullName: $fullName)';
+    return 'LoginResponseModel(token: $token, userId: $userId, employeeId: $employeeId, projectId: $projectId, projectName: $projectName, baseLatitude: $baseLatitude, baseLongitude: $baseLongitude, fullName: $fullName, employeeType: $employeeType)';
   }
 
   @override
@@ -260,13 +278,24 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
             (identical(other.baseLongitude, baseLongitude) ||
                 other.baseLongitude == baseLongitude) &&
             (identical(other.fullName, fullName) ||
-                other.fullName == fullName));
+                other.fullName == fullName) &&
+            (identical(other.employeeType, employeeType) ||
+                other.employeeType == employeeType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, token, userId, employeeId,
-      projectId, projectName, baseLatitude, baseLongitude, fullName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      token,
+      userId,
+      employeeId,
+      projectId,
+      projectName,
+      baseLatitude,
+      baseLongitude,
+      fullName,
+      employeeType);
 
   @JsonKey(ignore: true)
   @override
@@ -292,7 +321,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
       @HiveField(4) final String? projectName,
       @HiveField(5) final double? baseLatitude,
       @HiveField(6) final double? baseLongitude,
-      @HiveField(7) final String? fullName}) = _$LoginResponseModelImpl;
+      @HiveField(7) final String? fullName,
+      @HiveField(8) final String? employeeType}) = _$LoginResponseModelImpl;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$LoginResponseModelImpl.fromJson;
@@ -321,6 +351,9 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   @override
   @HiveField(7)
   String? get fullName;
+  @override
+  @HiveField(8)
+  String? get employeeType;
   @override
   @JsonKey(ignore: true)
   _$$LoginResponseModelImplCopyWith<_$LoginResponseModelImpl> get copyWith =>

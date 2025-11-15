@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/app/attendance/screens/daily_attendance_screen.dart';
 import 'package:hrms_uis/app/attendance/screens/monthly_attendance_screen.dart';
-import 'package:hrms_uis/app/salary_slip/screens/salary_slip_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
+import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
@@ -45,6 +46,7 @@ class ServiceBuilder extends StatefulWidget {
 class _ServiceBuilderState extends State<ServiceBuilder> {
   @override
   Widget build(BuildContext context) {
+    var appState = context.read<AppBloc>().state;
     final serviceTextStyle = AppTextStyles.w400_12(
       context,
       color: AppColors.textColor,
@@ -76,33 +78,34 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
           AppImages.monthViewIconSN,
         ),
       ),
-      MaterialSquareIcon(
-        squareColor: AppColors.surfaceColor,
-        title: context.loc.attendanceMGR,
-        textStyle: serviceTextStyle,
-        iconTextGap: 8.0,
-        onTap: () {
-          // NavigationService.navigateTo(ApproveAttendanceScreen.route);
-          NavigationService.navigateTo(ApproveAttendEmpListScreen.route);
-        },
-        child: SvgPicture.asset(
-          colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
-          AppImages.monthViewIconSN,
+      if (appState.loginResponse?.employeeType == "M")
+        MaterialSquareIcon(
+          squareColor: AppColors.surfaceColor,
+          title: context.loc.attendanceMGR,
+          textStyle: serviceTextStyle,
+          iconTextGap: 8.0,
+          onTap: () {
+            // NavigationService.navigateTo(ApproveAttendanceScreen.route);
+            NavigationService.navigateTo(ApproveAttendEmpListScreen.route);
+          },
+          child: SvgPicture.asset(
+            colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+            AppImages.monthViewIconSN,
+          ),
         ),
-      ),
-      MaterialSquareIcon(
-        squareColor: AppColors.surfaceColor,
-        title: "salary Slip",
-        textStyle: serviceTextStyle,
-        iconTextGap: 8.0,
-        onTap: () {
-          NavigationService.navigateTo(SalarySlipScreen.route);
-        },
-        child: SvgPicture.asset(
-          colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
-          AppImages.monthViewIconSN,
-        ),
-      ),
+      // MaterialSquareIcon(
+      //   squareColor: AppColors.surfaceColor,
+      //   title: "salary Slip",
+      //   textStyle: serviceTextStyle,
+      //   iconTextGap: 8.0,
+      //   onTap: () {
+      //     NavigationService.navigateTo(SalarySlipScreen.route);
+      //   },
+      //   child: SvgPicture.asset(
+      //     colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+      //     AppImages.monthViewIconSN,
+      //   ),
+      // ),
     ]);
 
     return GridView.builder(

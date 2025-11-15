@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hrms_uis/common/utils/extensions/extension.dart';
+import 'package:hrms_uis/common/utils/formatters/duration_formatter.dart';
+import 'package:hrms_uis/common/utils/formatters/formatter.dart';
 import '../../../common/utils/constants/colors.dart';
 import '../../../common/utils/constants/decorations.dart';
 import '../../../common/utils/constants/image_strings.dart';
@@ -43,18 +46,22 @@ class ClockInOutCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Duration :-",
-                  style: AppTextStyles.w500_14(
-                    context,
-                    color: AppColors.secondaryTextColor,
+                Expanded(
+                  child: Text(
+                    "Duration :-",
+                    style: AppTextStyles.w500_14(
+                      context,
+                      color: AppColors.secondaryTextColor,
+                    ),
                   ),
                 ),
-                Text(
-                  duration,
-                  style: AppTextStyles.w400_14(
-                    context,
-                    color: AppColors.textColor,
+                ExcludeFocus(
+                  child: Text(
+                    DurationFormatter.formatDuration(duration),
+                    style: AppTextStyles.w400_14(
+                      context,
+                      color: AppColors.textColor,
+                    ),
                   ),
                 ),
               ],
@@ -79,30 +86,36 @@ class ClockInOutCard extends StatelessWidget {
                         borderWidth: 1,
                         useShimmer: true,
                       ),
-                      const SizedBox(width: 14),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Clock In",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.secondaryTextColor,
+                      const SizedBox(width: AppSizes.space8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Clock In",
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.secondaryTextColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            clockIn,
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.textColor,
+                            const SizedBox(height: 5),
+                            Text(
+                              AppFormatter.formatTimeString(
+                                clockIn,
+                              ).withDefault("N/A"),
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.textColor,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
+
+                const SizedBox(width: AppSizes.space8),
 
                 // Clock Out
                 Expanded(
@@ -116,26 +129,30 @@ class ClockInOutCard extends StatelessWidget {
                         borderWidth: 1,
                         useShimmer: true,
                       ),
-                      const SizedBox(width: 14),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Clock Out",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.secondaryTextColor,
+                      const SizedBox(width: AppSizes.space8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Clock Out",
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.secondaryTextColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            clockOut,
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.textColor,
+                            const SizedBox(height: 5),
+                            Text(
+                              AppFormatter.formatTimeString(
+                                clockOut,
+                              ).withDefault("N/A"),
+                              style: AppTextStyles.w400_14(
+                                context,
+                                color: AppColors.textColor,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

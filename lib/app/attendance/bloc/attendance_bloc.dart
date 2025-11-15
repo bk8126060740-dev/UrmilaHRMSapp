@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hrms_uis/app/attendance/models/daily_attendance_model.dart';
@@ -10,7 +11,7 @@ import 'package:hrms_uis/common/utils/helpers/custom_image_file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../common/networking/common_repo.dart';
-import '../../../common/utils/constants/constants.dart';
+import '../models/approve_attendance_model.dart';
 import '../models/monthly_attendance_model.dart';
 
 part 'attendance_bloc.freezed.dart';
@@ -20,12 +21,13 @@ part 'attendance_event.dart';
 part 'attendance_state.dart';
 
 class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
+  final TextEditingController remarkController = TextEditingController();
+
   AttendanceBloc({required int? userId})
     : super(
         AttendanceState(
           attendanceRepo: AttendanceRepo(),
-          employees: AppConstant.staticEmpList,
-          fetchedEmployees: AppConstant.staticEmpList,
+          focusedDay: DateTime.now(),
         ),
       ) {
     on<_RequestLocation>((event, emit) async {
@@ -159,7 +161,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
 
         // After successful photo capture, decide Check-In / Check-Out
         final attendanceList = state.dailyAttendanceModel?.list ?? [];
-        final record = attendanceList.isNotEmpty ? attendanceList.first : null;
+        final record = attendanceList.isNotEmpty ? attendanceList.last : null;
         final hasIn = record?.inTime?.isNotEmpty ?? false;
         final hasOut = record?.outTime?.isNotEmpty ?? false;
 
@@ -194,6 +196,11 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       final nextDate = state.selectedDate!.add(const Duration(days: 1));
       emit(state.copyWith(selectedDate: nextDate));
       add(AttendanceEvent.getDailyAttendance(date: nextDate));
+    });
+
+    on<_SelectDailyDate>((event, emit) {
+      emit(state.copyWith(selectedDate: event.selectedDate));
+      add(AttendanceEvent.getDailyAttendance(date: event.selectedDate));
     });
 
     // get daily attendance api
@@ -266,25 +273,25 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         return;
       }
 
-      final distance = Geolocator.distanceBetween(
-        AppConstant.officeLatitude,
-        AppConstant.officeLongitude,
-        state.latitude!,
-        state.longitude!,
-      );
-
-      if (distance > AppConstant.allowedRadius) {
-        log("distanceafterif checkin ===>>  $distance");
-        emit(
-          state.copyWith(
-            status: AttendanceStatus.error,
-            message: 'You are outside the 50-meter allowed check-in area.',
-          ),
-        );
-        return;
-      } else {
-        log("distanceafterelse checkin ===>>  $distance");
-      }
+      // final distance = Geolocator.distanceBetween(
+      //   AppConstant.officeLatitude,
+      //   AppConstant.officeLongitude,
+      //   state.latitude!,
+      //   state.longitude!,
+      // );
+      //
+      // if (distance > AppConstant.allowedRadius) {
+      //   log("distanceafterif checkin ===>>  $distance");
+      //   emit(
+      //     state.copyWith(
+      //       status: AttendanceStatus.error,
+      //       message: 'You are outside the 50-meter allowed check-in area.',
+      //     ),
+      //   );
+      //   return;
+      // } else {
+      //   log("distanceafterelse checkin ===>>  $distance");
+      // }
 
       emit(state.copyWith(status: AttendanceStatus.checkInOutLoading));
       try {
@@ -352,25 +359,25 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         return;
       }
 
-      final distance = Geolocator.distanceBetween(
-        AppConstant.officeLatitude,
-        AppConstant.officeLongitude,
-        state.latitude!,
-        state.longitude!,
-      );
-
-      if (distance > AppConstant.allowedRadius) {
-        log("distanceafterif checkin ===>>  $distance");
-        emit(
-          state.copyWith(
-            status: AttendanceStatus.error,
-            message: 'You are outside the 50-meter allowed check-in area.',
-          ),
-        );
-        return;
-      } else {
-        log("distanceafterelse checkin ===>>  $distance");
-      }
+      // final distance = Geolocator.distanceBetween(
+      //   AppConstant.officeLatitude,
+      //   AppConstant.officeLongitude,
+      //   state.latitude!,
+      //   state.longitude!,
+      // );
+      //
+      // if (distance > AppConstant.allowedRadius) {
+      //   log("distanceafterif checkin ===>>  $distance");
+      //   emit(
+      //     state.copyWith(
+      //       status: AttendanceStatus.error,
+      //       message: 'You are outside the 50-meter allowed check-in area.',
+      //     ),
+      //   );
+      //   return;
+      // } else {
+      //   log("distanceafterelse checkin ===>>  $distance");
+      // }
 
       emit(state.copyWith(status: AttendanceStatus.checkInOutLoading));
       try {
@@ -485,6 +492,15 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       }
     });
 
+    on<_UpdateCalendarSelection>((event, emit) {
+      emit(
+        state.copyWith(
+          focusedDay: event.focusedDay,
+          selectedDay: event.resetSelection ? null : event.selectedDay,
+        ),
+      );
+    });
+
     // filter approve attendance
     on<_SelectDate>((event, emit) {
       if (event.isFromDate) {
@@ -568,15 +584,18 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     // toggle single or all selection
     on<_ToggleSingleSelection>((event, emit) {
       final updated = {...state.selectedEmployeeIds};
+
       if (updated.contains(event.employeeId)) {
         updated.remove(event.employeeId);
       } else {
         updated.add(event.employeeId);
       }
 
+      final totalEmployees =
+          state.approveAttendanceListModel?.attendecList?.length ?? 0;
+
       final allSelected =
-          updated.length == state.employees.length &&
-          state.employees.isNotEmpty;
+          totalEmployees > 0 && updated.length == totalEmployees;
 
       emit(
         state.copyWith(selectedEmployeeIds: updated, selectAll: allSelected),
@@ -586,7 +605,12 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     on<_ToggleAllSelection>((event, emit) {
       if (event.value) {
         // Select all employees by ID
-        final allIds = state.employees.map((e) => e['id'].toString()).toSet();
+        final allIds =
+            state.approveAttendanceListModel?.attendecList
+                ?.map((e) => e.id.toString())
+                .toSet() ??
+            {}; // <-- fallback to empty set if null
+
         emit(state.copyWith(selectAll: true, selectedEmployeeIds: allIds));
       } else {
         emit(state.copyWith(selectAll: false, selectedEmployeeIds: {}));
@@ -600,26 +624,124 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       if (query.isEmpty) {
         emit(
           state.copyWith(
-            employees: List<Map<String, dynamic>>.from(state.fetchedEmployees),
+            approveAttendanceListModel: state.fetchedAttendanceListModel
+                ?.copyWith(),
             status: AttendanceStatus.initial,
           ),
         );
         return;
       }
 
-      // Otherwise, filter
-      final filtered = state.fetchedEmployees.where((emp) {
-        final name = emp["name"]?.toString().toLowerCase() ?? "";
-        final status = emp["status"]?.toString().toLowerCase() ?? "";
-        final date = emp["date"]?.toString().toLowerCase() ?? "";
-        return name.contains(query) ||
-            status.contains(query) ||
-            date.contains(query);
+      final allList = state.fetchedAttendanceListModel?.attendecList ?? [];
+
+      final filtered = allList.where((item) {
+        final name = item.employeeName?.toLowerCase() ?? "";
+        return name.contains(query);
       }).toList();
 
       emit(
-        state.copyWith(employees: filtered, status: AttendanceStatus.initial),
+        state.copyWith(
+          approveAttendanceListModel: ApproveAttendanceModel(
+            attendecList: filtered,
+          ),
+          status: AttendanceStatus.initial,
+        ),
       );
+    });
+
+    on<_GetApproveAttendanceList>((event, emit) async {
+      emit(
+        state.copyWith(
+          status: AttendanceStatus.getApproveAttendanceLoading,
+          getApproveAttendanceLoading: true,
+        ),
+      );
+      try {
+        ApiResponse<ApproveAttendanceModel> response = await state
+            .attendanceRepo
+            .getApproveAttendanceList(
+              empId: userId,
+              fromDate: state.fromDate,
+              toDate: state.toDate,
+            );
+
+        if (response.isSuccess && response.data != null) {
+          emit(
+            state.copyWith(
+              status: AttendanceStatus.getApproveAttendanceSuccess,
+              approveAttendanceListModel: response.data,
+              fetchedAttendanceListModel: response.data,
+              message: response.message ?? "",
+              getApproveAttendanceLoading: false,
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              approveAttendanceListModel: null,
+              fetchedAttendanceListModel: null,
+              status: AttendanceStatus.getApproveAttendanceError,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+              getApproveAttendanceLoading: false,
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            approveAttendanceListModel: null,
+            fetchedAttendanceListModel: null,
+            status: AttendanceStatus.getApproveAttendanceError,
+            message: e.toString(),
+            getApproveAttendanceLoading: false,
+          ),
+        );
+      }
+    });
+
+    on<_ApproveAttendanceByManager>((event, emit) async {
+      emit(state.copyWith(status: AttendanceStatus.approveAttendanceLoading));
+      try {
+        final attendanceIdList = state.selectedEmployeeIds
+            .map((e) => int.parse(e))
+            .toList();
+
+        ApiResponse<Map<String, dynamic>>? response = await state.attendanceRepo
+            .approveAttendanceByManager(
+              attendanceList: attendanceIdList,
+              isApprove: event.isApprove,
+              remarks: remarkController.text.trim(),
+            );
+
+        if (response.isSuccess) {
+          remarkController.clear();
+          emit(
+            state.copyWith(
+              status: AttendanceStatus.approveAttendanceSuccess,
+              message: response.message ?? "",
+              selectedEmployeeIds: {},
+              selectAll: false,
+            ),
+          );
+          add(AttendanceEvent.getApproveAttendanceList());
+        } else {
+          emit(
+            state.copyWith(
+              status: AttendanceStatus.approveAttendanceError,
+              message: response.message ?? "Some Error Occurred",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: AttendanceStatus.approveAttendanceError,
+            message: e.toString(),
+          ),
+        );
+      }
     });
   }
 }

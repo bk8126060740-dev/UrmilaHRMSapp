@@ -25,11 +25,16 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var loginResponse = context.read<AppBloc>().state.loginResponse;
-      if (loginResponse == null) {
-        NavigationService.navigateAndRemoveAll(LoginScreen.route);
-      } else {
-        context.read<AuthBloc>().add(const AuthEvent.getUserData());
-      }
+      NavigationService.navigateAndRemoveAll(
+        loginResponse == null
+            ? LoginScreen.route
+            : DashboardScreen.route,
+      );
+      // if (loginResponse == null) {
+      //   NavigationService.navigateAndRemoveAll(LoginScreen.route);
+      // } else {
+      //   context.read<AuthBloc>().add(const AuthEvent.getUserData());
+      // }
     });
   }
 

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
-import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
-import 'package:hrms_uis/common/utils/constants/decorations.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
-import 'package:hrms_uis/common/widgets/button/custom_button.dart';
 import 'package:hrms_uis/common/widgets/checkbox/custom_checkbox.dart';
 import 'package:hrms_uis/common/widgets/dialog/common_bottom_sheet.dart';
+import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
+import 'package:hrms_uis/common/widgets/placeholder/no_data_found.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../common/utils/constants/colors.dart';
-import '../../../common/utils/constants/text_styles.dart';
 import '../../../common/utils/custom_dialogs/bottomSheets.dart';
 import '../../../common/widgets/appbar/custom_appbar.dart';
+import '../widgets/approve_attendance_list_card.dart';
+import '../widgets/approve_reject_view.dart';
 import '../widgets/custom_filter_bottom_sheet.dart';
-import 'approve_attend_emp_details.dart';
 
 class ApproveAttendEmpListScreen extends StatefulWidget {
   static const route = '/approve_attendance_emp_list';
@@ -29,14 +29,32 @@ class ApproveAttendEmpListScreen extends StatefulWidget {
 
 class _ApproveAttendEmpListScreenState
     extends State<ApproveAttendEmpListScreen> {
-  final TextEditingController remarkController = TextEditingController();
   final TextEditingController searchController = TextEditingController();
+
+  final RefreshController refreshController = RefreshController();
+
+  @override
+  void dispose() {
+    refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AttendanceBloc>().add(
+        const AttendanceEvent.getApproveAttendanceList(),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AttendanceBloc, AttendanceState>(
-      listener: (context, state) {},
+    return BlocBuilder<AttendanceBloc, AttendanceState>(
       builder: (context, state) {
+        var approveAttendanceList =
+            state.approveAttendanceListModel?.attendecList ?? [];
         return Scaffold(
           // resizeToAvoidBottomInset: false,
           appBar: CustomAppBar(
@@ -49,229 +67,124 @@ class _ApproveAttendEmpListScreenState
             showCalendarIcon: false,
           ),
           body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: AppSizes.padding16,
-                horizontal: AppSizes.padding16,
-              ),
-              child: Column(
-                children: [
-                  // 🔹 Select All
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppSizes.padding12,
+            child: SmartRefresher(
+              controller: refreshController,
+              enablePullDown: true,
+              onRefresh: () {
+                context.read<AttendanceBloc>().add(
+                  const AttendanceEvent.getApproveAttendanceList(),
+                );
+                refreshController.refreshCompleted();
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppSizes.padding16,
+                  horizontal: AppSizes.padding16,
+                ),
+                child: Column(
+                  children: [
+                    // 🔹 Select All
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: AppSizes.padding12,
+                        right: AppSizes.padding12,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomCheckBox(
+                            enabled: approveAttendanceList.isNotEmpty,
+                            borderColor: AppColors.iconColor,
+                            value: state.selectAll,
+                            title: "Select All",
+                            scale: 1,
+                            onChanged: (value) {
+                              context.read<AttendanceBloc>().add(
+                                AttendanceEvent.toggleAllSelection(value),
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 10),
+                          InkWell(
+                            child: const Icon(
+                              Icons.filter_list,
+                              size: 24,
+                              color: AppColors.iconColor,
+                            ),
+                            onTap: () {
+                              CustomBottomSheet.showCommonBottomSheet(
+                                context: context,
+                                child: BlocProvider.value(
+                                  value: context.read<AttendanceBloc>(),
+                                  child: CommonBottomSheet(
+                                    title: "Attendance Filter",
+                                    child: CustomFilterDialog(),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomCheckBox(
-                          value: state.selectAll,
-                          title: "Select All",
-                          scale: 1,
-                          onChanged: (value) {
+
+                    const SizedBox(height: AppSizes.space8),
+
+                    // 🔹 Filter + Search Bar
+                    TextField(
+                      // enabled: approveAttendanceList.isNotEmpty,
+                      controller: searchController,
+                      decoration: InputDecoration(
+                        hintText: "Search employee...",
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            searchController.clear();
                             context.read<AttendanceBloc>().add(
-                              AttendanceEvent.toggleAllSelection(value),
+                              AttendanceEvent.searchEmployeeFromList(""),
                             );
                           },
+                          child: const Icon(
+                            Icons.close,
+                            size: AppSizes.iconSize20,
+                          ),
                         ),
-                        const SizedBox(width: 10),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.filter_list,
-                            size: 24,
-                            color: AppColors.iconColor,
-                          ),
-                          onPressed: () {
-                            CustomBottomSheet.showCommonBottomSheet(
-                              context: context,
-                              child: BlocProvider.value(
-                                value: context.read<AttendanceBloc>(),
-                                child: CommonBottomSheet(
-                                  title: "Attendance Filter",
-                                  child: CustomFilterDialog(),
-                                ),
-                              ),
-                            );
-                          },
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
                         ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 8),
-
-                  // 🔹 Filter + Search Bar
-                  TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      hintText: "Search employee...",
-                      prefixIcon: const Icon(Icons.search),
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    onChanged: (value) {
-                      context.read<AttendanceBloc>().add(
-                        AttendanceEvent.searchEmployeeFromList(value),
-                      );
-                    },
-                  ),
-
-                  const SizedBox(height: 16),
-
-                  // 🔹 Employee list
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: state.employees.length,
-                      itemBuilder: (context, index) {
-                        final emp = state.employees[index];
-                        final isSelected = state.selectedEmployeeIds.contains(
-                          emp['id'].toString(),
-                        );
-
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(14),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withFixedOpacity(0.05),
-                                blurRadius: 6,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: ListTile(
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: AppSizes.padding12,
-                              vertical: AppSizes.padding4,
-                            ),
-                            leading: CustomCheckBox(
-                              value: isSelected,
-                              onChanged: (_) {
-                                final bloc = context.read<AttendanceBloc>();
-                                bloc.add(
-                                  AttendanceEvent.toggleSingleSelection(
-                                    employeeId: emp['id'].toString(),
-                                  ),
-                                );
-                              },
-                            ),
-                            title: Text(
-                              emp["name"],
-                              style: AppTextStyles.w400_14(
-                                context,
-                                color: AppColors.textColor,
-                              ),
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.calendar_month,
-                                      size: 16,
-                                      color: AppColors.iconColor,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      emp["date"],
-                                      style: AppTextStyles.w400_12(
-                                        context,
-                                        color: AppColors.secondaryTextColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.access_time,
-                                      size: 16,
-                                      color: AppColors.iconColor,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      emp["status"],
-                                      style: AppTextStyles.w400_12(
-                                        context,
-                                        color: AppColors.secondaryTextColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            trailing: InkWell(
-                              onTap: () {
-                                NavigationService.navigateTo(
-                                  ApproveAttendEmpDetails.route,
-                                  arguments: EmployeeSwipeModel(
-                                    name: "KUNDAN KUMAR",
-                                    empCode: "UISPAT332",
-                                    department: "IT",
-                                    dateTime: DateTime(2025, 11, 4, 9, 54),
-                                    inOut: "IN",
-                                    remark: "On time swipe",
-                                    location:
-                                        "AIIMS - DIGHA Service road, Patna, Bihar, 801503, India",
-                                    imageUrl: "https://example.com/photo.jpg",
-                                  ),
-                                );
-                              },
-                              child: const Icon(
-                                Icons.visibility_outlined,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
+                      onChanged: (value) {
+                        context.read<AttendanceBloc>().add(
+                          AttendanceEvent.searchEmployeeFromList(value),
                         );
                       },
                     ),
-                  ),
 
-                  // 🔹 Remark + Approve Button
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: AppDecorations.card(),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextField(
-                          controller: remarkController,
-                          maxLines: 2,
-                          decoration: InputDecoration(
-                            hintText: "Enter remarks...",
-                            filled: true,
-                            fillColor: Colors.grey.shade100,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        SizedBox(
-                          width: double.infinity,
-                          child: CustomButton(
-                            text: "Approve Selected",
-                            onTap: _approveSelected,
-                          ),
-                        ),
-                      ],
+                    const SizedBox(height: AppSizes.space16),
+
+                    // 🔹 Employee list
+                    Expanded(
+                      child: state.getApproveAttendanceLoading
+                          ? Center(child: CustomCircularProgress())
+                          : approveAttendanceList.isEmpty
+                          ? Center(
+                              child: NoDataFound(
+                                message: "No attendance found",
+                              ),
+                            )
+                          : ApproveAttendanceListCard(),
                     ),
-                  ),
-                ],
+
+                    // 🔹 Remark + Approve/Reject Button
+                    ApproveRejectView(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -293,15 +206,5 @@ class _ApproveAttendEmpListScreenState
     if (state.selectedFilter == "Weekly") return "This Week";
     if (state.selectedFilter == "Monthly") return "This Month";
     return "";
-  }
-
-  // Approve button logic
-  void _approveSelected() {
-    var bloc = context.read<AttendanceBloc>();
-
-    final selected = bloc.state.employees.where((e) => e["selected"]).toList();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("${selected.length} requests approved")),
-    );
   }
 }

@@ -302,6 +302,10 @@ class HttpClient {
       // **Normalize status**
       int status = response.statusCode;
 
+      if (response.statusCode == 401) {
+        _autoLogout();
+      }
+
       // ✅ Handle validation errors (422)
       if (status == 422) {
         final errors = jsonResponse['errors'] ?? [];
@@ -354,11 +358,13 @@ class HttpClient {
           ? {
               // 'Content-Type': 'multipart/form-data',
               'accept': '*/*',
-              "Authorization": "Bearer $userToken",
+              // "Authorization": "Bearer $userToken",
+              "Authorization": "$userToken",
             }
           : {
               'Content-Type': 'application/json',
-              "Authorization": "Bearer $userToken",
+              // "Authorization": "Bearer $userToken",
+              "Authorization": "$userToken",
             };
       log('token from: $userToken');
     } else {

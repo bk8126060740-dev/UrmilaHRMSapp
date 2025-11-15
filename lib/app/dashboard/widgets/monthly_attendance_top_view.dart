@@ -33,12 +33,13 @@ class MonthlyAttendanceTopView extends StatelessWidget {
                 children: [
                   AppSizes.space20.vGap,
                   Text(
-                    "${appState.userProfileModel?.firstName?.withDefault("__")} ${appState.userProfileModel?.lastName.withDefault("")}",
+                    // "${appState.userProfileModel?.firstName?.withDefault("__")} ${appState.userProfileModel?.lastName.withDefault("")}",
+                    "${appState.loginResponse?.fullName?.withDefault("__")}",
                     style: AppTextStyles.w500_24(context),
                   ),
                   const SizedBox(height: AppSizes.space4),
                   Text(
-                    "${appState.userProfileModel?.designationName.withDefault("__")}",
+                    "${appState.loginResponse?.projectName.withDefault("__")}",
                     style: AppTextStyles.w400_16(
                       context,
                       color: AppColors.secondaryTextColor,
@@ -46,7 +47,8 @@ class MonthlyAttendanceTopView extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSizes.space4),
                   Text(
-                    "Emp ID: ${appState.userProfileModel?.id}",
+                    // "Emp ID: ${appState.userProfileModel?.id}",
+                    "Emp ID: ${appState.loginResponse?.employeeId}",
                     style: AppTextStyles.w400_12(
                       context,
                       color: AppColors.secondaryTextColor,

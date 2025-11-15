@@ -65,6 +65,7 @@ class CustomCheckBox extends StatelessWidget {
   final Color? borderColor; // 👈 new parameter for border color
   final Color? activeColor; // 👈 optional: for fill color
   final Color? checkColor; // tick color
+  final bool enabled; // 👈 new parameter
 
   const CustomCheckBox({
     required this.value,
@@ -75,6 +76,7 @@ class CustomCheckBox extends StatelessWidget {
     this.borderColor,
     this.activeColor,
     this.checkColor,
+    this.enabled = true, // 👈 default true (enabled)
     super.key,
   });
 
@@ -119,9 +121,11 @@ class CustomCheckBox extends StatelessWidget {
               offset: const Offset(-6, 0),
               child: Checkbox(
                 value: value,
-                onChanged: (bool? newValue) {
-                  if (newValue != null) onChanged(newValue);
-                },
+                onChanged: enabled
+                    ? (bool? newValue) {
+                        if (newValue != null) onChanged(newValue);
+                      }
+                    : null, // 👈 disables interaction
               ),
             ),
             if (title != null)

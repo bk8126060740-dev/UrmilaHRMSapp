@@ -25,13 +25,14 @@ class LoginResponseAdapter extends TypeAdapter<_$LoginResponseModelImpl> {
       baseLatitude: fields[5] as double?,
       baseLongitude: fields[6] as double?,
       fullName: fields[7] as String?,
+      employeeType: fields[8] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$LoginResponseModelImpl obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.token)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class LoginResponseAdapter extends TypeAdapter<_$LoginResponseModelImpl> {
       ..writeByte(6)
       ..write(obj.baseLongitude)
       ..writeByte(7)
-      ..write(obj.fullName);
+      ..write(obj.fullName)
+      ..writeByte(8)
+      ..write(obj.employeeType);
   }
 
   @override
@@ -76,6 +79,7 @@ _$LoginResponseModelImpl _$$LoginResponseModelImplFromJson(
       baseLatitude: (json['baseLatitude'] as num?)?.toDouble(),
       baseLongitude: (json['baseLongitude'] as num?)?.toDouble(),
       fullName: json['fullName'] as String?,
+      employeeType: json['employeeType'] as String?,
     );
 
 Map<String, dynamic> _$$LoginResponseModelImplToJson(
@@ -89,4 +93,5 @@ Map<String, dynamic> _$$LoginResponseModelImplToJson(
       'baseLatitude': instance.baseLatitude,
       'baseLongitude': instance.baseLongitude,
       'fullName': instance.fullName,
+      'employeeType': instance.employeeType,
     };

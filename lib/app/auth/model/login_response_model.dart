@@ -17,6 +17,7 @@ class LoginResponseModel with _$LoginResponseModel {
     @HiveField(5) double? baseLatitude,
     @HiveField(6) double? baseLongitude,
     @HiveField(7) String? fullName,
+    @HiveField(8) String? employeeType,
   }) = _LoginResponseModel;
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>

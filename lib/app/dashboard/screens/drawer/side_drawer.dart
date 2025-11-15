@@ -37,9 +37,8 @@ class SideDrawer extends StatelessWidget {
           return Column(
             children: [
               CustomAppBar(
-                title:
-                    "${appState.userProfileModel?.firstName ?? ""} ${appState.userProfileModel?.lastName ?? ""}",
-                subtitle: appState.userProfileModel?.designationName ?? "",
+                title: appState.loginResponse?.fullName ?? "",
+                subtitle: appState.loginResponse?.projectName ?? "",
                 avatarImage: appState.userProfileModel?.profilePath ?? "",
                 showAvatar: true,
                 showBackButton: false,
@@ -144,24 +143,26 @@ class SideDrawer extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // Logout
-                      _buildNavItemView(
-                        context,
-                        onTap: () {
-                          CustomDialogs.showCommonDialog(
-                            context: context,
-                            child: CommonDialog(
-                              title: context.loc.logout,
-                              message: context.loc.areYouSureYouWant,
-                              child: LogoutDialog(),
-                            ),
-                          );
-                        },
-                        navIcon: AppImages.logoutIconSN,
-                        navTitle: context.loc.logout,
-                        textColor: AppColors.error,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                      ),
+                      // // Logout
+                      // SafeArea(
+                      //   child: _buildNavItemView(
+                      //     context,
+                      //     onTap: () {
+                      //       CustomDialogs.showCommonDialog(
+                      //         context: context,
+                      //         child: CommonDialog(
+                      //           title: context.loc.logout,
+                      //           message: context.loc.areYouSureYouWant,
+                      //           child: LogoutDialog(),
+                      //         ),
+                      //       );
+                      //     },
+                      //     navIcon: AppImages.logoutIconSN,
+                      //     navTitle: context.loc.logout,
+                      //     textColor: AppColors.error,
+                      //     mainAxisAlignment: MainAxisAlignment.center,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

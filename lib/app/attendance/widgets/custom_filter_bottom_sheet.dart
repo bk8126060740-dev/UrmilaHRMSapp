@@ -47,8 +47,9 @@ class _CustomFilterDialogState extends State<CustomFilterDialog> {
               enabled: state.selectedFilter.toLowerCase() == "custom",
               key: ValueKey('fromDate_${state.fromDate ?? 'null'}'),
               height: AppSizes.textFieldHeightLg,
+              hintText: 'From Date',
+              lastDate: DateTime.now(),
               initialSelectedDate: state.fromDate,
-              hintText: "From Date",
               onDateChanged: (DateTime picked) {
                 bloc.add(
                   AttendanceEvent.selectDate(
@@ -68,10 +69,11 @@ class _CustomFilterDialogState extends State<CustomFilterDialog> {
             CustomFieldHeading(title: "To"),
             CustomDatePicker(
               enabled: state.selectedFilter.toLowerCase() == "custom",
-              key: ValueKey('toDate_${state.toDate ?? 'null'}'),
+              // key: ValueKey('toDate_${state.toDate ?? 'null'}'),
               height: AppSizes.textFieldHeightLg,
+              hintText: 'To Date',
+              lastDate: DateTime.now(),
               initialSelectedDate: state.toDate,
-              hintText: "To Date",
               onDateChanged: (DateTime picked) {
                 bloc.add(
                   AttendanceEvent.selectDate(
@@ -80,6 +82,8 @@ class _CustomFilterDialogState extends State<CustomFilterDialog> {
                   ),
                 );
               },
+              dependentFieldName: "From Date",
+              dependentDate: state.fromDate,
               validator: (date) {
                 if (date == null) {
                   return 'To Date is required';
@@ -109,6 +113,9 @@ class _CustomFilterDialogState extends State<CustomFilterDialog> {
                         );
                         return;
                       }
+                      context.read<AttendanceBloc>().add(
+                        const AttendanceEvent.getApproveAttendanceList(),
+                      );
                       Navigator.pop(context);
                     },
                     text: "Apply",

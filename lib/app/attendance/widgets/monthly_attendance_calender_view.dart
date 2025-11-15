@@ -11,6 +11,11 @@ import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../common/utils/constants/colors.dart';
+import '../../../common/utils/custom_dialogs/dialogs.dart';
+import '../../../common/widgets/dialog/common_dialog.dart';
+import 'calender_tooltip_dialog.dart';
+
 class MonthlyAttendanceCalenderView extends StatefulWidget {
   const MonthlyAttendanceCalenderView({super.key});
 
@@ -21,9 +26,6 @@ class MonthlyAttendanceCalenderView extends StatefulWidget {
 
 class _MonthlyAttendanceCalenderViewState
     extends State<MonthlyAttendanceCalenderView> {
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
-
   Color _parseColor(String? hexColor) {
     if (hexColor == null || hexColor.isEmpty) return Colors.transparent;
     final buffer = StringBuffer();
@@ -40,9 +42,9 @@ class _MonthlyAttendanceCalenderViewState
         final calendarData = state.monthlyAttendanceModel;
 
         // 🔁 Convert list to map keyed by date
-        final Map<DateTime, List<MonthlyCalendarReport>> events = {};
-        if (calendarData?.calendarReport != null) {
-          for (final report in calendarData!.calendarReport!) {
+        final Map<DateTime, List<MonthlyAttendanceData>> events = {};
+        if (calendarData?.days != null) {
+          for (final report in calendarData!.days!) {
             final date = report.date;
             if (date == null) continue;
             final safeDate = DateTime.utc(date.year, date.month, date.day);
@@ -61,12 +63,13 @@ class _MonthlyAttendanceCalenderViewState
                     horizontal: AppSizes.padding12,
                     vertical: AppSizes.padding12,
                   ),
-                  child: TableCalendar<MonthlyCalendarReport>(
+                  child: TableCalendar<MonthlyAttendanceData>(
                     availableGestures: AvailableGestures.none,
                     firstDay: DateTime.utc(2020, 1, 1),
                     lastDay: DateTime.now(),
-                    focusedDay: _focusedDay,
-                    selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                    focusedDay: state.focusedDay,
+                    selectedDayPredicate: (day) =>
+                        isSameDay(state.selectedDay, day),
                     headerStyle: HeaderStyle(
                       titleCentered: true,
                       formatButtonVisible: false,
@@ -84,10 +87,12 @@ class _MonthlyAttendanceCalenderViewState
                     onPageChanged: (focusedDay) {
                       final selectedMonth = focusedDay.month;
                       final selectedYear = focusedDay.year;
-                      setState(() {
-                        _focusedDay = focusedDay;
-                        _selectedDay = null;
-                      });
+                      context.read<AttendanceBloc>().add(
+                        AttendanceEvent.updateCalendarSelection(
+                          focusedDay: focusedDay,
+                          resetSelection: true,
+                        ),
+                      );
                       context.read<AttendanceBloc>().add(
                         AttendanceEvent.getMonthlyAttendance(
                           month: selectedMonth,
@@ -98,12 +103,11 @@ class _MonthlyAttendanceCalenderViewState
                       );
                     },
                     onDaySelected: (selectedDay, focusedDay) {
-                      setState(() {
-                        _selectedDay = selectedDay;
-                        _focusedDay = focusedDay;
-                      });
                       context.read<AttendanceBloc>().add(
-                        AttendanceEvent.getDailyAttendance(date: selectedDay),
+                        AttendanceEvent.updateCalendarSelection(
+                          focusedDay: focusedDay,
+                          selectedDay: selectedDay,
+                        ),
                       );
                     },
                     calendarStyle: const CalendarStyle(
@@ -139,7 +143,7 @@ class _MonthlyAttendanceCalenderViewState
                           context,
                           date,
                           events,
-                          _selectedDay,
+                          state.selectedDay,
                           isSelected: false,
                           isToday: false,
                         );
@@ -151,7 +155,7 @@ class _MonthlyAttendanceCalenderViewState
                           context,
                           date,
                           events,
-                          _selectedDay,
+                          state.selectedDay,
                           isSelected: true,
                           isToday: false,
                         );
@@ -163,7 +167,7 @@ class _MonthlyAttendanceCalenderViewState
                           context,
                           date,
                           events,
-                          _selectedDay,
+                          state.selectedDay,
                           isSelected: false,
                           isToday: true,
                         );
@@ -179,14 +183,14 @@ class _MonthlyAttendanceCalenderViewState
   Widget _buildDayCell(
     BuildContext context,
     DateTime date,
-    Map<DateTime, List<MonthlyCalendarReport>> events,
+    Map<DateTime, List<MonthlyAttendanceData>> events,
     DateTime? selectedDay, {
     bool isSelected = false,
     bool isToday = false,
   }) {
     final reports = events[DateTime.utc(date.year, date.month, date.day)];
     final report = reports?.isNotEmpty == true ? reports!.first : null;
-    final dotColor = report != null ? _parseColor(report.colorCode) : null;
+    final dotColor = report != null ? _parseColor(report.color) : null;
     final isSunday = date.weekday == DateTime.sunday;
 
     // 🟢 Determine actual "today" once
@@ -201,15 +205,15 @@ class _MonthlyAttendanceCalenderViewState
     if (isSelected) {
       backgroundColor = Colors.blue.withFixedOpacity(0.15);
     } else if (isRealToday) {
-      backgroundColor = Colors.orange.withFixedOpacity(0.15);
+      backgroundColor = AppColors.primaryColor.withFixedOpacity(0.15);
     }
 
     // 🔸 Text color
     Color textColor = Colors.black87;
     if (isSelected) {
-      textColor = Colors.blue;
+      textColor = AppColors.primaryColor;
     } else if (isRealToday) {
-      textColor = Colors.orange;
+      textColor = AppColors.primaryColor;
     } else if (isSunday) {
       textColor = Colors.red;
     }
@@ -217,37 +221,54 @@ class _MonthlyAttendanceCalenderViewState
     // 🔻 Border style
     Border? border;
     if (isSelected) {
-      border = Border.all(color: Colors.blue, width: 2);
+      border = Border.all(color: AppColors.primaryColor, width: 2);
     } else if (isRealToday) {
-      border = Border.all(color: Colors.orange, width: 2);
+      border = Border.all(color: AppColors.primaryColor, width: 2);
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        shape: BoxShape.circle,
-        border: border,
-      ),
-      margin: const EdgeInsets.all(4),
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '${date.day}',
-            style: TextStyle(color: textColor, fontWeight: FontWeight.w600),
-          ),
-          if (dotColor != null)
-            Container(
-              margin: const EdgeInsets.only(top: 3),
-              width: 6,
-              height: 6,
-              decoration: BoxDecoration(
-                color: dotColor,
-                shape: BoxShape.circle,
-              ),
+    return InkWell(
+      onTap: report == null
+          ? null
+          : () {
+              CustomDialogs.showCommonDialog(
+                context: context,
+                child: CommonDialog(
+                  title: "Attendance Details",
+                  child: CalenderTooltipDialog(
+                    date: date,
+                    report: report,
+                    statusColor: _parseColor(report.color),
+                  ),
+                ),
+              );
+            },
+      child: Container(
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          shape: BoxShape.circle,
+          border: border,
+        ),
+        margin: const EdgeInsets.all(4),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '${date.day}',
+              style: TextStyle(color: textColor, fontWeight: FontWeight.w600),
             ),
-        ],
+            if (dotColor != null)
+              Container(
+                margin: const EdgeInsets.only(top: 3),
+                width: 6,
+                height: 6,
+                decoration: BoxDecoration(
+                  color: dotColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

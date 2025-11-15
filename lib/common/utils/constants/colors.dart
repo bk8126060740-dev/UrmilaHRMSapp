@@ -60,4 +60,14 @@ class AppColors {
   static const Color success = Color(0xFF388E3C);
   static const Color warning = Color(0xFFF57C00);
   static const Color info = Color(0xFF1976D2);
+
+
+  // attendance colors
+  static const Color holidayPresent = Color(0xFFFD7E14); // HP - Orange
+  static const Color holiday = Color(0xFF007BFF);     // H - Blue
+  static const Color leave = Color(0xFF90EE90);       // L - Light Green
+  static const Color absent = Color(0xFFDC3545);      // A - Red
+  static const Color present = Color(0xFF28A745);     // P - Green
+  static const Color pendingPresent = Color(0xFFFFC107); // PP - Yellow
+  static const Color totalPresent = Color(0xFF6F42C1);
 }

@@ -25,26 +25,36 @@ class LoginButton extends StatelessWidget {
         }
 
         if (state.status == AuthStatus.loginSuccess) {
+          // context.read<AppBloc>().add(
+          //   AppEvent.updateLoginResponse(state.loginResponseModel),
+          // );
+          // context.read<AuthBloc>().add(AuthEvent.getUserData());
+
+          CustomSnackBar.showSuccess(context: context, message: state.message);
+
           context.read<AppBloc>().add(
             AppEvent.updateLoginResponse(state.loginResponseModel),
-          );
-          context.read<AuthBloc>().add(AuthEvent.getUserData());
-        }
-
-        if (state.status == AuthStatus.userSuccess) {
-          CustomSnackBar.showSuccess(
-            context: context,
-            message: "Login Successfully",
-          );
-
-          context.read<AppBloc>().add(
-            AppEvent.updateUserResponse(state.userResponseModel),
           );
 
           final result = await NavigationService.navigateAndRemoveAll(
             DashboardScreen.route,
           );
-          debugPrint('HQ result: $result');
+        }
+
+        if (state.status == AuthStatus.userSuccess) {
+          // CustomSnackBar.showSuccess(
+          //   context: context,
+          //   message: "Login Successfully",
+          // );
+          //
+          // context.read<AppBloc>().add(
+          //   AppEvent.updateUserResponse(state.userResponseModel),
+          // );
+          //
+          // final result = await NavigationService.navigateAndRemoveAll(
+          //   DashboardScreen.route,
+          // );
+          // debugPrint('HQ result: $result');
         }
       },
       buildWhen: (prev, current) {

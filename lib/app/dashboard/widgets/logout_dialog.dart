@@ -22,13 +22,6 @@ class LogoutDialog extends StatelessWidget {
             text: 'Cancel',
           ),
         ),
-        // TextButton(
-        //   onPressed: () => Navigator.pop(context),
-        //   child: Text(
-        //     'Cancel',
-        //     style: AppTextStyles.w500_14(context, color: AppColors.accentColor),
-        //   ),
-        // ),
         const SizedBox(width: AppSizes.space8),
         Expanded(
           child: BlocConsumer<AppBloc, AppState>(
@@ -47,29 +40,6 @@ class LogoutDialog extends StatelessWidget {
                 text: 'Logout',
                 isLoading: state.status == AppStatus.logoutLoading,
               );
-
-              // return TextButton(
-              //   onPressed: state.status == AppStatus.logoutLoading
-              //       ? null
-              //       : () {
-              //           context.read<AppBloc>().add(AppEvent.logoutUser());
-              //         },
-              //   child: state.status == AppStatus.logoutLoading
-              //       ? Center(
-              //           child: SizedBox(
-              //             width: AppSizes.iconSize20,
-              //             height: AppSizes.iconSize20,
-              //             child: CircularProgressIndicator(strokeWidth: 2),
-              //           ),
-              //         )
-              //       : Text(
-              //           'Logout',
-              //           style: AppTextStyles.w500_14(
-              //             context,
-              //             color: AppColors.primaryColor,
-              //           ),
-              //         ),
-              // );
             },
           ),
         ),

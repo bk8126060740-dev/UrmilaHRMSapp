@@ -3,6 +3,7 @@ import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/app/attendance/screens/daily_attendance_details_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
+import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/widgets/placeholder/no_data_found.dart';
 
 import '../models/daily_attendance_model.dart';
@@ -48,10 +49,10 @@ class DateWiseAttendanceList extends StatelessWidget {
               },
               child: ClockInOutCard(
                 attendanceData: item,
-                duration: item.duration ?? "",
-                clockIn: item.inTime ?? "",
-                clockOut: item.outTime ?? "",
-                location: item.inTimeLocation ?? "",
+                duration: item.duration.withDefault("N/A"),
+                clockIn: item.inTime.withDefault("N/A"),
+                clockOut: item.outTime.withDefault("N/A"),
+                location: item.inTimeLocation.withDefault("N/A"),
                 checkInImage: item.inTimePicCapture ?? AppImages.profileImage,
                 checkOutImage: item.outTimePicCapture ?? AppImages.profileImage,
               ),

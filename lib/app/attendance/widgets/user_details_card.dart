@@ -87,12 +87,14 @@ class _UserDetailsCardState extends State<UserDetailsCard> {
                   return Column(
                     children: [
                       Text(
-                        "${appState.userProfileModel?.firstName.withDefault("__")} ${appState.userProfileModel?.lastName.withDefault("")}",
+                        // "${appState.userProfileModel?.firstName.withDefault("__")} ${appState.userProfileModel?.lastName.withDefault("")}",
+                        "${appState.loginResponse?.fullName.withDefault("__")}",
                         style: AppTextStyles.w500_24(context),
                       ),
                       const SizedBox(height: AppSizes.space4),
                       Text(
-                        "${appState.userProfileModel?.designationName.withDefault("__")}",
+                        // "${appState.userProfileModel?.designationName.withDefault("__")}",
+                        "${appState.loginResponse?.projectName.withDefault("__")}",
                         style: AppTextStyles.w400_16(
                           context,
                           color: AppColors.secondaryTextColor,
@@ -100,7 +102,7 @@ class _UserDetailsCardState extends State<UserDetailsCard> {
                       ),
                       const SizedBox(height: AppSizes.space4),
                       Text(
-                        "Emp ID: ${appState.userProfileModel?.id}",
+                        "Emp ID: ${appState.loginResponse?.employeeId}",
                         style: AppTextStyles.w400_12(
                           context,
                           color: AppColors.secondaryTextColor,
@@ -197,7 +199,7 @@ class _UserDetailsCardState extends State<UserDetailsCard> {
 
         final selectedDate = state.selectedDate ?? DateTime.now();
         final attendanceList = state.dailyAttendanceModel?.list ?? [];
-        final record = attendanceList.isNotEmpty ? attendanceList.first : null;
+        final record = attendanceList.isNotEmpty ? attendanceList.last : null;
 
         // Show button only for today's date
         final bool isToday = AttendanceHelper.isToday(selectedDate);
@@ -250,6 +252,11 @@ class _UserDetailsCardState extends State<UserDetailsCard> {
             buttonText = "Compressing image..";
             isEnabled = false;
             debugPrint("📸 compressing image...");
+            break;
+          case AttendanceStatus.getAttendanceLoading:
+            buttonText = "";
+            isEnabled = false;
+            debugPrint("getAttendanceLoading ");
             break;
           default:
             break;

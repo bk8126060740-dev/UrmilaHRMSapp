@@ -23,18 +23,24 @@ mixin _$AttendanceEvent {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,16 +50,22 @@ mixin _$AttendanceEvent {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,16 +75,22 @@ mixin _$AttendanceEvent {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -83,10 +101,13 @@ mixin _$AttendanceEvent {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -94,6 +115,10 @@ mixin _$AttendanceEvent {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -103,15 +128,21 @@ mixin _$AttendanceEvent {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -121,15 +152,20 @@ mixin _$AttendanceEvent {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -196,18 +232,24 @@ class _$RequestLocationImpl implements _RequestLocation {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return requestLocation();
   }
@@ -220,16 +262,22 @@ class _$RequestLocationImpl implements _RequestLocation {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return requestLocation?.call();
   }
@@ -242,16 +290,22 @@ class _$RequestLocationImpl implements _RequestLocation {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (requestLocation != null) {
@@ -268,10 +322,13 @@ class _$RequestLocationImpl implements _RequestLocation {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -279,6 +336,10 @@ class _$RequestLocationImpl implements _RequestLocation {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return requestLocation(this);
   }
@@ -291,15 +352,21 @@ class _$RequestLocationImpl implements _RequestLocation {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return requestLocation?.call(this);
   }
@@ -312,15 +379,20 @@ class _$RequestLocationImpl implements _RequestLocation {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (requestLocation != null) {
@@ -377,18 +449,24 @@ class _$CapturePhotoImpl implements _CapturePhoto {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return capturePhoto();
   }
@@ -401,16 +479,22 @@ class _$CapturePhotoImpl implements _CapturePhoto {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return capturePhoto?.call();
   }
@@ -423,16 +507,22 @@ class _$CapturePhotoImpl implements _CapturePhoto {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (capturePhoto != null) {
@@ -449,10 +539,13 @@ class _$CapturePhotoImpl implements _CapturePhoto {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -460,6 +553,10 @@ class _$CapturePhotoImpl implements _CapturePhoto {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return capturePhoto(this);
   }
@@ -472,15 +569,21 @@ class _$CapturePhotoImpl implements _CapturePhoto {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return capturePhoto?.call(this);
   }
@@ -493,15 +596,20 @@ class _$CapturePhotoImpl implements _CapturePhoto {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (capturePhoto != null) {
@@ -558,18 +666,24 @@ class _$InitDateImpl implements _InitDate {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return initDate();
   }
@@ -582,16 +696,22 @@ class _$InitDateImpl implements _InitDate {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return initDate?.call();
   }
@@ -604,16 +724,22 @@ class _$InitDateImpl implements _InitDate {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (initDate != null) {
@@ -630,10 +756,13 @@ class _$InitDateImpl implements _InitDate {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -641,6 +770,10 @@ class _$InitDateImpl implements _InitDate {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return initDate(this);
   }
@@ -653,15 +786,21 @@ class _$InitDateImpl implements _InitDate {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return initDate?.call(this);
   }
@@ -674,15 +813,20 @@ class _$InitDateImpl implements _InitDate {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (initDate != null) {
@@ -739,18 +883,24 @@ class _$PreviousDateImpl implements _PreviousDate {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return previousDate();
   }
@@ -763,16 +913,22 @@ class _$PreviousDateImpl implements _PreviousDate {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return previousDate?.call();
   }
@@ -785,16 +941,22 @@ class _$PreviousDateImpl implements _PreviousDate {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (previousDate != null) {
@@ -811,10 +973,13 @@ class _$PreviousDateImpl implements _PreviousDate {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -822,6 +987,10 @@ class _$PreviousDateImpl implements _PreviousDate {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return previousDate(this);
   }
@@ -834,15 +1003,21 @@ class _$PreviousDateImpl implements _PreviousDate {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return previousDate?.call(this);
   }
@@ -855,15 +1030,20 @@ class _$PreviousDateImpl implements _PreviousDate {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (previousDate != null) {
@@ -920,18 +1100,24 @@ class _$NextDateImpl implements _NextDate {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return nextDate();
   }
@@ -944,16 +1130,22 @@ class _$NextDateImpl implements _NextDate {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return nextDate?.call();
   }
@@ -966,16 +1158,22 @@ class _$NextDateImpl implements _NextDate {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (nextDate != null) {
@@ -992,10 +1190,13 @@ class _$NextDateImpl implements _NextDate {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1003,6 +1204,10 @@ class _$NextDateImpl implements _NextDate {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return nextDate(this);
   }
@@ -1015,15 +1220,21 @@ class _$NextDateImpl implements _NextDate {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return nextDate?.call(this);
   }
@@ -1036,15 +1247,20 @@ class _$NextDateImpl implements _NextDate {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (nextDate != null) {
@@ -1056,6 +1272,257 @@ class _$NextDateImpl implements _NextDate {
 
 abstract class _NextDate implements AttendanceEvent {
   const factory _NextDate() = _$NextDateImpl;
+}
+
+/// @nodoc
+abstract class _$$SelectDailyDateImplCopyWith<$Res> {
+  factory _$$SelectDailyDateImplCopyWith(_$SelectDailyDateImpl value,
+          $Res Function(_$SelectDailyDateImpl) then) =
+      __$$SelectDailyDateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime selectedDate});
+}
+
+/// @nodoc
+class __$$SelectDailyDateImplCopyWithImpl<$Res>
+    extends _$AttendanceEventCopyWithImpl<$Res, _$SelectDailyDateImpl>
+    implements _$$SelectDailyDateImplCopyWith<$Res> {
+  __$$SelectDailyDateImplCopyWithImpl(
+      _$SelectDailyDateImpl _value, $Res Function(_$SelectDailyDateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedDate = null,
+  }) {
+    return _then(_$SelectDailyDateImpl(
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectDailyDateImpl implements _SelectDailyDate {
+  const _$SelectDailyDateImpl({required this.selectedDate});
+
+  @override
+  final DateTime selectedDate;
+
+  @override
+  String toString() {
+    return 'AttendanceEvent.selectDailyDate(selectedDate: $selectedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectDailyDateImpl &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectDailyDateImplCopyWith<_$SelectDailyDateImpl> get copyWith =>
+      __$$SelectDailyDateImplCopyWithImpl<_$SelectDailyDateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestLocation,
+    required TResult Function() capturePhoto,
+    required TResult Function() initDate,
+    required TResult Function() previousDate,
+    required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
+    required TResult Function(DateTime date) getDailyAttendance,
+    required TResult Function() checkIn,
+    required TResult Function() checkOut,
+    required TResult Function(
+            bool fromButton, int month, int year, DateTime dateTime)
+        getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String employeeId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
+  }) {
+    return selectDailyDate(selectedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestLocation,
+    TResult? Function()? capturePhoto,
+    TResult? Function()? initDate,
+    TResult? Function()? previousDate,
+    TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
+    TResult? Function(DateTime date)? getDailyAttendance,
+    TResult? Function()? checkIn,
+    TResult? Function()? checkOut,
+    TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String employeeId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
+  }) {
+    return selectDailyDate?.call(selectedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestLocation,
+    TResult Function()? capturePhoto,
+    TResult Function()? initDate,
+    TResult Function()? previousDate,
+    TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
+    TResult Function(DateTime date)? getDailyAttendance,
+    TResult Function()? checkIn,
+    TResult Function()? checkOut,
+    TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String employeeId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (selectDailyDate != null) {
+      return selectDailyDate(selectedDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestLocation value) requestLocation,
+    required TResult Function(_CapturePhoto value) capturePhoto,
+    required TResult Function(_InitDate value) initDate,
+    required TResult Function(_PreviousDate value) previousDate,
+    required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
+    required TResult Function(_GetDailyAttendance value) getDailyAttendance,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_CheckOut value) checkOut,
+    required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
+  }) {
+    return selectDailyDate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestLocation value)? requestLocation,
+    TResult? Function(_CapturePhoto value)? capturePhoto,
+    TResult? Function(_InitDate value)? initDate,
+    TResult? Function(_PreviousDate value)? previousDate,
+    TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
+    TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_CheckOut value)? checkOut,
+    TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+  }) {
+    return selectDailyDate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestLocation value)? requestLocation,
+    TResult Function(_CapturePhoto value)? capturePhoto,
+    TResult Function(_InitDate value)? initDate,
+    TResult Function(_PreviousDate value)? previousDate,
+    TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
+    TResult Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_CheckOut value)? checkOut,
+    TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (selectDailyDate != null) {
+      return selectDailyDate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectDailyDate implements AttendanceEvent {
+  const factory _SelectDailyDate({required final DateTime selectedDate}) =
+      _$SelectDailyDateImpl;
+
+  DateTime get selectedDate;
+  @JsonKey(ignore: true)
+  _$$SelectDailyDateImplCopyWith<_$SelectDailyDateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1128,18 +1595,24 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return getDailyAttendance(date);
   }
@@ -1152,16 +1625,22 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return getDailyAttendance?.call(date);
   }
@@ -1174,16 +1653,22 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (getDailyAttendance != null) {
@@ -1200,10 +1685,13 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1211,6 +1699,10 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return getDailyAttendance(this);
   }
@@ -1223,15 +1715,21 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return getDailyAttendance?.call(this);
   }
@@ -1244,15 +1742,20 @@ class _$GetDailyAttendanceImpl implements _GetDailyAttendance {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (getDailyAttendance != null) {
@@ -1315,18 +1818,24 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return checkIn();
   }
@@ -1339,16 +1848,22 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return checkIn?.call();
   }
@@ -1361,16 +1876,22 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (checkIn != null) {
@@ -1387,10 +1908,13 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1398,6 +1922,10 @@ class _$CheckInImpl implements _CheckIn {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return checkIn(this);
   }
@@ -1410,15 +1938,21 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return checkIn?.call(this);
   }
@@ -1431,15 +1965,20 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (checkIn != null) {
@@ -1496,18 +2035,24 @@ class _$CheckOutImpl implements _CheckOut {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return checkOut();
   }
@@ -1520,16 +2065,22 @@ class _$CheckOutImpl implements _CheckOut {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return checkOut?.call();
   }
@@ -1542,16 +2093,22 @@ class _$CheckOutImpl implements _CheckOut {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (checkOut != null) {
@@ -1568,10 +2125,13 @@ class _$CheckOutImpl implements _CheckOut {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1579,6 +2139,10 @@ class _$CheckOutImpl implements _CheckOut {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return checkOut(this);
   }
@@ -1591,15 +2155,21 @@ class _$CheckOutImpl implements _CheckOut {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return checkOut?.call(this);
   }
@@ -1612,15 +2182,20 @@ class _$CheckOutImpl implements _CheckOut {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (checkOut != null) {
@@ -1737,18 +2312,24 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return getMonthlyAttendance(fromButton, month, year, dateTime);
   }
@@ -1761,16 +2342,22 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return getMonthlyAttendance?.call(fromButton, month, year, dateTime);
   }
@@ -1783,16 +2370,22 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (getMonthlyAttendance != null) {
@@ -1809,10 +2402,13 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1820,6 +2416,10 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return getMonthlyAttendance(this);
   }
@@ -1832,15 +2432,21 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return getMonthlyAttendance?.call(this);
   }
@@ -1853,15 +2459,20 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (getMonthlyAttendance != null) {
@@ -1884,6 +2495,287 @@ abstract class _GetMonthlyAttendance implements AttendanceEvent {
   DateTime get dateTime;
   @JsonKey(ignore: true)
   _$$GetMonthlyAttendanceImplCopyWith<_$GetMonthlyAttendanceImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateCalendarSelectionImplCopyWith<$Res> {
+  factory _$$UpdateCalendarSelectionImplCopyWith(
+          _$UpdateCalendarSelectionImpl value,
+          $Res Function(_$UpdateCalendarSelectionImpl) then) =
+      __$$UpdateCalendarSelectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime? selectedDay, DateTime focusedDay, bool resetSelection});
+}
+
+/// @nodoc
+class __$$UpdateCalendarSelectionImplCopyWithImpl<$Res>
+    extends _$AttendanceEventCopyWithImpl<$Res, _$UpdateCalendarSelectionImpl>
+    implements _$$UpdateCalendarSelectionImplCopyWith<$Res> {
+  __$$UpdateCalendarSelectionImplCopyWithImpl(
+      _$UpdateCalendarSelectionImpl _value,
+      $Res Function(_$UpdateCalendarSelectionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedDay = freezed,
+    Object? focusedDay = null,
+    Object? resetSelection = null,
+  }) {
+    return _then(_$UpdateCalendarSelectionImpl(
+      selectedDay: freezed == selectedDay
+          ? _value.selectedDay
+          : selectedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      focusedDay: null == focusedDay
+          ? _value.focusedDay
+          : focusedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      resetSelection: null == resetSelection
+          ? _value.resetSelection
+          : resetSelection // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateCalendarSelectionImpl implements _UpdateCalendarSelection {
+  const _$UpdateCalendarSelectionImpl(
+      {this.selectedDay,
+      required this.focusedDay,
+      this.resetSelection = false});
+
+  @override
+  final DateTime? selectedDay;
+  @override
+  final DateTime focusedDay;
+  @override
+  @JsonKey()
+  final bool resetSelection;
+
+  @override
+  String toString() {
+    return 'AttendanceEvent.updateCalendarSelection(selectedDay: $selectedDay, focusedDay: $focusedDay, resetSelection: $resetSelection)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateCalendarSelectionImpl &&
+            (identical(other.selectedDay, selectedDay) ||
+                other.selectedDay == selectedDay) &&
+            (identical(other.focusedDay, focusedDay) ||
+                other.focusedDay == focusedDay) &&
+            (identical(other.resetSelection, resetSelection) ||
+                other.resetSelection == resetSelection));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, selectedDay, focusedDay, resetSelection);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateCalendarSelectionImplCopyWith<_$UpdateCalendarSelectionImpl>
+      get copyWith => __$$UpdateCalendarSelectionImplCopyWithImpl<
+          _$UpdateCalendarSelectionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestLocation,
+    required TResult Function() capturePhoto,
+    required TResult Function() initDate,
+    required TResult Function() previousDate,
+    required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
+    required TResult Function(DateTime date) getDailyAttendance,
+    required TResult Function() checkIn,
+    required TResult Function() checkOut,
+    required TResult Function(
+            bool fromButton, int month, int year, DateTime dateTime)
+        getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String employeeId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
+  }) {
+    return updateCalendarSelection(selectedDay, focusedDay, resetSelection);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestLocation,
+    TResult? Function()? capturePhoto,
+    TResult? Function()? initDate,
+    TResult? Function()? previousDate,
+    TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
+    TResult? Function(DateTime date)? getDailyAttendance,
+    TResult? Function()? checkIn,
+    TResult? Function()? checkOut,
+    TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String employeeId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
+  }) {
+    return updateCalendarSelection?.call(
+        selectedDay, focusedDay, resetSelection);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestLocation,
+    TResult Function()? capturePhoto,
+    TResult Function()? initDate,
+    TResult Function()? previousDate,
+    TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
+    TResult Function(DateTime date)? getDailyAttendance,
+    TResult Function()? checkIn,
+    TResult Function()? checkOut,
+    TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String employeeId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (updateCalendarSelection != null) {
+      return updateCalendarSelection(selectedDay, focusedDay, resetSelection);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestLocation value) requestLocation,
+    required TResult Function(_CapturePhoto value) capturePhoto,
+    required TResult Function(_InitDate value) initDate,
+    required TResult Function(_PreviousDate value) previousDate,
+    required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
+    required TResult Function(_GetDailyAttendance value) getDailyAttendance,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_CheckOut value) checkOut,
+    required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
+  }) {
+    return updateCalendarSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestLocation value)? requestLocation,
+    TResult? Function(_CapturePhoto value)? capturePhoto,
+    TResult? Function(_InitDate value)? initDate,
+    TResult? Function(_PreviousDate value)? previousDate,
+    TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
+    TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_CheckOut value)? checkOut,
+    TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+  }) {
+    return updateCalendarSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestLocation value)? requestLocation,
+    TResult Function(_CapturePhoto value)? capturePhoto,
+    TResult Function(_InitDate value)? initDate,
+    TResult Function(_PreviousDate value)? previousDate,
+    TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
+    TResult Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_CheckOut value)? checkOut,
+    TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (updateCalendarSelection != null) {
+      return updateCalendarSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCalendarSelection implements AttendanceEvent {
+  const factory _UpdateCalendarSelection(
+      {final DateTime? selectedDay,
+      required final DateTime focusedDay,
+      final bool resetSelection}) = _$UpdateCalendarSelectionImpl;
+
+  DateTime? get selectedDay;
+  DateTime get focusedDay;
+  bool get resetSelection;
+  @JsonKey(ignore: true)
+  _$$UpdateCalendarSelectionImplCopyWith<_$UpdateCalendarSelectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1967,18 +2859,24 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return selectDate(selectedDate, isFromDate);
   }
@@ -1991,16 +2889,22 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return selectDate?.call(selectedDate, isFromDate);
   }
@@ -2013,16 +2917,22 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (selectDate != null) {
@@ -2039,10 +2949,13 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -2050,6 +2963,10 @@ class _$SelectDateImpl implements _SelectDate {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return selectDate(this);
   }
@@ -2062,15 +2979,21 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return selectDate?.call(this);
   }
@@ -2083,15 +3006,20 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (selectDate != null) {
@@ -2184,18 +3112,24 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return selectFilterType(selectedFilterType);
   }
@@ -2208,16 +3142,22 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return selectFilterType?.call(selectedFilterType);
   }
@@ -2230,16 +3170,22 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (selectFilterType != null) {
@@ -2256,10 +3202,13 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -2267,6 +3216,10 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return selectFilterType(this);
   }
@@ -2279,15 +3232,21 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return selectFilterType?.call(this);
   }
@@ -2300,15 +3259,20 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (selectFilterType != null) {
@@ -2398,18 +3362,24 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return toggleAllSelection(value);
   }
@@ -2422,16 +3392,22 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return toggleAllSelection?.call(value);
   }
@@ -2444,16 +3420,22 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (toggleAllSelection != null) {
@@ -2470,10 +3452,13 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -2481,6 +3466,10 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return toggleAllSelection(this);
   }
@@ -2493,15 +3482,21 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return toggleAllSelection?.call(this);
   }
@@ -2514,15 +3509,20 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (toggleAllSelection != null) {
@@ -2614,18 +3614,24 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return toggleSingleSelection(employeeId);
   }
@@ -2638,16 +3644,22 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return toggleSingleSelection?.call(employeeId);
   }
@@ -2660,16 +3672,22 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (toggleSingleSelection != null) {
@@ -2686,10 +3704,13 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -2697,6 +3718,10 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return toggleSingleSelection(this);
   }
@@ -2709,15 +3734,21 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return toggleSingleSelection?.call(this);
   }
@@ -2730,15 +3761,20 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (toggleSingleSelection != null) {
@@ -2830,18 +3866,24 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     required TResult Function() initDate,
     required TResult Function() previousDate,
     required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
     required TResult Function(DateTime date) getDailyAttendance,
     required TResult Function() checkIn,
     required TResult Function() checkOut,
     required TResult Function(
             bool fromButton, int month, int year, DateTime dateTime)
         getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String employeeId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
   }) {
     return searchEmployeeFromList(query);
   }
@@ -2854,16 +3896,22 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult? Function()? initDate,
     TResult? Function()? previousDate,
     TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
     TResult? Function(DateTime date)? getDailyAttendance,
     TResult? Function()? checkIn,
     TResult? Function()? checkOut,
     TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String employeeId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
   }) {
     return searchEmployeeFromList?.call(query);
   }
@@ -2876,16 +3924,22 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult Function()? initDate,
     TResult Function()? previousDate,
     TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
     TResult Function(DateTime date)? getDailyAttendance,
     TResult Function()? checkIn,
     TResult Function()? checkOut,
     TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
         getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String employeeId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (searchEmployeeFromList != null) {
@@ -2902,10 +3956,13 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     required TResult Function(_InitDate value) initDate,
     required TResult Function(_PreviousDate value) previousDate,
     required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
     required TResult Function(_GetDailyAttendance value) getDailyAttendance,
     required TResult Function(_CheckIn value) checkIn,
     required TResult Function(_CheckOut value) checkOut,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -2913,6 +3970,10 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
   }) {
     return searchEmployeeFromList(this);
   }
@@ -2925,15 +3986,21 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult? Function(_InitDate value)? initDate,
     TResult? Function(_PreviousDate value)? previousDate,
     TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
     TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult? Function(_CheckIn value)? checkIn,
     TResult? Function(_CheckOut value)? checkOut,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
   }) {
     return searchEmployeeFromList?.call(this);
   }
@@ -2946,15 +4013,20 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult Function(_InitDate value)? initDate,
     TResult Function(_PreviousDate value)? previousDate,
     TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
     TResult Function(_GetDailyAttendance value)? getDailyAttendance,
     TResult Function(_CheckIn value)? checkIn,
     TResult Function(_CheckOut value)? checkOut,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
     required TResult orElse(),
   }) {
     if (searchEmployeeFromList != null) {
@@ -2975,6 +4047,480 @@ abstract class _SearchEmployeeFromList implements AttendanceEvent {
 }
 
 /// @nodoc
+abstract class _$$GetApproveAttendanceListImplCopyWith<$Res> {
+  factory _$$GetApproveAttendanceListImplCopyWith(
+          _$GetApproveAttendanceListImpl value,
+          $Res Function(_$GetApproveAttendanceListImpl) then) =
+      __$$GetApproveAttendanceListImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetApproveAttendanceListImplCopyWithImpl<$Res>
+    extends _$AttendanceEventCopyWithImpl<$Res, _$GetApproveAttendanceListImpl>
+    implements _$$GetApproveAttendanceListImplCopyWith<$Res> {
+  __$$GetApproveAttendanceListImplCopyWithImpl(
+      _$GetApproveAttendanceListImpl _value,
+      $Res Function(_$GetApproveAttendanceListImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetApproveAttendanceListImpl implements _GetApproveAttendanceList {
+  const _$GetApproveAttendanceListImpl();
+
+  @override
+  String toString() {
+    return 'AttendanceEvent.getApproveAttendanceList()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetApproveAttendanceListImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestLocation,
+    required TResult Function() capturePhoto,
+    required TResult Function() initDate,
+    required TResult Function() previousDate,
+    required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
+    required TResult Function(DateTime date) getDailyAttendance,
+    required TResult Function() checkIn,
+    required TResult Function() checkOut,
+    required TResult Function(
+            bool fromButton, int month, int year, DateTime dateTime)
+        getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String employeeId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
+  }) {
+    return getApproveAttendanceList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestLocation,
+    TResult? Function()? capturePhoto,
+    TResult? Function()? initDate,
+    TResult? Function()? previousDate,
+    TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
+    TResult? Function(DateTime date)? getDailyAttendance,
+    TResult? Function()? checkIn,
+    TResult? Function()? checkOut,
+    TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String employeeId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
+  }) {
+    return getApproveAttendanceList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestLocation,
+    TResult Function()? capturePhoto,
+    TResult Function()? initDate,
+    TResult Function()? previousDate,
+    TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
+    TResult Function(DateTime date)? getDailyAttendance,
+    TResult Function()? checkIn,
+    TResult Function()? checkOut,
+    TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String employeeId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (getApproveAttendanceList != null) {
+      return getApproveAttendanceList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestLocation value) requestLocation,
+    required TResult Function(_CapturePhoto value) capturePhoto,
+    required TResult Function(_InitDate value) initDate,
+    required TResult Function(_PreviousDate value) previousDate,
+    required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
+    required TResult Function(_GetDailyAttendance value) getDailyAttendance,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_CheckOut value) checkOut,
+    required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
+  }) {
+    return getApproveAttendanceList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestLocation value)? requestLocation,
+    TResult? Function(_CapturePhoto value)? capturePhoto,
+    TResult? Function(_InitDate value)? initDate,
+    TResult? Function(_PreviousDate value)? previousDate,
+    TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
+    TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_CheckOut value)? checkOut,
+    TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+  }) {
+    return getApproveAttendanceList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestLocation value)? requestLocation,
+    TResult Function(_CapturePhoto value)? capturePhoto,
+    TResult Function(_InitDate value)? initDate,
+    TResult Function(_PreviousDate value)? previousDate,
+    TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
+    TResult Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_CheckOut value)? checkOut,
+    TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (getApproveAttendanceList != null) {
+      return getApproveAttendanceList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetApproveAttendanceList implements AttendanceEvent {
+  const factory _GetApproveAttendanceList() = _$GetApproveAttendanceListImpl;
+}
+
+/// @nodoc
+abstract class _$$ApproveAttendanceByManagerImplCopyWith<$Res> {
+  factory _$$ApproveAttendanceByManagerImplCopyWith(
+          _$ApproveAttendanceByManagerImpl value,
+          $Res Function(_$ApproveAttendanceByManagerImpl) then) =
+      __$$ApproveAttendanceByManagerImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isApprove});
+}
+
+/// @nodoc
+class __$$ApproveAttendanceByManagerImplCopyWithImpl<$Res>
+    extends _$AttendanceEventCopyWithImpl<$Res,
+        _$ApproveAttendanceByManagerImpl>
+    implements _$$ApproveAttendanceByManagerImplCopyWith<$Res> {
+  __$$ApproveAttendanceByManagerImplCopyWithImpl(
+      _$ApproveAttendanceByManagerImpl _value,
+      $Res Function(_$ApproveAttendanceByManagerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isApprove = null,
+  }) {
+    return _then(_$ApproveAttendanceByManagerImpl(
+      isApprove: null == isApprove
+          ? _value.isApprove
+          : isApprove // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApproveAttendanceByManagerImpl implements _ApproveAttendanceByManager {
+  const _$ApproveAttendanceByManagerImpl({required this.isApprove});
+
+  @override
+  final bool isApprove;
+
+  @override
+  String toString() {
+    return 'AttendanceEvent.approveAttendanceByManager(isApprove: $isApprove)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveAttendanceByManagerImpl &&
+            (identical(other.isApprove, isApprove) ||
+                other.isApprove == isApprove));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isApprove);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveAttendanceByManagerImplCopyWith<_$ApproveAttendanceByManagerImpl>
+      get copyWith => __$$ApproveAttendanceByManagerImplCopyWithImpl<
+          _$ApproveAttendanceByManagerImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestLocation,
+    required TResult Function() capturePhoto,
+    required TResult Function() initDate,
+    required TResult Function() previousDate,
+    required TResult Function() nextDate,
+    required TResult Function(DateTime selectedDate) selectDailyDate,
+    required TResult Function(DateTime date) getDailyAttendance,
+    required TResult Function() checkIn,
+    required TResult Function() checkOut,
+    required TResult Function(
+            bool fromButton, int month, int year, DateTime dateTime)
+        getMonthlyAttendance,
+    required TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)
+        updateCalendarSelection,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String employeeId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveAttendanceList,
+    required TResult Function(bool isApprove) approveAttendanceByManager,
+  }) {
+    return approveAttendanceByManager(isApprove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestLocation,
+    TResult? Function()? capturePhoto,
+    TResult? Function()? initDate,
+    TResult? Function()? previousDate,
+    TResult? Function()? nextDate,
+    TResult? Function(DateTime selectedDate)? selectDailyDate,
+    TResult? Function(DateTime date)? getDailyAttendance,
+    TResult? Function()? checkIn,
+    TResult? Function()? checkOut,
+    TResult? Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult? Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String employeeId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveAttendanceList,
+    TResult? Function(bool isApprove)? approveAttendanceByManager,
+  }) {
+    return approveAttendanceByManager?.call(isApprove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestLocation,
+    TResult Function()? capturePhoto,
+    TResult Function()? initDate,
+    TResult Function()? previousDate,
+    TResult Function()? nextDate,
+    TResult Function(DateTime selectedDate)? selectDailyDate,
+    TResult Function(DateTime date)? getDailyAttendance,
+    TResult Function()? checkIn,
+    TResult Function()? checkOut,
+    TResult Function(bool fromButton, int month, int year, DateTime dateTime)?
+        getMonthlyAttendance,
+    TResult Function(
+            DateTime? selectedDay, DateTime focusedDay, bool resetSelection)?
+        updateCalendarSelection,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String employeeId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveAttendanceList,
+    TResult Function(bool isApprove)? approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (approveAttendanceByManager != null) {
+      return approveAttendanceByManager(isApprove);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestLocation value) requestLocation,
+    required TResult Function(_CapturePhoto value) capturePhoto,
+    required TResult Function(_InitDate value) initDate,
+    required TResult Function(_PreviousDate value) previousDate,
+    required TResult Function(_NextDate value) nextDate,
+    required TResult Function(_SelectDailyDate value) selectDailyDate,
+    required TResult Function(_GetDailyAttendance value) getDailyAttendance,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_CheckOut value) checkOut,
+    required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+    required TResult Function(_UpdateCalendarSelection value)
+        updateCalendarSelection,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApproveAttendanceList value)
+        getApproveAttendanceList,
+    required TResult Function(_ApproveAttendanceByManager value)
+        approveAttendanceByManager,
+  }) {
+    return approveAttendanceByManager(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RequestLocation value)? requestLocation,
+    TResult? Function(_CapturePhoto value)? capturePhoto,
+    TResult? Function(_InitDate value)? initDate,
+    TResult? Function(_PreviousDate value)? previousDate,
+    TResult? Function(_NextDate value)? nextDate,
+    TResult? Function(_SelectDailyDate value)? selectDailyDate,
+    TResult? Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_CheckOut value)? checkOut,
+    TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult? Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveAttendanceList value)?
+        getApproveAttendanceList,
+    TResult? Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+  }) {
+    return approveAttendanceByManager?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestLocation value)? requestLocation,
+    TResult Function(_CapturePhoto value)? capturePhoto,
+    TResult Function(_InitDate value)? initDate,
+    TResult Function(_PreviousDate value)? previousDate,
+    TResult Function(_NextDate value)? nextDate,
+    TResult Function(_SelectDailyDate value)? selectDailyDate,
+    TResult Function(_GetDailyAttendance value)? getDailyAttendance,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_CheckOut value)? checkOut,
+    TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    TResult Function(_UpdateCalendarSelection value)? updateCalendarSelection,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveAttendanceList value)? getApproveAttendanceList,
+    TResult Function(_ApproveAttendanceByManager value)?
+        approveAttendanceByManager,
+    required TResult orElse(),
+  }) {
+    if (approveAttendanceByManager != null) {
+      return approveAttendanceByManager(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveAttendanceByManager implements AttendanceEvent {
+  const factory _ApproveAttendanceByManager({required final bool isApprove}) =
+      _$ApproveAttendanceByManagerImpl;
+
+  bool get isApprove;
+  @JsonKey(ignore: true)
+  _$$ApproveAttendanceByManagerImplCopyWith<_$ApproveAttendanceByManagerImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AttendanceState {
   AttendanceRepo get attendanceRepo => throw _privateConstructorUsedError;
   AttendanceStatus get status => throw _privateConstructorUsedError;
@@ -2990,9 +4536,9 @@ mixin _$AttendanceState {
   DateTime? get fromDate => throw _privateConstructorUsedError;
   DateTime? get toDate =>
       throw _privateConstructorUsedError; // 🔹 Employee Selection
-  List<Map<String, dynamic>> get employees =>
+  ApproveAttendanceModel? get approveAttendanceListModel =>
       throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get fetchedEmployees =>
+  ApproveAttendanceModel? get fetchedAttendanceListModel =>
       throw _privateConstructorUsedError;
   Set<String> get selectedEmployeeIds => throw _privateConstructorUsedError;
   bool get selectAll => throw _privateConstructorUsedError; // daily attendance
@@ -3000,8 +4546,11 @@ mixin _$AttendanceState {
       throw _privateConstructorUsedError; // monthly attendance
   MonthlyAttendanceModel? get monthlyAttendanceModel =>
       throw _privateConstructorUsedError;
+  DateTime get focusedDay => throw _privateConstructorUsedError;
+  DateTime? get selectedDay => throw _privateConstructorUsedError;
   dynamic get monthlyAttendanceLoading => throw _privateConstructorUsedError;
   dynamic get dailyAttendanceLoading => throw _privateConstructorUsedError;
+  dynamic get getApproveAttendanceLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AttendanceStateCopyWith<AttendanceState> get copyWith =>
@@ -3027,14 +4576,17 @@ abstract class $AttendanceStateCopyWith<$Res> {
       String selectedFilter,
       DateTime? fromDate,
       DateTime? toDate,
-      List<Map<String, dynamic>> employees,
-      List<Map<String, dynamic>> fetchedEmployees,
+      ApproveAttendanceModel? approveAttendanceListModel,
+      ApproveAttendanceModel? fetchedAttendanceListModel,
       Set<String> selectedEmployeeIds,
       bool selectAll,
       DailyAttendanceModel? dailyAttendanceModel,
       MonthlyAttendanceModel? monthlyAttendanceModel,
+      DateTime focusedDay,
+      DateTime? selectedDay,
       dynamic monthlyAttendanceLoading,
-      dynamic dailyAttendanceLoading});
+      dynamic dailyAttendanceLoading,
+      dynamic getApproveAttendanceLoading});
 }
 
 /// @nodoc
@@ -3062,14 +4614,17 @@ class _$AttendanceStateCopyWithImpl<$Res, $Val extends AttendanceState>
     Object? selectedFilter = null,
     Object? fromDate = freezed,
     Object? toDate = freezed,
-    Object? employees = null,
-    Object? fetchedEmployees = null,
+    Object? approveAttendanceListModel = freezed,
+    Object? fetchedAttendanceListModel = freezed,
     Object? selectedEmployeeIds = null,
     Object? selectAll = null,
     Object? dailyAttendanceModel = freezed,
     Object? monthlyAttendanceModel = freezed,
+    Object? focusedDay = null,
+    Object? selectedDay = freezed,
     Object? monthlyAttendanceLoading = freezed,
     Object? dailyAttendanceLoading = freezed,
+    Object? getApproveAttendanceLoading = freezed,
   }) {
     return _then(_value.copyWith(
       attendanceRepo: null == attendanceRepo
@@ -3120,14 +4675,14 @@ class _$AttendanceStateCopyWithImpl<$Res, $Val extends AttendanceState>
           ? _value.toDate
           : toDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      employees: null == employees
-          ? _value.employees
-          : employees // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
-      fetchedEmployees: null == fetchedEmployees
-          ? _value.fetchedEmployees
-          : fetchedEmployees // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+      approveAttendanceListModel: freezed == approveAttendanceListModel
+          ? _value.approveAttendanceListModel
+          : approveAttendanceListModel // ignore: cast_nullable_to_non_nullable
+              as ApproveAttendanceModel?,
+      fetchedAttendanceListModel: freezed == fetchedAttendanceListModel
+          ? _value.fetchedAttendanceListModel
+          : fetchedAttendanceListModel // ignore: cast_nullable_to_non_nullable
+              as ApproveAttendanceModel?,
       selectedEmployeeIds: null == selectedEmployeeIds
           ? _value.selectedEmployeeIds
           : selectedEmployeeIds // ignore: cast_nullable_to_non_nullable
@@ -3144,6 +4699,14 @@ class _$AttendanceStateCopyWithImpl<$Res, $Val extends AttendanceState>
           ? _value.monthlyAttendanceModel
           : monthlyAttendanceModel // ignore: cast_nullable_to_non_nullable
               as MonthlyAttendanceModel?,
+      focusedDay: null == focusedDay
+          ? _value.focusedDay
+          : focusedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      selectedDay: freezed == selectedDay
+          ? _value.selectedDay
+          : selectedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       monthlyAttendanceLoading: freezed == monthlyAttendanceLoading
           ? _value.monthlyAttendanceLoading
           : monthlyAttendanceLoading // ignore: cast_nullable_to_non_nullable
@@ -3151,6 +4714,10 @@ class _$AttendanceStateCopyWithImpl<$Res, $Val extends AttendanceState>
       dailyAttendanceLoading: freezed == dailyAttendanceLoading
           ? _value.dailyAttendanceLoading
           : dailyAttendanceLoading // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      getApproveAttendanceLoading: freezed == getApproveAttendanceLoading
+          ? _value.getApproveAttendanceLoading
+          : getApproveAttendanceLoading // ignore: cast_nullable_to_non_nullable
               as dynamic,
     ) as $Val);
   }
@@ -3177,14 +4744,17 @@ abstract class _$$AttendanceStateImplCopyWith<$Res>
       String selectedFilter,
       DateTime? fromDate,
       DateTime? toDate,
-      List<Map<String, dynamic>> employees,
-      List<Map<String, dynamic>> fetchedEmployees,
+      ApproveAttendanceModel? approveAttendanceListModel,
+      ApproveAttendanceModel? fetchedAttendanceListModel,
       Set<String> selectedEmployeeIds,
       bool selectAll,
       DailyAttendanceModel? dailyAttendanceModel,
       MonthlyAttendanceModel? monthlyAttendanceModel,
+      DateTime focusedDay,
+      DateTime? selectedDay,
       dynamic monthlyAttendanceLoading,
-      dynamic dailyAttendanceLoading});
+      dynamic dailyAttendanceLoading,
+      dynamic getApproveAttendanceLoading});
 }
 
 /// @nodoc
@@ -3210,14 +4780,17 @@ class __$$AttendanceStateImplCopyWithImpl<$Res>
     Object? selectedFilter = null,
     Object? fromDate = freezed,
     Object? toDate = freezed,
-    Object? employees = null,
-    Object? fetchedEmployees = null,
+    Object? approveAttendanceListModel = freezed,
+    Object? fetchedAttendanceListModel = freezed,
     Object? selectedEmployeeIds = null,
     Object? selectAll = null,
     Object? dailyAttendanceModel = freezed,
     Object? monthlyAttendanceModel = freezed,
+    Object? focusedDay = null,
+    Object? selectedDay = freezed,
     Object? monthlyAttendanceLoading = freezed,
     Object? dailyAttendanceLoading = freezed,
+    Object? getApproveAttendanceLoading = freezed,
   }) {
     return _then(_$AttendanceStateImpl(
       attendanceRepo: null == attendanceRepo
@@ -3268,14 +4841,14 @@ class __$$AttendanceStateImplCopyWithImpl<$Res>
           ? _value.toDate
           : toDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      employees: null == employees
-          ? _value._employees
-          : employees // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
-      fetchedEmployees: null == fetchedEmployees
-          ? _value._fetchedEmployees
-          : fetchedEmployees // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+      approveAttendanceListModel: freezed == approveAttendanceListModel
+          ? _value.approveAttendanceListModel
+          : approveAttendanceListModel // ignore: cast_nullable_to_non_nullable
+              as ApproveAttendanceModel?,
+      fetchedAttendanceListModel: freezed == fetchedAttendanceListModel
+          ? _value.fetchedAttendanceListModel
+          : fetchedAttendanceListModel // ignore: cast_nullable_to_non_nullable
+              as ApproveAttendanceModel?,
       selectedEmployeeIds: null == selectedEmployeeIds
           ? _value._selectedEmployeeIds
           : selectedEmployeeIds // ignore: cast_nullable_to_non_nullable
@@ -3292,12 +4865,23 @@ class __$$AttendanceStateImplCopyWithImpl<$Res>
           ? _value.monthlyAttendanceModel
           : monthlyAttendanceModel // ignore: cast_nullable_to_non_nullable
               as MonthlyAttendanceModel?,
+      focusedDay: null == focusedDay
+          ? _value.focusedDay
+          : focusedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      selectedDay: freezed == selectedDay
+          ? _value.selectedDay
+          : selectedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       monthlyAttendanceLoading: freezed == monthlyAttendanceLoading
           ? _value.monthlyAttendanceLoading!
           : monthlyAttendanceLoading,
       dailyAttendanceLoading: freezed == dailyAttendanceLoading
           ? _value.dailyAttendanceLoading!
           : dailyAttendanceLoading,
+      getApproveAttendanceLoading: freezed == getApproveAttendanceLoading
+          ? _value.getApproveAttendanceLoading!
+          : getApproveAttendanceLoading,
     ));
   }
 }
@@ -3318,17 +4902,18 @@ class _$AttendanceStateImpl implements _AttendanceState {
       this.selectedFilter = 'Daily',
       this.fromDate,
       this.toDate,
-      final List<Map<String, dynamic>> employees = const [],
-      final List<Map<String, dynamic>> fetchedEmployees = const [],
+      this.approveAttendanceListModel,
+      this.fetchedAttendanceListModel,
       final Set<String> selectedEmployeeIds = const <String>{},
       this.selectAll = false,
       this.dailyAttendanceModel,
       this.monthlyAttendanceModel,
+      required this.focusedDay,
+      this.selectedDay,
       this.monthlyAttendanceLoading = false,
-      this.dailyAttendanceLoading = false})
-      : _employees = employees,
-        _fetchedEmployees = fetchedEmployees,
-        _selectedEmployeeIds = selectedEmployeeIds;
+      this.dailyAttendanceLoading = false,
+      this.getApproveAttendanceLoading = false})
+      : _selectedEmployeeIds = selectedEmployeeIds;
 
   @override
   final AttendanceRepo attendanceRepo;
@@ -3362,26 +4947,10 @@ class _$AttendanceStateImpl implements _AttendanceState {
   @override
   final DateTime? toDate;
 // 🔹 Employee Selection
-  final List<Map<String, dynamic>> _employees;
-// 🔹 Employee Selection
   @override
-  @JsonKey()
-  List<Map<String, dynamic>> get employees {
-    if (_employees is EqualUnmodifiableListView) return _employees;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_employees);
-  }
-
-  final List<Map<String, dynamic>> _fetchedEmployees;
+  final ApproveAttendanceModel? approveAttendanceListModel;
   @override
-  @JsonKey()
-  List<Map<String, dynamic>> get fetchedEmployees {
-    if (_fetchedEmployees is EqualUnmodifiableListView)
-      return _fetchedEmployees;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_fetchedEmployees);
-  }
-
+  final ApproveAttendanceModel? fetchedAttendanceListModel;
   final Set<String> _selectedEmployeeIds;
   @override
   @JsonKey()
@@ -3402,15 +4971,22 @@ class _$AttendanceStateImpl implements _AttendanceState {
   @override
   final MonthlyAttendanceModel? monthlyAttendanceModel;
   @override
+  final DateTime focusedDay;
+  @override
+  final DateTime? selectedDay;
+  @override
   @JsonKey()
   final dynamic monthlyAttendanceLoading;
   @override
   @JsonKey()
   final dynamic dailyAttendanceLoading;
+  @override
+  @JsonKey()
+  final dynamic getApproveAttendanceLoading;
 
   @override
   String toString() {
-    return 'AttendanceState(attendanceRepo: $attendanceRepo, status: $status, message: $message, latitude: $latitude, longitude: $longitude, address: $address, photoFile: $photoFile, selectedDate: $selectedDate, today: $today, selectedFilter: $selectedFilter, fromDate: $fromDate, toDate: $toDate, employees: $employees, fetchedEmployees: $fetchedEmployees, selectedEmployeeIds: $selectedEmployeeIds, selectAll: $selectAll, dailyAttendanceModel: $dailyAttendanceModel, monthlyAttendanceModel: $monthlyAttendanceModel, monthlyAttendanceLoading: $monthlyAttendanceLoading, dailyAttendanceLoading: $dailyAttendanceLoading)';
+    return 'AttendanceState(attendanceRepo: $attendanceRepo, status: $status, message: $message, latitude: $latitude, longitude: $longitude, address: $address, photoFile: $photoFile, selectedDate: $selectedDate, today: $today, selectedFilter: $selectedFilter, fromDate: $fromDate, toDate: $toDate, approveAttendanceListModel: $approveAttendanceListModel, fetchedAttendanceListModel: $fetchedAttendanceListModel, selectedEmployeeIds: $selectedEmployeeIds, selectAll: $selectAll, dailyAttendanceModel: $dailyAttendanceModel, monthlyAttendanceModel: $monthlyAttendanceModel, focusedDay: $focusedDay, selectedDay: $selectedDay, monthlyAttendanceLoading: $monthlyAttendanceLoading, dailyAttendanceLoading: $dailyAttendanceLoading, getApproveAttendanceLoading: $getApproveAttendanceLoading)';
   }
 
   @override
@@ -3437,10 +5013,14 @@ class _$AttendanceStateImpl implements _AttendanceState {
             (identical(other.fromDate, fromDate) ||
                 other.fromDate == fromDate) &&
             (identical(other.toDate, toDate) || other.toDate == toDate) &&
-            const DeepCollectionEquality()
-                .equals(other._employees, _employees) &&
-            const DeepCollectionEquality()
-                .equals(other._fetchedEmployees, _fetchedEmployees) &&
+            (identical(other.approveAttendanceListModel,
+                    approveAttendanceListModel) ||
+                other.approveAttendanceListModel ==
+                    approveAttendanceListModel) &&
+            (identical(other.fetchedAttendanceListModel,
+                    fetchedAttendanceListModel) ||
+                other.fetchedAttendanceListModel ==
+                    fetchedAttendanceListModel) &&
             const DeepCollectionEquality()
                 .equals(other._selectedEmployeeIds, _selectedEmployeeIds) &&
             (identical(other.selectAll, selectAll) ||
@@ -3449,10 +5029,17 @@ class _$AttendanceStateImpl implements _AttendanceState {
                 other.dailyAttendanceModel == dailyAttendanceModel) &&
             (identical(other.monthlyAttendanceModel, monthlyAttendanceModel) ||
                 other.monthlyAttendanceModel == monthlyAttendanceModel) &&
+            (identical(other.focusedDay, focusedDay) ||
+                other.focusedDay == focusedDay) &&
+            (identical(other.selectedDay, selectedDay) ||
+                other.selectedDay == selectedDay) &&
             const DeepCollectionEquality().equals(
                 other.monthlyAttendanceLoading, monthlyAttendanceLoading) &&
             const DeepCollectionEquality()
-                .equals(other.dailyAttendanceLoading, dailyAttendanceLoading));
+                .equals(other.dailyAttendanceLoading, dailyAttendanceLoading) &&
+            const DeepCollectionEquality().equals(
+                other.getApproveAttendanceLoading,
+                getApproveAttendanceLoading));
   }
 
   @override
@@ -3470,14 +5057,17 @@ class _$AttendanceStateImpl implements _AttendanceState {
         selectedFilter,
         fromDate,
         toDate,
-        const DeepCollectionEquality().hash(_employees),
-        const DeepCollectionEquality().hash(_fetchedEmployees),
+        approveAttendanceListModel,
+        fetchedAttendanceListModel,
         const DeepCollectionEquality().hash(_selectedEmployeeIds),
         selectAll,
         dailyAttendanceModel,
         monthlyAttendanceModel,
+        focusedDay,
+        selectedDay,
         const DeepCollectionEquality().hash(monthlyAttendanceLoading),
-        const DeepCollectionEquality().hash(dailyAttendanceLoading)
+        const DeepCollectionEquality().hash(dailyAttendanceLoading),
+        const DeepCollectionEquality().hash(getApproveAttendanceLoading)
       ]);
 
   @JsonKey(ignore: true)
@@ -3502,14 +5092,17 @@ abstract class _AttendanceState implements AttendanceState {
       final String selectedFilter,
       final DateTime? fromDate,
       final DateTime? toDate,
-      final List<Map<String, dynamic>> employees,
-      final List<Map<String, dynamic>> fetchedEmployees,
+      final ApproveAttendanceModel? approveAttendanceListModel,
+      final ApproveAttendanceModel? fetchedAttendanceListModel,
       final Set<String> selectedEmployeeIds,
       final bool selectAll,
       final DailyAttendanceModel? dailyAttendanceModel,
       final MonthlyAttendanceModel? monthlyAttendanceModel,
+      required final DateTime focusedDay,
+      final DateTime? selectedDay,
       final dynamic monthlyAttendanceLoading,
-      final dynamic dailyAttendanceLoading}) = _$AttendanceStateImpl;
+      final dynamic dailyAttendanceLoading,
+      final dynamic getApproveAttendanceLoading}) = _$AttendanceStateImpl;
 
   @override
   AttendanceRepo get attendanceRepo;
@@ -3536,9 +5129,9 @@ abstract class _AttendanceState implements AttendanceState {
   @override
   DateTime? get toDate;
   @override // 🔹 Employee Selection
-  List<Map<String, dynamic>> get employees;
+  ApproveAttendanceModel? get approveAttendanceListModel;
   @override
-  List<Map<String, dynamic>> get fetchedEmployees;
+  ApproveAttendanceModel? get fetchedAttendanceListModel;
   @override
   Set<String> get selectedEmployeeIds;
   @override
@@ -3548,9 +5141,15 @@ abstract class _AttendanceState implements AttendanceState {
   @override // monthly attendance
   MonthlyAttendanceModel? get monthlyAttendanceModel;
   @override
+  DateTime get focusedDay;
+  @override
+  DateTime? get selectedDay;
+  @override
   dynamic get monthlyAttendanceLoading;
   @override
   dynamic get dailyAttendanceLoading;
+  @override
+  dynamic get getApproveAttendanceLoading;
   @override
   @JsonKey(ignore: true)
   _$$AttendanceStateImplCopyWith<_$AttendanceStateImpl> get copyWith =>
