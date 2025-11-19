@@ -45,7 +45,9 @@ class AppImages {
   static const String profileImage = "${_iconPath}dummy_profile.svg";
   static const String prevIcon = "${_iconPath}previous_icon.svg";
   static const String nextIcon = "${_iconPath}next_icon.svg";
-
+  static const String managerApproveIcon = "${_iconPath}manager_approve_icon.svg";
+  static const String leaveIcon = "${_iconPath}leave.svg";
+  static const String missingPunchIcon = "${_iconPath}missing_punch.svg";
 
   // lottie animation
   static const String noDataAnim = "${_animPath}no_data.json";

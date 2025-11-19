@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'dart:io';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget with WidgetsBindingObserver {
   const MyHomePage({super.key, required this.title, required this.platform});
@@ -90,10 +92,12 @@ class _MyHomePageState extends State<MyHomePage> {
       final status = DownloadTaskStatus.fromInt(data[1] as int);
       final progress = data[2] as int;
 
-      print(
+      if (kDebugMode) {
+        print(
         'Callback on UI isolate: '
         'task ($taskId) is in status ($status) and process ($progress)',
       );
+      }
 
       if (_tasks != null && _tasks!.isNotEmpty) {
         final task = _tasks!.firstWhere((task) => task.taskId == taskId);
@@ -112,10 +116,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @pragma('vm:entry-point')
   static void downloadCallback(String id, int status, int progress) {
-    print(
+    if (kDebugMode) {
+      print(
       'Callback on background isolate: '
       'task ($id) is in status ($status) and process ($progress)',
     );
+    }
 
     IsolateNameServer.lookupPortByName(
       'downloader_send_port',
@@ -296,7 +302,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final tasks = await FlutterDownloader.loadTasks();
 
     if (tasks == null) {
-      print('No tasks were retrieved from the database.');
+      if (kDebugMode) {
+        print('No tasks were retrieved from the database.');
+      }
       return;
     }
 

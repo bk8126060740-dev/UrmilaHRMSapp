@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/app/attendance/screens/monthly_attendance_screen.dart';
-import 'package:hrms_uis/app/dashboard/widgets/logout_dialog.dart';
 import 'package:hrms_uis/app/profile/screens/profile_screen.dart';
 import 'package:hrms_uis/common/networking/api_url.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
-import 'package:hrms_uis/common/utils/custom_dialogs/dialogs.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/utils/helpers/helper_functions.dart';
 
 import '../../../../common/navigation_service/navigation_service.dart';
 import '../../../../common/utils/constants/image_strings.dart';
 import '../../../../common/widgets/appbar/custom_appbar.dart';
-import '../../../../common/widgets/dialog/common_dialog.dart';
 import '../../../attendance/screens/daily_attendance_screen.dart';
 
 class SideDrawer extends StatelessWidget {
@@ -34,12 +31,17 @@ class SideDrawer extends StatelessWidget {
       ),
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, appState) {
+          var projectPath = appState.userProfileModel?.profilePath ?? "";
           return Column(
             children: [
               CustomAppBar(
                 title: appState.loginResponse?.fullName ?? "",
                 subtitle: appState.loginResponse?.projectName ?? "",
-                avatarImage: appState.userProfileModel?.profilePath ?? "",
+                // avatarImage: projectPath.isNotEmpty ? : appState
+                //     .userProfileModel?.profilePath ?? "",
+                avatarImage: projectPath.isNotEmpty
+                    ? ApiUrl.viewImageBase + projectPath
+                    : AppImages.profileImage,
                 showAvatar: true,
                 showBackButton: false,
                 actions: [

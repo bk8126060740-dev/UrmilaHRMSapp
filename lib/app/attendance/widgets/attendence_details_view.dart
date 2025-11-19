@@ -3,6 +3,7 @@ import 'package:hrms_uis/common/utils/constants/decorations.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/utils/formatters/formatter.dart';
 
+import '../../../common/networking/api_url.dart';
 import '../../../common/utils/constants/colors.dart';
 import '../../../common/utils/constants/image_strings.dart';
 import '../../../common/utils/constants/sizes.dart';
@@ -45,7 +46,9 @@ class DailyAttendanceDetailsView extends StatelessWidget {
                 Expanded(
                   child: Text(
                     textAlign: TextAlign.end,
-                    DurationFormatter.formatDuration(attendanceData?.duration ?? ""),
+                    DurationFormatter.formatDuration(
+                      attendanceData?.duration ?? "",
+                    ),
                     style: AppTextStyles.w400_14(
                       context,
                       color: AppColors.textColor,
@@ -71,8 +74,12 @@ class DailyAttendanceDetailsView extends StatelessWidget {
                     children: [
                       CustomImage(
                         imageUrl:
-                            attendanceData?.inTimePicCapture ??
-                            AppImages.profileImage,
+                        (attendanceData != null &&
+                            attendanceData?.inTimePicCapture != null &&
+                            attendanceData!.inTimePicCapture!.isNotEmpty)
+                            ? ApiUrl.viewImageBase +
+                            attendanceData!.inTimePicCapture!
+                            : AppImages.profileImage,
                         fallbackAsset: AppImages.profileImage,
                         size: 30,
                         borderColor: AppColors.borderColor,
@@ -114,8 +121,12 @@ class DailyAttendanceDetailsView extends StatelessWidget {
                     children: [
                       CustomImage(
                         imageUrl:
-                            attendanceData?.outTimePicCapture ??
-                            AppImages.profileImage,
+                        (attendanceData != null &&
+                            attendanceData?.outTimePicCapture != null &&
+                            attendanceData!.outTimePicCapture!.isNotEmpty)
+                            ? ApiUrl.viewImageBase +
+                            attendanceData!.outTimePicCapture!
+                            : AppImages.profileImage,
                         fallbackAsset: AppImages.profileImage,
                         size: 30,
                         borderColor: AppColors.borderColor,

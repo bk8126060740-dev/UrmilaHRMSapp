@@ -30,6 +30,7 @@ class CustomAppTheme {
     // elevatedButtonTheme: AppButtonTheme.elevatedButtonTheme,
     outlinedButtonTheme: AppButtonTheme.outlinedButtonTheme,
     textButtonTheme: AppButtonTheme.textButtonTheme,
+    floatingActionButtonTheme: AppButtonTheme.floatingActionButtonTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -49,5 +50,6 @@ class CustomAppTheme {
     // elevatedButtonTheme: AppButtonTheme.elevatedButtonTheme,
     outlinedButtonTheme: AppButtonTheme.outlinedButtonTheme,
     textButtonTheme: AppButtonTheme.textButtonTheme,
+    floatingActionButtonTheme: AppButtonTheme.floatingActionButtonTheme,
   );
 }

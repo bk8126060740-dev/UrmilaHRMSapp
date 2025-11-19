@@ -147,72 +147,6 @@ class AttendanceRepo {
     }
   }
 
-  // Future<ApiResponse<Map<String, dynamic>>> checkIn({
-  //   required File imageFile,
-  //   required int employeeId,
-  //   required String addressText,
-  //   required double latitude,
-  //   required double longitude,
-  // }) async {
-  //   try {
-  //     var response = CommonRepository.postMultipartRequest(
-  //       url: ApiUrl.checkIn,
-  //       body: {
-  //         'EmployeeId': employeeId.toString(),
-  //         'AttendanceDate': AttendanceHelper.convertCurrentDate(DateTime.now()),
-  //         'InTime': AttendanceHelper.convertCurrentTime(DateTime.now()),
-  //         'OutOnDutyStatus': 'false',
-  //         'OutTime': '',
-  //         'OutTimeLocation': '',
-  //         'OutTimeLatitude': '',
-  //         'OutTimeLongitude': '',
-  //         'InTimeLocation': addressText,
-  //         'IntimeLatitude': latitude.toString(),
-  //         'IntimeLongitude': longitude.toString(),
-  //       },
-  //       fromJson: (json) => json as Map<String, dynamic>,
-  //       file: imageFile,
-  //       fileKey: "InTimePicCapture",
-  //     );
-  //     return response;
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
-  //
-  // Future<ApiResponse<Map<String, dynamic>>> checkOut({
-  //   required int employeeId,
-  //   required String addressText,
-  //   required double latitude,
-  //   required double longitude,
-  //   required File imageFile,
-  // }) async {
-  //   try {
-  //     var response = CommonRepository.postMultipartRequest(
-  //       url: ApiUrl.checkIn,
-  //       body: {
-  //         'EmployeeId': employeeId.toString(),
-  //         'AttendanceDate': AttendanceHelper.convertCurrentDate(DateTime.now()),
-  //         'OutTime': AttendanceHelper.convertCurrentTime(DateTime.now()),
-  //         'OutOnDutyStatus': 'true',
-  //         'InTime': '',
-  //         'InTimeLocation': "",
-  //         'IntimeLatitude': "",
-  //         'IntimeLongitude': "",
-  //         'OutTimeLocation': addressText,
-  //         'OutTimeLatitude': latitude.toString(),
-  //         'OutTimeLongitude': longitude.toString(),
-  //       },
-  //       fromJson: (json) => json as Map<String, dynamic>,
-  //       file: imageFile,
-  //       fileKey: "OutTimePicCapture",
-  //     );
-  //     return response;
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
-
   Future<ApiResponse<Map<String, dynamic>>> checkIn({
     required File imageFile,
     required int employeeId,
@@ -221,15 +155,16 @@ class AttendanceRepo {
     required double longitude,
   }) async {
     try {
-      var response = CommonRepository.postRequest(
+      var response = CommonRepository.postMultipartRequest(
         url: ApiUrl.checkIn,
-        request: {
+        body: {
           "location": addressText,
           "latitude": latitude.toString(),
           "longitude": longitude.toString(),
-          "picCapturePath": imageFile.path.split("/").last,
         },
         fromJson: (json) => json as Map<String, dynamic>,
+        file: imageFile,
+        fileKey: "PicCapture",
       );
       return response;
     } catch (e) {
@@ -245,23 +180,74 @@ class AttendanceRepo {
     required File imageFile,
   }) async {
     try {
-      var response = CommonRepository.postRequest(
+      var response = CommonRepository.postMultipartRequest(
         url: ApiUrl.checkOut,
-        request: {
+        body: {
           "location": addressText,
           "latitude": latitude.toString(),
           "longitude": longitude.toString(),
-          "picCapturePath": imageFile.path.split("/").last,
           "outOnDutyStatus": true,
           "checkOutType": 0,
         },
         fromJson: (json) => json as Map<String, dynamic>,
+        file: imageFile,
+        fileKey: "PicCapture",
       );
       return response;
     } catch (e) {
       rethrow;
     }
   }
+
+  // Future<ApiResponse<Map<String, dynamic>>> checkIn({
+  //   required File imageFile,
+  //   required int employeeId,
+  //   required String addressText,
+  //   required double latitude,
+  //   required double longitude,
+  // }) async {
+  //   try {
+  //     var response = CommonRepository.postRequest(
+  //       url: ApiUrl.checkIn,
+  //       request: {
+  //         "location": addressText,
+  //         "latitude": latitude.toString(),
+  //         "longitude": longitude.toString(),
+  //         "picCapturePath": imageFile.path.split("/").last,
+  //       },
+  //       fromJson: (json) => json as Map<String, dynamic>,
+  //     );
+  //     return response;
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+  //
+  // Future<ApiResponse<Map<String, dynamic>>> checkOut({
+  //   required int employeeId,
+  //   required String addressText,
+  //   required double latitude,
+  //   required double longitude,
+  //   required File imageFile,
+  // }) async {
+  //   try {
+  //     var response = CommonRepository.postRequest(
+  //       url: ApiUrl.checkOut,
+  //       request: {
+  //         "location": addressText,
+  //         "latitude": latitude.toString(),
+  //         "longitude": longitude.toString(),
+  //         "picCapturePath": imageFile.path.split("/").last,
+  //         "outOnDutyStatus": true,
+  //         "checkOutType": 0,
+  //       },
+  //       fromJson: (json) => json as Map<String, dynamic>,
+  //     );
+  //     return response;
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 
   Future<ApiResponse<MonthlyAttendanceModel>> getMonthlyAttendance({
     required int? userId,

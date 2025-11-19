@@ -1,16 +1,15 @@
 # hrms_uis
 
-A new Flutter project.
+## Hrms Urmila App
 
-## Getting Started
+## commands to generate apk
 
-This project is a starting point for a Flutter application.
+1. [ flutter clean ]
+2. [ flutter pub get ]
+3. [ flutter gen-l10n ]
+4. [ dart run build_runner build --delete-conflicting-outputs ]
 
-A few resources to get you started if this is your first Flutter project:
+## create obfuscate apk using it
+-[ flutter build apk --release --shrink --obfuscate --split-debug-info=misc/mapping/${version} ]
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## powershell -ExecutionPolicy Bypass -File build_release.ps1

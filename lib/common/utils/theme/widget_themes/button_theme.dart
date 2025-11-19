@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
+import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import '../../constants/colors.dart'; // Use your app colors
 
 class AppButtonTheme {
@@ -32,7 +33,7 @@ class AppButtonTheme {
           ),
         ).copyWith(
           overlayColor: WidgetStateProperty.all(
-            AppColors.primaryColor.withOpacity(0.08),
+            AppColors.primaryColor.withFixedOpacity(0.08),
           ),
         ),
   );
@@ -45,5 +46,17 @@ class AppButtonTheme {
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
+  );
+
+  /// 🟣 Floating Action Button Theme
+  static final floatingActionButtonTheme = FloatingActionButtonThemeData(
+    backgroundColor: AppColors.primaryColor,
+    foregroundColor: Colors.white,
+    elevation: 2,
+    disabledElevation: 0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+    splashColor: AppColors.primaryColor.withFixedOpacity(0.12),
+    focusColor: AppColors.primaryColor.withFixedOpacity(0.12),
+    hoverColor: AppColors.primaryColor.withFixedOpacity(0.10),
   );
 }

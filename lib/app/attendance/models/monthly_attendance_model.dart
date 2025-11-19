@@ -45,7 +45,7 @@ class MonthlyAttendanceModel {
 }
 
 class MonthlyAttendanceData {
-  DateTime? date;
+  String? date;
   String? status;
   String? color;
   String? tooltip;
@@ -53,7 +53,7 @@ class MonthlyAttendanceData {
   MonthlyAttendanceData({this.date, this.status, this.color, this.tooltip});
 
   MonthlyAttendanceData copyWith({
-    DateTime? date,
+    String? date,
     String? status,
     String? color,
     String? tooltip,
@@ -66,15 +66,14 @@ class MonthlyAttendanceData {
 
   factory MonthlyAttendanceData.fromJson(Map<String, dynamic> json) =>
       MonthlyAttendanceData(
-        date: json["date"] == null ? null : DateTime.parse(json["date"]),
+        date: json["date"],
         status: json["status"],
         color: json["color"],
         tooltip: json["tooltip"],
       );
 
   Map<String, dynamic> toJson() => {
-    "date":
-        "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
+    "date": date,
     "status": status,
     "color": color,
     "tooltip": tooltip,

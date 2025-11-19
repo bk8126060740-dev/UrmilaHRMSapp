@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/app/attendance/screens/daily_attendance_screen.dart';
 import 'package:hrms_uis/app/attendance/screens/monthly_attendance_screen.dart';
+import 'package:hrms_uis/app/leave/screens/view_leave_screen.dart';
+import 'package:hrms_uis/app/missed_punch/screens/view_missed_punch_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
@@ -60,6 +62,7 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         child: SvgPicture.asset(
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
           AppImages.attendanceIcon,
+          fit: BoxFit.fill,
         ),
         onTap: () {
           NavigationService.navigateTo(DailyAttendanceScreen.route);
@@ -76,6 +79,9 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         child: SvgPicture.asset(
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
           AppImages.monthViewIconSN,
+          fit: BoxFit.fill,
+          height: 20,
+          width: 20,
         ),
       ),
       if (appState.loginResponse?.employeeType == "M")
@@ -85,14 +91,48 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
           textStyle: serviceTextStyle,
           iconTextGap: 8.0,
           onTap: () {
-            // NavigationService.navigateTo(ApproveAttendanceScreen.route);
             NavigationService.navigateTo(ApproveAttendEmpListScreen.route);
           },
           child: SvgPicture.asset(
+            fit: BoxFit.fill,
             colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
-            AppImages.monthViewIconSN,
+            AppImages.managerApproveIcon,
+            height: 20,
+            width: 20,
           ),
         ),
+      // MaterialSquareIcon(
+      //   squareColor: AppColors.surfaceColor,
+      //   title: "Leave",
+      //   textStyle: serviceTextStyle,
+      //   iconTextGap: 8.0,
+      //   onTap: () {
+      //     NavigationService.navigateTo(ViewLeaveScreen.route);
+      //   },
+      //   child: SvgPicture.asset(
+      //     fit: BoxFit.fill,
+      //     height: 20,
+      //     width: 20,
+      //     colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+      //     AppImages.leaveIcon,
+      //   ),
+      // ),
+      // MaterialSquareIcon(
+      //   squareColor: AppColors.surfaceColor,
+      //   title: "Missed Punch",
+      //   textStyle: serviceTextStyle,
+      //   iconTextGap: 8.0,
+      //   onTap: () {
+      //     NavigationService.navigateTo(ViewMissedPunchScreen.route);
+      //   },
+      //   child: SvgPicture.asset(
+      //     fit: BoxFit.fill,
+      //     height: 20,
+      //     width: 20,
+      //     colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+      //     AppImages.leaveIcon,
+      //   ),
+      // ),
       // MaterialSquareIcon(
       //   squareColor: AppColors.surfaceColor,
       //   title: "salary Slip",
@@ -121,7 +161,7 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         crossAxisSpacing: 0.0,
         mainAxisSpacing: 12,
         // mainAxisExtent: 120,
-        childAspectRatio: 0.75,
+        childAspectRatio: 0.90,
       ),
     );
   }

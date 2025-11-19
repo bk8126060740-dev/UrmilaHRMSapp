@@ -9,6 +9,7 @@ import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../common/utils/constants/colors.dart';
@@ -43,14 +44,24 @@ class _MonthlyAttendanceCalenderViewState
 
         // 🔁 Convert list to map keyed by date
         final Map<DateTime, List<MonthlyAttendanceData>> events = {};
+
         if (calendarData?.days != null) {
           for (final report in calendarData!.days!) {
-            final date = report.date;
-            if (date == null) continue;
-            final safeDate = DateTime.utc(date.year, date.month, date.day);
+            final dateString = report.date;
+            if (dateString == null || dateString.isEmpty) continue;
+
+            final parsed = safeParseDate(dateString);
+
+            if (parsed == null) {
+              debugPrint("Invalid date → $dateString");
+              continue;
+            }
+
+            final safeDate = DateTime.utc(parsed.year, parsed.month, parsed.day);
             events.putIfAbsent(safeDate, () => []).add(report);
           }
         }
+
 
         return AbsorbPointer(
           absorbing: false,
@@ -180,6 +191,31 @@ class _MonthlyAttendanceCalenderViewState
     );
   }
 
+  DateTime? safeParseDate(String input) {
+    try {
+      final iso = DateTime.tryParse(input);
+      if (iso != null) return iso;
+    } catch (_) {}
+
+    final formats = [
+      "dd-MM-yyyy",
+      "dd/MM/yyyy",
+      "MM-dd-yyyy",
+      "MM/dd/yyyy",
+      "yyyy/MM/dd",
+      "yyyy.MM.dd",
+    ];
+
+    for (final f in formats) {
+      try {
+        return DateFormat(f).parseStrict(input);
+      } catch (_) {}
+    }
+
+    return null; // ❌ invalid date → return null
+  }
+
+
   Widget _buildDayCell(
     BuildContext context,
     DateTime date,
@@ -234,7 +270,7 @@ class _MonthlyAttendanceCalenderViewState
                 context: context,
                 child: CommonDialog(
                   title: "Attendance Details",
-                  child: CalenderTooltipDialog(
+                  child: AttendanceToolTipDialog(
                     date: date,
                     report: report,
                     statusColor: _parseColor(report.color),

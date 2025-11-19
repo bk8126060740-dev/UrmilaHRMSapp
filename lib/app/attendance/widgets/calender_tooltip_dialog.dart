@@ -4,12 +4,12 @@ import 'package:hrms_uis/common/utils/constants/colors.dart';
 import '../../../common/utils/constants/text_styles.dart';
 import '../models/monthly_attendance_model.dart';
 
-class CalenderTooltipDialog extends StatelessWidget {
+class AttendanceToolTipDialog extends StatelessWidget {
   final MonthlyAttendanceData? report;
   final DateTime date;
   final Color statusColor;
 
-  const CalenderTooltipDialog({
+  const AttendanceToolTipDialog({
     super.key,
     this.report,
     required this.date,
@@ -34,20 +34,13 @@ class CalenderTooltipDialog extends StatelessWidget {
           statusColor: statusColor,
         ),
         if (report?.tooltip?.isNotEmpty ?? false)
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: _infoRow(
-              context,
-              label: "Message",
-              value: report?.tooltip ?? "N/A",
-              // statusColor: statusColor,
-            ),
-            // child: Text(
-            //   report?.tooltip ?? "N/A",
-            //   style: AppTextStyles.w400_14(
-            //     context,
-            //   ).copyWith(color: Colors.black87),
-            // ),
+          _infoRow(
+            context,
+            label: "Message",
+            value:
+                report?.tooltip?.replaceAll(RegExp(r'\s+Out:'), '\nOut:') ??
+                "N/A",
+            // statusColor: statusColor,
           ),
         Align(
           alignment: AlignmentDirectional.centerEnd,

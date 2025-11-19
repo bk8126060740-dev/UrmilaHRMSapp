@@ -16,6 +16,10 @@ import '../../app/auth/bloc/auth_bloc.dart';
 import '../../app/auth/screens/forgot_password_screen.dart';
 import '../../app/auth/screens/login_screen.dart';
 import '../../app/dashboard/screens/dashboard_screen.dart';
+import '../../app/leave/screens/apply_leave_screen.dart';
+import '../../app/leave/screens/view_leave_screen.dart';
+import '../../app/missed_punch/screens/apply_missed_punch_screen.dart';
+import '../../app/missed_punch/screens/view_missed_punch_screen.dart';
 import '../../app/profile/screens/profile_screen.dart';
 import '../../app/salary_slip/screens/salary_slip_screen.dart';
 import '../../app/splash/screens/splash_screen.dart';
@@ -62,8 +66,8 @@ class AppRoutes {
             var now = DateTime.now();
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: loginModel?.employeeId),
-              /*..add(DashboardEvent.getUserProfileData())*/
+                  DashboardBloc(userId: loginModel?.employeeId)
+                    ..add(DashboardEvent.getUserProfileData()),
               // ..add(
               //   DashboardEvent.getMonthlyAttendance(
               //     month: now.month,
@@ -164,6 +168,30 @@ class AppRoutes {
                     ..add(DashboardEvent.getUserProfileData()),
               child: SalarySlipScreen(),
             );
+          },
+        );
+      case ViewLeaveScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return ViewLeaveScreen();
+          },
+        );
+      case ApplyLeaveScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return ApplyLeaveScreen();
+          },
+        );
+      case ViewMissedPunchScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return ViewMissedPunchScreen();
+          },
+        );
+      case ApplyMissedPunchScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return ApplyMissedPunchScreen();
           },
         );
       default:

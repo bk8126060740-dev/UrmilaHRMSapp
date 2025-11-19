@@ -6,6 +6,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hrms_uis/common/networking/api_url.dart';
 import 'package:http/http.dart' as http;
 
 import '../../app/auth/screens/login_screen.dart';
@@ -51,7 +52,7 @@ class HttpClient {
       var response = await http.get(uri, headers: _makeHeader());
       log('$url response(${response.statusCode}): ${response.body}');
 
-      if (response.statusCode == 401) {
+      if (response.statusCode == 401 && !url.contains(ApiUrl.login)) {
         _autoLogout();
       }
 
@@ -140,9 +141,10 @@ class HttpClient {
         headers: _makeHeader(),
       );
 
-      if (response.statusCode == 401) {
+      if (response.statusCode == 401 && !url.contains(ApiUrl.login)) {
         _autoLogout();
       }
+
       log(
         '======================================================================================================',
       );
@@ -302,7 +304,7 @@ class HttpClient {
       // **Normalize status**
       int status = response.statusCode;
 
-      if (response.statusCode == 401) {
+      if (response.statusCode == 401 && !url.contains(ApiUrl.login)) {
         _autoLogout();
       }
 

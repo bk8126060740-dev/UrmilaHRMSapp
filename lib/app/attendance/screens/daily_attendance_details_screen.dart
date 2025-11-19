@@ -23,13 +23,15 @@ class DailyAttendanceDetailsScreen extends StatelessWidget {
         showNavigation: false,
         showCalendarIcon: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(
-          AppSizes.padding16,
-          // left: AppSizes.padding24,
-          // left: AppSizes.padding24,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(
+            AppSizes.padding16,
+            // left: AppSizes.padding24,
+            // left: AppSizes.padding24,
+          ),
+          child: DailyAttendanceDetailsView(attendanceData: attendanceData),
         ),
-        child: DailyAttendanceDetailsView(attendanceData: attendanceData),
       ),
     );
   }

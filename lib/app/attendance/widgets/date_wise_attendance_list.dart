@@ -6,6 +6,7 @@ import 'package:hrms_uis/common/utils/constants/image_strings.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/widgets/placeholder/no_data_found.dart';
 
+import '../../../common/networking/api_url.dart';
 import '../models/daily_attendance_model.dart';
 import 'clock_in_out_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,8 +54,16 @@ class DateWiseAttendanceList extends StatelessWidget {
                 clockIn: item.inTime.withDefault("N/A"),
                 clockOut: item.outTime.withDefault("N/A"),
                 location: item.inTimeLocation.withDefault("N/A"),
-                checkInImage: item.inTimePicCapture ?? AppImages.profileImage,
-                checkOutImage: item.outTimePicCapture ?? AppImages.profileImage,
+                checkInImage:
+                    (item.inTimePicCapture != null &&
+                        item.inTimePicCapture!.isNotEmpty)
+                    ? ApiUrl.viewImageBase + item.inTimePicCapture!
+                    : AppImages.profileImage,
+                checkOutImage:
+                    (item.outTimePicCapture != null &&
+                        item.outTimePicCapture!.isNotEmpty)
+                    ? ApiUrl.viewImageBase + item.outTimePicCapture!
+                    : AppImages.profileImage,
               ),
             );
           },

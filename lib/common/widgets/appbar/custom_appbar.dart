@@ -54,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onCalendarTap,
     this.actions,
     this.backgroundColor = AppColors.primaryColor,
-    this.elevation = 2.0,
+    this.elevation = 0.0,
     this.height = kToolbarHeight,
     this.titleTextColor = AppColors.whiteTextColor,
     this.subTitleTextColor = AppColors.lightWhiteTextColor,

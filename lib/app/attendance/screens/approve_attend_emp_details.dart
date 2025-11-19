@@ -6,6 +6,7 @@ import 'package:hrms_uis/common/utils/formatters/duration_formatter.dart';
 import 'package:hrms_uis/common/utils/formatters/formatter.dart';
 import 'package:hrms_uis/common/widgets/image/custom_image.dart';
 
+import '../../../common/networking/api_url.dart';
 import '../../../common/utils/constants/colors.dart';
 import '../../../common/utils/constants/sizes.dart';
 import '../../../common/utils/constants/text_styles.dart';
@@ -42,67 +43,12 @@ class ApproveAttendEmpDetails extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               decoration: AppDecorations.card(),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+              child: Container(
+                padding: const EdgeInsets.all(AppSizes.padding16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // ===== EMPLOYEE INFO ROW =====
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("-:Int time picture:-"),
-                              const SizedBox(height: AppSizes.space8),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomImage(
-                                    imageUrl:
-                                        employeeAttendData?.inTimePicCapture ??
-                                        '',
-                                    isCircular: false,
-                                    size: 90,
-                                    fit: BoxFit.fill,
-                                    fallbackAsset: AppImages.profileImage,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("-:Out time picture:-"),
-                              const SizedBox(height: AppSizes.space8),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomImage(
-                                    imageUrl:
-                                        employeeAttendData?.outTimePicCapture ??
-                                        '',
-                                    isCircular: false,
-                                    size: 90,
-                                    fit: BoxFit.cover,
-                                    fallbackAsset: AppImages.profileImage,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSizes.space16),
                     _infoRow(
                       context,
                       "Employee Name",
@@ -114,217 +60,231 @@ class ApproveAttendEmpDetails extends StatelessWidget {
                       "${employeeAttendData?.employeeId ?? ''}",
                     ),
 
-                    // Duration Row
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "Duration :-",
-                              style: AppTextStyles.w500_14(
-                                context,
-                                color: AppColors.secondaryTextColor,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              textAlign: TextAlign.end,
-                              DurationFormatter.formatDuration(
-                                employeeAttendData?.duration,
-                              ),
-                              style: AppTextStyles.w400_14(
-                                context,
-                                color: AppColors.textColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    SizedBox(height: AppSizes.space8),
 
                     // Divider
                     Container(height: 1, color: Colors.grey.shade300),
+
+                    SizedBox(height: AppSizes.space8),
+
+                    // Duration Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Duration :-",
+                            style: AppTextStyles.w500_14(
+                              context,
+                              color: AppColors.secondaryTextColor,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            textAlign: TextAlign.end,
+                            DurationFormatter.formatDuration(
+                              employeeAttendData?.duration,
+                            ),
+                            style: AppTextStyles.w400_14(
+                              context,
+                              color: AppColors.textColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: AppSizes.space8),
 
                     // Clock In / Clock Out Section
-                    Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Clock In
-                          Expanded(
-                            child: Row(
-                              children: [
-                                CustomImage(
-                                  imageUrl:
-                                      employeeAttendData?.inTimePicCapture ??
-                                      AppImages.profileImage,
-                                  fallbackAsset: AppImages.profileImage,
-                                  size: 30,
-                                  borderColor: AppColors.borderColor,
-                                  borderWidth: 1,
-                                  useShimmer: true,
-                                ),
-                                const SizedBox(width: 14),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Clock In",
-                                        style: AppTextStyles.w400_14(
-                                          context,
-                                          color: AppColors.secondaryTextColor,
-                                        ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Clock In
+                        Expanded(
+                          child: Row(
+                            children: [
+                              CustomImage(
+                                imageUrl:
+                                    (employeeAttendData != null &&
+                                        employeeAttendData?.inTimePicCapture !=
+                                            null &&
+                                        employeeAttendData!
+                                            .inTimePicCapture!
+                                            .isNotEmpty)
+                                    ? ApiUrl.viewImageBase +
+                                          employeeAttendData!.inTimePicCapture!
+                                    : AppImages.profileImage,
+                                fallbackAsset: AppImages.profileImage,
+                                size: 30,
+                                borderColor: AppColors.borderColor,
+                                borderWidth: 1,
+                                useShimmer: true,
+                              ),
+                              const SizedBox(width: 14),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Clock In",
+                                      style: AppTextStyles.w400_14(
+                                        context,
+                                        color: AppColors.secondaryTextColor,
                                       ),
-                                      const SizedBox(height: AppSizes.space4),
-                                      Text(
-                                        AppFormatter.formatTimeString(
-                                              employeeAttendData?.inTime,
-                                            ) ??
-                                            'N/A',
-                                        style: AppTextStyles.w400_14(
-                                          context,
-                                          color: AppColors.textColor,
-                                        ),
+                                    ),
+                                    const SizedBox(height: AppSizes.space4),
+                                    Text(
+                                      AppFormatter.formatTimeString(
+                                            employeeAttendData?.inTime,
+                                          ) ??
+                                          'N/A',
+                                      style: AppTextStyles.w400_14(
+                                        context,
+                                        color: AppColors.textColor,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        ),
 
-                          // Clock Out
-                          Expanded(
-                            child: Row(
-                              children: [
-                                CustomImage(
-                                  imageUrl:
-                                      employeeAttendData?.outTimePicCapture ??
-                                      AppImages.profileImage,
-                                  fallbackAsset: AppImages.profileImage,
-                                  size: 30,
-                                  borderColor: AppColors.borderColor,
-                                  borderWidth: 1,
-                                  useShimmer: true,
-                                ),
-                                const SizedBox(width: 14),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Clock Out",
-                                        style: AppTextStyles.w400_14(
-                                          context,
-                                          color: AppColors.secondaryTextColor,
-                                        ),
+                        // Clock Out
+                        Expanded(
+                          child: Row(
+                            children: [
+                              CustomImage(
+                                imageUrl:
+                                    (employeeAttendData != null &&
+                                        employeeAttendData?.outTimePicCapture !=
+                                            null &&
+                                        employeeAttendData!
+                                            .outTimePicCapture!
+                                            .isNotEmpty)
+                                    ? ApiUrl.viewImageBase +
+                                          employeeAttendData!.outTimePicCapture!
+                                    : AppImages.profileImage,
+                                fallbackAsset: AppImages.profileImage,
+                                size: 30,
+                                borderColor: AppColors.borderColor,
+                                borderWidth: 1,
+                                useShimmer: true,
+                              ),
+                              const SizedBox(width: 14),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Clock Out",
+                                      style: AppTextStyles.w400_14(
+                                        context,
+                                        color: AppColors.secondaryTextColor,
                                       ),
-                                      const SizedBox(height: AppSizes.space4),
-                                      Text(
-                                        AppFormatter.formatTimeString(
-                                              employeeAttendData?.outTime,
-                                            ) ??
-                                            'N/A',
-                                        style: AppTextStyles.w400_14(
-                                          context,
-                                          color: AppColors.textColor,
-                                        ),
+                                    ),
+                                    const SizedBox(height: AppSizes.space4),
+                                    Text(
+                                      AppFormatter.formatTimeString(
+                                            employeeAttendData?.outTime,
+                                          ) ??
+                                          'N/A',
+                                      style: AppTextStyles.w400_14(
+                                        context,
+                                        color: AppColors.textColor,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+
+                    SizedBox(height: AppSizes.space8),
 
                     // Divider
                     Container(height: 1, color: Colors.grey.shade300),
+
+                    SizedBox(height: AppSizes.space8),
 
                     // Clock In Location
-                    Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Clock In Location",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.secondaryTextColor,
-                            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Clock In Location",
+                          style: AppTextStyles.w400_14(
+                            context,
+                            color: AppColors.secondaryTextColor,
                           ),
-                          const SizedBox(height: AppSizes.space4),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                size: 20,
-                                color: AppColors.iconColor,
-                              ),
-                              const SizedBox(width: AppSizes.space12),
-                              Expanded(
-                                child: Text(
-                                  employeeAttendData?.inTimeLocation ?? "N/A",
-                                  style: AppTextStyles.w400_14(
-                                    context,
-                                    color: AppColors.textColor,
-                                  ),
+                        ),
+                        const SizedBox(height: AppSizes.space4),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              size: 20,
+                              color: AppColors.iconColor,
+                            ),
+                            const SizedBox(width: AppSizes.space12),
+                            Expanded(
+                              child: Text(
+                                employeeAttendData?.inTimeLocation ?? "N/A",
+                                style: AppTextStyles.w400_14(
+                                  context,
+                                  color: AppColors.textColor,
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
+
+                    SizedBox(height: AppSizes.space8),
 
                     // Divider
                     Container(height: 1, color: Colors.grey.shade300),
 
+                    SizedBox(height: AppSizes.space8),
+
                     // Clock Out Location
-                    Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Clock Out Location",
-                            style: AppTextStyles.w400_14(
-                              context,
-                              color: AppColors.secondaryTextColor,
-                            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Clock Out Location",
+                          style: AppTextStyles.w400_14(
+                            context,
+                            color: AppColors.secondaryTextColor,
                           ),
-                          const SizedBox(height: AppSizes.space4),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                size: 20,
-                                color: AppColors.iconColor,
-                              ),
-                              const SizedBox(width: AppSizes.space12),
-                              Expanded(
-                                child: Text(
-                                  employeeAttendData?.outTimeLocation ?? "N/A",
-                                  style: AppTextStyles.w400_14(
-                                    context,
-                                    color: AppColors.textColor,
-                                  ),
+                        ),
+                        const SizedBox(height: AppSizes.space4),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              size: 20,
+                              color: AppColors.iconColor,
+                            ),
+                            const SizedBox(width: AppSizes.space12),
+                            Expanded(
+                              child: Text(
+                                employeeAttendData?.outTimeLocation ?? "N/A",
+                                style: AppTextStyles.w400_14(
+                                  context,
+                                  color: AppColors.textColor,
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -338,7 +298,7 @@ class ApproveAttendEmpDetails extends StatelessWidget {
 
   Widget _infoRow(BuildContext context, String title, String value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(bottom: AppSizes.space8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

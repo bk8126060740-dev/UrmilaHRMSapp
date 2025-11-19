@@ -19,7 +19,7 @@ class AppColors {
   static const Color lightWhiteIconColor = Color(0xB3FFFFFF);
 
   // Backgrounds
-  static const Color scaffoldBgColor = Color(0xFFE4EBF8);
+  static const Color scaffoldBgColor = Color(0xFFE4EBF8); //0xFFE4EBF8
   static const Color bgColor = Color(0xFFFFFFFF);
 
   //=====================>>> SURFACE COLORS (tinted with primary) <<<=====================

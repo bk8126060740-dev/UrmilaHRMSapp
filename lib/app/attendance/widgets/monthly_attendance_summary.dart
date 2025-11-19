@@ -31,25 +31,25 @@ class MonthlyAttendanceSummary extends StatelessWidget {
           children: [
             Row(
               children: [
-                // Expanded(
-                //   child: state.monthlyAttendanceLoading
-                //       ? ShimmerLoading(
-                //           child: _buildStatCard(
-                //             context,
-                //             label: "",
-                //             count: "",
-                //             color: Colors.grey,
-                //           ),
-                //         )
-                //       : _buildStatCard(
-                //           context,
-                //           label: "Working Days",
-                //           count:
-                //               "${state.monthlyAttendanceModel?.summary?.totalWorkingDays ?? "N/A"}",
-                //           color: AppColors.totalPresent,
-                //         ),
-                // ),
-                // const SizedBox(width: 10),
+                Expanded(
+                  child: state.monthlyAttendanceLoading
+                      ? ShimmerLoading(
+                          child: _buildStatCard(
+                            context,
+                            label: "",
+                            count: "",
+                            color: Colors.grey,
+                          ),
+                        )
+                      : _buildStatCard(
+                          context,
+                          label: "Total",
+                          count:
+                              "${state.monthlyAttendanceModel?.summary?.totalWorkingDays ?? "N/A"}",
+                          color: AppColors.totalPresent,
+                        ),
+                ),
+                const SizedBox(width: AppSizes.space8),
                 Expanded(
                   child: state.monthlyAttendanceLoading
                       ? ShimmerLoading(
@@ -68,7 +68,7 @@ class MonthlyAttendanceSummary extends StatelessWidget {
                           color: AppColors.present,
                         ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: AppSizes.space8),
                 Expanded(
                   child: state.monthlyAttendanceLoading
                       ? ShimmerLoading(
@@ -87,88 +87,69 @@ class MonthlyAttendanceSummary extends StatelessWidget {
                           color: AppColors.absent,
                         ),
                 ),
+              ],
+            ),
+            const SizedBox(height: AppSizes.space16),
+            Row(
+              children: [
+                Expanded(
+                  child: state.monthlyAttendanceLoading
+                      ? ShimmerLoading(
+                          child: _buildStatCard(
+                            context,
+                            label: "",
+                            count: "",
+                            color: Colors.grey,
+                          ),
+                        )
+                      : _buildStatCard(
+                          context,
+                          label: "Leave Days",
+                          count:
+                              "${state.monthlyAttendanceModel?.summary?.leaveDays ?? "N/A"}",
+                          color: AppColors.leave,
+                        ),
+                ),
+                const SizedBox(width: AppSizes.space8),
+                Expanded(
+                  child: state.monthlyAttendanceLoading
+                      ? ShimmerLoading(
+                          child: _buildStatCard(
+                            context,
+                            label: "",
+                            count: "",
+                            color: Colors.grey,
+                          ),
+                        )
+                      : _buildStatCard(
+                          context,
+                          label: "Pending",
+                          count:
+                              "${state.monthlyAttendanceModel?.summary?.pendingApprovals ?? "N/A"}",
+                          color: AppColors.pendingPresent,
+                        ),
+                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: state.monthlyAttendanceLoading
                       ? ShimmerLoading(
-                    child: _buildStatCard(
-                      context,
-                      label: "",
-                      count: "",
-                      color: Colors.grey,
-                    ),
-                  )
+                          child: _buildStatCard(
+                            context,
+                            label: "",
+                            count: "",
+                            color: Colors.grey,
+                          ),
+                        )
                       : _buildStatCard(
-                    context,
-                    label: "Leave Days",
-                    count:
-                    "${state.monthlyAttendanceModel?.summary?.leaveDays ?? "N/A"}",
-                    color: AppColors.leave,
-                  ),
+                          context,
+                          label: "Holidays",
+                          count:
+                              "${state.monthlyAttendanceModel?.summary?.holidayDays ?? "N/A"}",
+                          color: AppColors.holiday,
+                        ),
                 ),
               ],
             ),
-            // const SizedBox(height: AppSizes.space16),
-            // Row(
-            //   children: [
-            //     Expanded(
-            //       child: state.monthlyAttendanceLoading
-            //           ? ShimmerLoading(
-            //               child: _buildStatCard(
-            //                 context,
-            //                 label: "",
-            //                 count: "",
-            //                 color: Colors.grey,
-            //               ),
-            //             )
-            //           : _buildStatCard(
-            //               context,
-            //               label: "Leave Days",
-            //               count:
-            //                   "${state.monthlyAttendanceModel?.summary?.presentDays ?? "N/A"}",
-            //               color: AppColors.leave,
-            //             ),
-            //     ),
-            //     const SizedBox(width: 10),
-            //     Expanded(
-            //       child: state.monthlyAttendanceLoading
-            //           ? ShimmerLoading(
-            //               child: _buildStatCard(
-            //                 context,
-            //                 label: "",
-            //                 count: "",
-            //                 color: Colors.grey,
-            //               ),
-            //             )
-            //           : _buildStatCard(
-            //               context,
-            //               label: "Holidays",
-            //               count:
-            //                   "${state.monthlyAttendanceModel?.summary?.absentDays ?? "N/A"}",
-            //               color: AppColors.holiday,
-            //             ),
-            //     ),
-            //     const SizedBox(width: 10),
-            //     Expanded(
-            //       child: state.monthlyAttendanceLoading
-            //           ? ShimmerLoading(
-            //               child: _buildStatCard(
-            //                 context,
-            //                 label: "",
-            //                 count: "",
-            //                 color: Colors.grey,
-            //               ),
-            //             )
-            //           : _buildStatCard(
-            //               context,
-            //               label: "HP Days",
-            //               count:
-            //                   "${state.monthlyAttendanceModel?.summary?.leaveDays ?? "N/A"}",
-            //               color: AppColors.holidayPresent,
-            //             ),
-            //     ),
-            //   ],
-            // ),
           ],
         );
       },

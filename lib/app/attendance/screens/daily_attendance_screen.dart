@@ -36,7 +36,7 @@ class _DailyAttendanceScreenState extends State<DailyAttendanceScreen> {
           showNavigation: false,
           showCalendarIcon: false,
         ),
-        body: _buildMainPage(context),
+        body: SafeArea(child: _buildMainPage(context)),
       ),
     );
   }

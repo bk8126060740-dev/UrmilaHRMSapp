@@ -7,9 +7,8 @@ class ApiUrl {
   static const String hubUrl =
       'http://74.225.150.134:1001/hubs/NotificationHub?userId='; // port
 
-  // static const String _base = 'https://apihrms.uisl.in/api';
-  // static const String hubUrl =
-  //     'https://apihrms.uisl.in/hubs/NotificationHub?userId=';
+  static const String viewImageBase =
+      'https://usiciprodsa.blob.core.windows.net/nirghosh-ems-docs-prod/'; // port
 
   //----------------------->>  USER  <<-------------------------------
   static String login = '$_base/Auth/login';
@@ -27,6 +26,7 @@ class ApiUrl {
   static String getMonthlyAttendance =
       '$_base/calendar/month?';
 
+  //------------ approve attendance by manager ---------------------
   static String getApproveAttendanceList =
       '$_base/Attendance/GetAttendanceByManagerID/';
 
