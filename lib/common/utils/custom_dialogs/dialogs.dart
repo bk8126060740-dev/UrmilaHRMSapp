@@ -3,17 +3,25 @@ import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 
-import 'base_center_dialog.dart';
+import '../../widgets/dialog/common_alert_dialog.dart';
+import '../../widgets/dialog/common_center_dialog.dart';
+import '../constants/sizes.dart';
 
 class CustomDialogs {
   static Future<T?> showCenterDialog<T>({
     required BuildContext context,
+    bool isDismissible = true,
     required Widget child,
-    required String title,
+    String? title,
+    double borderRadius = AppSizes.borderRadius16,
   }) {
     return showDialog<T>(
       context: context,
-      builder: (context) => BaseCenterDialog(content: child, title: title),
+      builder: (context) => CommonCentreDialog(
+        isDismissible: isDismissible,
+        borderRadius: borderRadius,
+        child: child,
+      ),
     );
   }
 
@@ -81,16 +89,21 @@ class CustomDialogs {
     );
   }
 
-  static Future<void> showCommonDialog({
+  static Future<void> showCommonAlertDialog({
     required BuildContext context,
     bool isDismissible = true,
     required Widget child,
+    String? title,
+    String? message,
+    double borderRadius = AppSizes.borderRadius16,
   }) {
     return showDialog(
       context: context,
       barrierDismissible: isDismissible,
-      builder: (ctx) => Center(
-        // Ensure dialog is centered on large screens
+      builder: (ctx) => CommonAlertDialog(
+        title: title,
+        message: message,
+        borderRadius: borderRadius,
         child: child,
       ),
     );

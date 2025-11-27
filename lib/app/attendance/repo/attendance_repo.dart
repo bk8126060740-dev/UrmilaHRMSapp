@@ -11,6 +11,7 @@ import '../../../common/networking/api_url.dart';
 import '../../../common/networking/common_repo.dart';
 import '../models/approve_attendance_model.dart';
 import '../models/daily_attendance_model.dart';
+import '../models/manager_employee_list_model.dart';
 import '../models/monthly_attendance_model.dart';
 
 class AttendanceRepo {
@@ -300,6 +301,21 @@ class AttendanceRepo {
           "remarks": remarks,
         },
         fromJson: (json) => json as Map<String, dynamic>,
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse<ManagerEmployeeListModel>> getManagerEmployeesList({
+    required int? empId,
+  }) async {
+    try {
+      var response = CommonRepository.getRequest(
+        url: "${ApiUrl.getMangersEmployeesList}$empId",
+        fromJson: (json) => ManagerEmployeeListModel.fromJson(json!),
+        params: {},
       );
       return response;
     } catch (e) {

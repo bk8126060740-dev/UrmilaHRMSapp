@@ -121,10 +121,11 @@ extension StringExtension on String {
 
 extension StringNullOrEmpty on String? {
   String withFallback([String defaultValue = "--"]) {
-    if (this == null || this!.trim().isEmpty) {
+    final value = this;
+    if (value == null || value.trim().isEmpty) {
       return defaultValue;
     }
-    return this!;
+    return value;
   }
 }
 

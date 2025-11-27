@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget with WidgetsBindingObserver {
   const MyHomePage({super.key, required this.title, required this.platform});
 
@@ -44,7 +43,7 @@ class MyHomePage extends StatefulWidget with WidgetsBindingObserver {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -94,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
       if (kDebugMode) {
         print(
-        'Callback on UI isolate: '
-        'task ($taskId) is in status ($status) and process ($progress)',
-      );
+          'Callback on UI isolate: '
+          'task ($taskId) is in status ($status) and process ($progress)',
+        );
       }
 
       if (_tasks != null && _tasks!.isNotEmpty) {
@@ -118,9 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
   static void downloadCallback(String id, int status, int progress) {
     if (kDebugMode) {
       print(
-      'Callback on background isolate: '
-      'task ($id) is in status ($status) and process ($progress)',
-    );
+        'Callback on background isolate: '
+        'task ($id) is in status ($status) and process ($progress)',
+      );
     }
 
     IsolateNameServer.lookupPortByName(

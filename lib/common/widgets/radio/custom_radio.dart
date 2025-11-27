@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/sizes.dart';
+import '../../utils/constants/text_styles.dart';
 
 class CustomRadio<T> extends StatelessWidget {
   final T value;
@@ -33,14 +34,7 @@ class CustomRadio<T> extends StatelessWidget {
           ),
         ),
         const SizedBox(width: AppSizes.space4),
-        Text(
-          title,
-          style:
-              textStyle ??
-              Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-        ),
+        Text(title, style: textStyle ?? AppTextStyles.w400_14(context)),
       ],
     );
   }

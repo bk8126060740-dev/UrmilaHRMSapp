@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
+import 'package:hrms_uis/common/utils/constants/decorations.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 
@@ -8,11 +9,11 @@ class CommonBottomSheet extends StatelessWidget {
   final bool showCloseIcon;
   final bool isDismissible;
   final Widget? child;
-  final double borderRadius;
   final double? maxHeight;
   final EdgeInsetsGeometry? padding;
   final Color? backgroundColor;
   final VoidCallback? onClose;
+  final BorderRadius? borderRadius;
 
   const CommonBottomSheet({
     super.key,
@@ -20,36 +21,30 @@ class CommonBottomSheet extends StatelessWidget {
     this.showCloseIcon = true,
     this.isDismissible = true,
     this.child,
-    this.borderRadius = AppSizes.borderRadius16,
     this.maxHeight,
     this.padding,
     this.backgroundColor,
     this.onClose,
+    this.borderRadius,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return WillPopScope(
       onWillPop: () async => isDismissible,
       child: Container(
+        decoration: AppDecorations.card(
+          color: AppColors.bgColor,
+          radius:
+              borderRadius ??
+              BorderRadius.only(
+                topLeft: Radius.circular(AppSizes.borderRadius16),
+                topRight: Radius.circular(AppSizes.borderRadius16),
+              ),
+        ),
         constraints: BoxConstraints(
           maxHeight: maxHeight ?? MediaQuery.of(context).size.height * 0.9,
         ),
-        // decoration: BoxDecoration(
-        //   color: backgroundColor ?? AppColors.bgColor,
-        //   borderRadius: BorderRadius.vertical(
-        //     top: Radius.circular(borderRadius),
-        //   ),
-        //   boxShadow: [
-        //     BoxShadow(
-        //       color: Colors.black.withFixedOpacity(0.25),
-        //       offset: const Offset(0, -2),
-        //       blurRadius: 8,
-        //     ),
-        //   ],
-        // ),
         padding: padding ?? const EdgeInsets.all(AppSizes.space16),
         child: SafeArea(
           top: false,

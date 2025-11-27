@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
@@ -26,11 +28,14 @@ class LogoutDialog extends StatelessWidget {
         Expanded(
           child: BlocConsumer<AppBloc, AppState>(
             listener: (BuildContext context, AppState state) {
+              log("logout loading listener :-> ${state.status}");
               if (state.status == AppStatus.logoutSuccess) {
                 NavigationService.navigateAndRemoveAll(LoginScreen.route);
               }
             },
             builder: (context, state) {
+              log("logout loading builder :-> ${state.status}");
+
               return CustomButton(
                 onTap: state.status == AppStatus.logoutLoading
                     ? null

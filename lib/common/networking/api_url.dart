@@ -23,8 +23,7 @@ class ApiUrl {
   static String fetchAttendanceDateWise =
       '$_base/Attendance/GetEmployeeAttendanceByDate?';
 
-  static String getMonthlyAttendance =
-      '$_base/calendar/month?';
+  static String getMonthlyAttendance = '$_base/calendar/month?';
 
   //------------ approve attendance by manager ---------------------
   static String getApproveAttendanceList =
@@ -33,8 +32,19 @@ class ApiUrl {
   static String approveAttendanceByManager =
       '$_base/manager/attendance/record/ApproveAttendances_byAttendenceIds';
 
+  static String getMangersEmployeesList =
+      '$_base/Employee/GetEmployeeListByManagerID?reportingManagerId=';
+
   static String getSalarySlip = '$_base/Payroll/GetEmployeeSalarySlip?';
 
   static String privacyPolicyUrl = 'https://hrmsuistech.in/privacypolicy';
   static String deleteAccountUrl = 'http://hrmsuistech.in/deleteaccount';
+
+  // ======================>> LEAVE MANAGEMENT <<==============================
+  static String getLeaveTypeBalanceData = '$_base/Leave/GetLeaveBailanceByEmployeeId?empId=';
+  static String applyLeave = '$_base/Leave/apply';
+  static String getEmployeeLeaveData = '$_base/Leave/LeaveByEmployeeId?empId=';
+  static String getApproveLeaveList = '$_base/Leave/GetLeaveByManagerID/';
+  static String approveLeaveByManager =
+      '$_base/Leave/record/ApproveLeaves_byLeaveIds';
 }

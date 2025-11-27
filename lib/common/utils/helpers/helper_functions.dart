@@ -1,9 +1,38 @@
 import 'dart:math';
-import 'package:url_launcher/url_launcher.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../widgets/dropdown/dropdown_model.dart';
+import '../constants/colors.dart';
 
 class AppHelperFunctions {
+  /// Default status bar style used throughout the app
+  static const SystemUiOverlayStyle defaultStatusBarStyle =
+      SystemUiOverlayStyle(
+        statusBarColor: AppColors.primaryColor,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      );
+
+  /// Customizable style — supply only what you want to change
+  static SystemUiOverlayStyle customStatusBarStyle({
+    Color? statusBarColor,
+    Brightness? statusBarIconBrightness,
+    Brightness? statusBarBrightness,
+  }) {
+    return SystemUiOverlayStyle(
+      statusBarColor: statusBarColor ?? defaultStatusBarStyle.statusBarColor,
+      statusBarIconBrightness:
+          statusBarIconBrightness ??
+          defaultStatusBarStyle.statusBarIconBrightness,
+      statusBarBrightness:
+          statusBarBrightness ?? defaultStatusBarStyle.statusBarBrightness,
+    );
+  }
+
   static DateTime getStartOfWeek(DateTime date) {
     final int daysUntilMonday = date.weekday - 1;
     final DateTime startOfWeek = date.subtract(Duration(days: daysUntilMonday));
@@ -138,5 +167,55 @@ class AppHelperFunctions {
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
     }
+  }
+
+  // get month list
+  static List<DropdownModel> getMonthList() {
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    return List.generate(
+      12,
+      (index) => DropdownModel(
+        id: (index + 1).toString(), // 1–12 to send in API
+        title: monthNames[index], // Month name for UI
+      ),
+    );
+  }
+
+  // get year list
+  static List<DropdownModel> getYearList({int startYear = 2020}) {
+    final currentYear = DateTime.now().year;
+
+    return [
+      for (int year = startYear; year <= currentYear; year++)
+        DropdownModel(id: year.toString(), title: year.toString()),
+    ];
+  }
+
+  // match equal or ignore
+  static bool equalsIgnoreCase(String? a, String b) {
+    return (a ?? '').toLowerCase() == b.toLowerCase();
+  }
+
+  static int calculateDays({DateTime? fromDate, DateTime? toDate}) {
+    if (fromDate == null || toDate == null) return 0;
+
+    // If dates are reversed, return 0 (optional)
+    if (toDate.isBefore(fromDate)) return 0;
+
+    return toDate.difference(fromDate).inDays + 1;
   }
 }

@@ -30,5 +30,7 @@
   "attendanceMGR": "Atten. Mgr.",
   "approveAttendance": "Approve Attendance",
   "preview": "Preview",
-  "salarySlip": "Salary Slip"
+  "salarySlip": "Salary Slip",
+  "leaveMGR": "Leave Mgr.",
+  "teamLeave": "Team Leave"
 }

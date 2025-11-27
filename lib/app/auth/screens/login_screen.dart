@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/widgets/custom/custom_base_screen.dart';
 
 import '../widgets/login/login_content.dart';
@@ -40,7 +41,10 @@ class _LoginScreenState extends State<_LoginScreen> {
           log('Popped with result: $result');
         }
       },
-      child: CustomBaseScreen(body: LoginContent(formKey: _formKey)),
+      child: CustomBaseScreen(
+        backgroundColor: AppColors.bgColor,
+        body: LoginContent(formKey: _formKey),
+      ),
     );
   }
 }

@@ -217,7 +217,7 @@ class HttpClient {
     required String url,
     Map<String, dynamic>? parameters,
     Map<String, dynamic>? body,
-    required File file,
+    File? file,                    // 👈 make file nullable
     String? fileKey,
   }) async {
     final tag = url.split('/').last;
@@ -231,96 +231,70 @@ class HttpClient {
       log('body: ${jsonEncode(body)}');
       Uri uri = Uri.parse('$url$param');
 
-      // Create request
       var request = http.MultipartRequest('POST', uri)
         ..headers.addAll(_makeHeader(isMultiPart: true));
 
-      // // 🔹 Convert all non-null body entries to string fields
+      // 🔹 Add body fields
       if (body != null) {
         body.forEach((key, value) {
           if (value != null) request.fields[key] = value.toString();
         });
       }
 
-      // Map<String, String> req = {};
-      // if (body != null) {
-      //   for (var i in body.keys) {
-      //     req[i] = body[i].toString();
-      //   }
-      // }
-      // request.fields.addAll(req);
+      // 🔹 OPTIONAL FILE HANDLING
+      if (file != null && await file.exists()) {
+        log("File attached: ${file.path}");
 
-      //
-      // // 🔹 Attach file if it exists
-      // if (await file.exists()) {
-      //   request.files.add(
-      //     await http.MultipartFile.fromPath(
-      //       fileKey ?? 'File', // default key like in your curl
-      //       file.path,
-      //       filename: file.path.split('/').last,
-      //       contentType: MediaType(
-      //         'image',
-      //         'jpeg',
-      //       ), // requires 'package:http_parser/http_parser.dart'
-      //     ),
-      //   );
-      // }
-
-      log("File:  $file");
-
-      // For mobile/desktop: use path
-      request.files.add(
-        await http.MultipartFile.fromPath(
-          fileKey ?? 'file',
-          file.path,
-          filename: file.path.split('/').last,
-        ),
-      );
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            fileKey ?? 'file',
+            file.path,
+            filename: file.path.split('/').last,
+          ),
+        );
+      } else {
+        log("No file attached");
+      }
 
       log(
-        'Final Multipart Request: ${jsonEncode({'url': uri.toString(), 'headers': request.headers, 'fields': request.fields, 'files': request.files.map((f) => f.filename).toList()})}',
+        'Final Multipart Request: ${jsonEncode({
+          'url': uri.toString(),
+          'headers': request.headers,
+          'fields': request.fields,
+          'files': request.files.map((f) => f.filename).toList(),
+        })}',
       );
 
-      // 🔹 Send request
       var response = await request.send();
       var responded = await http.Response.fromStream(response);
 
-      log(
-        '======================================================================================================',
-      );
-      log(
-        "HTTP CLIENT : $tag \n RESPONSE : STATUS : ${responded.statusCode} \n DATA :\n ${responded.body}",
-      );
-      // 🔹 Parse JSON response safely
+      // Parse response
       Map<String, dynamic> jsonResponse = {};
       try {
         jsonResponse = json.decode(responded.body);
       } catch (_) {
-        // If response body is not JSON, wrap it
         jsonResponse = {'data': responded.body};
       }
 
-      // **Normalize status**
-      // **Normalize status**
       int status = response.statusCode;
 
-      if (response.statusCode == 401 && !url.contains(ApiUrl.login)) {
+      if (status == 401 && !url.contains(ApiUrl.login)) {
         _autoLogout();
       }
 
-      // ✅ Handle validation errors (422)
       if (status == 422) {
         final errors = jsonResponse['errors'] ?? [];
         final validationMessage = (errors as List)
             .map((e) => "${e['message'] ?? ''}")
-            .join('\n'); // combine all messages
+            .join('\n');
+
         return {
           'status': status,
           'message': validationMessage.isNotEmpty
               ? validationMessage
               : jsonResponse['detail'] ??
-                    jsonResponse['title'] ??
-                    'Validation Error',
+              jsonResponse['title'] ??
+              'Validation Error',
           'data': null,
           'errors': errors,
         };
@@ -331,20 +305,13 @@ class HttpClient {
         'message': jsonResponse['message'] ?? 'Something went wrong',
         'data': jsonResponse['data'],
       };
-    } on FormatException catch (e) {
-      log('Invalid JSON format: ${e.message}');
-      rethrow;
-    } on NetworkException catch (e) {
-      log('Network exception(${e.code}): ${e.message}');
-      rethrow;
-    } on InternetException catch (e) {
-      log('Internet exception: ${e.message}');
-      rethrow;
+
     } catch (e) {
-      log('Error (${e.runtimeType}): $e');
+      log('Error: $e');
       rethrow;
     }
   }
+
 
   Map<String, String> _makeHeader({bool? isMultiPart}) {
     Map<String, String> header;
@@ -361,12 +328,12 @@ class HttpClient {
               // 'Content-Type': 'multipart/form-data',
               'accept': '*/*',
               // "Authorization": "Bearer $userToken",
-              "Authorization": "$userToken",
+              "Authorization": userToken,
             }
           : {
               'Content-Type': 'application/json',
               // "Authorization": "Bearer $userToken",
-              "Authorization": "$userToken",
+              "Authorization": userToken,
             };
       log('token from: $userToken');
     } else {

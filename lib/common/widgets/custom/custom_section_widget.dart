@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hrms_uis/common/utils/constants/sizes.dart';
+import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 
 import '../../utils/constants/decorations.dart';
 
@@ -21,11 +23,8 @@ class CustomSectionWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 12),
+          Text(title, style: AppTextStyles.w500_14(context)),
+          const SizedBox(height: AppSizes.space12),
           child,
         ],
       ),

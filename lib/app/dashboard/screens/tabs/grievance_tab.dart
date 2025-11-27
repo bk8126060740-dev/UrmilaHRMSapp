@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hrms_uis/app/attendance/screens/daily_attendance_screen.dart';
+import 'package:hrms_uis/app/attendance/screens/employee/daily_attendance_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';

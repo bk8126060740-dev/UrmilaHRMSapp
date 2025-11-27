@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../common/networking/common_repo.dart';
 import '../models/approve_attendance_model.dart';
+import '../models/manager_employee_list_model.dart';
 import '../models/monthly_attendance_model.dart';
 
 part 'attendance_bloc.freezed.dart';
@@ -426,35 +427,18 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
 
     // get monthly attendance api
     on<_GetMonthlyAttendance>((event, emit) async {
-      if (event.fromButton) {
-        emit(
-          state.copyWith(
-            status: AttendanceStatus.monthlyAttendanceLoading,
-            monthlyAttendanceLoading: true,
-            dailyAttendanceModel: null,
-          ),
-        );
-        final now = DateTime.now();
-        final isSameMonthAndYear =
-            event.dateTime.year == now.year &&
-            event.dateTime.month == now.month;
+      emit(
+        state.copyWith(
+          status: AttendanceStatus.monthlyAttendanceLoading,
+          monthlyAttendanceLoading: true,
+        ),
+      );
 
-        if (isSameMonthAndYear) {
-          add(AttendanceEvent.getDailyAttendance(date: now));
-        }
-      } else {
-        emit(
-          state.copyWith(
-            status: AttendanceStatus.monthlyAttendanceLoading,
-            monthlyAttendanceLoading: true,
-          ),
-        );
-      }
       try {
         ApiResponse<MonthlyAttendanceModel> response = await state
             .attendanceRepo
             .getMonthlyAttendance(
-              userId: userId,
+              userId: event.empId ?? userId,
               month: event.month,
               year: event.year,
             );
@@ -738,6 +722,45 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         emit(
           state.copyWith(
             status: AttendanceStatus.approveAttendanceError,
+            message: e.toString(),
+          ),
+        );
+      }
+    });
+
+    on<_GetManagersEmployeeList>((event, emit) async {
+      emit(
+        state.copyWith(status: AttendanceStatus.managerEmployeesListLoading),
+      );
+      try {
+        ApiResponse<ManagerEmployeeListModel> response = await state
+            .attendanceRepo
+            .getManagerEmployeesList(empId: userId);
+
+        if (response.isSuccess && response.data != null) {
+          emit(
+            state.copyWith(
+              managerEmployeesListModel: response.data,
+              status: AttendanceStatus.managerEmployeesListSuccess,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: AttendanceStatus.managerEmployeesListError,
+              managerEmployeesListModel: null,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: AttendanceStatus.managerEmployeesListError,
+            managerEmployeesListModel: null,
             message: e.toString(),
           ),
         );

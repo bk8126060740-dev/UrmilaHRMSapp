@@ -103,4 +103,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get salarySlip => 'Salary Slip';
+
+  @override
+  String get leaveMGR => 'Leave Mgr.';
+
+  @override
+  String get teamLeave => 'Team Leave';
 }

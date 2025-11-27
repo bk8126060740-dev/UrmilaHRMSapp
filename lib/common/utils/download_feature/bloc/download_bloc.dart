@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../repo/download_repo.dart';
@@ -78,7 +79,9 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
     });
 
     on<_DownloadProgressUpdate>((event, emit) async {
-      print('Download Update: ${event.status}, ${event.progress}');
+      if (kDebugMode) {
+        print('Download Update: ${event.status}, ${event.progress}');
+      }
 
       if (event.status == 3) {
         emit(

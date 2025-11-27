@@ -196,7 +196,7 @@ class CommonRepository {
     required String url,
     required Map<String, dynamic> body,
     required T Function(Map<String, dynamic>?) fromJson,
-    required File file,
+    required File? file,
     String fileKey = 'File',
     Map<String, dynamic>? parameters,
   }) async {
@@ -205,7 +205,7 @@ class CommonRepository {
       '======================================================================================================',
     );
     log("TAG $tag \n REQUEST BODY Common Repo : \n ${jsonEncode(body)}");
-    log("TAG $tag \n FILE PATH : ${file.path}");
+    log("TAG $tag \n FILE PATH : ${file?.path}");
 
     try {
       final response = await HttpClient.instance().postMultipart(

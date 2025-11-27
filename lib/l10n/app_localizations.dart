@@ -286,6 +286,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Salary Slip'**
   String get salarySlip;
+
+  /// No description provided for @leaveMGR.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave Mgr.'**
+  String get leaveMGR;
+
+  /// No description provided for @teamLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Leave'**
+  String get teamLeave;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

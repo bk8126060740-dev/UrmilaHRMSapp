@@ -154,7 +154,9 @@ class __$$StartDownloadImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartDownloadImpl implements _StartDownload {
+class _$StartDownloadImpl
+    with DiagnosticableTreeMixin
+    implements _StartDownload {
   const _$StartDownloadImpl(
       {required this.url,
       this.fileName,
@@ -171,8 +173,19 @@ class _$StartDownloadImpl implements _StartDownload {
   final int? downloadIndex;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DownloadEvent.startDownload(url: $url, fileName: $fileName, fileExtension: $fileExtension, downloadIndex: $downloadIndex)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DownloadEvent.startDownload'))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('fileName', fileName))
+      ..add(DiagnosticsProperty('fileExtension', fileExtension))
+      ..add(DiagnosticsProperty('downloadIndex', downloadIndex));
   }
 
   @override
@@ -339,15 +352,25 @@ class __$$PauseDownloadImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PauseDownloadImpl implements _PauseDownload {
+class _$PauseDownloadImpl
+    with DiagnosticableTreeMixin
+    implements _PauseDownload {
   const _$PauseDownloadImpl({required this.taskId});
 
   @override
   final String taskId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DownloadEvent.pauseDownload(taskId: $taskId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DownloadEvent.pauseDownload'))
+      ..add(DiagnosticsProperty('taskId', taskId));
   }
 
   @override
@@ -501,15 +524,25 @@ class __$$ResumeDownloadImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResumeDownloadImpl implements _ResumeDownload {
+class _$ResumeDownloadImpl
+    with DiagnosticableTreeMixin
+    implements _ResumeDownload {
   const _$ResumeDownloadImpl({required this.taskId});
 
   @override
   final String taskId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DownloadEvent.resumeDownload(taskId: $taskId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DownloadEvent.resumeDownload'))
+      ..add(DiagnosticsProperty('taskId', taskId));
   }
 
   @override
@@ -664,15 +697,25 @@ class __$$CancelDownloadImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CancelDownloadImpl implements _CancelDownload {
+class _$CancelDownloadImpl
+    with DiagnosticableTreeMixin
+    implements _CancelDownload {
   const _$CancelDownloadImpl({required this.taskId});
 
   @override
   final String taskId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DownloadEvent.cancelDownload(taskId: $taskId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DownloadEvent.cancelDownload'))
+      ..add(DiagnosticsProperty('taskId', taskId));
   }
 
   @override
@@ -839,7 +882,9 @@ class __$$DownloadProgressUpdateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DownloadProgressUpdateImpl implements _DownloadProgressUpdate {
+class _$DownloadProgressUpdateImpl
+    with DiagnosticableTreeMixin
+    implements _DownloadProgressUpdate {
   const _$DownloadProgressUpdateImpl(
       {required this.taskId, required this.status, required this.progress});
 
@@ -851,8 +896,18 @@ class _$DownloadProgressUpdateImpl implements _DownloadProgressUpdate {
   final int progress;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DownloadEvent.downloadProgressUpdate(taskId: $taskId, status: $status, progress: $progress)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DownloadEvent.downloadProgressUpdate'))
+      ..add(DiagnosticsProperty('taskId', taskId))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('progress', progress));
   }
 
   @override
@@ -1113,7 +1168,9 @@ class __$$DownloadStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DownloadStateImpl implements _DownloadState {
+class _$DownloadStateImpl
+    with DiagnosticableTreeMixin
+    implements _DownloadState {
   const _$DownloadStateImpl(
       {required this.downloadRepository,
       this.downloadStatus = DownloadStatus.downloadInitial,
@@ -1136,8 +1193,20 @@ class _$DownloadStateImpl implements _DownloadState {
   final int? activeDownloadId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DownloadState(downloadRepository: $downloadRepository, downloadStatus: $downloadStatus, taskId: $taskId, progress: $progress, activeDownloadId: $activeDownloadId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DownloadState'))
+      ..add(DiagnosticsProperty('downloadRepository', downloadRepository))
+      ..add(DiagnosticsProperty('downloadStatus', downloadStatus))
+      ..add(DiagnosticsProperty('taskId', taskId))
+      ..add(DiagnosticsProperty('progress', progress))
+      ..add(DiagnosticsProperty('activeDownloadId', activeDownloadId));
   }
 
   @override

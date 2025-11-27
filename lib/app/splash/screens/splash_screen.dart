@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/app/dashboard/screens/dashboard_screen.dart';
+import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/widgets/custom/custom_base_screen.dart';
 
@@ -26,9 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var loginResponse = context.read<AppBloc>().state.loginResponse;
       NavigationService.navigateAndRemoveAll(
-        loginResponse == null
-            ? LoginScreen.route
-            : DashboardScreen.route,
+        loginResponse == null ? LoginScreen.route : DashboardScreen.route,
       );
       // if (loginResponse == null) {
       //   NavigationService.navigateAndRemoveAll(LoginScreen.route);
@@ -56,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
       },
       builder: (context, state) {
         return CustomBaseScreen(
+          backgroundColor: AppColors.bgColor,
           body: AppLogo(
             width: AppSizes.imageSize150,
             height: AppSizes.imageSize150,

@@ -12,17 +12,16 @@ void main() async {
 
   // Plugin must be initialized before using
   await FlutterDownloader.initialize(
-    debug: true,
-    // optional: set to false to disable printing logs to console (default: true)
+    debug: true, // optional: set to false to disable printing logs to console (default: true)
     ignoreSsl:
         true, // option: set to false to disable working with http links (default: false)
   );
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: AppColors.primaryColor, // status bar color
-      // statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: AppColors.primaryColor, // your primary
+      statusBarIconBrightness: Brightness.light, // Android icons -> white
+      statusBarBrightness: Brightness.dark,
     ),
   );
 

@@ -23,15 +23,19 @@ class AttendanceEvent with _$AttendanceEvent {
   const factory AttendanceEvent.getDailyAttendance({required DateTime date}) =
       _GetDailyAttendance;
 
+  const factory AttendanceEvent.getManagersEmployeeList() =
+      _GetManagersEmployeeList;
+
   const factory AttendanceEvent.checkIn() = _CheckIn;
 
   const factory AttendanceEvent.checkOut() = _CheckOut;
 
   const factory AttendanceEvent.getMonthlyAttendance({
-    @Default(false) bool fromButton,
+    // @Default(false) bool fromButton,
     required int month,
     required int year,
-    required DateTime dateTime,
+    // required DateTime dateTime,
+    int? empId,
   }) = _GetMonthlyAttendance;
 
   const factory AttendanceEvent.updateCalendarSelection({

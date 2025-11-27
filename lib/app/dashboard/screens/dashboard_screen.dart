@@ -15,7 +15,6 @@ import '../../../common/utils/app_bloc/app_bloc.dart';
 import '../../../common/utils/custom_dialogs/dialogs.dart';
 import '../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../common/widgets/bottom_bar/custom_bottom_bar.dart';
-import '../../../common/widgets/dialog/common_dialog.dart';
 import '../widgets/logout_dialog.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -86,13 +85,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   actions: [
                     InkWell(
                       onTap: () {
-                        CustomDialogs.showCommonDialog(
+                        CustomDialogs.showCommonAlertDialog(
                           context: context,
-                          child: CommonDialog(
-                            title: context.loc.logout,
-                            message: context.loc.areYouSureYouWant,
-                            child: LogoutDialog(),
-                          ),
+                          title: context.loc.logout,
+                          message: context.loc.areYouSureYouWant,
+                          child: LogoutDialog(),
                         );
                       },
                       child: Row(

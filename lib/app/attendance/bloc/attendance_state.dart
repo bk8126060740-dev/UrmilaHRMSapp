@@ -23,6 +23,7 @@ class AttendanceState with _$AttendanceState {
     // 🔹 Employee Selection
     ApproveAttendanceModel? approveAttendanceListModel,
     ApproveAttendanceModel? fetchedAttendanceListModel,
+    ManagerEmployeeListModel? managerEmployeesListModel,
     @Default(<String>{}) Set<String> selectedEmployeeIds,
     @Default(false) bool selectAll,
 
@@ -65,4 +66,7 @@ enum AttendanceStatus {
   approveAttendanceLoading,
   approveAttendanceError,
   approveAttendanceSuccess,
+  managerEmployeesListLoading,
+  managerEmployeesListError,
+  managerEmployeesListSuccess,
 }

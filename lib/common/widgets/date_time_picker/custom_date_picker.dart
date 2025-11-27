@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
 import '../../utils/formatters/date_formats.dart';
-import '../../utils/popups/custom_snackbar.dart';
 
 class CustomDatePicker extends StatelessWidget {
   const CustomDatePicker({
@@ -68,30 +67,24 @@ class CustomDatePicker extends StatelessWidget {
             GestureDetector(
               onTap: enabled
                   ? () async {
-                      if (dependentDate == null && dependentFieldName != null) {
-                        CustomSnackBar.showWarning(
-                          context: context,
-                          message: "Please select $dependentFieldName first",
-                        );
-                        return;
-                      }
-
                       final DateTime now = DateTime.now();
+
+                      // Pick safe range
+                      final DateTime safeFirst = firstDate ?? DateTime(2000);
+                      final DateTime safeLast = lastDate ?? DateTime(2100);
+
+                      // Determine what the calendar should open on
+                      DateTime initial = field.value ?? now;
+
+                      // Clamp initial inside range
+                      if (initial.isBefore(safeFirst)) initial = safeFirst;
+                      if (initial.isAfter(safeLast)) initial = safeLast;
+
                       final DateTime? picked = await showDatePicker(
                         context: context,
-                        // initialDate: field.value ?? dependentDate ?? now,
-                        // firstDate: firstDate ??
-                        //     dependentDate ??
-                        //     now.subtract(const Duration(days: 365)),
-                        // lastDate:
-                        // lastDate ?? now.add(const Duration(days: 365)),
-                        initialDate: field.value ?? now,
-                        firstDate:
-                            firstDate ??
-                            dependentDate ??
-                            now.subtract(const Duration(days: 365)),
-                        lastDate:
-                            lastDate ?? now.add(const Duration(days: 365)),
+                        initialDate: initial,
+                        firstDate: safeFirst,
+                        lastDate: safeLast,
                       );
 
                       if (picked != null) {
@@ -100,6 +93,34 @@ class CustomDatePicker extends StatelessWidget {
                       }
                     }
                   : null,
+              // onTap: enabled
+              //     ? () async {
+              //         if (dependentDate == null && dependentFieldName != null) {
+              //           CustomSnackBar.showWarning(
+              //             context: context,
+              //             message: "Please select $dependentFieldName first",
+              //           );
+              //           return;
+              //         }
+              //
+              //         final DateTime now = DateTime.now();
+              //         final DateTime? picked = await showDatePicker(
+              //           context: context,
+              //           initialDate: field.value ?? now,
+              //           firstDate:
+              //               firstDate ??
+              //               dependentDate ??
+              //               now.subtract(const Duration(days: 365)),
+              //           lastDate:
+              //               lastDate ?? now.add(const Duration(days: 365)),
+              //         );
+              //
+              //         if (picked != null) {
+              //           field.didChange(picked);
+              //           onDateChanged(picked);
+              //         }
+              //       }
+              //     : null,
               child: Container(
                 height: height,
                 width: width,

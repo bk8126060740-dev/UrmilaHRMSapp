@@ -11,5 +11,7 @@
 
 ## create obfuscate apk using it
 -[ flutter build apk --release --shrink --obfuscate --split-debug-info=misc/mapping/${version} ]
-
-## powershell -ExecutionPolicy Bypass -File build_release.ps1
+- [ powershell -ExecutionPolicy Bypass -File build_release.ps1 ]
+## or 
+1. Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypas
+2. build_release.ps1

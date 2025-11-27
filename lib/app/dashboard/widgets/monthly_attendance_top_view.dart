@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrms_uis/app/attendance/screens/daily_attendance_screen.dart';
+import 'package:hrms_uis/app/attendance/screens/employee/daily_attendance_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 
+import '../../../common/networking/api_url.dart';
 import '../../../common/utils/app_bloc/app_bloc.dart';
 import '../../../common/utils/constants/colors.dart';
 import '../../../common/utils/constants/decorations.dart';
@@ -72,8 +73,13 @@ class MonthlyAttendanceTopView extends StatelessWidget {
           top: -40,
           child: BlocBuilder<AppBloc, AppState>(
             builder: (context, appState) {
+              var profilePath = appState.userProfileModel?.profilePath ?? "";
+
               return CustomImage(
-                imageUrl: appState.userProfileModel?.profilePath ?? "",
+                // imageUrl: appState.userProfileModel?.profilePath ?? "",
+                imageUrl: profilePath.isNotEmpty
+                    ? ApiUrl.viewImageBase + profilePath
+                    : AppImages.profileImage,
                 fallbackAsset: AppImages.profileImage,
                 size: 100,
                 borderColor: Colors.white,

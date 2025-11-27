@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hrms_uis/app/attendance/widgets/monthly_attendance_calender_view.dart';
-import 'package:hrms_uis/app/attendance/widgets/monthly_attendance_summary.dart';
+import 'package:hrms_uis/app/attendance/widgets/employee/monthly_attendance_calender_view.dart';
+import 'package:hrms_uis/app/attendance/widgets/employee/monthly_attendance_summary.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 
 import '../../../../common/navigation_service/navigation_service.dart';
 import '../../../../common/utils/constants/sizes.dart';
 import '../../../../common/widgets/appbar/custom_appbar.dart';
-import '../../../attendance/screens/daily_attendance_screen.dart';
+import '../../../attendance/screens/employee/daily_attendance_screen.dart';
 import '../../widgets/monthly_attendance_top_view.dart';
 
 class MonthlyAttendanceTab extends StatefulWidget {
