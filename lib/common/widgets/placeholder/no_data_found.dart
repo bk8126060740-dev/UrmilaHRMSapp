@@ -11,26 +11,28 @@ class NoDataFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(AppSizes.padding16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset(
-            AppImages.noDataAnim,
-            width: 150,
-            height: 150,
-            repeat: true,
-            fit: BoxFit.fill,
-          ),
-          const SizedBox(height: AppSizes.space4),
-          Text(
-            message,
-            style: AppTextStyles.w400_14(context),
-            textAlign: TextAlign.center,
-          ),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSizes.padding16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              AppImages.noDataAnim,
+              width: 150,
+              height: 150,
+              repeat: true,
+              fit: BoxFit.fill,
+            ),
+            const SizedBox(height: AppSizes.space4),
+            Text(
+              message,
+              style: AppTextStyles.w400_14(context),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }

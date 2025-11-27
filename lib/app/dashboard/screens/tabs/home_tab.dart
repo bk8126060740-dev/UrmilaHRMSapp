@@ -16,7 +16,8 @@ import '../../../attendance/screens/manager/approve_attend_emp_list_screen.dart'
 import '../../../attendance/screens/manager/team_attendance_screen.dart';
 import '../../../leave/screens/employee/view_leave_screen.dart';
 import '../../../leave/screens/manager/approve_leave_emp_list.dart';
-import '../../../missed_punch/screens/view_missed_punch_screen.dart';
+import '../../../missed_punch/screens/employee/view_missed_punch_screen.dart';
+import '../../../missed_punch/screens/manager/approve_missed_punch_list_screen.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -288,22 +289,22 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
         ),
       ),
-      // MaterialSquareIcon(
-      //   squareColor: AppColors.surfaceColor,
-      //   title: "Missed Punch",
-      //   textStyle: serviceTextStyle,
-      //   iconTextGap: 8.0,
-      //   onTap: () {
-      //     NavigationService.navigateTo(ViewMissedPunchScreen.route);
-      //   },
-      //   child: SvgPicture.asset(
-      //     AppImages.leaveIcon,
-      //     fit: BoxFit.fill,
-      //     height: 20,
-      //     width: 20,
-      //     colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
-      //   ),
-      // ),
+      MaterialSquareIcon(
+        squareColor: AppColors.surfaceColor,
+        title: "Missed Punch",
+        textStyle: serviceTextStyle,
+        iconTextGap: 8.0,
+        onTap: () {
+          NavigationService.navigateTo(ViewMissedPunchScreen.route);
+        },
+        child: SvgPicture.asset(
+          AppImages.missingPunchIcon,
+          fit: BoxFit.fill,
+          height: 20,
+          width: 20,
+          colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+        ),
+      ),
     ];
 
     /// ---------------- MANAGER SERVICES ----------------
@@ -356,16 +357,29 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
         ),
       ),
+      MaterialSquareIcon(
+        squareColor: AppColors.surfaceColor,
+        title: "Punch Mgr.",
+        textStyle: serviceTextStyle,
+        iconTextGap: 8.0,
+        onTap: () {
+          NavigationService.navigateTo(ApproveMissedPunchListScreen.route);
+        },
+        child: SvgPicture.asset(
+          AppImages.punchManageIcon,
+          fit: BoxFit.fill,
+          height: 20,
+          width: 20,
+          colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+        ),
+      ),
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Employee section
-        Text(
-          "Employee Services",
-          style: AppTextStyles.w500_14(context),
-        ),
+        Text("Employee Services", style: AppTextStyles.w500_14(context)),
         const SizedBox(height: 8),
         GridView.builder(
           shrinkWrap: true,
@@ -383,10 +397,7 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
         // Manager section (only for M)
         if (isManager) ...[
           const SizedBox(height: 20),
-          Text(
-            "Manager Services",
-            style: AppTextStyles.w500_14(context),
-          ),
+          Text("Manager Services", style: AppTextStyles.w500_14(context)),
           const SizedBox(height: 8),
           GridView.builder(
             shrinkWrap: true,

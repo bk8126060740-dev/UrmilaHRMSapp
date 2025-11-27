@@ -128,16 +128,16 @@ class SideDrawer extends StatelessWidget {
                                   // ),
 
                                   // privacyPolicy
-                                  _buildNavItemView(
-                                    context,
-                                    onTap: () {
-                                      AppHelperFunctions.launchExternal(
-                                        ApiUrl.privacyPolicyUrl,
-                                      );
-                                    },
-                                    navIcon: AppImages.policyIconSN,
-                                    navTitle: context.loc.privacyPolicy,
-                                  ),
+                                  // _buildNavItemView(
+                                  //   context,
+                                  //   onTap: () {
+                                  //     AppHelperFunctions.launchExternal(
+                                  //       ApiUrl.privacyPolicyUrl,
+                                  //     );
+                                  //   },
+                                  //   navIcon: AppImages.policyIconSN,
+                                  //   navTitle: context.loc.privacyPolicy,
+                                  // ),
 
                                   // delete
                                   // _buildNavItemView(

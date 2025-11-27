@@ -4,16 +4,18 @@ import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/app/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hrms_uis/app/leave/bloc/leave_bloc.dart';
 import 'package:hrms_uis/app/leave/model/approval_leave_list_model.dart';
+import 'package:hrms_uis/app/missed_punch/bloc/missed_punch_bloc.dart';
+import 'package:hrms_uis/app/missed_punch/models/approval_missed_punch_data.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 
 import '../../app/attendance/models/approve_attendance_model.dart';
 import '../../app/attendance/models/daily_attendance_model.dart';
-import '../../app/attendance/screens/manager/approve_attend_emp_details.dart';
-import '../../app/attendance/screens/manager/approve_attend_emp_list_screen.dart';
-import '../../app/attendance/screens/manager/team_attendance_screen.dart';
 import '../../app/attendance/screens/employee/daily_attendance_details_screen.dart';
 import '../../app/attendance/screens/employee/daily_attendance_screen.dart';
 import '../../app/attendance/screens/employee/monthly_attendance_screen.dart';
+import '../../app/attendance/screens/manager/approve_attend_emp_details.dart';
+import '../../app/attendance/screens/manager/approve_attend_emp_list_screen.dart';
+import '../../app/attendance/screens/manager/team_attendance_screen.dart';
 import '../../app/auth/bloc/auth_bloc.dart';
 import '../../app/auth/screens/forgot_password_screen.dart';
 import '../../app/auth/screens/login_screen.dart';
@@ -24,8 +26,10 @@ import '../../app/leave/screens/employee/leave_history_details_screen.dart';
 import '../../app/leave/screens/employee/view_leave_screen.dart';
 import '../../app/leave/screens/manager/approve_leave_emp_details.dart';
 import '../../app/leave/screens/manager/approve_leave_emp_list.dart';
-import '../../app/missed_punch/screens/apply_missed_punch_screen.dart';
-import '../../app/missed_punch/screens/view_missed_punch_screen.dart';
+import '../../app/missed_punch/screens/employee/apply_missed_punch_screen.dart';
+import '../../app/missed_punch/screens/employee/view_missed_punch_screen.dart';
+import '../../app/missed_punch/screens/manager/approve_missed_punch_details.dart';
+import '../../app/missed_punch/screens/manager/approve_missed_punch_list_screen.dart';
 import '../../app/profile/screens/profile_screen.dart';
 import '../../app/salary_slip/screens/salary_slip_screen.dart';
 import '../../app/splash/screens/splash_screen.dart';
@@ -171,18 +175,7 @@ class AppRoutes {
             );
           },
         );
-      case ViewLeaveScreen.route:
-        return MaterialPageRoute(
-          builder: (context) {
-            var loginModel = context.read<AppBloc>().state.loginResponse;
-            return BlocProvider(
-              create: (context) => LeaveBloc(empId: loginModel?.employeeId)
-                ..add(LeaveEvent.getLeaveType())
-                /*..add(LeaveEvent.getEmpLeave())*/,
-              child: ViewLeaveScreen(),
-            );
-          },
-        );
+      // ==============>> Leave Apply <<====================
       case ApplyLeaveScreen.route:
         return MaterialPageRoute(
           builder: (context) {
@@ -195,16 +188,24 @@ class AppRoutes {
             );
           },
         );
-      case ViewMissedPunchScreen.route:
+      case ViewLeaveScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            return ViewMissedPunchScreen();
+            var loginModel = context.read<AppBloc>().state.loginResponse;
+            return BlocProvider(
+              create: (context) =>
+                  LeaveBloc(empId: loginModel?.employeeId)
+                    ..add(LeaveEvent.getLeaveType()),
+              /*..add(LeaveEvent.getEmpLeave())*/
+              child: ViewLeaveScreen(),
+            );
           },
         );
-      case ApplyMissedPunchScreen.route:
+      case LeaveHistoryDetailsScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            return ApplyMissedPunchScreen();
+            final leaveData = settings.arguments as EmpLeaveDataItem?;
+            return LeaveHistoryDetailsScreen(item: leaveData);
           },
         );
       case ApproveLeaveEmpList.route:
@@ -229,11 +230,50 @@ class AppRoutes {
             return ApproveLeaveEmpDetails(leaveData: employeeSwipeModel);
           },
         );
-      case LeaveHistoryDetailsScreen.route:
+
+      // ==============>> Missed punch <<====================
+      case ViewMissedPunchScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            final leaveData = settings.arguments as EmpLeaveDataItem?;
-            return LeaveHistoryDetailsScreen(item: leaveData);
+            return ViewMissedPunchScreen();
+          },
+        );
+      case ApplyMissedPunchScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            var loginModel = context.read<AppBloc>().state.loginResponse;
+            return BlocProvider(
+              create: (context) =>
+                  MissedPunchBloc(empId: loginModel?.employeeId),
+              child: ApplyMissedPunchScreen(),
+            );
+          },
+        );
+      case ApproveMissedPunchListScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            var loginModel = context.read<AppBloc>().state.loginResponse;
+
+            return BlocProvider(
+              create: (context) {
+                return MissedPunchBloc(empId: loginModel?.employeeId)..add(
+                  MissedPunchEvent.selectFilterType(
+                    selectedFilterType: "Daily",
+                  ),
+                );
+              },
+              child: ApproveMissedPunchListScreen(),
+            );
+          },
+        );
+      case ApproveMissedPunchDetails.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            final employeeSwipeModel =
+                settings.arguments as ApprovalMissingPunchItem?;
+            return ApproveMissedPunchDetails(
+              missingPunchData: employeeSwipeModel,
+            );
           },
         );
       default:

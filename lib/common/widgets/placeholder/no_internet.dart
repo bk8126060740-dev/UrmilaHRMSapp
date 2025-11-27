@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
+import 'package:hrms_uis/common/widgets/custom/custom_base_screen.dart';
 
 import '../../utils/constants/image_strings.dart';
 import '../../utils/constants/sizes.dart';
@@ -14,7 +15,7 @@ class NoInternetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return CustomBaseScreen(
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,

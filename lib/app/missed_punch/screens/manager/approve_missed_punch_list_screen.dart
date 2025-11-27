@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hrms_uis/app/missed_punch/bloc/missed_punch_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/widgets/appbar/custom_appbar.dart';
 import 'package:hrms_uis/common/widgets/checkbox/custom_checkbox.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 import 'package:hrms_uis/common/widgets/placeholder/no_data_found.dart';
-import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../common/utils/custom_dialogs/bottomSheets.dart';
-import '../../bloc/leave_bloc.dart';
-import '../../widgets/manager/approval_leave_emp_card.dart';
-import '../../widgets/manager/leave_approve_reject_view.dart';
-import '../../widgets/manager/approval_leave_filter_bottom_sheet.dart';
+import '../../widgets/manager/approve_missed_punch_card.dart';
+import '../../widgets/manager/approve_punch_filter_bottom_sheet.dart';
+import '../../widgets/manager/punch_approve_reject_view.dart';
 
-class ApproveLeaveEmpList extends StatefulWidget {
-  static const route = '/approve_leave_emp_list';
+class ApproveMissedPunchListScreen extends StatefulWidget {
+  static const route = '/approve_missing_punch_list';
 
-  const ApproveLeaveEmpList({super.key});
+  const ApproveMissedPunchListScreen({super.key});
 
   @override
-  State<ApproveLeaveEmpList> createState() => _ApproveLeaveEmpListState();
+  State<ApproveMissedPunchListScreen> createState() =>
+      _ApproveMissedPunchListScreenState();
 }
 
-class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
+class _ApproveMissedPunchListScreenState
+    extends State<ApproveMissedPunchListScreen> {
   final TextEditingController searchController = TextEditingController();
   final RefreshController refreshController = RefreshController();
 
@@ -32,7 +33,9 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<LeaveBloc>().add(const LeaveEvent.getApproveLeaveList());
+      context.read<MissedPunchBloc>().add(
+        const MissedPunchEvent.getApprovalPunchList(),
+      );
     });
   }
 
@@ -45,16 +48,16 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LeaveBloc, LeaveState>(
+    return BlocBuilder<MissedPunchBloc, MissedPunchState>(
       builder: (context, state) {
-        final leaveList = state.approveLeaveListModel?.leaveList ?? [];
+        final leaveList =
+            state.approvalMissingPunchModel?.missingPunchList ?? [];
 
         return Scaffold(
           // resizeToAvoidBottomInset: false,
           appBar: CustomAppBar(
             elevation: 0,
-            title: "Approve Leave",
-            subtitle: _buildSubtitle(state),
+            title: "Approve Missed Punch",
             showAvatar: false,
             showBackButton: true,
             showNavigation: false,
@@ -65,8 +68,8 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
               controller: refreshController,
               enablePullDown: true,
               onRefresh: () {
-                context.read<LeaveBloc>().add(
-                  const LeaveEvent.getApproveLeaveList(),
+                context.read<MissedPunchBloc>().add(
+                  const MissedPunchEvent.getApprovalPunchList(),
                 );
                 refreshController.refreshCompleted();
               },
@@ -92,8 +95,8 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
                             title: "Select All",
                             scale: 1,
                             onChanged: (value) {
-                              context.read<LeaveBloc>().add(
-                                LeaveEvent.toggleAllSelection(value),
+                              context.read<MissedPunchBloc>().add(
+                                MissedPunchEvent.toggleAllSelection(value),
                               );
                             },
                           ),
@@ -103,8 +106,8 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
                                 context: context,
                                 title: "Leave Filter",
                                 child: BlocProvider.value(
-                                  value: context.read<LeaveBloc>(),
-                                  child: ApprovalLeaveFilterBottomSheet(),
+                                  value: context.read<MissedPunchBloc>(),
+                                  child: ApprovePunchFilterBottomSheet(),
                                 ),
                               );
                             },
@@ -129,8 +132,8 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
                         suffixIcon: InkWell(
                           onTap: () {
                             searchController.clear();
-                            context.read<LeaveBloc>().add(
-                              const LeaveEvent.searchEmployeeFromList(""),
+                            context.read<MissedPunchBloc>().add(
+                              const MissedPunchEvent.searchEmployeeFromList(""),
                             );
                           },
                           child: const Icon(
@@ -149,8 +152,8 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
                         ),
                       ),
                       onChanged: (value) {
-                        context.read<LeaveBloc>().add(
-                          LeaveEvent.searchEmployeeFromList(value),
+                        context.read<MissedPunchBloc>().add(
+                          MissedPunchEvent.searchEmployeeFromList(value),
                         );
                       },
                     ),
@@ -159,7 +162,7 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
 
                     // 🔹 List
                     Expanded(
-                      child: state.getApproveLeaveLoading
+                      child: state.getApprovalPunchListLoading
                           ? const Center(child: CustomCircularProgress())
                           : leaveList.isEmpty
                           ? const Center(
@@ -167,11 +170,11 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
                                 message: "No leave requests found",
                               ),
                             )
-                          : const ApproveLeaveEmpCard(),
+                          : const ApproveMissedPunchCard(),
                     ),
 
                     // 🔹 Approve / Reject + Remark
-                    const LeaveApproveRejectView(),
+                    const PunchApproveRejectView(),
                   ],
                 ),
               ),
@@ -180,20 +183,5 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
         );
       },
     );
-  }
-
-  String _buildSubtitle(LeaveState state) {
-    if (state.selectedFilter == "Custom" &&
-        state.fromDate != null &&
-        state.toDate != null) {
-      return "${DateFormat('dd-MMM').format(state.fromDate!)} - "
-          "${DateFormat('dd-MMM').format(state.toDate!)}";
-    }
-    if (state.selectedFilter == "Daily") {
-      return "Today (${DateFormat('dd-MMM-yyyy').format(DateTime.now())})";
-    }
-    if (state.selectedFilter == "Weekly") return "This Week";
-    if (state.selectedFilter == "Monthly") return "This Month";
-    return "";
   }
 }

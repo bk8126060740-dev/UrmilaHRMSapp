@@ -119,12 +119,13 @@ extension StringExtension on String {
   }
 }
 
-extension StringNullOrEmpty on String? {
-  String withFallback([String defaultValue = "--"]) {
-    final value = this;
-    if (value == null || value.trim().isEmpty) {
-      return defaultValue;
-    }
+extension DynamicFallback on dynamic {
+  String withFallback([String defaultValue = "N/A"]) {
+    if (this == null) return defaultValue;
+
+    final value = this.toString().trim();
+    if (value.isEmpty || value == "null") return defaultValue;
+
     return value;
   }
 }

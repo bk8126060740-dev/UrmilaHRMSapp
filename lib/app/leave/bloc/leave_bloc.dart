@@ -23,7 +23,7 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
   final TextEditingController remarkController = TextEditingController();
 
   LeaveBloc({required int? empId}) : super(LeaveState(leaveRepo: LeaveRepo())) {
-    // filter approve attendance
+    //==============>> Manager Modules ==================>>
     on<_SelectDate>((event, emit) {
       if (event.isFromDate) {
         final fromDate = event.selectedDate;
@@ -260,6 +260,7 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
       }
     });
 
+    //==============>> Employee Modules ==================>>
     on<_GetLeaveType>((event, emit) async {
       emit(
         state.copyWith(

@@ -76,9 +76,7 @@ class LeaveHistoryItem extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.all(AppSizes.padding16),
-        decoration: AppDecorations.card().copyWith(
-          // borderRadius: BorderRadius.circular(bor),
-        ),
+        decoration: AppDecorations.card().copyWith(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -116,7 +114,7 @@ class LeaveHistoryItem extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 6),
+            const SizedBox(height: AppSizes.space4),
 
             /// --- Date (Single or Range) ---
             Row(
@@ -134,7 +132,7 @@ class LeaveHistoryItem extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 6),
+            const SizedBox(height: AppSizes.space4),
 
             /// --- Duration (Always Shown) ---
             Row(

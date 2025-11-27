@@ -47,6 +47,7 @@ class AppImages {
   static const String nextIcon = "${_iconPath}next_icon.svg";
   static const String managerApproveIcon = "${_iconPath}manager_approve_icon.svg";
   static const String missingPunchIcon = "${_iconPath}missing_punch.svg";
+  static const String punchManageIcon = "${_iconPath}punch_manage.svg";
 
   // leave
   static const String leaveIcon = "${_iconPath}leave.svg";

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../../../common/widgets/appbar/custom_appbar.dart';
-import '../widgets/missed_punch_item.dart';
+import '../../../../common/widgets/appbar/custom_appbar.dart';
+import '../../widgets/employee/missed_punch_item.dart';
 import 'apply_missed_punch_screen.dart';
 
 class ViewMissedPunchScreen extends StatefulWidget {
