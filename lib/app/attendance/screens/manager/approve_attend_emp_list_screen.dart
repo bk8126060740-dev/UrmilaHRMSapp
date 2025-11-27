@@ -55,7 +55,6 @@ class _ApproveAttendEmpListScreenState
         var approveAttendanceList =
             state.approveAttendanceListModel?.attendecList ?? [];
         return Scaffold(
-          // resizeToAvoidBottomInset: false,
           appBar: CustomAppBar(
             elevation: 0,
             title: context.loc.approveAttendance,

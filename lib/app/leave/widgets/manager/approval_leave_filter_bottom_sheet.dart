@@ -11,14 +11,14 @@ import '../../../../common/widgets/dropdown/custom_animated_dropdown.dart';
 import '../../../../common/widgets/text/custom_field_heading.dart';
 import '../../bloc/leave_bloc.dart';
 
-class LeaveFilterBottomSheet extends StatefulWidget {
-  const LeaveFilterBottomSheet({super.key});
+class ApprovalLeaveFilterBottomSheet extends StatefulWidget {
+  const ApprovalLeaveFilterBottomSheet({super.key});
 
   @override
-  State<LeaveFilterBottomSheet> createState() => _LeaveFilterBottomSheetState();
+  State<ApprovalLeaveFilterBottomSheet> createState() => _ApprovalLeaveFilterBottomSheetState();
 }
 
-class _LeaveFilterBottomSheetState extends State<LeaveFilterBottomSheet> {
+class _ApprovalLeaveFilterBottomSheetState extends State<ApprovalLeaveFilterBottomSheet> {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<LeaveBloc>();

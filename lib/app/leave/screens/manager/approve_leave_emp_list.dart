@@ -13,7 +13,7 @@ import '../../../../common/utils/custom_dialogs/bottomSheets.dart';
 import '../../bloc/leave_bloc.dart';
 import '../../widgets/manager/approval_leave_emp_card.dart';
 import '../../widgets/manager/leave_approve_reject_view.dart';
-import '../../widgets/manager/leave_filter_bottom_sheet.dart';
+import '../../widgets/manager/approval_leave_filter_bottom_sheet.dart';
 
 class ApproveLeaveEmpList extends StatefulWidget {
   static const route = '/approve_leave_emp_list';
@@ -104,7 +104,7 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
                                 title: "Leave Filter",
                                 child: BlocProvider.value(
                                   value: context.read<LeaveBloc>(),
-                                  child: LeaveFilterBottomSheet(),
+                                  child: ApprovalLeaveFilterBottomSheet(),
                                 ),
                               );
                             },
