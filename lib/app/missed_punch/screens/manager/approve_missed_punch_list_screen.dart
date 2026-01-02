@@ -34,7 +34,7 @@ class _ApproveMissedPunchListScreenState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MissedPunchBloc>().add(
-        const MissedPunchEvent.getApprovalPunchList(),
+        const MissedPunchEvent.getApprovalMissedPunchList(),
       );
     });
   }
@@ -51,13 +51,13 @@ class _ApproveMissedPunchListScreenState
     return BlocBuilder<MissedPunchBloc, MissedPunchState>(
       builder: (context, state) {
         final leaveList =
-            state.approvalMissingPunchModel?.missingPunchList ?? [];
+            state.approvalMissingPunchModel?.swipeRequestList ?? [];
 
         return Scaffold(
           // resizeToAvoidBottomInset: false,
           appBar: CustomAppBar(
             elevation: 0,
-            title: "Approve Missed Punch",
+            title: "Employees Missed Punch",
             showAvatar: false,
             showBackButton: true,
             showNavigation: false,
@@ -69,7 +69,7 @@ class _ApproveMissedPunchListScreenState
               enablePullDown: true,
               onRefresh: () {
                 context.read<MissedPunchBloc>().add(
-                  const MissedPunchEvent.getApprovalPunchList(),
+                  const MissedPunchEvent.getApprovalMissedPunchList(),
                 );
                 refreshController.refreshCompleted();
               },
@@ -104,7 +104,7 @@ class _ApproveMissedPunchListScreenState
                             onTap: () {
                               CustomBottomSheet.show(
                                 context: context,
-                                title: "Leave Filter",
+                                title: "Missed Punch Filter",
                                 child: BlocProvider.value(
                                   value: context.read<MissedPunchBloc>(),
                                   child: ApprovePunchFilterBottomSheet(),
@@ -165,11 +165,7 @@ class _ApproveMissedPunchListScreenState
                       child: state.getApprovalPunchListLoading
                           ? const Center(child: CustomCircularProgress())
                           : leaveList.isEmpty
-                          ? const Center(
-                              child: NoDataFound(
-                                message: "No leave requests found",
-                              ),
-                            )
+                          ? const Center(child: NoDataFound())
                           : const ApproveMissedPunchCard(),
                     ),
 

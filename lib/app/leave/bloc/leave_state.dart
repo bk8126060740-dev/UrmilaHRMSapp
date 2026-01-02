@@ -49,19 +49,28 @@ class LeaveState with _$LeaveState {
 
 enum LeaveStatus {
   initial,
+
   getLeaveTypeLoading,
   getLeaveTypeSuccess,
   getLeaveTypeError,
+
   applyLeaveLoading,
   applyLeaveSuccess,
   applyLeaveError,
+
   getEmpLeaveLoading,
   getEmpLeaveSuccess,
   getEmpLeaveError,
+
   getApprovalLeaveLoading,
   getApprovalLeaveError,
   getApprovalLeaveSuccess,
+
   approveLeaveLoading,
   approveLeaveError,
   approveLeaveSuccess,
+
+  cancelLeaveLoading,
+  cancelLeaveError,
+  cancelLeaveSuccess,
 }

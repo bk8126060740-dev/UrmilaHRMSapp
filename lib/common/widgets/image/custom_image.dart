@@ -212,6 +212,8 @@ class CustomImage extends StatelessWidget {
   /// Image fit
   final BoxFit fit;
 
+  final String? heroTag;
+
   const CustomImage({
     super.key,
     required this.imageUrl,
@@ -223,6 +225,7 @@ class CustomImage extends StatelessWidget {
     this.backgroundColor,
     this.useShimmer = false,
     this.fit = BoxFit.cover,
+    this.heroTag, // 👈 NEW
   });
 
   bool get _isNetwork => imageUrl.startsWith('http');
@@ -264,22 +267,26 @@ class CustomImage extends StatelessWidget {
               width: size,
               height: size,
               fit: fit,
-              placeholder: (_, __) =>
+              placeholder: (_, _) =>
                   useShimmer ? _buildShimmer() : _buildLoader(),
-              errorWidget: (_, __, ___) => _buildFallback(),
+              errorWidget: (_, _, _) => _buildFallback(),
             )
           : Image.asset(
               imageUrl,
               width: size,
               height: size,
               fit: fit,
-              errorBuilder: (_, __, ___) => _buildFallback(),
+              errorBuilder: (_, _, _) => _buildFallback(),
             );
     }
     // --- Fallback for unknown types ---
     else {
       imageWidget = _buildFallback();
     }
+
+    Widget imageContent = isCircular
+        ? ClipOval(child: imageWidget)
+        : ClipRRect(borderRadius: borderRadius, child: imageWidget);
 
     // --- UI wrapper with optional hero animation + tap to view full screen ---
     return InkWell(
@@ -291,7 +298,7 @@ class CustomImage extends StatelessWidget {
               builder: (_) => FullScreenImageView(
                 imageUrl: imageUrl,
                 isNetwork: _isNetwork,
-                heroTag: imageUrl,
+                heroTag: heroTag,
               ),
             ),
           );
@@ -309,12 +316,15 @@ class CustomImage extends StatelessWidget {
               : null,
         ),
         clipBehavior: Clip.hardEdge,
-        child: Hero(
-          tag: imageUrl,
-          child: isCircular
-              ? ClipOval(child: imageWidget)
-              : ClipRRect(borderRadius: borderRadius, child: imageWidget),
-        ),
+        child: heroTag != null
+            ? Hero(tag: heroTag!, child: imageContent)
+            : imageContent,
+        // child: Hero(
+        //   tag: imageUrl,
+        //   child: isCircular
+        //       ? ClipOval(child: imageWidget)
+        //       : ClipRRect(borderRadius: borderRadius, child: imageWidget),
+        // ),
       ),
     );
   }

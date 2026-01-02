@@ -43,10 +43,29 @@ class MonthlyAttendanceSummary extends StatelessWidget {
                         )
                       : _buildStatCard(
                           context,
-                          label: "Total",
+                          label: "Tot. Days",
+                          count:
+                              "${state.monthlyAttendanceModel?.summary?.totalDaysInMonth ?? "N/A"}",
+                          color: AppColors.totalPresent,
+                        ),
+                ),
+                const SizedBox(width: AppSizes.space8),
+                Expanded(
+                  child: state.monthlyAttendanceLoading
+                      ? ShimmerLoading(
+                          child: _buildStatCard(
+                            context,
+                            label: "",
+                            count: "",
+                            color: Colors.grey,
+                          ),
+                        )
+                      : _buildStatCard(
+                          context,
+                          label: "Work. Days",
                           count:
                               "${state.monthlyAttendanceModel?.summary?.totalWorkingDays ?? "N/A"}",
-                          color: AppColors.totalPresent,
+                          color: AppColors.workingDay,
                         ),
                 ),
                 const SizedBox(width: AppSizes.space8),
@@ -129,7 +148,7 @@ class MonthlyAttendanceSummary extends StatelessWidget {
                           color: AppColors.pendingPresent,
                         ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: AppSizes.space8),
                 Expanded(
                   child: state.monthlyAttendanceLoading
                       ? ShimmerLoading(
@@ -146,6 +165,25 @@ class MonthlyAttendanceSummary extends StatelessWidget {
                           count:
                               "${state.monthlyAttendanceModel?.summary?.holidayDays ?? "N/A"}",
                           color: AppColors.holiday,
+                        ),
+                ),
+                const SizedBox(width: AppSizes.space8),
+                Expanded(
+                  child: state.monthlyAttendanceLoading
+                      ? ShimmerLoading(
+                          child: _buildStatCard(
+                            context,
+                            label: "",
+                            count: "",
+                            color: Colors.grey,
+                          ),
+                        )
+                      : _buildStatCard(
+                          context,
+                          label: "W.O Days",
+                          count:
+                              "${state.monthlyAttendanceModel?.summary?.weeklyOffDays ?? "N/A"}",
+                          color: AppColors.weekOff,
                         ),
                 ),
               ],
@@ -172,11 +210,17 @@ class MonthlyAttendanceSummary extends StatelessWidget {
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: AppSizes.space8),
           Text(count, style: AppTextStyles.w600_24(context)),
-          Text(label, style: AppTextStyles.w400_14(context)),
-          const SizedBox(height: 8),
+          Text(
+            label,
+            style: AppTextStyles.w400_12(context),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppSizes.space8),
           Container(
             height: 6,
             decoration: BoxDecoration(

@@ -65,23 +65,36 @@ class ApproveLeaveEmpCard extends StatelessWidget {
             /// ---- Final Date Text ----
             String finalDate = (from == to) ? from : "$from → $to";
 
-            final int? status = leave.firstLevelStatus;
+            final int? status = leave.status;
 
-            final statusColor = status == 1
-                ? Colors.green
-                : status == 0
-                ? Colors.orange
-                : status == -1
-                ? Colors.red
-                : Colors.grey;
+            late final Color statusColor;
+            late final String statusTxt;
 
-            final statusTxt = status == 1
-                ? "Approved"
-                : status == 0
-                ? "Pending"
-                : status == -1
-                ? "Rejected"
-                : "Unknown";
+            switch (status) {
+              case 0:
+                statusColor = Colors.orange;
+                statusTxt = "Pending";
+                break;
+
+              case 1:
+                statusColor = Colors.green;
+                statusTxt = "Approved";
+                break;
+
+              case 2:
+                statusColor = Colors.red;
+                statusTxt = "Rejected";
+                break;
+
+              case 3:
+                statusColor = Colors.red;
+                statusTxt = "Canceled";
+                break;
+
+              default:
+                statusColor = Colors.grey;
+                statusTxt = "Unknown";
+            }
 
             return Container(
               margin: const EdgeInsets.only(bottom: AppSizes.space16),

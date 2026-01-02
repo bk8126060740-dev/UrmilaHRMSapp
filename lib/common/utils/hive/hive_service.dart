@@ -44,7 +44,7 @@ class HiveService {
     box.close();
   }
 
-  static clear() {
+  static void clear() {
     box.clear();
   }
 

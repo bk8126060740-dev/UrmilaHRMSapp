@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 class AppDeviceUtils {
   static void hideKeyboard(BuildContext context) {
@@ -31,7 +33,8 @@ class AppDeviceUtils {
 
   static void setFullScreen(bool enable) {
     SystemChrome.setEnabledSystemUIMode(
-        enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
+      enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge,
+    );
   }
 
   static double getScreenHeight(BuildContext context) {
@@ -79,7 +82,8 @@ class AppDeviceUtils {
   }
 
   static Future<void> setPreferredOrientations(
-      List<DeviceOrientation> orientations) async {
+    List<DeviceOrientation> orientations,
+  ) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
@@ -88,8 +92,10 @@ class AppDeviceUtils {
   }
 
   static void showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
   }
 
   static Future<bool> hasInternetConnection() async {
@@ -107,5 +113,49 @@ class AppDeviceUtils {
 
   static bool isAndroid() {
     return Platform.isAndroid;
+  }
+
+  static DateTime lastDayOfMonth(DateTime date) {
+    return DateTime(date.year, date.month + 1, 0);
+  }
+
+  static Future<String> getCurrentAppVersion() async {
+    final info = await PackageInfo.fromPlatform();
+    return info.version; // e.g. "1.0.3"
+  }
+
+  static Future<String> getPackageName() async {
+    final info = await PackageInfo.fromPlatform();
+    return info.packageName; // e.g. com.uisl.hrms_uis
+  }
+
+  static bool isUpdateRequired({
+    required String installedVersion,
+    required String latestVersion,
+  }) {
+    final installed = Version.parse(installedVersion);
+    final latest = Version.parse(latestVersion);
+
+    return installed < latest;
+  }
+
+  static String maskAccountNumber(String value) {
+    if (value.length <= 4) return "XXXX";
+    return "XXXXXX${value.substring(value.length - 4)}";
+  }
+
+  static String maskPan(String value) {
+    if (value.length <= 5) return "XXXXX";
+    return "${value.substring(0, 5)}****";
+  }
+
+  static String maskAadhaar(String value) {
+    if (value.length <= 4) return "XXXX-XXXX-XXXX";
+    return "XXXX-XXXX-${value.substring(value.length - 4)}";
+  }
+
+  static String maskIfsc(String value) {
+    if (value.length <= 3) return "***";
+    return "${value.substring(0, 4)}****";
   }
 }

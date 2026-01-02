@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/widgets/custom/custom_refresh_indicator.dart';
+import 'package:hrms_uis/common/widgets/text/custom_field_heading.dart';
 
 import '../../../../common/utils/constants/sizes.dart';
 import '../../../../common/widgets/appbar/custom_appbar.dart';
-import '../../../dashboard/widgets/monthly_attendance_top_view.dart';
 import '../../widgets/employee/monthly_attendance_calender_view.dart';
 import '../../widgets/employee/monthly_attendance_summary.dart';
 
@@ -58,19 +58,20 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AppSizes.space32.vGap,
+                              // AppSizes.space32.vGap,
 
-                              /// -------------------- Profile Card --------------------
-                              MonthlyAttendanceTopView(),
-
-                              AppSizes.space20.vGap,
+                              // /// -------------------- Profile Card --------------------
+                              // MonthlyAttendanceTopView(),
+                              //
+                              // AppSizes.space20.vGap,
 
                               /// -------------------- Summary Cards --------------------
+                              CustomFieldHeading(title: "Attendance Summary:"),
                               MonthlyAttendanceSummary(),
 
                               AppSizes.space20.vGap,
-
                               /// calender table
+                              CustomFieldHeading(title: "Attendance Calender:"),
                               MonthlyAttendanceCalenderView(),
 
                               // attendance view

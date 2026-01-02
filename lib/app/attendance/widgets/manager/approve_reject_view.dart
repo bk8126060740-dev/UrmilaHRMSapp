@@ -76,7 +76,7 @@ class ApproveRejectView extends StatelessWidget {
                               }
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
-                                title: "Reject Attendance",
+                                title: "Reject",
                                 message:
                                     "Are you sure you want to reject attendance for the selected employees?",
                                 child: BlocProvider.value(
@@ -96,7 +96,7 @@ class ApproveRejectView extends StatelessWidget {
                             onTap: () {
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
-                                title: "Approve Attendance",
+                                title: "Approve",
                                 message:
                                     "Are you sure you want to approve attendance for the selected employees?",
                                 child: BlocProvider.value(

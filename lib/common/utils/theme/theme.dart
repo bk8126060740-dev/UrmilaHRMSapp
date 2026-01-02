@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrms_uis/common/utils/theme/widget_themes/dialog_theme.dart';
+import 'package:hrms_uis/common/utils/theme/widget_themes/popup_menu_theme.dart';
 
 import '../constants/colors.dart';
 import '../theme/widget_themes/appbar_theme.dart';
@@ -23,6 +24,7 @@ class CustomAppTheme {
     scaffoldBackgroundColor: AppColors.scaffoldBgColor,
     bottomSheetTheme: AppBottomSheetTheme.lightBottomSheetTheme,
     inputDecorationTheme: AppTextFormFieldTheme.lightInputDecorationTheme,
+    popupMenuTheme: AppPopupMenuTheme.lightPopupMenuTheme,
     outlinedButtonTheme: AppButtonTheme.outlinedButtonTheme,
     textButtonTheme: AppButtonTheme.textButtonTheme,
     floatingActionButtonTheme: AppButtonTheme.floatingActionButtonTheme,
@@ -41,6 +43,7 @@ class CustomAppTheme {
     bottomSheetTheme: AppBottomSheetTheme.darkBottomSheetTheme,
     inputDecorationTheme: AppTextFormFieldTheme.darkInputDecorationTheme,
     outlinedButtonTheme: AppButtonTheme.outlinedButtonTheme,
+    popupMenuTheme: AppPopupMenuTheme.darkPopupMenuTheme,
     textButtonTheme: AppButtonTheme.textButtonTheme,
     floatingActionButtonTheme: AppButtonTheme.floatingActionButtonTheme,
     radioTheme: AppRadioTheme.darkRadioTheme,

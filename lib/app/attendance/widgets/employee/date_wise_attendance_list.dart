@@ -49,6 +49,7 @@ class DateWiseAttendanceList extends StatelessWidget {
                 );
               },
               child: ClockInOutCard(
+                index: index,
                 attendanceData: item,
                 duration: item.duration.withDefault("N/A"),
                 clockIn: item.inTime.withDefault("N/A"),

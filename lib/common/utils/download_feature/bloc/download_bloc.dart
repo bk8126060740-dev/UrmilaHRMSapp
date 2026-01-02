@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../repo/download_repo.dart';
 
@@ -92,7 +92,7 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
         );
 
         // 👇 Use FlutterDownloader's own built-in open method
-        await FlutterDownloader.open(taskId: event.taskId);
+        // await FlutterDownloader.open(taskId: event.taskId);
       } else if (event.status == 4) {
         emit(
           state.copyWith(

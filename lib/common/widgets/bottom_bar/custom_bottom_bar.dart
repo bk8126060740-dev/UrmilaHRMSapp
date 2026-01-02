@@ -201,6 +201,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
       color: widget.backgroundColor,
       elevation: 4,
       padding: EdgeInsets.zero,
+      height: widget.height,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(widget.items.length, (index) {
@@ -210,28 +211,39 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
 
           return Expanded(
             child: InkWell(
-              onTap: () => index == 0 ? _updateIndex(index) : () {},
+              onTap: () => _updateIndex(index),
+              /* index == 0 */
+              /*|| index == 1*/
+              /* ? _updateIndex(index) : () {}*/
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               child: SizedBox(
-                height: widget.height,
+                // height: widget.height,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildDynamicIcon(
                       item.icon,
-                      index == 0 ? color : Colors.transparent,
+                      color,
+                      /*index == 0 */
+                      /*|| index == 1*/
+                      /* ? color : Colors.transparent*/
                     ),
                     if (item.text != null) ...[
                       const SizedBox(height: 4),
                       Text(
                         item.text!,
                         style: AppTextStyles.w400_12(context).copyWith(
-                          color: index == 0 ? color : Colors.transparent,
+                          color: color,
+                          /*color: index == 0 */
+                          /*|| index == 1*/
+                          /*
+                              ? color
+                              : Colors.transparent,*/
                           fontWeight: isSelected
                               ? FontWeight.w600
                               : FontWeight.w400,
-                          fontSize: 11
+                          fontSize: 11,
                         ),
                       ),
                     ],

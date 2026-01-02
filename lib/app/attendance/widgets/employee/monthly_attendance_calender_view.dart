@@ -8,13 +8,13 @@ import 'package:hrms_uis/common/utils/constants/image_strings.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
+import 'package:hrms_uis/common/utils/helpers/device_utility.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../common/utils/constants/colors.dart';
 import '../../../../common/utils/custom_dialogs/dialogs.dart';
-import '../../../../common/widgets/dialog/common_alert_dialog.dart';
 import 'calender_tooltip_dialog.dart';
 
 class MonthlyAttendanceCalenderView extends StatefulWidget {
@@ -82,7 +82,8 @@ class _MonthlyAttendanceCalenderViewState
                   child: TableCalendar<MonthlyAttendanceData>(
                     availableGestures: AvailableGestures.none,
                     firstDay: DateTime.utc(2020, 1, 1),
-                    lastDay: DateTime.now(),
+                    // lastDay: DateTime.now(),
+                    lastDay: AppDeviceUtils.lastDayOfMonth(state.focusedDay),
                     focusedDay: state.focusedDay,
                     selectedDayPredicate: (day) =>
                         isSameDay(state.selectedDay, day),
@@ -139,13 +140,15 @@ class _MonthlyAttendanceCalenderViewState
                           'Fri',
                           'Sat',
                         ][day.weekday % 7];
-                        final isSunday = day.weekday == DateTime.sunday;
+                        // final isSunday = day.weekday == DateTime.sunday;
                         return Center(
                           child: Text(
                             text,
                             style: TextStyle(
-                              color: isSunday ? Colors.red : Colors.black87,
+                              color: /* isSunday ? Colors.red :*/
+                                  Colors.black87,
                               fontWeight: FontWeight.bold,
+                              fontSize: 12
                             ),
                           ),
                         );
@@ -229,7 +232,7 @@ class _MonthlyAttendanceCalenderViewState
     final reports = events[DateTime.utc(date.year, date.month, date.day)];
     final report = reports?.isNotEmpty == true ? reports!.first : null;
     final dotColor = report != null ? _parseColor(report.color) : null;
-    final isSunday = date.weekday == DateTime.sunday;
+    // final isSunday = date.weekday == DateTime.sunday;
 
     // 🟢 Determine actual "today" once
     final today = DateTime.now();
@@ -252,9 +255,10 @@ class _MonthlyAttendanceCalenderViewState
       textColor = AppColors.primaryColor;
     } else if (isRealToday) {
       textColor = AppColors.primaryColor;
-    } else if (isSunday) {
-      textColor = Colors.red;
     }
+    /*else if (isSunday) {
+      textColor = Colors.red;
+    }*/
 
     // 🔻 Border style
     Border? border;
@@ -291,17 +295,28 @@ class _MonthlyAttendanceCalenderViewState
           children: [
             Text(
               '${date.day}',
-              style: TextStyle(color: textColor, fontWeight: FontWeight.w600),
+              style: TextStyle(color: textColor, fontWeight: FontWeight.w700,fontSize: 12),
             ),
             if (dotColor != null)
-              Container(
-                margin: const EdgeInsets.only(top: 3),
-                width: 6,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: dotColor,
-                  shape: BoxShape.circle,
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    report?.status ?? "",
+                    style: AppTextStyles.w400_12(context).copyWith(fontSize: 8,color: dotColor),
+                  ),
+                  SizedBox(width: 2),
+                  Container(
+                    margin: const EdgeInsets.only(top: 3),
+                    width: 4,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: dotColor,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ],
               ),
           ],
         ),

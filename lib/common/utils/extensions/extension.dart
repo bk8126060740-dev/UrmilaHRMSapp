@@ -123,7 +123,7 @@ extension DynamicFallback on dynamic {
   String withFallback([String defaultValue = "N/A"]) {
     if (this == null) return defaultValue;
 
-    final value = this.toString().trim();
+    final value = toString().trim();
     if (value.isEmpty || value == "null") return defaultValue;
 
     return value;

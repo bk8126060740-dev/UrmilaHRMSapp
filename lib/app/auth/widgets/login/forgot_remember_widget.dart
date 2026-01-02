@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrms_uis/app/auth/screens/forgot_password_screen.dart';
-import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 
-import '../../../../common/utils/constants/colors.dart';
-import '../../../../common/utils/helpers/device_utility.dart';
 import '../../../../common/widgets/checkbox/custom_checkbox.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../../bloc/auth_bloc.dart';
 
 class ForgotRememberWidget extends StatelessWidget {

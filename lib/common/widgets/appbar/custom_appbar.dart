@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
@@ -97,7 +96,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       );
     } else if (showAvatar && avatarImage != null) {
       leadingWidget = CustomImage(
-        size: 40,
+        size: 35,
         imageUrl: avatarImage ?? AppImages.profileImage,
       );
     }

@@ -8,14 +8,14 @@ import '../../utils/constants/text_styles.dart';
 class AppLogo extends StatelessWidget {
   final double height;
   final double width;
-  final String? bankName;
+  final String? title;
   final bool showTxt;
 
   const AppLogo({
     super.key,
     this.height = AppSizes.imageSize100,
     this.width = AppSizes.imageSize100,
-    this.bankName,
+    this.title,
     this.showTxt = false,
   });
 
@@ -38,7 +38,7 @@ class AppLogo extends StatelessWidget {
                 context,
                 color: AppColors.primaryColor,
               ),
-              bankName ?? "LP BANK",
+              title ?? "",
             ),
         ],
       ),

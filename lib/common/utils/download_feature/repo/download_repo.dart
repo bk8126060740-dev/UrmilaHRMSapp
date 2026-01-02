@@ -5,7 +5,7 @@ import 'dart:isolate';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:hrms_uis/common/utils/popups/custom_toast.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -81,7 +81,7 @@ class DownloadRepository {
           ),
         );
       });
-      FlutterDownloader.registerCallback(downloadCallback);
+      // FlutterDownloader.registerCallback(downloadCallback);
     }
   }
 
@@ -120,15 +120,15 @@ class DownloadRepository {
         ? '.${fileNameWithExtension.split('.').last}'
         : fileExtension ?? '.pdf';
     print('naming extension done and flutter donwloader started');
-    return await FlutterDownloader.enqueue(
-      saveInPublicStorage: true,
-      fileName: "$fileName$timestamp$extension",
-      url: url,
-      savedDir: directory?.path ?? "",
-      showNotification: true,
-      openFileFromNotification: true,
-      headers: _makeHeader(),
-    );
+    // return await FlutterDownloader.enqueue(
+    //   saveInPublicStorage: true,
+    //   fileName: "$fileName$timestamp$extension",
+    //   url: url,
+    //   savedDir: directory?.path ?? "",
+    //   showNotification: true,
+    //   openFileFromNotification: true,
+    //   headers: _makeHeader(),
+    // );
   }
 
   Map<String, String> _makeHeader({bool? isMultiPart}) {
@@ -160,14 +160,14 @@ class DownloadRepository {
   }
 
   Future<void> pauseDownload(String taskId) async {
-    await FlutterDownloader.pause(taskId: taskId);
+    // await FlutterDownloader.pause(taskId: taskId);
   }
 
   Future<void> resumeDownload(String taskId) async {
-    await FlutterDownloader.resume(taskId: taskId);
+    // await FlutterDownloader.resume(taskId: taskId);
   }
 
   Future<void> cancelDownload(String taskId) async {
-    await FlutterDownloader.cancel(taskId: taskId);
+    // await FlutterDownloader.cancel(taskId: taskId);
   }
 }

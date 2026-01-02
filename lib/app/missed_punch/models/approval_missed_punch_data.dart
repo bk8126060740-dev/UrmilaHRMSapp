@@ -1,184 +1,139 @@
 // To parse this JSON data, do
 //
-//     final missingPunchListModel = missingPunchListModelFromJson(jsonString);
+//     final approvalMissedPunchModel = approvalMissedPunchModelFromJson(jsonString);
 
 import 'dart:convert';
 
-ApprovalMissedPunchModel missingPunchListModelFromJson(String str) =>
-    ApprovalMissedPunchModel.fromJson(json.decode(str));
+ApprovalMissedPunchModel approvalMissedPunchModelFromJson(String str) => ApprovalMissedPunchModel.fromJson(json.decode(str));
 
-String missingPunchListModelToJson(ApprovalMissedPunchModel data) =>
-    json.encode(data.toJson());
+String approvalMissedPunchModelToJson(ApprovalMissedPunchModel data) => json.encode(data.toJson());
 
 class ApprovalMissedPunchModel {
-  List<ApprovalMissingPunchItem>? missingPunchList;
+  List<ApprovalMissingPunchItem>? swipeRequestList;
 
-  ApprovalMissedPunchModel({this.missingPunchList});
+  ApprovalMissedPunchModel({
+    this.swipeRequestList,
+  });
 
-  ApprovalMissedPunchModel copyWith({List<ApprovalMissingPunchItem>? missingPunchList}) =>
+  ApprovalMissedPunchModel copyWith({
+    List<ApprovalMissingPunchItem>? swipeRequestList,
+  }) =>
       ApprovalMissedPunchModel(
-        missingPunchList: missingPunchList ?? this.missingPunchList,
+        swipeRequestList: swipeRequestList ?? this.swipeRequestList,
       );
 
-  factory ApprovalMissedPunchModel.fromJson(Map<String, dynamic> json) =>
-      ApprovalMissedPunchModel(
-        missingPunchList: json["missingPunchList"] == null
-            ? []
-            : List<ApprovalMissingPunchItem>.from(
-                json["missingPunchList"]!.map(
-                  (x) => ApprovalMissingPunchItem.fromJson(x),
-                ),
-              ),
-      );
+  factory ApprovalMissedPunchModel.fromJson(Map<String, dynamic> json) => ApprovalMissedPunchModel(
+    swipeRequestList: json["swipeRequestList"] == null ? [] : List<ApprovalMissingPunchItem>.from(json["swipeRequestList"]!.map((x) => ApprovalMissingPunchItem.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
-    "missingPunchList": missingPunchList == null
-        ? []
-        : List<dynamic>.from(missingPunchList!.map((x) => x.toJson())),
+    "swipeRequestList": swipeRequestList == null ? [] : List<dynamic>.from(swipeRequestList!.map((x) => x.toJson())),
   };
 }
 
-// Single item
-ApprovalMissingPunchItem missingPunchItemFromJson(String str) =>
-    ApprovalMissingPunchItem.fromJson(json.decode(str));
-
-String missingPunchItemToJson(ApprovalMissingPunchItem data) =>
-    json.encode(data.toJson());
-
 class ApprovalMissingPunchItem {
   int? id;
-  bool? isDeleted;
-  DateTime? createdDate;
-  int? createdBy;
-  dynamic updatedDate;
-  dynamic updatedBy;
-
   int? employeeId;
+  int? swipeType;
+  String? swipeTypeName;
+  DateTime? swipeDate;
+  dynamic requestedInTime;
+  dynamic requestedOutTime;
+  String? employeeRemarks;
+  String? requestStatus;
+  dynamic approvedBy;
+  dynamic approvedDate;
+  String? managerRemarks;
+  DateTime? createdDate;
+  bool? isDeleted;
   String? employeeName;
-  String? employeeCode;
-
-  DateTime? date;
-  String? missingType; // "In" / "Out"
-  String? reason;
-  String? attachmentPath;
-
-  int? status; // 0 Pending | 1 Approved | -1 Rejected
-
-  dynamic approverName;
-  DateTime? approvedDate;
-
-  String? remark;
-  List<dynamic>? logs;
 
   ApprovalMissingPunchItem({
     this.id,
-    this.isDeleted,
-    this.createdDate,
-    this.createdBy,
-    this.updatedDate,
-    this.updatedBy,
     this.employeeId,
-    this.employeeName,
-    this.employeeCode,
-    this.date,
-    this.missingType,
-    this.reason,
-    this.attachmentPath,
-    this.status,
-    this.approverName,
+    this.swipeType,
+    this.swipeTypeName,
+    this.swipeDate,
+    this.requestedInTime,
+    this.requestedOutTime,
+    this.employeeRemarks,
+    this.requestStatus,
+    this.approvedBy,
     this.approvedDate,
-    this.remark,
-    this.logs,
+    this.managerRemarks,
+    this.createdDate,
+    this.isDeleted,
+    this.employeeName,
   });
 
   ApprovalMissingPunchItem copyWith({
     int? id,
-    bool? isDeleted,
-    DateTime? createdDate,
-    int? createdBy,
-    dynamic updatedDate,
-    dynamic updatedBy,
     int? employeeId,
+    int? swipeType,
+    String? swipeTypeName,
+    DateTime? swipeDate,
+    dynamic requestedInTime,
+    dynamic requestedOutTime,
+    String? employeeRemarks,
+    String? requestStatus,
+    dynamic approvedBy,
+    dynamic approvedDate,
+    String? managerRemarks,
+    DateTime? createdDate,
+    bool? isDeleted,
     String? employeeName,
-    String? employeeCode,
-    DateTime? date,
-    String? missingType,
-    String? reason,
-    String? attachmentPath,
-    int? status,
-    dynamic approverName,
-    DateTime? approvedDate,
-    String? remark,
-    List<dynamic>? logs,
-  }) => ApprovalMissingPunchItem(
-    id: id ?? this.id,
-    isDeleted: isDeleted ?? this.isDeleted,
-    createdDate: createdDate ?? this.createdDate,
-    createdBy: createdBy ?? this.createdBy,
-    updatedDate: updatedDate ?? this.updatedDate,
-    updatedBy: updatedBy ?? this.updatedBy,
-    employeeId: employeeId ?? this.employeeId,
-    employeeName: employeeName ?? this.employeeName,
-    employeeCode: employeeCode ?? this.employeeCode,
-    date: date ?? this.date,
-    missingType: missingType ?? this.missingType,
-    reason: reason ?? this.reason,
-    attachmentPath: attachmentPath ?? this.attachmentPath,
-    status: status ?? this.status,
-    approverName: approverName ?? this.approverName,
-    approvedDate: approvedDate ?? this.approvedDate,
-    remark: remark ?? this.remark,
-    logs: logs ?? this.logs,
-  );
-
-  factory ApprovalMissingPunchItem.fromJson(Map<String, dynamic> json) =>
+  }) =>
       ApprovalMissingPunchItem(
-        id: json["id"],
-        isDeleted: json["isDeleted"],
-        createdDate: json["createdDate"] == null
-            ? null
-            : DateTime.parse(json["createdDate"]),
-        createdBy: json["createdBy"],
-        updatedDate: json["updatedDate"],
-        updatedBy: json["updatedBy"],
-        employeeId: json["employeeId"],
-        employeeName: json["employeeName"],
-        employeeCode: json["employeeCode"],
-        date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        missingType: json["missingType"],
-        reason: json["reason"],
-        attachmentPath: json["attachmentPath"],
-        status: json["status"],
-        approverName: json["approverName"],
-        approvedDate: json["approvedDate"] == null
-            ? null
-            : DateTime.parse(json["approvedDate"]),
-        remark: json["remark"],
-        logs: json["logs"] == null
-            ? []
-            : List<dynamic>.from(json["logs"]!.map((x) => x)),
+        id: id ?? this.id,
+        employeeId: employeeId ?? this.employeeId,
+        swipeType: swipeType ?? this.swipeType,
+        swipeTypeName: swipeTypeName ?? this.swipeTypeName,
+        swipeDate: swipeDate ?? this.swipeDate,
+        requestedInTime: requestedInTime ?? this.requestedInTime,
+        requestedOutTime: requestedOutTime ?? this.requestedOutTime,
+        employeeRemarks: employeeRemarks ?? this.employeeRemarks,
+        requestStatus: requestStatus ?? this.requestStatus,
+        approvedBy: approvedBy ?? this.approvedBy,
+        approvedDate: approvedDate ?? this.approvedDate,
+        managerRemarks: managerRemarks ?? this.managerRemarks,
+        createdDate: createdDate ?? this.createdDate,
+        isDeleted: isDeleted ?? this.isDeleted,
+        employeeName: employeeName ?? this.employeeName,
       );
+
+  factory ApprovalMissingPunchItem.fromJson(Map<String, dynamic> json) => ApprovalMissingPunchItem(
+    id: json["id"],
+    employeeId: json["employeeId"],
+    swipeType: json["swipeType"],
+    swipeTypeName: json["swipeTypeName"],
+    swipeDate: json["swipeDate"] == null ? null : DateTime.parse(json["swipeDate"]),
+    requestedInTime: json["requestedInTime"],
+    requestedOutTime: json["requestedOutTime"],
+    employeeRemarks: json["employeeRemarks"],
+    requestStatus: json["requestStatus"],
+    approvedBy: json["approvedBy"],
+    approvedDate: json["approvedDate"],
+    managerRemarks: json["managerRemarks"],
+    createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
+    isDeleted: json["isDeleted"],
+    employeeName: json["employeeName"],
+  );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "isDeleted": isDeleted,
-    "createdDate": createdDate?.toIso8601String(),
-    "createdBy": createdBy,
-    "updatedDate": updatedDate,
-    "updatedBy": updatedBy,
     "employeeId": employeeId,
+    "swipeType": swipeType,
+    "swipeTypeName": swipeTypeName,
+    "swipeDate": "${swipeDate!.year.toString().padLeft(4, '0')}-${swipeDate!.month.toString().padLeft(2, '0')}-${swipeDate!.day.toString().padLeft(2, '0')}",
+    "requestedInTime": requestedInTime,
+    "requestedOutTime": requestedOutTime,
+    "employeeRemarks": employeeRemarks,
+    "requestStatus": requestStatus,
+    "approvedBy": approvedBy,
+    "approvedDate": approvedDate,
+    "managerRemarks": managerRemarks,
+    "createdDate": createdDate?.toIso8601String(),
+    "isDeleted": isDeleted,
     "employeeName": employeeName,
-    "employeeCode": employeeCode,
-    "date": date == null
-        ? null
-        : "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
-    "missingType": missingType,
-    "reason": reason,
-    "attachmentPath": attachmentPath,
-    "status": status,
-    "approverName": approverName,
-    "approvedDate": approvedDate?.toIso8601String(),
-    "remark": remark,
-    "logs": logs == null ? [] : List<dynamic>.from(logs!.map((x) => x)),
   };
 }

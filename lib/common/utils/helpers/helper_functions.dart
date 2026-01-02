@@ -130,14 +130,14 @@ class AppHelperFunctions {
   }
 
   static String generateRandomString(int length) {
-    const _chars =
+    const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random _rnd = Random();
+    Random rnd = Random();
 
     String getRandomString(int length) => String.fromCharCodes(
       Iterable.generate(
         length,
-        (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)),
+        (_) => chars.codeUnitAt(rnd.nextInt(chars.length)),
       ),
     );
 
@@ -163,6 +163,7 @@ class AppHelperFunctions {
   }
 
   static Future<void> launchExternal(String url) async {
+    print("url is =====> $url");
     final uri = Uri.parse(url);
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
@@ -200,7 +201,7 @@ class AppHelperFunctions {
     final currentYear = DateTime.now().year;
 
     return [
-      for (int year = startYear; year <= currentYear; year++)
+      for (int year = currentYear; year >= startYear; year--)
         DropdownModel(id: year.toString(), title: year.toString()),
     ];
   }
@@ -217,5 +218,22 @@ class AppHelperFunctions {
     if (toDate.isBefore(fromDate)) return 0;
 
     return toDate.difference(fromDate).inDays + 1;
+  }
+
+  static String extensionFromContentType(String contentType) {
+    contentType = contentType.toLowerCase();
+
+    if (contentType.contains('pdf')) return '.pdf';
+    if (contentType.contains('jpeg')) return '.jpg';
+    if (contentType.contains('jpg')) return '.jpg';
+    if (contentType.contains('png')) return '.png';
+    if (contentType.contains('gif')) return '.gif';
+    if (contentType.contains('mp4')) return '.mp4';
+    if (contentType.contains('msword')) return '.doc';
+    if (contentType.contains('wordprocessingml')) return '.docx';
+    if (contentType.contains('excel')) return '.xls';
+    if (contentType.contains('spreadsheetml')) return '.xlsx';
+
+    return '';
   }
 }

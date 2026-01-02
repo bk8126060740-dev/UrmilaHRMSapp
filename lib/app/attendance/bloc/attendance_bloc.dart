@@ -31,6 +31,8 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
           focusedDay: DateTime.now(),
         ),
       ) {
+
+    // get location using gps latitude/longitude
     on<_RequestLocation>((event, emit) async {
       emit(state.copyWith(status: AttendanceStatus.locationLoading));
 
@@ -131,6 +133,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       }
     });
 
+    // capture picture
     on<_CapturePhoto>((event, emit) async {
       emit(state.copyWith(status: AttendanceStatus.cameraLoading));
       try {
@@ -187,18 +190,21 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       add(AttendanceEvent.getDailyAttendance(date: now));
     });
 
+    // go previous
     on<_PreviousDate>((event, emit) {
       final prevDate = state.selectedDate!.subtract(const Duration(days: 1));
       emit(state.copyWith(selectedDate: prevDate));
       add(AttendanceEvent.getDailyAttendance(date: prevDate));
     });
 
+    // go next
     on<_NextDate>((event, emit) {
       final nextDate = state.selectedDate!.add(const Duration(days: 1));
       emit(state.copyWith(selectedDate: nextDate));
       add(AttendanceEvent.getDailyAttendance(date: nextDate));
     });
 
+    // select daily date
     on<_SelectDailyDate>((event, emit) {
       emit(state.copyWith(selectedDate: event.selectedDate));
       add(AttendanceEvent.getDailyAttendance(date: event.selectedDate));
@@ -253,6 +259,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       }
     });
 
+    // punch in api
     on<_CheckIn>((event, emit) async {
       if (state.latitude == null || state.longitude == null) {
         emit(
@@ -339,6 +346,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       }
     });
 
+    /// punch out api
     on<_CheckOut>((event, emit) async {
       if (state.latitude == null || state.longitude == null) {
         emit(

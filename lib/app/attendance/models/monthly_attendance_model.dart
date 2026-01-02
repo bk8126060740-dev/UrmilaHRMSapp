@@ -81,59 +81,72 @@ class MonthlyAttendanceData {
 }
 
 class Summary {
+  int? totalDaysInMonth;
   int? totalWorkingDays;
   int? presentDays;
   int? absentDays;
   int? leaveDays;
   int? pendingApprovals;
   int? holidayDays;
+  int? weeklyOffDays;
   int? holidayPresentDays;
 
   Summary({
+    this.totalDaysInMonth,
     this.totalWorkingDays,
     this.presentDays,
     this.absentDays,
     this.leaveDays,
     this.pendingApprovals,
     this.holidayDays,
+    this.weeklyOffDays,
     this.holidayPresentDays,
   });
 
   Summary copyWith({
+    int? totalDaysInMonth,
     int? totalWorkingDays,
     int? presentDays,
     int? absentDays,
     int? leaveDays,
     int? pendingApprovals,
     int? holidayDays,
+    int? weeklyOffDays,
     int? holidayPresentDays,
-  }) => Summary(
-    totalWorkingDays: totalWorkingDays ?? this.totalWorkingDays,
-    presentDays: presentDays ?? this.presentDays,
-    absentDays: absentDays ?? this.absentDays,
-    leaveDays: leaveDays ?? this.leaveDays,
-    pendingApprovals: pendingApprovals ?? this.pendingApprovals,
-    holidayDays: holidayDays ?? this.holidayDays,
-    holidayPresentDays: holidayPresentDays ?? this.holidayPresentDays,
-  );
+  }) =>
+      Summary(
+        totalDaysInMonth: totalDaysInMonth ?? this.totalDaysInMonth,
+        totalWorkingDays: totalWorkingDays ?? this.totalWorkingDays,
+        presentDays: presentDays ?? this.presentDays,
+        absentDays: absentDays ?? this.absentDays,
+        leaveDays: leaveDays ?? this.leaveDays,
+        pendingApprovals: pendingApprovals ?? this.pendingApprovals,
+        holidayDays: holidayDays ?? this.holidayDays,
+        weeklyOffDays: weeklyOffDays ?? this.weeklyOffDays,
+        holidayPresentDays: holidayPresentDays ?? this.holidayPresentDays,
+      );
 
   factory Summary.fromJson(Map<String, dynamic> json) => Summary(
+    totalDaysInMonth: json["totalDaysInMonth"],
     totalWorkingDays: json["totalWorkingDays"],
     presentDays: json["presentDays"],
     absentDays: json["absentDays"],
     leaveDays: json["leaveDays"],
     pendingApprovals: json["pendingApprovals"],
     holidayDays: json["holidayDays"],
+    weeklyOffDays: json["weeklyOffDays"],
     holidayPresentDays: json["holidayPresentDays"],
   );
 
   Map<String, dynamic> toJson() => {
+    "totalDaysInMonth": totalDaysInMonth,
     "totalWorkingDays": totalWorkingDays,
     "presentDays": presentDays,
     "absentDays": absentDays,
     "leaveDays": leaveDays,
     "pendingApprovals": pendingApprovals,
     "holidayDays": holidayDays,
+    "weeklyOffDays": weeklyOffDays,
     "holidayPresentDays": holidayPresentDays,
   };
 }

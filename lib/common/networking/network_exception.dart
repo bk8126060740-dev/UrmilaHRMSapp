@@ -13,3 +13,13 @@ class PermissionException implements Exception {
   final String message;
   PermissionException({required this.message});
 }
+
+class ApiException implements Exception {
+  final int statusCode;
+  final String message;
+
+  ApiException(this.statusCode, this.message);
+
+  @override
+  String toString() => message;
+}

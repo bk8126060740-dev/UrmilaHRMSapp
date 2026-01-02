@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../common/utils/constants/colors.dart';
 import '../../../../common/utils/constants/sizes.dart';
 import '../../../../common/widgets/loader/custom_circular_progress.dart';
 import '../../../../common/widgets/placeholder/no_data_found.dart';

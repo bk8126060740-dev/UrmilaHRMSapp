@@ -13,6 +13,7 @@ import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 import 'package:hrms_uis/common/widgets/text_field/custom_text_field.dart';
 
 import '../../../../common/utils/constants/text_styles.dart';
+import '../../../../common/utils/helpers/device_utility.dart';
 import '../../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../../common/widgets/custom/custom_section_widget.dart';
 import '../../../../common/widgets/dropdown/custom_animated_dropdown.dart';
@@ -48,6 +49,8 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                     padding: const EdgeInsets.all(AppSizes.padding16),
                     child: CustomButton(
                       onTap: () {
+                        var remark = context.read<LeaveBloc>().remarkController.text.trim();
+
                         if (state.selectedLeaveType == null) {
                           CustomToast.showError(
                             message: "Please select leave type",
@@ -84,6 +87,14 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                             return;
                           }
                         }
+
+                        if (remark.isEmpty) {
+                          CustomToast.showError(message: "Please enter reason");
+                          return;
+                        }
+
+                        AppDeviceUtils.unFocus();
+
                         CustomBottomSheet.show(
                           context: context,
                           title: "Apply Leave Summary",
@@ -177,7 +188,7 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
 
                         /// ------------------------ Reason ------------------------
                         CustomSectionWidget(
-                          title: "Reason (Optional)",
+                          title: "Reason*",
                           child: CustomTextField.outlineBorder(
                             textInputAction: TextInputAction.done,
                             controller: context

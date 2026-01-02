@@ -29,6 +29,7 @@ mixin _$LeaveEvent {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -50,6 +51,7 @@ mixin _$LeaveEvent {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -71,6 +73,7 @@ mixin _$LeaveEvent {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -96,6 +99,7 @@ mixin _$LeaveEvent {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -117,6 +121,7 @@ mixin _$LeaveEvent {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -138,6 +143,7 @@ mixin _$LeaveEvent {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -245,6 +251,7 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -269,6 +276,7 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -293,6 +301,7 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -324,6 +333,7 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -348,6 +358,7 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -372,6 +383,7 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -484,6 +496,7 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -508,6 +521,7 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -532,6 +546,7 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -563,6 +578,7 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -587,6 +603,7 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -611,6 +628,7 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -715,6 +733,7 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -739,6 +758,7 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -763,6 +783,7 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -794,6 +815,7 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -818,6 +840,7 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -842,6 +865,7 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -945,6 +969,7 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -969,6 +994,7 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -993,6 +1019,7 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -1024,6 +1051,7 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -1048,6 +1076,7 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1072,6 +1101,7 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1176,6 +1206,7 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -1200,6 +1231,7 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -1224,6 +1256,7 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -1255,6 +1288,7 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -1279,6 +1313,7 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1303,6 +1338,7 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1379,6 +1415,7 @@ class _$GetApproveLeaveListImpl implements _GetApproveLeaveList {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -1403,6 +1440,7 @@ class _$GetApproveLeaveListImpl implements _GetApproveLeaveList {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -1427,6 +1465,7 @@ class _$GetApproveLeaveListImpl implements _GetApproveLeaveList {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -1458,6 +1497,7 @@ class _$GetApproveLeaveListImpl implements _GetApproveLeaveList {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -1482,6 +1522,7 @@ class _$GetApproveLeaveListImpl implements _GetApproveLeaveList {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1506,6 +1547,7 @@ class _$GetApproveLeaveListImpl implements _GetApproveLeaveList {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1604,6 +1646,7 @@ class _$ApproveLeaveByManagerImpl implements _ApproveLeaveByManager {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -1628,6 +1671,7 @@ class _$ApproveLeaveByManagerImpl implements _ApproveLeaveByManager {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -1652,6 +1696,7 @@ class _$ApproveLeaveByManagerImpl implements _ApproveLeaveByManager {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -1683,6 +1728,7 @@ class _$ApproveLeaveByManagerImpl implements _ApproveLeaveByManager {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -1707,6 +1753,7 @@ class _$ApproveLeaveByManagerImpl implements _ApproveLeaveByManager {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1731,6 +1778,7 @@ class _$ApproveLeaveByManagerImpl implements _ApproveLeaveByManager {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1806,6 +1854,7 @@ class _$GetLeaveTypeImpl implements _GetLeaveType {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -1830,6 +1879,7 @@ class _$GetLeaveTypeImpl implements _GetLeaveType {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -1854,6 +1904,7 @@ class _$GetLeaveTypeImpl implements _GetLeaveType {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -1885,6 +1936,7 @@ class _$GetLeaveTypeImpl implements _GetLeaveType {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -1909,6 +1961,7 @@ class _$GetLeaveTypeImpl implements _GetLeaveType {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -1933,6 +1986,7 @@ class _$GetLeaveTypeImpl implements _GetLeaveType {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2002,6 +2056,7 @@ class _$ApplyLeaveImpl implements _ApplyLeave {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -2026,6 +2081,7 @@ class _$ApplyLeaveImpl implements _ApplyLeave {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -2050,6 +2106,7 @@ class _$ApplyLeaveImpl implements _ApplyLeave {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -2081,6 +2138,7 @@ class _$ApplyLeaveImpl implements _ApplyLeave {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -2105,6 +2163,7 @@ class _$ApplyLeaveImpl implements _ApplyLeave {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2129,6 +2188,7 @@ class _$ApplyLeaveImpl implements _ApplyLeave {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2198,6 +2258,7 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -2222,6 +2283,7 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -2246,6 +2308,7 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -2277,6 +2340,7 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -2301,6 +2365,7 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2325,6 +2390,7 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2343,6 +2409,241 @@ class _$GetEmpLeaveImpl implements _GetEmpLeave {
 
 abstract class _GetEmpLeave implements LeaveEvent {
   const factory _GetEmpLeave() = _$GetEmpLeaveImpl;
+}
+
+/// @nodoc
+abstract class _$$CancelEmpLeaveImplCopyWith<$Res> {
+  factory _$$CancelEmpLeaveImplCopyWith(_$CancelEmpLeaveImpl value,
+          $Res Function(_$CancelEmpLeaveImpl) then) =
+      __$$CancelEmpLeaveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? leaveId});
+}
+
+/// @nodoc
+class __$$CancelEmpLeaveImplCopyWithImpl<$Res>
+    extends _$LeaveEventCopyWithImpl<$Res, _$CancelEmpLeaveImpl>
+    implements _$$CancelEmpLeaveImplCopyWith<$Res> {
+  __$$CancelEmpLeaveImplCopyWithImpl(
+      _$CancelEmpLeaveImpl _value, $Res Function(_$CancelEmpLeaveImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? leaveId = freezed,
+  }) {
+    return _then(_$CancelEmpLeaveImpl(
+      leaveId: freezed == leaveId
+          ? _value.leaveId
+          : leaveId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CancelEmpLeaveImpl implements _CancelEmpLeave {
+  const _$CancelEmpLeaveImpl({required this.leaveId});
+
+  @override
+  final int? leaveId;
+
+  @override
+  String toString() {
+    return 'LeaveEvent.cancelEmpLeave(leaveId: $leaveId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CancelEmpLeaveImpl &&
+            (identical(other.leaveId, leaveId) || other.leaveId == leaveId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, leaveId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CancelEmpLeaveImplCopyWith<_$CancelEmpLeaveImpl> get copyWith =>
+      __$$CancelEmpLeaveImplCopyWithImpl<_$CancelEmpLeaveImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String leaveId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApproveLeaveList,
+    required TResult Function(bool isApprove) approveLeaveByManager,
+    required TResult Function() getLeaveType,
+    required TResult Function() applyLeave,
+    required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
+    required TResult Function(DropdownModel? type) changeLeaveType,
+    required TResult Function(String duration) changeDuration,
+    required TResult Function(DateTime date) changeSingleDate,
+    required TResult Function(String type) changeSingleDayType,
+    required TResult Function(String type) changeFromDayType,
+    required TResult Function(String type) changeToDayType,
+    required TResult Function(bool? clearFile) selectFile,
+  }) {
+    return cancelEmpLeave(leaveId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String leaveId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApproveLeaveList,
+    TResult? Function(bool isApprove)? approveLeaveByManager,
+    TResult? Function()? getLeaveType,
+    TResult? Function()? applyLeave,
+    TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
+    TResult? Function(DropdownModel? type)? changeLeaveType,
+    TResult? Function(String duration)? changeDuration,
+    TResult? Function(DateTime date)? changeSingleDate,
+    TResult? Function(String type)? changeSingleDayType,
+    TResult? Function(String type)? changeFromDayType,
+    TResult? Function(String type)? changeToDayType,
+    TResult? Function(bool? clearFile)? selectFile,
+  }) {
+    return cancelEmpLeave?.call(leaveId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String leaveId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApproveLeaveList,
+    TResult Function(bool isApprove)? approveLeaveByManager,
+    TResult Function()? getLeaveType,
+    TResult Function()? applyLeave,
+    TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
+    TResult Function(DropdownModel? type)? changeLeaveType,
+    TResult Function(String duration)? changeDuration,
+    TResult Function(DateTime date)? changeSingleDate,
+    TResult Function(String type)? changeSingleDayType,
+    TResult Function(String type)? changeFromDayType,
+    TResult Function(String type)? changeToDayType,
+    TResult Function(bool? clearFile)? selectFile,
+    required TResult orElse(),
+  }) {
+    if (cancelEmpLeave != null) {
+      return cancelEmpLeave(leaveId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApproveLeaveList value) getApproveLeaveList,
+    required TResult Function(_ApproveLeaveByManager value)
+        approveLeaveByManager,
+    required TResult Function(_GetLeaveType value) getLeaveType,
+    required TResult Function(_ApplyLeave value) applyLeave,
+    required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
+    required TResult Function(_ChangeLeaveType value) changeLeaveType,
+    required TResult Function(_ChangeDuration value) changeDuration,
+    required TResult Function(_ChangeSingleDate value) changeSingleDate,
+    required TResult Function(_ChangeSingleDayType value) changeSingleDayType,
+    required TResult Function(_ChangeFromDayType value) changeFromDayType,
+    required TResult Function(_ChangeToDayType value) changeToDayType,
+    required TResult Function(_SelectFile value) selectFile,
+  }) {
+    return cancelEmpLeave(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApproveLeaveList value)? getApproveLeaveList,
+    TResult? Function(_ApproveLeaveByManager value)? approveLeaveByManager,
+    TResult? Function(_GetLeaveType value)? getLeaveType,
+    TResult? Function(_ApplyLeave value)? applyLeave,
+    TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
+    TResult? Function(_ChangeLeaveType value)? changeLeaveType,
+    TResult? Function(_ChangeDuration value)? changeDuration,
+    TResult? Function(_ChangeSingleDate value)? changeSingleDate,
+    TResult? Function(_ChangeSingleDayType value)? changeSingleDayType,
+    TResult? Function(_ChangeFromDayType value)? changeFromDayType,
+    TResult? Function(_ChangeToDayType value)? changeToDayType,
+    TResult? Function(_SelectFile value)? selectFile,
+  }) {
+    return cancelEmpLeave?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApproveLeaveList value)? getApproveLeaveList,
+    TResult Function(_ApproveLeaveByManager value)? approveLeaveByManager,
+    TResult Function(_GetLeaveType value)? getLeaveType,
+    TResult Function(_ApplyLeave value)? applyLeave,
+    TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
+    TResult Function(_ChangeLeaveType value)? changeLeaveType,
+    TResult Function(_ChangeDuration value)? changeDuration,
+    TResult Function(_ChangeSingleDate value)? changeSingleDate,
+    TResult Function(_ChangeSingleDayType value)? changeSingleDayType,
+    TResult Function(_ChangeFromDayType value)? changeFromDayType,
+    TResult Function(_ChangeToDayType value)? changeToDayType,
+    TResult Function(_SelectFile value)? selectFile,
+    required TResult orElse(),
+  }) {
+    if (cancelEmpLeave != null) {
+      return cancelEmpLeave(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CancelEmpLeave implements LeaveEvent {
+  const factory _CancelEmpLeave({required final int? leaveId}) =
+      _$CancelEmpLeaveImpl;
+
+  int? get leaveId;
+  @JsonKey(ignore: true)
+  _$$CancelEmpLeaveImplCopyWith<_$CancelEmpLeaveImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2421,6 +2722,7 @@ class _$ChangeLeaveTypeImpl implements _ChangeLeaveType {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -2445,6 +2747,7 @@ class _$ChangeLeaveTypeImpl implements _ChangeLeaveType {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -2469,6 +2772,7 @@ class _$ChangeLeaveTypeImpl implements _ChangeLeaveType {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -2500,6 +2804,7 @@ class _$ChangeLeaveTypeImpl implements _ChangeLeaveType {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -2524,6 +2829,7 @@ class _$ChangeLeaveTypeImpl implements _ChangeLeaveType {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2548,6 +2854,7 @@ class _$ChangeLeaveTypeImpl implements _ChangeLeaveType {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2651,6 +2958,7 @@ class _$ChangeDurationImpl implements _ChangeDuration {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -2675,6 +2983,7 @@ class _$ChangeDurationImpl implements _ChangeDuration {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -2699,6 +3008,7 @@ class _$ChangeDurationImpl implements _ChangeDuration {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -2730,6 +3040,7 @@ class _$ChangeDurationImpl implements _ChangeDuration {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -2754,6 +3065,7 @@ class _$ChangeDurationImpl implements _ChangeDuration {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2778,6 +3090,7 @@ class _$ChangeDurationImpl implements _ChangeDuration {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -2879,6 +3192,7 @@ class _$ChangeSingleDateImpl implements _ChangeSingleDate {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -2903,6 +3217,7 @@ class _$ChangeSingleDateImpl implements _ChangeSingleDate {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -2927,6 +3242,7 @@ class _$ChangeSingleDateImpl implements _ChangeSingleDate {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -2958,6 +3274,7 @@ class _$ChangeSingleDateImpl implements _ChangeSingleDate {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -2982,6 +3299,7 @@ class _$ChangeSingleDateImpl implements _ChangeSingleDate {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3006,6 +3324,7 @@ class _$ChangeSingleDateImpl implements _ChangeSingleDate {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3107,6 +3426,7 @@ class _$ChangeSingleDayTypeImpl implements _ChangeSingleDayType {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -3131,6 +3451,7 @@ class _$ChangeSingleDayTypeImpl implements _ChangeSingleDayType {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -3155,6 +3476,7 @@ class _$ChangeSingleDayTypeImpl implements _ChangeSingleDayType {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -3186,6 +3508,7 @@ class _$ChangeSingleDayTypeImpl implements _ChangeSingleDayType {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -3210,6 +3533,7 @@ class _$ChangeSingleDayTypeImpl implements _ChangeSingleDayType {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3234,6 +3558,7 @@ class _$ChangeSingleDayTypeImpl implements _ChangeSingleDayType {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3336,6 +3661,7 @@ class _$ChangeFromDayTypeImpl implements _ChangeFromDayType {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -3360,6 +3686,7 @@ class _$ChangeFromDayTypeImpl implements _ChangeFromDayType {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -3384,6 +3711,7 @@ class _$ChangeFromDayTypeImpl implements _ChangeFromDayType {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -3415,6 +3743,7 @@ class _$ChangeFromDayTypeImpl implements _ChangeFromDayType {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -3439,6 +3768,7 @@ class _$ChangeFromDayTypeImpl implements _ChangeFromDayType {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3463,6 +3793,7 @@ class _$ChangeFromDayTypeImpl implements _ChangeFromDayType {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3564,6 +3895,7 @@ class _$ChangeToDayTypeImpl implements _ChangeToDayType {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -3588,6 +3920,7 @@ class _$ChangeToDayTypeImpl implements _ChangeToDayType {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -3612,6 +3945,7 @@ class _$ChangeToDayTypeImpl implements _ChangeToDayType {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -3643,6 +3977,7 @@ class _$ChangeToDayTypeImpl implements _ChangeToDayType {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -3667,6 +4002,7 @@ class _$ChangeToDayTypeImpl implements _ChangeToDayType {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3691,6 +4027,7 @@ class _$ChangeToDayTypeImpl implements _ChangeToDayType {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3792,6 +4129,7 @@ class _$SelectFileImpl implements _SelectFile {
     required TResult Function() getLeaveType,
     required TResult Function() applyLeave,
     required TResult Function() getEmpLeave,
+    required TResult Function(int? leaveId) cancelEmpLeave,
     required TResult Function(DropdownModel? type) changeLeaveType,
     required TResult Function(String duration) changeDuration,
     required TResult Function(DateTime date) changeSingleDate,
@@ -3816,6 +4154,7 @@ class _$SelectFileImpl implements _SelectFile {
     TResult? Function()? getLeaveType,
     TResult? Function()? applyLeave,
     TResult? Function()? getEmpLeave,
+    TResult? Function(int? leaveId)? cancelEmpLeave,
     TResult? Function(DropdownModel? type)? changeLeaveType,
     TResult? Function(String duration)? changeDuration,
     TResult? Function(DateTime date)? changeSingleDate,
@@ -3840,6 +4179,7 @@ class _$SelectFileImpl implements _SelectFile {
     TResult Function()? getLeaveType,
     TResult Function()? applyLeave,
     TResult Function()? getEmpLeave,
+    TResult Function(int? leaveId)? cancelEmpLeave,
     TResult Function(DropdownModel? type)? changeLeaveType,
     TResult Function(String duration)? changeDuration,
     TResult Function(DateTime date)? changeSingleDate,
@@ -3871,6 +4211,7 @@ class _$SelectFileImpl implements _SelectFile {
     required TResult Function(_GetLeaveType value) getLeaveType,
     required TResult Function(_ApplyLeave value) applyLeave,
     required TResult Function(_GetEmpLeave value) getEmpLeave,
+    required TResult Function(_CancelEmpLeave value) cancelEmpLeave,
     required TResult Function(_ChangeLeaveType value) changeLeaveType,
     required TResult Function(_ChangeDuration value) changeDuration,
     required TResult Function(_ChangeSingleDate value) changeSingleDate,
@@ -3895,6 +4236,7 @@ class _$SelectFileImpl implements _SelectFile {
     TResult? Function(_GetLeaveType value)? getLeaveType,
     TResult? Function(_ApplyLeave value)? applyLeave,
     TResult? Function(_GetEmpLeave value)? getEmpLeave,
+    TResult? Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult? Function(_ChangeLeaveType value)? changeLeaveType,
     TResult? Function(_ChangeDuration value)? changeDuration,
     TResult? Function(_ChangeSingleDate value)? changeSingleDate,
@@ -3919,6 +4261,7 @@ class _$SelectFileImpl implements _SelectFile {
     TResult Function(_GetLeaveType value)? getLeaveType,
     TResult Function(_ApplyLeave value)? applyLeave,
     TResult Function(_GetEmpLeave value)? getEmpLeave,
+    TResult Function(_CancelEmpLeave value)? cancelEmpLeave,
     TResult Function(_ChangeLeaveType value)? changeLeaveType,
     TResult Function(_ChangeDuration value)? changeDuration,
     TResult Function(_ChangeSingleDate value)? changeSingleDate,

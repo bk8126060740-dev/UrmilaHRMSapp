@@ -76,9 +76,9 @@ class PunchApproveRejectView extends StatelessWidget {
                               }
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
-                                title: "Reject Attendance",
+                                title: "Reject Missing-Punch",
                                 message:
-                                    "Are you sure you want to reject leave for the selected employees?",
+                                    "Are you sure you want to reject missing punch request for the selected employees?",
                                 child: BlocProvider.value(
                                   value: context.read<MissedPunchBloc>(),
                                   child: PunchApproveRejectDialog(
@@ -96,9 +96,9 @@ class PunchApproveRejectView extends StatelessWidget {
                             onTap: () {
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
-                                title: "Approve Leave",
+                                title: "Approve Missing-Punch",
                                 message:
-                                    "Are you sure you want to approve leave for the selected employees?",
+                                    "Are you sure you want to approve missing punch request for the selected employees?",
                                 child: BlocProvider.value(
                                   value: context.read<MissedPunchBloc>(),
                                   child: PunchApproveRejectDialog(

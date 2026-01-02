@@ -10,13 +10,13 @@ String userProfileDataModelToJson(UserProfileDataModel data) => json.encode(data
 
 class UserProfileDataModel {
   int? id;
-  dynamic profilePath;
+  String? profilePath;
   String? firstName;
-  dynamic midName;
+  String? midName;
   String? lastName;
   DateTime? dateOfBirth;
   dynamic gender;
-  dynamic genderName;
+  String? genderName;
   int? status;
   String? statusName;
   DateTime? doj;

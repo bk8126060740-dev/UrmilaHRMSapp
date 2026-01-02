@@ -49,7 +49,7 @@ class ApproveLeaveEmpDetails extends StatelessWidget {
         ? Colors.deepOrange
         : Colors.indigo;
 
-    final int? status = leaveData?.firstLevelStatus;
+    final int? status = leaveData?.status;
 
     late final Color statusColor;
     late final String statusTxt;
@@ -68,6 +68,11 @@ class ApproveLeaveEmpDetails extends StatelessWidget {
       case 2:
         statusColor = Colors.red;
         statusTxt = "Rejected";
+        break;
+
+      case 3:
+        statusColor = Colors.red;
+        statusTxt = "Canceled";
         break;
 
       default:
@@ -124,7 +129,10 @@ class ApproveLeaveEmpDetails extends StatelessWidget {
                       ),
                       child: Text(
                         statusTxt,
-                        style: AppTextStyles.w600_12(context, color: statusColor),
+                        style: AppTextStyles.w600_12(
+                          context,
+                          color: statusColor,
+                        ),
                       ),
                     ),
                   ],
@@ -159,7 +167,8 @@ class ApproveLeaveEmpDetails extends StatelessWidget {
                           layout: TitleValueLayout.column,
                           title: "Attachment",
                           value:
-                              leaveData?.attachmentPath?.split("/").last ?? "N/A",
+                              leaveData?.attachmentPath?.split("/").last ??
+                              "N/A",
                         ),
                       ),
                       CustomImage(

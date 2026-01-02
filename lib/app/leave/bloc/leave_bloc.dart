@@ -336,10 +336,10 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
         }
       }
 
-      // if (remark.isEmpty) {
-      //   CustomToast.showError(message: "Please enter reason");
-      //   return;
-      // }
+      if (remark.isEmpty) {
+        CustomToast.showError(message: "Please enter reason");
+        return;
+      }
 
       emit(
         state.copyWith(
@@ -431,6 +431,46 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
             status: LeaveStatus.getEmpLeaveError,
             getEmpLeaveLoading: false,
             employeeLeaveDataModel: null,
+            message: e.toString(),
+          ),
+        );
+      }
+    });
+
+    on<_CancelEmpLeave>((event, emit) async {
+      emit(
+        state.copyWith(
+          status: LeaveStatus.cancelLeaveLoading,
+          getEmpLeaveLoading: true,
+        ),
+      );
+
+      try {
+        ApiResponse<void> response = await state.leaveRepo.cancelLeave(
+          leaveId: event.leaveId,
+        );
+
+        if (response.isSuccess) {
+          emit(
+            state.copyWith(
+              status: LeaveStatus.cancelLeaveSuccess,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: LeaveStatus.cancelLeaveError,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: LeaveStatus.cancelLeaveError,
             message: e.toString(),
           ),
         );

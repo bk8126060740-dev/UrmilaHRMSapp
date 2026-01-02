@@ -15,11 +15,8 @@ import 'package:hrms_uis/common/utils/helpers/helper_functions.dart';
 
 import '../../../../common/navigation_service/navigation_service.dart';
 import '../../../../common/utils/constants/image_strings.dart';
-import '../../../../common/utils/custom_dialogs/dialogs.dart';
 import '../../../../common/widgets/appbar/custom_appbar.dart';
-import '../../../../common/widgets/dialog/common_alert_dialog.dart';
 import '../../../attendance/screens/employee/daily_attendance_screen.dart';
-import '../../widgets/logout_dialog.dart';
 
 class SideDrawer extends StatelessWidget {
   const SideDrawer({super.key});

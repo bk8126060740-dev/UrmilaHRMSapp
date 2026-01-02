@@ -38,6 +38,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime ?? widget.initialTime ?? TimeOfDay.now(),
+      initialEntryMode: TimePickerEntryMode.dialOnly,
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(

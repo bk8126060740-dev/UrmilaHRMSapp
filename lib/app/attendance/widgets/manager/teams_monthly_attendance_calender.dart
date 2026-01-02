@@ -14,7 +14,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../common/utils/constants/colors.dart';
 import '../../../../common/utils/custom_dialogs/dialogs.dart';
-import '../../../../common/widgets/dialog/common_alert_dialog.dart';
+import '../../../../common/utils/helpers/device_utility.dart';
 import '../employee/calender_tooltip_dialog.dart';
 
 class TeamsMonthlyAttendanceCalenderView extends StatefulWidget {
@@ -84,7 +84,8 @@ class _TeamsMonthlyAttendanceCalenderViewState
                   child: TableCalendar<MonthlyAttendanceData>(
                     availableGestures: AvailableGestures.horizontalSwipe,
                     firstDay: DateTime.utc(2020, 1, 1),
-                    lastDay: DateTime.now(),
+                    // lastDay: DateTime.now(),
+                    lastDay: AppDeviceUtils.lastDayOfMonth(state.focusedDay),
                     focusedDay: state.focusedDay,
                     selectedDayPredicate: (day) =>
                         isSameDay(state.selectedDay, day),

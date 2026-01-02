@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/app/leave/screens/employee/leave_history_details_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
@@ -8,6 +9,7 @@ import 'package:hrms_uis/common/utils/formatters/date_formats.dart';
 import 'package:hrms_uis/common/utils/formatters/formatter.dart';
 
 import '../../../../common/utils/constants/decorations.dart';
+import '../../bloc/leave_bloc.dart';
 import '../../model/employee_leave_data_model.dart';
 
 class LeaveHistoryItem extends StatelessWidget {
@@ -41,7 +43,7 @@ class LeaveHistoryItem extends StatelessWidget {
 
     /// ---- Final Date Text ----
     String finalDate = (from == to) ? from : "$from → $to";
-    final int? status = item?.firstLevelStatus;
+    final int? status = item?.status;
 
     late final Color statusColor;
     late final String statusTxt;
@@ -62,6 +64,11 @@ class LeaveHistoryItem extends StatelessWidget {
         statusTxt = "Rejected";
         break;
 
+      case 3:
+        statusColor = Colors.red;
+        statusTxt = "Canceled";
+        break;
+
       default:
         statusColor = Colors.grey;
         statusTxt = "Unknown";
@@ -72,7 +79,11 @@ class LeaveHistoryItem extends StatelessWidget {
         NavigationService.navigateTo(
           LeaveHistoryDetailsScreen.route,
           arguments: item,
-        );
+        )?.then((value) {
+          if (value == true && context.mounted) {
+            context.read<LeaveBloc>().add(LeaveEvent.getEmpLeave());
+          }
+        });
       },
       child: Container(
         padding: const EdgeInsets.all(AppSizes.padding16),

@@ -19,6 +19,7 @@ class DateWiseAttendanceLoading extends StatelessWidget {
             clockOut: "—",
             location: "—",
             attendanceData: null,
+            index: index,
           ),
         ),
       ),

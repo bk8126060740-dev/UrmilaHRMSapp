@@ -33,6 +33,9 @@ class LeaveEvent with _$LeaveEvent {
 
   const factory LeaveEvent.getEmpLeave() = _GetEmpLeave;
 
+  const factory LeaveEvent.cancelEmpLeave({required int? leaveId}) =
+      _CancelEmpLeave;
+
   const factory LeaveEvent.changeLeaveType(DropdownModel? type) =
       _ChangeLeaveType;
 

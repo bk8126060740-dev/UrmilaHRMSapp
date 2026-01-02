@@ -19,6 +19,7 @@ class ClockInOutCard extends StatelessWidget {
   final String checkOutImage;
   final Color cardBgColor;
   final DailyAttendanceData? attendanceData;
+  final int index;
 
   const ClockInOutCard({
     super.key,
@@ -30,6 +31,7 @@ class ClockInOutCard extends StatelessWidget {
     this.checkOutImage = AppImages.profileImage,
     this.cardBgColor = Colors.white,
     this.attendanceData,
+    required this.index,
   });
 
   @override
@@ -122,6 +124,7 @@ class ClockInOutCard extends StatelessWidget {
                   child: Row(
                     children: [
                       CustomImage(
+                        heroTag: "$checkOutImage$index",
                         imageUrl: checkOutImage,
                         fallbackAsset: AppImages.profileImage,
                         size: 30,

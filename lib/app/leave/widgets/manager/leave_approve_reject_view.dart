@@ -76,7 +76,7 @@ class LeaveApproveRejectView extends StatelessWidget {
                               }
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
-                                title: "Reject Attendance",
+                                title: "Reject Leave",
                                 message:
                                     "Are you sure you want to reject leave for the selected employees?",
                                 child: BlocProvider.value(

@@ -19,18 +19,21 @@ mixin _$DashboardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserProfileData,
+    required TResult Function() getAppVersion,
     required TResult Function(int month, int year) getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserProfileData,
+    TResult? Function()? getAppVersion,
     TResult? Function(int month, int year)? getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserProfileData,
+    TResult Function()? getAppVersion,
     TResult Function(int month, int year)? getMonthlyAttendance,
     required TResult orElse(),
   }) =>
@@ -38,18 +41,21 @@ mixin _$DashboardEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserProfileData value) getUserProfileData,
+    required TResult Function(_GetAppVersion value) getAppVersion,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserProfileData value)? getUserProfileData,
+    TResult? Function(_GetAppVersion value)? getAppVersion,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserProfileData value)? getUserProfileData,
+    TResult Function(_GetAppVersion value)? getAppVersion,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
     required TResult orElse(),
   }) =>
@@ -113,6 +119,7 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserProfileData,
+    required TResult Function() getAppVersion,
     required TResult Function(int month, int year) getMonthlyAttendance,
   }) {
     return getUserProfileData();
@@ -122,6 +129,7 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserProfileData,
+    TResult? Function()? getAppVersion,
     TResult? Function(int month, int year)? getMonthlyAttendance,
   }) {
     return getUserProfileData?.call();
@@ -131,6 +139,7 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserProfileData,
+    TResult Function()? getAppVersion,
     TResult Function(int month, int year)? getMonthlyAttendance,
     required TResult orElse(),
   }) {
@@ -144,6 +153,7 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserProfileData value) getUserProfileData,
+    required TResult Function(_GetAppVersion value) getAppVersion,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
   }) {
     return getUserProfileData(this);
@@ -153,6 +163,7 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserProfileData value)? getUserProfileData,
+    TResult? Function(_GetAppVersion value)? getAppVersion,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
   }) {
     return getUserProfileData?.call(this);
@@ -162,6 +173,7 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserProfileData value)? getUserProfileData,
+    TResult Function(_GetAppVersion value)? getAppVersion,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
     required TResult orElse(),
   }) {
@@ -174,6 +186,114 @@ class _$GetUserProfileDataImpl implements _GetUserProfileData {
 
 abstract class _GetUserProfileData implements DashboardEvent {
   const factory _GetUserProfileData() = _$GetUserProfileDataImpl;
+}
+
+/// @nodoc
+abstract class _$$GetAppVersionImplCopyWith<$Res> {
+  factory _$$GetAppVersionImplCopyWith(
+          _$GetAppVersionImpl value, $Res Function(_$GetAppVersionImpl) then) =
+      __$$GetAppVersionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetAppVersionImplCopyWithImpl<$Res>
+    extends _$DashboardEventCopyWithImpl<$Res, _$GetAppVersionImpl>
+    implements _$$GetAppVersionImplCopyWith<$Res> {
+  __$$GetAppVersionImplCopyWithImpl(
+      _$GetAppVersionImpl _value, $Res Function(_$GetAppVersionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetAppVersionImpl implements _GetAppVersion {
+  const _$GetAppVersionImpl();
+
+  @override
+  String toString() {
+    return 'DashboardEvent.getAppVersion()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAppVersionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserProfileData,
+    required TResult Function() getAppVersion,
+    required TResult Function(int month, int year) getMonthlyAttendance,
+  }) {
+    return getAppVersion();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserProfileData,
+    TResult? Function()? getAppVersion,
+    TResult? Function(int month, int year)? getMonthlyAttendance,
+  }) {
+    return getAppVersion?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserProfileData,
+    TResult Function()? getAppVersion,
+    TResult Function(int month, int year)? getMonthlyAttendance,
+    required TResult orElse(),
+  }) {
+    if (getAppVersion != null) {
+      return getAppVersion();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserProfileData value) getUserProfileData,
+    required TResult Function(_GetAppVersion value) getAppVersion,
+    required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
+  }) {
+    return getAppVersion(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserProfileData value)? getUserProfileData,
+    TResult? Function(_GetAppVersion value)? getAppVersion,
+    TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+  }) {
+    return getAppVersion?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserProfileData value)? getUserProfileData,
+    TResult Function(_GetAppVersion value)? getAppVersion,
+    TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
+    required TResult orElse(),
+  }) {
+    if (getAppVersion != null) {
+      return getAppVersion(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAppVersion implements DashboardEvent {
+  const factory _GetAppVersion() = _$GetAppVersionImpl;
 }
 
 /// @nodoc
@@ -251,6 +371,7 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserProfileData,
+    required TResult Function() getAppVersion,
     required TResult Function(int month, int year) getMonthlyAttendance,
   }) {
     return getMonthlyAttendance(month, year);
@@ -260,6 +381,7 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserProfileData,
+    TResult? Function()? getAppVersion,
     TResult? Function(int month, int year)? getMonthlyAttendance,
   }) {
     return getMonthlyAttendance?.call(month, year);
@@ -269,6 +391,7 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserProfileData,
+    TResult Function()? getAppVersion,
     TResult Function(int month, int year)? getMonthlyAttendance,
     required TResult orElse(),
   }) {
@@ -282,6 +405,7 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserProfileData value) getUserProfileData,
+    required TResult Function(_GetAppVersion value) getAppVersion,
     required TResult Function(_GetMonthlyAttendance value) getMonthlyAttendance,
   }) {
     return getMonthlyAttendance(this);
@@ -291,6 +415,7 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserProfileData value)? getUserProfileData,
+    TResult? Function(_GetAppVersion value)? getAppVersion,
     TResult? Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
   }) {
     return getMonthlyAttendance?.call(this);
@@ -300,6 +425,7 @@ class _$GetMonthlyAttendanceImpl implements _GetMonthlyAttendance {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserProfileData value)? getUserProfileData,
+    TResult Function(_GetAppVersion value)? getAppVersion,
     TResult Function(_GetMonthlyAttendance value)? getMonthlyAttendance,
     required TResult orElse(),
   }) {
@@ -331,7 +457,9 @@ mixin _$DashboardState {
       throw _privateConstructorUsedError;
   MonthlyAttendanceModel? get monthlyAttendanceModel =>
       throw _privateConstructorUsedError;
+  AppVersionModel? get appVersionModel => throw _privateConstructorUsedError;
   dynamic get userProfileLoading => throw _privateConstructorUsedError;
+  dynamic get appVersionLoading => throw _privateConstructorUsedError;
   dynamic get monthlyAttendanceLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -351,7 +479,9 @@ abstract class $DashboardStateCopyWith<$Res> {
       String message,
       UserProfileDataModel? userProfileDataModel,
       MonthlyAttendanceModel? monthlyAttendanceModel,
+      AppVersionModel? appVersionModel,
       dynamic userProfileLoading,
+      dynamic appVersionLoading,
       dynamic monthlyAttendanceLoading});
 }
 
@@ -373,7 +503,9 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? message = null,
     Object? userProfileDataModel = freezed,
     Object? monthlyAttendanceModel = freezed,
+    Object? appVersionModel = freezed,
     Object? userProfileLoading = freezed,
+    Object? appVersionLoading = freezed,
     Object? monthlyAttendanceLoading = freezed,
   }) {
     return _then(_value.copyWith(
@@ -397,9 +529,17 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
           ? _value.monthlyAttendanceModel
           : monthlyAttendanceModel // ignore: cast_nullable_to_non_nullable
               as MonthlyAttendanceModel?,
+      appVersionModel: freezed == appVersionModel
+          ? _value.appVersionModel
+          : appVersionModel // ignore: cast_nullable_to_non_nullable
+              as AppVersionModel?,
       userProfileLoading: freezed == userProfileLoading
           ? _value.userProfileLoading
           : userProfileLoading // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      appVersionLoading: freezed == appVersionLoading
+          ? _value.appVersionLoading
+          : appVersionLoading // ignore: cast_nullable_to_non_nullable
               as dynamic,
       monthlyAttendanceLoading: freezed == monthlyAttendanceLoading
           ? _value.monthlyAttendanceLoading
@@ -423,7 +563,9 @@ abstract class _$$DashboardStateImplCopyWith<$Res>
       String message,
       UserProfileDataModel? userProfileDataModel,
       MonthlyAttendanceModel? monthlyAttendanceModel,
+      AppVersionModel? appVersionModel,
       dynamic userProfileLoading,
+      dynamic appVersionLoading,
       dynamic monthlyAttendanceLoading});
 }
 
@@ -443,7 +585,9 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
     Object? message = null,
     Object? userProfileDataModel = freezed,
     Object? monthlyAttendanceModel = freezed,
+    Object? appVersionModel = freezed,
     Object? userProfileLoading = freezed,
+    Object? appVersionLoading = freezed,
     Object? monthlyAttendanceLoading = freezed,
   }) {
     return _then(_$DashboardStateImpl(
@@ -467,9 +611,16 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
           ? _value.monthlyAttendanceModel
           : monthlyAttendanceModel // ignore: cast_nullable_to_non_nullable
               as MonthlyAttendanceModel?,
+      appVersionModel: freezed == appVersionModel
+          ? _value.appVersionModel
+          : appVersionModel // ignore: cast_nullable_to_non_nullable
+              as AppVersionModel?,
       userProfileLoading: freezed == userProfileLoading
           ? _value.userProfileLoading!
           : userProfileLoading,
+      appVersionLoading: freezed == appVersionLoading
+          ? _value.appVersionLoading!
+          : appVersionLoading,
       monthlyAttendanceLoading: freezed == monthlyAttendanceLoading
           ? _value.monthlyAttendanceLoading!
           : monthlyAttendanceLoading,
@@ -486,7 +637,9 @@ class _$DashboardStateImpl implements _DashboardState {
       this.message = '',
       this.userProfileDataModel,
       this.monthlyAttendanceModel,
+      this.appVersionModel,
       this.userProfileLoading = false,
+      this.appVersionLoading = false,
       this.monthlyAttendanceLoading = false});
 
   @override
@@ -502,15 +655,20 @@ class _$DashboardStateImpl implements _DashboardState {
   @override
   final MonthlyAttendanceModel? monthlyAttendanceModel;
   @override
+  final AppVersionModel? appVersionModel;
+  @override
   @JsonKey()
   final dynamic userProfileLoading;
+  @override
+  @JsonKey()
+  final dynamic appVersionLoading;
   @override
   @JsonKey()
   final dynamic monthlyAttendanceLoading;
 
   @override
   String toString() {
-    return 'DashboardState(status: $status, dashboardRepo: $dashboardRepo, message: $message, userProfileDataModel: $userProfileDataModel, monthlyAttendanceModel: $monthlyAttendanceModel, userProfileLoading: $userProfileLoading, monthlyAttendanceLoading: $monthlyAttendanceLoading)';
+    return 'DashboardState(status: $status, dashboardRepo: $dashboardRepo, message: $message, userProfileDataModel: $userProfileDataModel, monthlyAttendanceModel: $monthlyAttendanceModel, appVersionModel: $appVersionModel, userProfileLoading: $userProfileLoading, appVersionLoading: $appVersionLoading, monthlyAttendanceLoading: $monthlyAttendanceLoading)';
   }
 
   @override
@@ -526,8 +684,12 @@ class _$DashboardStateImpl implements _DashboardState {
                 other.userProfileDataModel == userProfileDataModel) &&
             (identical(other.monthlyAttendanceModel, monthlyAttendanceModel) ||
                 other.monthlyAttendanceModel == monthlyAttendanceModel) &&
+            (identical(other.appVersionModel, appVersionModel) ||
+                other.appVersionModel == appVersionModel) &&
             const DeepCollectionEquality()
                 .equals(other.userProfileLoading, userProfileLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.appVersionLoading, appVersionLoading) &&
             const DeepCollectionEquality().equals(
                 other.monthlyAttendanceLoading, monthlyAttendanceLoading));
   }
@@ -540,7 +702,9 @@ class _$DashboardStateImpl implements _DashboardState {
       message,
       userProfileDataModel,
       monthlyAttendanceModel,
+      appVersionModel,
       const DeepCollectionEquality().hash(userProfileLoading),
+      const DeepCollectionEquality().hash(appVersionLoading),
       const DeepCollectionEquality().hash(monthlyAttendanceLoading));
 
   @JsonKey(ignore: true)
@@ -558,7 +722,9 @@ abstract class _DashboardState implements DashboardState {
       final String message,
       final UserProfileDataModel? userProfileDataModel,
       final MonthlyAttendanceModel? monthlyAttendanceModel,
+      final AppVersionModel? appVersionModel,
       final dynamic userProfileLoading,
+      final dynamic appVersionLoading,
       final dynamic monthlyAttendanceLoading}) = _$DashboardStateImpl;
 
   @override
@@ -572,7 +738,11 @@ abstract class _DashboardState implements DashboardState {
   @override
   MonthlyAttendanceModel? get monthlyAttendanceModel;
   @override
+  AppVersionModel? get appVersionModel;
+  @override
   dynamic get userProfileLoading;
+  @override
+  dynamic get appVersionLoading;
   @override
   dynamic get monthlyAttendanceLoading;
   @override

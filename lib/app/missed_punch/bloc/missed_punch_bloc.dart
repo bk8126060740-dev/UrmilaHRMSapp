@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hrms_uis/app/missed_punch/models/employees_missed_punch_model.dart';
+import 'package:hrms_uis/app/missed_punch/models/missed_punch_type_list_model.dart';
 import 'package:hrms_uis/app/missed_punch/repo/missed_punch_repo.dart';
 
+import '../../../common/networking/common_repo.dart';
+import '../../../common/utils/popups/custom_toast.dart';
 import '../../../common/widgets/dropdown/dropdown_model.dart';
 import '../models/approval_missed_punch_data.dart';
 
@@ -28,6 +32,18 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
       );
     });
 
+    on<_SelectInOutTime>((event, emit) {
+      if (event.inTime) {
+        emit(
+          state.copyWith(inTime: event.inOutTime, status: MissedPunchStatus.initial),
+        );
+      } else {
+        emit(
+          state.copyWith(inTime: event.inOutTime, status: MissedPunchStatus.initial),
+        );
+      }
+    });
+
     on<_ChangeMissedPunchType>((event, emit) {
       emit(
         state.copyWith(
@@ -35,6 +51,153 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
           status: MissedPunchStatus.initial,
         ),
       );
+    });
+
+    // missed punch type
+    on<_GetMissedPunchType>((event, emit) async {
+      emit(state.copyWith(status: MissedPunchStatus.getMissedPunchTypeLoading));
+      try {
+        ApiResponse<MissedPunchTypeListModel> response = await state
+            .missedPunchRepo
+            .getMissedPunchType();
+
+        if (response.isSuccess && response.data != null) {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.getMissedPunchTypeSuccess,
+              missedPunchTypeListModel: response.data,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              missedPunchTypeListModel: null,
+              status: MissedPunchStatus.getMissedPunchTypeError,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            missedPunchTypeListModel: null,
+            status: MissedPunchStatus.getMissedPunchTypeError,
+            message: e.toString(),
+          ),
+        );
+      }
+    });
+
+    on<_ApplyMissedPunch>((event, emit) async {
+      // ========= VALIDATION ========= //
+      var reason = reasonController.text.trim();
+      if (state.selectedMissedPunchType == null) {
+        CustomToast.showError(message: "Please select missed punch type");
+        return;
+      }
+
+      if (state.requestDate == null) {
+        CustomToast.showError(message: "Please select request date");
+        return;
+      }
+
+      if (reason.isEmpty) {
+        CustomToast.showError(message: "Please enter reason");
+        return;
+      }
+
+      emit(state.copyWith(status: MissedPunchStatus.applyMissedPunchLoading));
+
+      try {
+        ApiResponse<void> response = await state.missedPunchRepo
+            .applyMissedPunch(
+              empId: empId,
+              missedPunchReason: reason,
+              missedPunchType: state.selectedMissedPunchType,
+              requestDate: state.requestDate,
+            );
+
+        if (response.isSuccess) {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.applyMissedPunchSuccess,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.applyMissedPunchError,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: MissedPunchStatus.applyMissedPunchError,
+            message: e.toString(),
+          ),
+        );
+      }
+    });
+
+    on<_GetEmployeesMissedPunchList>((event, emit) async {
+      emit(
+        state.copyWith(
+          status: MissedPunchStatus.getEmpMissedPunchListLoading,
+          getEmpMissedPunchListLoading: true,
+        ),
+      );
+
+      try {
+        ApiResponse<EmployeesMissedPunchModel> response = await state
+            .missedPunchRepo
+            .getEmployeesMissedPunchList(
+              empId: empId,
+              fromDate: state.fromDate,
+              toDate: state.toDate,
+            );
+
+        if (response.isSuccess && response.data != null) {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.getEmpMissedPunchListSuccess,
+              getEmpMissedPunchListLoading: false,
+              employeesMissedPunchModel: response.data,
+              // fetchApprovalMissingPunchModel: response.data,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.getEmpMissedPunchListError,
+              getEmpMissedPunchListLoading: false,
+              employeesMissedPunchModel: null,
+              // fetchApprovalMissingPunchModel: null,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: MissedPunchStatus.getEmpMissedPunchListError,
+            getEmpMissedPunchListLoading: false,
+            employeesMissedPunchModel: null,
+            // fetchApprovalMissingPunchModel: null,
+            message: e.toString(),
+          ),
+        );
+      }
     });
 
     //==============>> Manager Modules ==================>>
@@ -118,7 +281,7 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
       }
 
       final totalEmployees =
-          state.approvalMissingPunchModel?.missingPunchList?.length ?? 0;
+          state.approvalMissingPunchModel?.swipeRequestList?.length ?? 0;
 
       final allSelected =
           totalEmployees > 0 && updated.length == totalEmployees;
@@ -135,7 +298,7 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
       if (event.value) {
         // Select all employees by ID
         final allIds =
-            state.approvalMissingPunchModel?.missingPunchList
+            state.approvalMissingPunchModel?.swipeRequestList
                 ?.map((e) => e.id.toString())
                 .toSet() ??
             {}; // <-- fallback to empty set if null
@@ -161,7 +324,7 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
         return;
       }
 
-      final allList = state.approvalMissingPunchModel?.missingPunchList ?? [];
+      final allList = state.approvalMissingPunchModel?.swipeRequestList ?? [];
 
       // final filtered = allList.where((item) {
       //   final name = item.employeeName.toString().toLowerCase();
@@ -181,14 +344,14 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
       emit(
         state.copyWith(
           approvalMissingPunchModel: ApprovalMissedPunchModel(
-            missingPunchList: filtered,
+            swipeRequestList: filtered,
           ),
           status: MissedPunchStatus.initial,
         ),
       );
     });
 
-    on<_GetApprovalPunchList>((event, emit) async {
+    on<_GetApprovalMissedPunchList>((event, emit) async {
       emit(
         state.copyWith(
           status: MissedPunchStatus.getApprovalPunchListLoading,
@@ -196,189 +359,94 @@ class MissedPunchBloc extends Bloc<MissedPunchEvent, MissedPunchState> {
         ),
       );
 
-      final jsonString = '''{
-        "missingPunchList": [
-    {
-      "id": 101,
-      "isDeleted": false,
-      "createdDate": "2025-01-12T09:30:00",
-      "createdBy": 12,
-      "updatedDate": null,
-      "updatedBy": null,
-      "employeeId": 1001,
-      "employeeName": "Amit Sharma",
-      "employeeCode": "EMP0012",
-      "date": "2025-01-12",
-      "missingType": "In",
-      "reason": "Forgot to punch in while entering office",
-      "attachmentPath": null,
-      "status": 0,
-      "approverName": null,
-      "approvedDate": null,
-      "remark": null,
-      "logs": []
-    },
-    {
-      "id": 102,
-      "isDeleted": false,
-      "createdDate": "2025-01-13T18:45:00",
-      "createdBy": 34,
-      "updatedDate": null,
-      "updatedBy": null,
-      "employeeId": 1002,
-      "employeeName": "Sneha Patil",
-      "employeeCode": "EMP0034",
-      "date": "2025-01-13",
-      "missingType": "Out",
-      "reason": "Exit biometric device not working",
-      "attachmentPath": "https://dummyimage.com/300.png/09f/fff",
-      "status": 1,
-      "approverName": "HR Team",
-      "approvedDate": "2025-01-14T10:10:00",
-      "remark": "Verified with CCTV",
-      "logs": [
-    {
-      "action": "Applied",
-      "date": "2025-01-13T18:50:00"
-    },
-    {
-      "action": "Approved",
-      "date": "2025-01-14T10:10:00"
-    }
-      ]
-    },
-    {
-      "id": 103,
-      "isDeleted": false,
-      "createdDate": "2025-01-14T09:15:00",
-      "createdBy": 56,
-      "updatedDate": null,
-      "updatedBy": null,
-      "employeeId": 1003,
-      "employeeName": "Rohit Mehta",
-      "employeeCode": "EMP0056",
-      "date": "2025-01-14",
-      "missingType": "In",
-      "reason": "Card not detected at gate",
-      "attachmentPath": null,
-      "status": -1,
-      "approverName": "Admin",
-      "approvedDate": "2025-01-14T11:30:00",
-      "remark": "No supporting proof",
-      "logs": [
-    {
-      "action": "Applied",
-      "date": "2025-01-14T09:20:00"
-    },
-    {
-      "action": "Rejected",
-      "date": "2025-01-14T11:30:00"
-    }
-      ]
-    }
-      ]
-    }''';
+      try {
+        ApiResponse<ApprovalMissedPunchModel> response = await state
+            .missedPunchRepo
+            .getApproveMissedPunchList(
+              empId: empId,
+              fromDate: state.fromDate,
+              toDate: state.toDate,
+            );
 
-      final ApprovalMissedPunchModel approvalMissedPunchModel =
-          missingPunchListModelFromJson(jsonString);
-
-      await Future.delayed(const Duration(seconds: 1));
-
-      emit(
-        state.copyWith(
-          status: MissedPunchStatus.getApprovalPunchListSuccess,
-          getApprovalPunchListLoading: false,
-          approvalMissingPunchModel: approvalMissedPunchModel,
-          fetchApprovalMissingPunchModel: approvalMissedPunchModel,
-        ),
-      );
-      // try {
-      //   ApiResponse<ApproveLeaveListModel> response = await state.leaveRepo
-      //       .getApproveLeaveList(
-      //         empId: empId,
-      //         fromDate: state.fromDate,
-      //         toDate: state.toDate,
-      //       );
-      //
-      //   if (response.isSuccess && response.data != null) {
-      //     emit(
-      //       state.copyWith(
-      //         status: LeaveStatus.getApprovalLeaveSuccess,
-      //         getApproveLeaveLoading: false,
-      //         approveLeaveListModel: response.data,
-      //         fetchedLeaveListModel: response.data,
-      //         message: response.message ?? "",
-      //       ),
-      //     );
-      //   } else {
-      //     emit(
-      //       state.copyWith(
-      //         status: LeaveStatus.getApprovalLeaveError,
-      //         getApproveLeaveLoading: false,
-      //         approveLeaveListModel: null,
-      //         fetchedLeaveListModel: null,
-      //         message:
-      //             response.message ??
-      //             "Api failed with status ${response.statusCode}",
-      //       ),
-      //     );
-      //   }
-      // } catch (e) {
-      //   emit(
-      //     state.copyWith(
-      //       status: LeaveStatus.getApprovalLeaveError,
-      //       getApproveLeaveLoading: false,
-      //       approveLeaveListModel: null,
-      //       fetchedLeaveListModel: null,
-      //       message: e.toString(),
-      //     ),
-      //   );
-      // }
+        if (response.isSuccess && response.data != null) {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.getApprovalPunchListSuccess,
+              getApprovalPunchListLoading: false,
+              approvalMissingPunchModel: response.data,
+              fetchApprovalMissingPunchModel: response.data,
+              message: response.message ?? "",
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.getApprovalPunchListError,
+              getApprovalPunchListLoading: false,
+              approvalMissingPunchModel: null,
+              fetchApprovalMissingPunchModel: null,
+              message:
+                  response.message ??
+                  "Api failed with status ${response.statusCode}",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: MissedPunchStatus.getApprovalPunchListError,
+            getApprovalPunchListLoading: false,
+            approvalMissingPunchModel: null,
+            fetchApprovalMissingPunchModel: null,
+            message: e.toString(),
+          ),
+        );
+      }
     });
 
     on<_ApprovePunchByManager>((event, emit) async {
       emit(
         state.copyWith(status: MissedPunchStatus.approvalMissedPunchLoading),
       );
-      //   try {
-      //     final leaveIdList = state.selectedLeaveIds
-      //         .map((e) => int.parse(e))
-      //         .toList();
-      //
-      //     ApiResponse<void> response = await state.leaveRepo
-      //         .approveLeaveByManager(
-      //           leaveIdList: leaveIdList,
-      //           isApprove: event.isApprove,
-      //           remarks: remarkController.text.trim(),
-      //         );
-      //
-      //     if (response.isSuccess) {
-      //       remarkController.clear();
-      //       emit(
-      //         state.copyWith(
-      //           status: LeaveStatus.approveLeaveSuccess,
-      //           message: response.message ?? "",
-      //           selectedLeaveIds: {},
-      //           selectAll: false,
-      //         ),
-      //       );
-      //       add(LeaveEvent.getApproveLeaveList());
-      //     } else {
-      //       emit(
-      //         state.copyWith(
-      //           status: LeaveStatus.approveLeaveError,
-      //           message: response.message ?? "Some Error Occurred",
-      //         ),
-      //       );
-      //     }
-      //   } catch (e) {
-      //     emit(
-      //       state.copyWith(
-      //         status: LeaveStatus.approveLeaveError,
-      //         message: e.toString(),
-      //       ),
-      //     );
-      //   }
+      try {
+        final missedPunchIdList = state.selectedMissingPunchIds
+            .map((e) => int.parse(e))
+            .toList();
+
+        ApiResponse<void> response = await state.missedPunchRepo
+            .approveMissedPunchByManager(
+              missedPunchIdsList: missedPunchIdList,
+              isApprove: event.isApprove,
+              remarks: remarkController.text.trim(),
+            );
+
+        if (response.isSuccess) {
+          remarkController.clear();
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.approvalMissedPunchSuccess,
+              message: response.message ?? "",
+              selectedMissingPunchIds: {},
+              selectAll: false,
+            ),
+          );
+          add(MissedPunchEvent.getApprovalMissedPunchList());
+        } else {
+          emit(
+            state.copyWith(
+              status: MissedPunchStatus.approvalMissedPunchError,
+              message: response.message ?? "Some Error Occurred",
+            ),
+          );
+        }
+      } catch (e) {
+        emit(
+          state.copyWith(
+            status: MissedPunchStatus.approvalMissedPunchError,
+            message: e.toString(),
+          ),
+        );
+      }
     });
   }
 }

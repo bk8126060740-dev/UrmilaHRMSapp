@@ -58,7 +58,7 @@ class _ApproveAttendEmpListScreenState
           appBar: CustomAppBar(
             elevation: 0,
             title: context.loc.approveAttendance,
-            subtitle: _buildSubtitle(state),
+            // subtitle: _buildSubtitle(state),
             showAvatar: false,
             showBackButton: true,
             showNavigation: false,

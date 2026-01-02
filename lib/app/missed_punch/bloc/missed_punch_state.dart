@@ -9,7 +9,13 @@ class MissedPunchState with _$MissedPunchState {
 
     // apply screen------------->>
     DateTime? requestDate,
+    TimeOfDay? inTime,
+    DateTime? outTime,
     DropdownModel? selectedMissedPunchType,
+    MissedPunchTypeListModel? missedPunchTypeListModel,
+
+    // get missed punch list
+    EmployeesMissedPunchModel? employeesMissedPunchModel,
 
     // manager punch approve part============>>
     @Default('Daily') String selectedFilter,
@@ -24,10 +30,15 @@ class MissedPunchState with _$MissedPunchState {
     @Default(false) getMissedPunchLoading,
     @Default(false) applyMissedPunchLoading,
     @Default(false) getApprovalPunchListLoading,
+    @Default(false) getEmpMissedPunchListLoading,
   }) = _MissedPunchState;
 }
 
 enum MissedPunchStatus {
+  getMissedPunchTypeLoading,
+  getMissedPunchTypeError,
+  getMissedPunchTypeSuccess,
+
   initial,
   getMissedPunchLoading,
   getMissedPunchSuccess,
@@ -40,6 +51,10 @@ enum MissedPunchStatus {
   getApprovalPunchListLoading,
   getApprovalPunchListError,
   getApprovalPunchListSuccess,
+
+  getEmpMissedPunchListLoading,
+  getEmpMissedPunchListError,
+  getEmpMissedPunchListSuccess,
 
   approvalMissedPunchLoading,
   approvalMissedPunchError,

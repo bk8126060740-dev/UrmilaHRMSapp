@@ -7,7 +7,6 @@ import '../../../../common/utils/constants/sizes.dart';
 import '../../../../common/utils/constants/text_styles.dart';
 import '../../../../common/utils/formatters/date_formats.dart';
 import '../../../../common/utils/formatters/formatter.dart';
-import '../../../../common/utils/helpers/helper_functions.dart';
 import '../../../../common/utils/popups/custom_toast.dart';
 import '../../../../common/widgets/button/custom_button.dart';
 import '../../../../common/widgets/custom/custom_attachment_view.dart';

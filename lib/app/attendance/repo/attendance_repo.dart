@@ -187,8 +187,8 @@ class AttendanceRepo {
           "location": addressText,
           "latitude": latitude.toString(),
           "longitude": longitude.toString(),
-          "outOnDutyStatus": true,
-          "checkOutType": 0,
+          "outOnDutyStatus": false,
+          "checkOutType": 195, // for checkout
         },
         fromJson: (json) => json as Map<String, dynamic>,
         file: imageFile,
@@ -296,9 +296,9 @@ class AttendanceRepo {
         url: ApiUrl.approveAttendanceByManager,
         request: {
           "attendanceIds": attendanceList,
-          "stage": "string",
+          // "stage": "string",
           "approve": isApprove,
-          "remarks": remarks,
+          "managerRemarks": remarks,
         },
         fromJson: (json) => json as Map<String, dynamic>,
       );

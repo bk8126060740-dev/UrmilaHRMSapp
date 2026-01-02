@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrms_uis/app/attendance/screens/employee/daily_attendance_screen.dart';
-import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 
 import '../../../common/networking/api_url.dart';
@@ -12,7 +10,6 @@ import '../../../common/utils/constants/image_strings.dart';
 import '../../../common/utils/constants/sizes.dart';
 import '../../../common/utils/constants/text_styles.dart';
 import '../../../common/utils/helpers/device_utility.dart';
-import '../../../common/widgets/button/custom_button.dart';
 import '../../../common/widgets/image/custom_image.dart';
 
 class MonthlyAttendanceTopView extends StatelessWidget {

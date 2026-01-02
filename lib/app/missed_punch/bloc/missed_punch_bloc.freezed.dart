@@ -19,40 +19,53 @@ mixin _$MissedPunchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) =>
@@ -60,8 +73,13 @@ mixin _$MissedPunchEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -69,7 +87,8 @@ mixin _$MissedPunchEvent {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) =>
@@ -77,26 +96,38 @@ mixin _$MissedPunchEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) =>
@@ -187,14 +218,19 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return changeRequestDate(date);
@@ -204,13 +240,17 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return changeRequestDate?.call(date);
@@ -220,13 +260,17 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -240,8 +284,13 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -249,7 +298,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -260,13 +310,19 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return changeRequestDate?.call(this);
@@ -276,13 +332,19 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -300,6 +362,230 @@ abstract class _ChangeRequestDate implements MissedPunchEvent {
   DateTime get date;
   @JsonKey(ignore: true)
   _$$ChangeRequestDateImplCopyWith<_$ChangeRequestDateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectInOutTimeImplCopyWith<$Res> {
+  factory _$$SelectInOutTimeImplCopyWith(_$SelectInOutTimeImpl value,
+          $Res Function(_$SelectInOutTimeImpl) then) =
+      __$$SelectInOutTimeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TimeOfDay? inOutTime, bool inTime});
+}
+
+/// @nodoc
+class __$$SelectInOutTimeImplCopyWithImpl<$Res>
+    extends _$MissedPunchEventCopyWithImpl<$Res, _$SelectInOutTimeImpl>
+    implements _$$SelectInOutTimeImplCopyWith<$Res> {
+  __$$SelectInOutTimeImplCopyWithImpl(
+      _$SelectInOutTimeImpl _value, $Res Function(_$SelectInOutTimeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inOutTime = freezed,
+    Object? inTime = null,
+  }) {
+    return _then(_$SelectInOutTimeImpl(
+      inOutTime: freezed == inOutTime
+          ? _value.inOutTime
+          : inOutTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      inTime: null == inTime
+          ? _value.inTime
+          : inTime // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectInOutTimeImpl implements _SelectInOutTime {
+  const _$SelectInOutTimeImpl({this.inOutTime, required this.inTime});
+
+  @override
+  final TimeOfDay? inOutTime;
+  @override
+  final bool inTime;
+
+  @override
+  String toString() {
+    return 'MissedPunchEvent.selectInOutTime(inOutTime: $inOutTime, inTime: $inTime)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectInOutTimeImpl &&
+            (identical(other.inOutTime, inOutTime) ||
+                other.inOutTime == inOutTime) &&
+            (identical(other.inTime, inTime) || other.inTime == inTime));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, inOutTime, inTime);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectInOutTimeImplCopyWith<_$SelectInOutTimeImpl> get copyWith =>
+      __$$SelectInOutTimeImplCopyWithImpl<_$SelectInOutTimeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
+    required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String missingPunchId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApprovalMissedPunchList,
+    required TResult Function(bool isApprove) approvePunchByManager,
+  }) {
+    return selectInOutTime(inOutTime, inTime);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String missingPunchId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApprovalMissedPunchList,
+    TResult? Function(bool isApprove)? approvePunchByManager,
+  }) {
+    return selectInOutTime?.call(inOutTime, inTime);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String missingPunchId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApprovalMissedPunchList,
+    TResult Function(bool isApprove)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (selectInOutTime != null) {
+      return selectInOutTime(inOutTime, inTime);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
+    required TResult Function(_ChangeMissedPunchType value)
+        changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
+    required TResult Function(_ApprovePunchByManager value)
+        approvePunchByManager,
+  }) {
+    return selectInOutTime(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
+    TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
+  }) {
+    return selectInOutTime?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
+    TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (selectInOutTime != null) {
+      return selectInOutTime(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectInOutTime implements MissedPunchEvent {
+  const factory _SelectInOutTime(
+      {final TimeOfDay? inOutTime,
+      required final bool inTime}) = _$SelectInOutTimeImpl;
+
+  TimeOfDay? get inOutTime;
+  bool get inTime;
+  @JsonKey(ignore: true)
+  _$$SelectInOutTimeImplCopyWith<_$SelectInOutTimeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -370,14 +656,19 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return changeMissedPunchType(type);
@@ -387,13 +678,17 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return changeMissedPunchType?.call(type);
@@ -403,13 +698,17 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -423,8 +722,13 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -432,7 +736,8 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -443,13 +748,19 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return changeMissedPunchType?.call(this);
@@ -459,13 +770,19 @@ class _$ChangeMissedPunchTypeImpl implements _ChangeMissedPunchType {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -484,6 +801,552 @@ abstract class _ChangeMissedPunchType implements MissedPunchEvent {
   @JsonKey(ignore: true)
   _$$ChangeMissedPunchTypeImplCopyWith<_$ChangeMissedPunchTypeImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetMissedPunchTypeImplCopyWith<$Res> {
+  factory _$$GetMissedPunchTypeImplCopyWith(_$GetMissedPunchTypeImpl value,
+          $Res Function(_$GetMissedPunchTypeImpl) then) =
+      __$$GetMissedPunchTypeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetMissedPunchTypeImplCopyWithImpl<$Res>
+    extends _$MissedPunchEventCopyWithImpl<$Res, _$GetMissedPunchTypeImpl>
+    implements _$$GetMissedPunchTypeImplCopyWith<$Res> {
+  __$$GetMissedPunchTypeImplCopyWithImpl(_$GetMissedPunchTypeImpl _value,
+      $Res Function(_$GetMissedPunchTypeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetMissedPunchTypeImpl implements _GetMissedPunchType {
+  const _$GetMissedPunchTypeImpl();
+
+  @override
+  String toString() {
+    return 'MissedPunchEvent.getMissedPunchType()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetMissedPunchTypeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
+    required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String missingPunchId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApprovalMissedPunchList,
+    required TResult Function(bool isApprove) approvePunchByManager,
+  }) {
+    return getMissedPunchType();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String missingPunchId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApprovalMissedPunchList,
+    TResult? Function(bool isApprove)? approvePunchByManager,
+  }) {
+    return getMissedPunchType?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String missingPunchId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApprovalMissedPunchList,
+    TResult Function(bool isApprove)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (getMissedPunchType != null) {
+      return getMissedPunchType();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
+    required TResult Function(_ChangeMissedPunchType value)
+        changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
+    required TResult Function(_ApprovePunchByManager value)
+        approvePunchByManager,
+  }) {
+    return getMissedPunchType(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
+    TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
+  }) {
+    return getMissedPunchType?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
+    TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (getMissedPunchType != null) {
+      return getMissedPunchType(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetMissedPunchType implements MissedPunchEvent {
+  const factory _GetMissedPunchType() = _$GetMissedPunchTypeImpl;
+}
+
+/// @nodoc
+abstract class _$$ApplyMissedPunchImplCopyWith<$Res> {
+  factory _$$ApplyMissedPunchImplCopyWith(_$ApplyMissedPunchImpl value,
+          $Res Function(_$ApplyMissedPunchImpl) then) =
+      __$$ApplyMissedPunchImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ApplyMissedPunchImplCopyWithImpl<$Res>
+    extends _$MissedPunchEventCopyWithImpl<$Res, _$ApplyMissedPunchImpl>
+    implements _$$ApplyMissedPunchImplCopyWith<$Res> {
+  __$$ApplyMissedPunchImplCopyWithImpl(_$ApplyMissedPunchImpl _value,
+      $Res Function(_$ApplyMissedPunchImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ApplyMissedPunchImpl implements _ApplyMissedPunch {
+  const _$ApplyMissedPunchImpl();
+
+  @override
+  String toString() {
+    return 'MissedPunchEvent.applyMissedPunch()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ApplyMissedPunchImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
+    required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String missingPunchId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApprovalMissedPunchList,
+    required TResult Function(bool isApprove) approvePunchByManager,
+  }) {
+    return applyMissedPunch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String missingPunchId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApprovalMissedPunchList,
+    TResult? Function(bool isApprove)? approvePunchByManager,
+  }) {
+    return applyMissedPunch?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String missingPunchId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApprovalMissedPunchList,
+    TResult Function(bool isApprove)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (applyMissedPunch != null) {
+      return applyMissedPunch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
+    required TResult Function(_ChangeMissedPunchType value)
+        changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
+    required TResult Function(_ApprovePunchByManager value)
+        approvePunchByManager,
+  }) {
+    return applyMissedPunch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
+    TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
+  }) {
+    return applyMissedPunch?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
+    TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (applyMissedPunch != null) {
+      return applyMissedPunch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApplyMissedPunch implements MissedPunchEvent {
+  const factory _ApplyMissedPunch() = _$ApplyMissedPunchImpl;
+}
+
+/// @nodoc
+abstract class _$$GetEmployeesMissedPunchListImplCopyWith<$Res> {
+  factory _$$GetEmployeesMissedPunchListImplCopyWith(
+          _$GetEmployeesMissedPunchListImpl value,
+          $Res Function(_$GetEmployeesMissedPunchListImpl) then) =
+      __$$GetEmployeesMissedPunchListImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetEmployeesMissedPunchListImplCopyWithImpl<$Res>
+    extends _$MissedPunchEventCopyWithImpl<$Res,
+        _$GetEmployeesMissedPunchListImpl>
+    implements _$$GetEmployeesMissedPunchListImplCopyWith<$Res> {
+  __$$GetEmployeesMissedPunchListImplCopyWithImpl(
+      _$GetEmployeesMissedPunchListImpl _value,
+      $Res Function(_$GetEmployeesMissedPunchListImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetEmployeesMissedPunchListImpl
+    implements _GetEmployeesMissedPunchList {
+  const _$GetEmployeesMissedPunchListImpl();
+
+  @override
+  String toString() {
+    return 'MissedPunchEvent.getEmployeesMissedPunchList()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetEmployeesMissedPunchListImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
+    required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
+    required TResult Function(String selectedFilterType) selectFilterType,
+    required TResult Function(DateTime selectedDate, bool isFromDate)
+        selectDate,
+    required TResult Function(bool value) toggleAllSelection,
+    required TResult Function(String missingPunchId) toggleSingleSelection,
+    required TResult Function(String query) searchEmployeeFromList,
+    required TResult Function() getApprovalMissedPunchList,
+    required TResult Function(bool isApprove) approvePunchByManager,
+  }) {
+    return getEmployeesMissedPunchList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
+    TResult? Function(String selectedFilterType)? selectFilterType,
+    TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult? Function(bool value)? toggleAllSelection,
+    TResult? Function(String missingPunchId)? toggleSingleSelection,
+    TResult? Function(String query)? searchEmployeeFromList,
+    TResult? Function()? getApprovalMissedPunchList,
+    TResult? Function(bool isApprove)? approvePunchByManager,
+  }) {
+    return getEmployeesMissedPunchList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
+    TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
+    TResult Function(String selectedFilterType)? selectFilterType,
+    TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
+    TResult Function(bool value)? toggleAllSelection,
+    TResult Function(String missingPunchId)? toggleSingleSelection,
+    TResult Function(String query)? searchEmployeeFromList,
+    TResult Function()? getApprovalMissedPunchList,
+    TResult Function(bool isApprove)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (getEmployeesMissedPunchList != null) {
+      return getEmployeesMissedPunchList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
+    required TResult Function(_ChangeMissedPunchType value)
+        changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
+    required TResult Function(_SelectFilterType value) selectFilterType,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_ToggleAllSelection value) toggleAllSelection,
+    required TResult Function(_ToggleSingleSelection value)
+        toggleSingleSelection,
+    required TResult Function(_SearchEmployeeFromList value)
+        searchEmployeeFromList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
+    required TResult Function(_ApprovePunchByManager value)
+        approvePunchByManager,
+  }) {
+    return getEmployeesMissedPunchList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
+    TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult? Function(_SelectFilterType value)? selectFilterType,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
+  }) {
+    return getEmployeesMissedPunchList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
+    TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
+    TResult Function(_SelectFilterType value)? selectFilterType,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_ToggleAllSelection value)? toggleAllSelection,
+    TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
+    TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
+    TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
+    required TResult orElse(),
+  }) {
+    if (getEmployeesMissedPunchList != null) {
+      return getEmployeesMissedPunchList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetEmployeesMissedPunchList implements MissedPunchEvent {
+  const factory _GetEmployeesMissedPunchList() =
+      _$GetEmployeesMissedPunchListImpl;
 }
 
 /// @nodoc
@@ -553,14 +1416,19 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return selectFilterType(selectedFilterType);
@@ -570,13 +1438,17 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return selectFilterType?.call(selectedFilterType);
@@ -586,13 +1458,17 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -606,8 +1482,13 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -615,7 +1496,8 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -626,13 +1508,19 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return selectFilterType?.call(this);
@@ -642,13 +1530,19 @@ class _$SelectFilterTypeImpl implements _SelectFilterType {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -745,14 +1639,19 @@ class _$SelectDateImpl implements _SelectDate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return selectDate(selectedDate, isFromDate);
@@ -762,13 +1661,17 @@ class _$SelectDateImpl implements _SelectDate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return selectDate?.call(selectedDate, isFromDate);
@@ -778,13 +1681,17 @@ class _$SelectDateImpl implements _SelectDate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -798,8 +1705,13 @@ class _$SelectDateImpl implements _SelectDate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -807,7 +1719,8 @@ class _$SelectDateImpl implements _SelectDate {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -818,13 +1731,19 @@ class _$SelectDateImpl implements _SelectDate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return selectDate?.call(this);
@@ -834,13 +1753,19 @@ class _$SelectDateImpl implements _SelectDate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -929,14 +1854,19 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return toggleAllSelection(value);
@@ -946,13 +1876,17 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return toggleAllSelection?.call(value);
@@ -962,13 +1896,17 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -982,8 +1920,13 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -991,7 +1934,8 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -1002,13 +1946,19 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return toggleAllSelection?.call(this);
@@ -1018,13 +1968,19 @@ class _$ToggleAllSelectionImpl implements _ToggleAllSelection {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1113,14 +2069,19 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return toggleSingleSelection(missingPunchId);
@@ -1130,13 +2091,17 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return toggleSingleSelection?.call(missingPunchId);
@@ -1146,13 +2111,17 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1166,8 +2135,13 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1175,7 +2149,8 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -1186,13 +2161,19 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return toggleSingleSelection?.call(this);
@@ -1202,13 +2183,19 @@ class _$ToggleSingleSelectionImpl implements _ToggleSingleSelection {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1297,14 +2284,19 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return searchEmployeeFromList(query);
@@ -1314,13 +2306,17 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return searchEmployeeFromList?.call(query);
@@ -1330,13 +2326,17 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1350,8 +2350,13 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1359,7 +2364,8 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -1370,13 +2376,19 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return searchEmployeeFromList?.call(this);
@@ -1386,13 +2398,19 @@ class _$SearchEmployeeFromListImpl implements _SearchEmployeeFromList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1414,36 +2432,39 @@ abstract class _SearchEmployeeFromList implements MissedPunchEvent {
 }
 
 /// @nodoc
-abstract class _$$GetApprovalPunchListImplCopyWith<$Res> {
-  factory _$$GetApprovalPunchListImplCopyWith(_$GetApprovalPunchListImpl value,
-          $Res Function(_$GetApprovalPunchListImpl) then) =
-      __$$GetApprovalPunchListImplCopyWithImpl<$Res>;
+abstract class _$$GetApprovalMissedPunchListImplCopyWith<$Res> {
+  factory _$$GetApprovalMissedPunchListImplCopyWith(
+          _$GetApprovalMissedPunchListImpl value,
+          $Res Function(_$GetApprovalMissedPunchListImpl) then) =
+      __$$GetApprovalMissedPunchListImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetApprovalPunchListImplCopyWithImpl<$Res>
-    extends _$MissedPunchEventCopyWithImpl<$Res, _$GetApprovalPunchListImpl>
-    implements _$$GetApprovalPunchListImplCopyWith<$Res> {
-  __$$GetApprovalPunchListImplCopyWithImpl(_$GetApprovalPunchListImpl _value,
-      $Res Function(_$GetApprovalPunchListImpl) _then)
+class __$$GetApprovalMissedPunchListImplCopyWithImpl<$Res>
+    extends _$MissedPunchEventCopyWithImpl<$Res,
+        _$GetApprovalMissedPunchListImpl>
+    implements _$$GetApprovalMissedPunchListImplCopyWith<$Res> {
+  __$$GetApprovalMissedPunchListImplCopyWithImpl(
+      _$GetApprovalMissedPunchListImpl _value,
+      $Res Function(_$GetApprovalMissedPunchListImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GetApprovalPunchListImpl implements _GetApprovalPunchList {
-  const _$GetApprovalPunchListImpl();
+class _$GetApprovalMissedPunchListImpl implements _GetApprovalMissedPunchList {
+  const _$GetApprovalMissedPunchListImpl();
 
   @override
   String toString() {
-    return 'MissedPunchEvent.getApprovalPunchList()';
+    return 'MissedPunchEvent.getApprovalMissedPunchList()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetApprovalPunchListImpl);
+            other is _$GetApprovalMissedPunchListImpl);
   }
 
   @override
@@ -1453,51 +2474,64 @@ class _$GetApprovalPunchListImpl implements _GetApprovalPunchList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
-    return getApprovalPunchList();
+    return getApprovalMissedPunchList();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
-    return getApprovalPunchList?.call();
+    return getApprovalMissedPunchList?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
-    if (getApprovalPunchList != null) {
-      return getApprovalPunchList();
+    if (getApprovalMissedPunchList != null) {
+      return getApprovalMissedPunchList();
     }
     return orElse();
   }
@@ -1506,8 +2540,13 @@ class _$GetApprovalPunchListImpl implements _GetApprovalPunchList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1515,52 +2554,66 @@ class _$GetApprovalPunchListImpl implements _GetApprovalPunchList {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
-    return getApprovalPunchList(this);
+    return getApprovalMissedPunchList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
-    return getApprovalPunchList?.call(this);
+    return getApprovalMissedPunchList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
-    if (getApprovalPunchList != null) {
-      return getApprovalPunchList(this);
+    if (getApprovalMissedPunchList != null) {
+      return getApprovalMissedPunchList(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetApprovalPunchList implements MissedPunchEvent {
-  const factory _GetApprovalPunchList() = _$GetApprovalPunchListImpl;
+abstract class _GetApprovalMissedPunchList implements MissedPunchEvent {
+  const factory _GetApprovalMissedPunchList() =
+      _$GetApprovalMissedPunchListImpl;
 }
 
 /// @nodoc
@@ -1631,14 +2684,19 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(DateTime date) changeRequestDate,
+    required TResult Function(TimeOfDay? inOutTime, bool inTime)
+        selectInOutTime,
     required TResult Function(DropdownModel? type) changeMissedPunchType,
+    required TResult Function() getMissedPunchType,
+    required TResult Function() applyMissedPunch,
+    required TResult Function() getEmployeesMissedPunchList,
     required TResult Function(String selectedFilterType) selectFilterType,
     required TResult Function(DateTime selectedDate, bool isFromDate)
         selectDate,
     required TResult Function(bool value) toggleAllSelection,
     required TResult Function(String missingPunchId) toggleSingleSelection,
     required TResult Function(String query) searchEmployeeFromList,
-    required TResult Function() getApprovalPunchList,
+    required TResult Function() getApprovalMissedPunchList,
     required TResult Function(bool isApprove) approvePunchByManager,
   }) {
     return approvePunchByManager(isApprove);
@@ -1648,13 +2706,17 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(DateTime date)? changeRequestDate,
+    TResult? Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult? Function(DropdownModel? type)? changeMissedPunchType,
+    TResult? Function()? getMissedPunchType,
+    TResult? Function()? applyMissedPunch,
+    TResult? Function()? getEmployeesMissedPunchList,
     TResult? Function(String selectedFilterType)? selectFilterType,
     TResult? Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult? Function(bool value)? toggleAllSelection,
     TResult? Function(String missingPunchId)? toggleSingleSelection,
     TResult? Function(String query)? searchEmployeeFromList,
-    TResult? Function()? getApprovalPunchList,
+    TResult? Function()? getApprovalMissedPunchList,
     TResult? Function(bool isApprove)? approvePunchByManager,
   }) {
     return approvePunchByManager?.call(isApprove);
@@ -1664,13 +2726,17 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(DateTime date)? changeRequestDate,
+    TResult Function(TimeOfDay? inOutTime, bool inTime)? selectInOutTime,
     TResult Function(DropdownModel? type)? changeMissedPunchType,
+    TResult Function()? getMissedPunchType,
+    TResult Function()? applyMissedPunch,
+    TResult Function()? getEmployeesMissedPunchList,
     TResult Function(String selectedFilterType)? selectFilterType,
     TResult Function(DateTime selectedDate, bool isFromDate)? selectDate,
     TResult Function(bool value)? toggleAllSelection,
     TResult Function(String missingPunchId)? toggleSingleSelection,
     TResult Function(String query)? searchEmployeeFromList,
-    TResult Function()? getApprovalPunchList,
+    TResult Function()? getApprovalMissedPunchList,
     TResult Function(bool isApprove)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1684,8 +2750,13 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_SelectInOutTime value) selectInOutTime,
     required TResult Function(_ChangeMissedPunchType value)
         changeMissedPunchType,
+    required TResult Function(_GetMissedPunchType value) getMissedPunchType,
+    required TResult Function(_ApplyMissedPunch value) applyMissedPunch,
+    required TResult Function(_GetEmployeesMissedPunchList value)
+        getEmployeesMissedPunchList,
     required TResult Function(_SelectFilterType value) selectFilterType,
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_ToggleAllSelection value) toggleAllSelection,
@@ -1693,7 +2764,8 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
         toggleSingleSelection,
     required TResult Function(_SearchEmployeeFromList value)
         searchEmployeeFromList,
-    required TResult Function(_GetApprovalPunchList value) getApprovalPunchList,
+    required TResult Function(_GetApprovalMissedPunchList value)
+        getApprovalMissedPunchList,
     required TResult Function(_ApprovePunchByManager value)
         approvePunchByManager,
   }) {
@@ -1704,13 +2776,19 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_SelectInOutTime value)? selectInOutTime,
     TResult? Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult? Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult? Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult? Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult? Function(_SelectFilterType value)? selectFilterType,
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult? Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult? Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult? Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult? Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult? Function(_ApprovePunchByManager value)? approvePunchByManager,
   }) {
     return approvePunchByManager?.call(this);
@@ -1720,13 +2798,19 @@ class _$ApprovePunchByManagerImpl implements _ApprovePunchByManager {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_SelectInOutTime value)? selectInOutTime,
     TResult Function(_ChangeMissedPunchType value)? changeMissedPunchType,
+    TResult Function(_GetMissedPunchType value)? getMissedPunchType,
+    TResult Function(_ApplyMissedPunch value)? applyMissedPunch,
+    TResult Function(_GetEmployeesMissedPunchList value)?
+        getEmployeesMissedPunchList,
     TResult Function(_SelectFilterType value)? selectFilterType,
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_ToggleAllSelection value)? toggleAllSelection,
     TResult Function(_ToggleSingleSelection value)? toggleSingleSelection,
     TResult Function(_SearchEmployeeFromList value)? searchEmployeeFromList,
-    TResult Function(_GetApprovalPunchList value)? getApprovalPunchList,
+    TResult Function(_GetApprovalMissedPunchList value)?
+        getApprovalMissedPunchList,
     TResult Function(_ApprovePunchByManager value)? approvePunchByManager,
     required TResult orElse(),
   }) {
@@ -1754,7 +2838,13 @@ mixin _$MissedPunchState {
   String get message =>
       throw _privateConstructorUsedError; // apply screen------------->>
   DateTime? get requestDate => throw _privateConstructorUsedError;
+  TimeOfDay? get inTime => throw _privateConstructorUsedError;
+  DateTime? get outTime => throw _privateConstructorUsedError;
   DropdownModel? get selectedMissedPunchType =>
+      throw _privateConstructorUsedError;
+  MissedPunchTypeListModel? get missedPunchTypeListModel =>
+      throw _privateConstructorUsedError; // get missed punch list
+  EmployeesMissedPunchModel? get employeesMissedPunchModel =>
       throw _privateConstructorUsedError; // manager punch approve part============>>
   String get selectedFilter => throw _privateConstructorUsedError;
   DateTime? get fromDate => throw _privateConstructorUsedError;
@@ -1769,6 +2859,8 @@ mixin _$MissedPunchState {
   dynamic get getMissedPunchLoading => throw _privateConstructorUsedError;
   dynamic get applyMissedPunchLoading => throw _privateConstructorUsedError;
   dynamic get getApprovalPunchListLoading => throw _privateConstructorUsedError;
+  dynamic get getEmpMissedPunchListLoading =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MissedPunchStateCopyWith<MissedPunchState> get copyWith =>
@@ -1786,7 +2878,11 @@ abstract class $MissedPunchStateCopyWith<$Res> {
       MissedPunchStatus status,
       String message,
       DateTime? requestDate,
+      TimeOfDay? inTime,
+      DateTime? outTime,
       DropdownModel? selectedMissedPunchType,
+      MissedPunchTypeListModel? missedPunchTypeListModel,
+      EmployeesMissedPunchModel? employeesMissedPunchModel,
       String selectedFilter,
       DateTime? fromDate,
       DateTime? toDate,
@@ -1796,7 +2892,8 @@ abstract class $MissedPunchStateCopyWith<$Res> {
       bool selectAll,
       dynamic getMissedPunchLoading,
       dynamic applyMissedPunchLoading,
-      dynamic getApprovalPunchListLoading});
+      dynamic getApprovalPunchListLoading,
+      dynamic getEmpMissedPunchListLoading});
 }
 
 /// @nodoc
@@ -1816,7 +2913,11 @@ class _$MissedPunchStateCopyWithImpl<$Res, $Val extends MissedPunchState>
     Object? status = null,
     Object? message = null,
     Object? requestDate = freezed,
+    Object? inTime = freezed,
+    Object? outTime = freezed,
     Object? selectedMissedPunchType = freezed,
+    Object? missedPunchTypeListModel = freezed,
+    Object? employeesMissedPunchModel = freezed,
     Object? selectedFilter = null,
     Object? fromDate = freezed,
     Object? toDate = freezed,
@@ -1827,6 +2928,7 @@ class _$MissedPunchStateCopyWithImpl<$Res, $Val extends MissedPunchState>
     Object? getMissedPunchLoading = freezed,
     Object? applyMissedPunchLoading = freezed,
     Object? getApprovalPunchListLoading = freezed,
+    Object? getEmpMissedPunchListLoading = freezed,
   }) {
     return _then(_value.copyWith(
       missedPunchRepo: null == missedPunchRepo
@@ -1845,10 +2947,26 @@ class _$MissedPunchStateCopyWithImpl<$Res, $Val extends MissedPunchState>
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      inTime: freezed == inTime
+          ? _value.inTime
+          : inTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      outTime: freezed == outTime
+          ? _value.outTime
+          : outTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedMissedPunchType: freezed == selectedMissedPunchType
           ? _value.selectedMissedPunchType
           : selectedMissedPunchType // ignore: cast_nullable_to_non_nullable
               as DropdownModel?,
+      missedPunchTypeListModel: freezed == missedPunchTypeListModel
+          ? _value.missedPunchTypeListModel
+          : missedPunchTypeListModel // ignore: cast_nullable_to_non_nullable
+              as MissedPunchTypeListModel?,
+      employeesMissedPunchModel: freezed == employeesMissedPunchModel
+          ? _value.employeesMissedPunchModel
+          : employeesMissedPunchModel // ignore: cast_nullable_to_non_nullable
+              as EmployeesMissedPunchModel?,
       selectedFilter: null == selectedFilter
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
@@ -1889,6 +3007,10 @@ class _$MissedPunchStateCopyWithImpl<$Res, $Val extends MissedPunchState>
           ? _value.getApprovalPunchListLoading
           : getApprovalPunchListLoading // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      getEmpMissedPunchListLoading: freezed == getEmpMissedPunchListLoading
+          ? _value.getEmpMissedPunchListLoading
+          : getEmpMissedPunchListLoading // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -1906,7 +3028,11 @@ abstract class _$$MissedPunchStateImplCopyWith<$Res>
       MissedPunchStatus status,
       String message,
       DateTime? requestDate,
+      TimeOfDay? inTime,
+      DateTime? outTime,
       DropdownModel? selectedMissedPunchType,
+      MissedPunchTypeListModel? missedPunchTypeListModel,
+      EmployeesMissedPunchModel? employeesMissedPunchModel,
       String selectedFilter,
       DateTime? fromDate,
       DateTime? toDate,
@@ -1916,7 +3042,8 @@ abstract class _$$MissedPunchStateImplCopyWith<$Res>
       bool selectAll,
       dynamic getMissedPunchLoading,
       dynamic applyMissedPunchLoading,
-      dynamic getApprovalPunchListLoading});
+      dynamic getApprovalPunchListLoading,
+      dynamic getEmpMissedPunchListLoading});
 }
 
 /// @nodoc
@@ -1934,7 +3061,11 @@ class __$$MissedPunchStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = null,
     Object? requestDate = freezed,
+    Object? inTime = freezed,
+    Object? outTime = freezed,
     Object? selectedMissedPunchType = freezed,
+    Object? missedPunchTypeListModel = freezed,
+    Object? employeesMissedPunchModel = freezed,
     Object? selectedFilter = null,
     Object? fromDate = freezed,
     Object? toDate = freezed,
@@ -1945,6 +3076,7 @@ class __$$MissedPunchStateImplCopyWithImpl<$Res>
     Object? getMissedPunchLoading = freezed,
     Object? applyMissedPunchLoading = freezed,
     Object? getApprovalPunchListLoading = freezed,
+    Object? getEmpMissedPunchListLoading = freezed,
   }) {
     return _then(_$MissedPunchStateImpl(
       missedPunchRepo: null == missedPunchRepo
@@ -1963,10 +3095,26 @@ class __$$MissedPunchStateImplCopyWithImpl<$Res>
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      inTime: freezed == inTime
+          ? _value.inTime
+          : inTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      outTime: freezed == outTime
+          ? _value.outTime
+          : outTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedMissedPunchType: freezed == selectedMissedPunchType
           ? _value.selectedMissedPunchType
           : selectedMissedPunchType // ignore: cast_nullable_to_non_nullable
               as DropdownModel?,
+      missedPunchTypeListModel: freezed == missedPunchTypeListModel
+          ? _value.missedPunchTypeListModel
+          : missedPunchTypeListModel // ignore: cast_nullable_to_non_nullable
+              as MissedPunchTypeListModel?,
+      employeesMissedPunchModel: freezed == employeesMissedPunchModel
+          ? _value.employeesMissedPunchModel
+          : employeesMissedPunchModel // ignore: cast_nullable_to_non_nullable
+              as EmployeesMissedPunchModel?,
       selectedFilter: null == selectedFilter
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
@@ -2004,6 +3152,9 @@ class __$$MissedPunchStateImplCopyWithImpl<$Res>
       getApprovalPunchListLoading: freezed == getApprovalPunchListLoading
           ? _value.getApprovalPunchListLoading!
           : getApprovalPunchListLoading,
+      getEmpMissedPunchListLoading: freezed == getEmpMissedPunchListLoading
+          ? _value.getEmpMissedPunchListLoading!
+          : getEmpMissedPunchListLoading,
     ));
   }
 }
@@ -2016,7 +3167,11 @@ class _$MissedPunchStateImpl implements _MissedPunchState {
       this.status = MissedPunchStatus.initial,
       this.message = '',
       this.requestDate,
+      this.inTime,
+      this.outTime,
       this.selectedMissedPunchType,
+      this.missedPunchTypeListModel,
+      this.employeesMissedPunchModel,
       this.selectedFilter = 'Daily',
       this.fromDate,
       this.toDate,
@@ -2026,7 +3181,8 @@ class _$MissedPunchStateImpl implements _MissedPunchState {
       this.selectAll = false,
       this.getMissedPunchLoading = false,
       this.applyMissedPunchLoading = false,
-      this.getApprovalPunchListLoading = false})
+      this.getApprovalPunchListLoading = false,
+      this.getEmpMissedPunchListLoading = false})
       : _selectedMissingPunchIds = selectedMissingPunchIds;
 
   @override
@@ -2041,7 +3197,16 @@ class _$MissedPunchStateImpl implements _MissedPunchState {
   @override
   final DateTime? requestDate;
   @override
+  final TimeOfDay? inTime;
+  @override
+  final DateTime? outTime;
+  @override
   final DropdownModel? selectedMissedPunchType;
+  @override
+  final MissedPunchTypeListModel? missedPunchTypeListModel;
+// get missed punch list
+  @override
+  final EmployeesMissedPunchModel? employeesMissedPunchModel;
 // manager punch approve part============>>
   @override
   @JsonKey()
@@ -2077,10 +3242,13 @@ class _$MissedPunchStateImpl implements _MissedPunchState {
   @override
   @JsonKey()
   final dynamic getApprovalPunchListLoading;
+  @override
+  @JsonKey()
+  final dynamic getEmpMissedPunchListLoading;
 
   @override
   String toString() {
-    return 'MissedPunchState(missedPunchRepo: $missedPunchRepo, status: $status, message: $message, requestDate: $requestDate, selectedMissedPunchType: $selectedMissedPunchType, selectedFilter: $selectedFilter, fromDate: $fromDate, toDate: $toDate, approvalMissingPunchModel: $approvalMissingPunchModel, fetchApprovalMissingPunchModel: $fetchApprovalMissingPunchModel, selectedMissingPunchIds: $selectedMissingPunchIds, selectAll: $selectAll, getMissedPunchLoading: $getMissedPunchLoading, applyMissedPunchLoading: $applyMissedPunchLoading, getApprovalPunchListLoading: $getApprovalPunchListLoading)';
+    return 'MissedPunchState(missedPunchRepo: $missedPunchRepo, status: $status, message: $message, requestDate: $requestDate, inTime: $inTime, outTime: $outTime, selectedMissedPunchType: $selectedMissedPunchType, missedPunchTypeListModel: $missedPunchTypeListModel, employeesMissedPunchModel: $employeesMissedPunchModel, selectedFilter: $selectedFilter, fromDate: $fromDate, toDate: $toDate, approvalMissingPunchModel: $approvalMissingPunchModel, fetchApprovalMissingPunchModel: $fetchApprovalMissingPunchModel, selectedMissingPunchIds: $selectedMissingPunchIds, selectAll: $selectAll, getMissedPunchLoading: $getMissedPunchLoading, applyMissedPunchLoading: $applyMissedPunchLoading, getApprovalPunchListLoading: $getApprovalPunchListLoading, getEmpMissedPunchListLoading: $getEmpMissedPunchListLoading)';
   }
 
   @override
@@ -2094,19 +3262,22 @@ class _$MissedPunchStateImpl implements _MissedPunchState {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.requestDate, requestDate) ||
                 other.requestDate == requestDate) &&
-            (identical(
-                    other.selectedMissedPunchType, selectedMissedPunchType) ||
+            (identical(other.inTime, inTime) || other.inTime == inTime) &&
+            (identical(other.outTime, outTime) || other.outTime == outTime) &&
+            (identical(other.selectedMissedPunchType, selectedMissedPunchType) ||
                 other.selectedMissedPunchType == selectedMissedPunchType) &&
+            (identical(other.missedPunchTypeListModel, missedPunchTypeListModel) ||
+                other.missedPunchTypeListModel == missedPunchTypeListModel) &&
+            (identical(other.employeesMissedPunchModel, employeesMissedPunchModel) ||
+                other.employeesMissedPunchModel == employeesMissedPunchModel) &&
             (identical(other.selectedFilter, selectedFilter) ||
                 other.selectedFilter == selectedFilter) &&
             (identical(other.fromDate, fromDate) ||
                 other.fromDate == fromDate) &&
             (identical(other.toDate, toDate) || other.toDate == toDate) &&
-            (identical(other.approvalMissingPunchModel,
-                    approvalMissingPunchModel) ||
+            (identical(other.approvalMissingPunchModel, approvalMissingPunchModel) ||
                 other.approvalMissingPunchModel == approvalMissingPunchModel) &&
-            (identical(other.fetchApprovalMissingPunchModel,
-                    fetchApprovalMissingPunchModel) ||
+            (identical(other.fetchApprovalMissingPunchModel, fetchApprovalMissingPunchModel) ||
                 other.fetchApprovalMissingPunchModel ==
                     fetchApprovalMissingPunchModel) &&
             const DeepCollectionEquality().equals(
@@ -2119,27 +3290,36 @@ class _$MissedPunchStateImpl implements _MissedPunchState {
                 other.applyMissedPunchLoading, applyMissedPunchLoading) &&
             const DeepCollectionEquality().equals(
                 other.getApprovalPunchListLoading,
-                getApprovalPunchListLoading));
+                getApprovalPunchListLoading) &&
+            const DeepCollectionEquality().equals(
+                other.getEmpMissedPunchListLoading,
+                getEmpMissedPunchListLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      missedPunchRepo,
-      status,
-      message,
-      requestDate,
-      selectedMissedPunchType,
-      selectedFilter,
-      fromDate,
-      toDate,
-      approvalMissingPunchModel,
-      fetchApprovalMissingPunchModel,
-      const DeepCollectionEquality().hash(_selectedMissingPunchIds),
-      selectAll,
-      const DeepCollectionEquality().hash(getMissedPunchLoading),
-      const DeepCollectionEquality().hash(applyMissedPunchLoading),
-      const DeepCollectionEquality().hash(getApprovalPunchListLoading));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        missedPunchRepo,
+        status,
+        message,
+        requestDate,
+        inTime,
+        outTime,
+        selectedMissedPunchType,
+        missedPunchTypeListModel,
+        employeesMissedPunchModel,
+        selectedFilter,
+        fromDate,
+        toDate,
+        approvalMissingPunchModel,
+        fetchApprovalMissingPunchModel,
+        const DeepCollectionEquality().hash(_selectedMissingPunchIds),
+        selectAll,
+        const DeepCollectionEquality().hash(getMissedPunchLoading),
+        const DeepCollectionEquality().hash(applyMissedPunchLoading),
+        const DeepCollectionEquality().hash(getApprovalPunchListLoading),
+        const DeepCollectionEquality().hash(getEmpMissedPunchListLoading)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -2155,7 +3335,11 @@ abstract class _MissedPunchState implements MissedPunchState {
       final MissedPunchStatus status,
       final String message,
       final DateTime? requestDate,
+      final TimeOfDay? inTime,
+      final DateTime? outTime,
       final DropdownModel? selectedMissedPunchType,
+      final MissedPunchTypeListModel? missedPunchTypeListModel,
+      final EmployeesMissedPunchModel? employeesMissedPunchModel,
       final String selectedFilter,
       final DateTime? fromDate,
       final DateTime? toDate,
@@ -2165,7 +3349,8 @@ abstract class _MissedPunchState implements MissedPunchState {
       final bool selectAll,
       final dynamic getMissedPunchLoading,
       final dynamic applyMissedPunchLoading,
-      final dynamic getApprovalPunchListLoading}) = _$MissedPunchStateImpl;
+      final dynamic getApprovalPunchListLoading,
+      final dynamic getEmpMissedPunchListLoading}) = _$MissedPunchStateImpl;
 
   @override
   MissedPunchRepo get missedPunchRepo;
@@ -2176,7 +3361,15 @@ abstract class _MissedPunchState implements MissedPunchState {
   @override // apply screen------------->>
   DateTime? get requestDate;
   @override
+  TimeOfDay? get inTime;
+  @override
+  DateTime? get outTime;
+  @override
   DropdownModel? get selectedMissedPunchType;
+  @override
+  MissedPunchTypeListModel? get missedPunchTypeListModel;
+  @override // get missed punch list
+  EmployeesMissedPunchModel? get employeesMissedPunchModel;
   @override // manager punch approve part============>>
   String get selectedFilter;
   @override
@@ -2197,6 +3390,8 @@ abstract class _MissedPunchState implements MissedPunchState {
   dynamic get applyMissedPunchLoading;
   @override
   dynamic get getApprovalPunchListLoading;
+  @override
+  dynamic get getEmpMissedPunchListLoading;
   @override
   @JsonKey(ignore: true)
   _$$MissedPunchStateImplCopyWith<_$MissedPunchStateImpl> get copyWith =>

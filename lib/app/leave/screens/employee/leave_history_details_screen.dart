@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hrms_uis/app/leave/bloc/leave_bloc.dart';
+import 'package:hrms_uis/app/leave/widgets/employee/cancel_leave_dialog.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/utils/helpers/device_utility.dart';
+import 'package:hrms_uis/common/widgets/button/custom_button.dart';
 import 'package:hrms_uis/common/widgets/custom/custom_base_screen.dart';
 import 'package:hrms_uis/common/widgets/image/custom_image.dart';
 
@@ -10,6 +14,7 @@ import '../../../../common/networking/api_url.dart';
 import '../../../../common/utils/constants/colors.dart';
 import '../../../../common/utils/constants/decorations.dart';
 import '../../../../common/utils/constants/text_styles.dart';
+import '../../../../common/utils/custom_dialogs/dialogs.dart';
 import '../../../../common/utils/formatters/date_formats.dart';
 import '../../../../common/utils/formatters/formatter.dart';
 import '../../../../common/widgets/appbar/custom_appbar.dart';
@@ -45,7 +50,7 @@ class LeaveHistoryDetailsScreen extends StatelessWidget {
         : type == "Sick Leave"
         ? Colors.deepOrange
         : Colors.indigo;
-    final int? status = item?.firstLevelStatus;
+    final int? status = item?.status;
 
     late final Color statusColor;
     late final String statusTxt;
@@ -64,6 +69,11 @@ class LeaveHistoryDetailsScreen extends StatelessWidget {
       case 2:
         statusColor = Colors.red;
         statusTxt = "Rejected";
+        break;
+
+      case 3:
+        statusColor = Colors.red;
+        statusTxt = "Canceled";
         break;
 
       default:
@@ -218,6 +228,25 @@ class LeaveHistoryDetailsScreen extends StatelessWidget {
                     // ),
                   ],
                 ),
+
+              if (status == 0) ...[
+                SizedBox(height: AppSizes.space4),
+                CustomButton(
+                  text: "Cancel Leave",
+                  onTap: () {
+                    CustomDialogs.showCommonAlertDialog(
+                      context: context,
+                      title: "Cancel Leave",
+                      message: "Are you sure you want to cancel your leave?",
+                      child: BlocProvider.value(
+                        value: context.read<LeaveBloc>(),
+                        child: CancelLeaveDialog(leaveId: item?.id),
+                      ),
+                    );
+                  },
+                  backgroundColor: AppColors.error,
+                ),
+              ],
             ],
           ),
         ),

@@ -62,7 +62,7 @@ class CustomTitleValueView extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppSizes.space8),
+      padding: const EdgeInsets.only(bottom: AppSizes.space4),
       child: layout == TitleValueLayout.row
           ? Row(
               crossAxisAlignment: rowAlignment,

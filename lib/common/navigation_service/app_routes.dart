@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/app/attendance/bloc/attendance_bloc.dart';
 import 'package:hrms_uis/app/dashboard/bloc/dashboard_bloc.dart';
+import 'package:hrms_uis/app/emp_hierarchy/bloc/emp_hierarchy_bloc.dart';
+import 'package:hrms_uis/app/holiday/bloc/holiday_bloc.dart';
 import 'package:hrms_uis/app/leave/bloc/leave_bloc.dart';
 import 'package:hrms_uis/app/leave/model/approval_leave_list_model.dart';
 import 'package:hrms_uis/app/missed_punch/bloc/missed_punch_bloc.dart';
 import 'package:hrms_uis/app/missed_punch/models/approval_missed_punch_data.dart';
+import 'package:hrms_uis/app/missed_punch/models/employees_missed_punch_model.dart';
+import 'package:hrms_uis/app/salary_slip/bloc/salary_slip_bloc.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
+import 'package:hrms_uis/common/utils/constants/enums.dart';
 
 import '../../app/attendance/models/approve_attendance_model.dart';
 import '../../app/attendance/models/daily_attendance_model.dart';
@@ -20,6 +25,9 @@ import '../../app/auth/bloc/auth_bloc.dart';
 import '../../app/auth/screens/forgot_password_screen.dart';
 import '../../app/auth/screens/login_screen.dart';
 import '../../app/dashboard/screens/dashboard_screen.dart';
+import '../../app/emp_hierarchy/screens/emp_hierarchy_add_screen.dart';
+import '../../app/emp_hierarchy/screens/emp_hierarchy_list_screen.dart';
+import '../../app/holiday/screens/view_holiday_screen.dart';
 import '../../app/leave/model/employee_leave_data_model.dart';
 import '../../app/leave/screens/employee/apply_leave_screen.dart';
 import '../../app/leave/screens/employee/leave_history_details_screen.dart';
@@ -27,6 +35,7 @@ import '../../app/leave/screens/employee/view_leave_screen.dart';
 import '../../app/leave/screens/manager/approve_leave_emp_details.dart';
 import '../../app/leave/screens/manager/approve_leave_emp_list.dart';
 import '../../app/missed_punch/screens/employee/apply_missed_punch_screen.dart';
+import '../../app/missed_punch/screens/employee/view_missed_punch_details_screen.dart';
 import '../../app/missed_punch/screens/employee/view_missed_punch_screen.dart';
 import '../../app/missed_punch/screens/manager/approve_missed_punch_details.dart';
 import '../../app/missed_punch/screens/manager/approve_missed_punch_list_screen.dart';
@@ -72,9 +81,9 @@ class AppRoutes {
 
             var loginModel = context.read<AppBloc>().state.loginResponse;
             return BlocProvider(
-              create: (context) =>
-                  DashboardBloc(userId: loginModel?.employeeId)
-                    ..add(DashboardEvent.getUserProfileData()),
+              create: (context) => DashboardBloc(userId: loginModel?.employeeId)
+                ..add(DashboardEvent.getUserProfileData())
+                ..add(DashboardEvent.getAppVersion()),
               child: DashboardScreen(initialIndex: initialIndex),
             );
           },
@@ -82,12 +91,13 @@ class AppRoutes {
       case ProfileScreen.route:
         return MaterialPageRoute(
           builder: (context) {
+            final essTabMenusEnum = settings.arguments as EssTabMenuEnum;
             var loginModel = context.read<AppBloc>().state.loginResponse;
             return BlocProvider(
               create: (context) =>
                   DashboardBloc(userId: loginModel?.employeeId)
-                    ..add(DashboardEvent.getUserProfileData()),
-              child: ProfileScreen(),
+                   /* ..add(DashboardEvent.getUserProfileData())*/,
+              child: ProfileScreen(essTabMenuEnum: essTabMenusEnum),
             );
           },
         );
@@ -169,8 +179,7 @@ class AppRoutes {
             var loginModel = context.read<AppBloc>().state.loginResponse;
             return BlocProvider(
               create: (context) =>
-                  DashboardBloc(userId: loginModel?.employeeId)
-                    ..add(DashboardEvent.getUserProfileData()),
+                  SalarySlipBloc(empId: loginModel?.employeeId),
               child: SalarySlipScreen(),
             );
           },
@@ -205,7 +214,15 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) {
             final leaveData = settings.arguments as EmpLeaveDataItem?;
-            return LeaveHistoryDetailsScreen(item: leaveData);
+            return BlocProvider(
+              create: (context) {
+                var loginModel = context.read<AppBloc>().state.loginResponse;
+                return LeaveBloc(empId: loginModel?.employeeId)..add(
+                  LeaveEvent.selectFilterType(selectedFilterType: "Daily"),
+                );
+              },
+              child: LeaveHistoryDetailsScreen(item: leaveData),
+            );
           },
         );
       case ApproveLeaveEmpList.route:
@@ -235,7 +252,26 @@ class AppRoutes {
       case ViewMissedPunchScreen.route:
         return MaterialPageRoute(
           builder: (context) {
-            return ViewMissedPunchScreen();
+            var loginModel = context.read<AppBloc>().state.loginResponse;
+            return BlocProvider(
+              create: (context) =>
+                  MissedPunchBloc(empId: loginModel?.employeeId)..add(
+                    MissedPunchEvent.selectFilterType(
+                      selectedFilterType: "Daily",
+                    ),
+                  ),
+              child: ViewMissedPunchScreen(),
+            );
+          },
+        );
+      case ViewMissedPunchDetails.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            final employeeSwipeModel =
+                settings.arguments as EmployeesMissedPunchData?;
+            return ViewMissedPunchDetails(
+              empMissingPunchData: employeeSwipeModel,
+            );
           },
         );
       case ApplyMissedPunchScreen.route:
@@ -244,7 +280,8 @@ class AppRoutes {
             var loginModel = context.read<AppBloc>().state.loginResponse;
             return BlocProvider(
               create: (context) =>
-                  MissedPunchBloc(empId: loginModel?.employeeId),
+                  MissedPunchBloc(empId: loginModel?.employeeId)
+                    ..add(MissedPunchEvent.getMissedPunchType()),
               child: ApplyMissedPunchScreen(),
             );
           },
@@ -276,6 +313,64 @@ class AppRoutes {
             );
           },
         );
+
+      case EmpHierarchyListScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) =>
+                  EmpHierarchyBloc()
+                    ..add(EmpHierarchyEvent.getEmpHierarchyData()),
+              child: EmpHierarchyListScreen(),
+            );
+          },
+        );
+
+      case EmpHierarchyAddScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) => EmpHierarchyBloc(),
+              child: EmpHierarchyAddScreen(),
+            );
+          },
+        );
+
+      // case EmpHierarchyListScreen.route:
+      //   return MaterialPageRoute(
+      //     builder: (context) {
+      //       return BlocProvider(
+      //         create: (context) =>
+      //             EmpHierarchyBloc()
+      //               ..add(EmpHierarchyEvent.getEmpHierarchyData()),
+      //         child: EmpHierarchyListScreen(),
+      //       );
+      //     },
+      //   );
+
+      // case EmpHierarchyListScreen.route:
+      //   return MaterialPageRoute(
+      //     builder: (context) {
+      //       return BlocProvider(
+      //         create: (context) =>
+      //             EmpHierarchyBloc()
+      //               ..add(EmpHierarchyEvent.getEmpHierarchyData()),
+      //         child: EmpHierarchyListScreen(),
+      //       );
+      //     },
+      //   );
+
+      case ViewHolidayScreen.route:
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) =>
+                  HolidayBloc()..add(HolidayEvent.getHolidayList()),
+              child: ViewHolidayScreen(),
+            );
+          },
+        );
+
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }

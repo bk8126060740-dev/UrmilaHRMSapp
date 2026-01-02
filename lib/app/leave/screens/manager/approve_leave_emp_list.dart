@@ -54,7 +54,7 @@ class _ApproveLeaveEmpListState extends State<ApproveLeaveEmpList> {
           appBar: CustomAppBar(
             elevation: 0,
             title: "Approve Leave",
-            subtitle: _buildSubtitle(state),
+            // subtitle: _buildSubtitle(state),
             showAvatar: false,
             showBackButton: true,
             showNavigation: false,

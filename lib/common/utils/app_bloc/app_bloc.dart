@@ -39,7 +39,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       // Run Hive clear without blocking UI
       await Future.delayed(Duration.zero);
-      await HiveService.clear();
+      HiveService.clear();
 
       emit(
         state.copyWith(

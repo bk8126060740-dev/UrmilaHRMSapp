@@ -23,7 +23,7 @@ class ApproveMissedPunchCard extends StatelessWidget {
     return BlocBuilder<MissedPunchBloc, MissedPunchState>(
       builder: (context, state) {
         final missingPunchList =
-            state.approvalMissingPunchModel?.missingPunchList ?? [];
+            state.approvalMissingPunchModel?.swipeRequestList ?? [];
 
         if (missingPunchList.isEmpty) {
           return const Center(child: NoDataFound());
@@ -37,42 +37,20 @@ class ApproveMissedPunchCard extends StatelessWidget {
               missingPunchData.id.toString(),
             );
 
-            String category =
-                missingPunchData.missingType ??
-                ""; // Early Coming / Late Going / Missing Punch
-
             /// Side strip color based on Category
-            Color stripColor = category == "Missing Punch"
+            var missingPunchType = missingPunchData.swipeTypeName ?? "-";
+            Color stripColor = missingPunchType == "Missing Punch"
                 ? Colors.deepOrange
-                : category == "New Joinee"
+                : missingPunchType == "New Joinee"
                 ? Colors.deepPurple
                 : AppColors.primaryColor;
 
             String requestDate =
                 AppFormatter.formatDate(
-                  missingPunchData.date,
+                  missingPunchData.swipeDate,
                   format: DateFormats.fullMonth,
                 ) ??
                 ""; // 12 Jan 2025
-
-            /// Status Color
-            final int? status = missingPunchData.status;
-
-            final statusColor = status == 1
-                ? Colors.green
-                : status == 0
-                ? Colors.orange
-                : status == -1
-                ? Colors.red
-                : Colors.grey;
-
-            final statusTxt = status == 1
-                ? "Approved"
-                : status == 0
-                ? "Pending"
-                : status == -1
-                ? "Rejected"
-                : "Unknown";
 
             return Container(
               margin: const EdgeInsets.only(bottom: AppSizes.space16),
@@ -113,37 +91,35 @@ class ApproveMissedPunchCard extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Text(
-                                category,
-                                style: AppTextStyles.w600_14(
-                                  context,
-                                  color: stripColor,
-                                ),
-                              ),
-                            ),
                           ],
                         ),
 
                         const SizedBox(height: AppSizes.space4),
 
                         CustomTitleValueView(
+                          title: "Type : ",
+                          value: missingPunchType,
+                          valueColor: stripColor,
+                        ),
+
+                        // const SizedBox(height: AppSizes.space4),
+                        CustomTitleValueView(
                           title: "Request Date : ",
                           value: requestDate,
                         ),
 
                         // Status
-                        Row(
-                          children: [
-                            Text(
-                              statusTxt,
-                              style: AppTextStyles.w400_12(
-                                context,
-                                color: statusColor,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Text(
+                        //       statusTxt,
+                        //       style: AppTextStyles.w400_12(
+                        //         context,
+                        //         color: statusColor,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),

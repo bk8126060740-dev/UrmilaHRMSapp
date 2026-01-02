@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrms_uis/app/dashboard/bloc/dashboard_bloc.dart';
 import 'package:hrms_uis/app/dashboard/screens/drawer/side_drawer.dart';
-import 'package:hrms_uis/app/dashboard/screens/tabs/grievance_tab.dart';
+import 'package:hrms_uis/app/dashboard/screens/tabs/ess_tab.dart';
 import 'package:hrms_uis/app/dashboard/screens/tabs/home_tab.dart';
+import 'package:hrms_uis/app/dashboard/widgets/app_update_dialog.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/image_strings.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
@@ -11,11 +12,13 @@ import 'package:hrms_uis/common/utils/extensions/extension.dart';
 import 'package:hrms_uis/common/utils/global_internet_check/network_observer.dart';
 import 'package:hrms_uis/common/widgets/loader/custom_circular_progress.dart';
 
+import '../../../common/networking/api_url.dart';
 import '../../../common/utils/app_bloc/app_bloc.dart';
 import '../../../common/utils/custom_dialogs/dialogs.dart';
 import '../../../common/widgets/appbar/custom_appbar.dart';
 import '../../../common/widgets/bottom_bar/custom_bottom_bar.dart';
 import '../widgets/logout_dialog.dart';
+import 'tabs/profile_tab.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key, this.initialIndex = 0});
@@ -35,7 +38,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       case 0:
         return HomeTab();
       case 1:
-        return GrievanceTab();
+        return ESSTab();
+      case 2:
+        return ProfileTab();
       default:
         return const SizedBox.shrink();
     }
@@ -56,13 +61,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
       builder: (_, appState) {
+        var profilePath = appState.userProfileModel?.profilePath ?? "";
+
         return BlocBuilder<DashboardBloc, DashboardState>(
           builder: (_, dashboardState) {
             return NetworkObserver(
               onRetry: () {
-                // context.read<DashboardBloc>().add(
-                //   DashboardEvent.getUserProfileData(),
-                // );
+                context.read<DashboardBloc>().add(
+                  DashboardEvent.getAppVersion(),
+                );
+                context.read<DashboardBloc>().add(
+                  DashboardEvent.getUserProfileData(),
+                );
               },
               child: Scaffold(
                 key: scaffoldKey,
@@ -70,18 +80,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   elevation: 0,
                   showCalendarIcon: false,
                   onCalendarTap: () {},
-                  onNavigationTap: () {
-                    if (dashboardState.userProfileLoading) {
-                      return;
-                    }
-                    scaffoldKey.currentState?.openDrawer();
-                  },
+                  // onNavigationTap: () {
+                  //   if (dashboardState.userProfileLoading) {
+                  //     return;
+                  //   }
+                  //   scaffoldKey.currentState?.openDrawer();
+                  // },
                   title: appState.loginResponse?.fullName ?? "",
                   subtitle: appState.loginResponse?.projectName ?? "",
-                  avatarImage: AppImages.logo,
+                  avatarImage: profilePath.isNotEmpty
+                      ? ApiUrl.viewImageBase + profilePath
+                      : AppImages.profileImage,
                   showAvatar: true,
                   showBackButton: false,
-                  showNavigation: true,
+                  showNavigation: false,
                   actions: [
                     InkWell(
                       onTap: () {
@@ -107,6 +119,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       /// Listen to DashboardBloc events for profile/user updates
                       BlocListener<DashboardBloc, DashboardState>(
                         listener: (context, state) {
+                          var appVersionModel = state.appVersionModel;
+                          if (state.status == DashboardStatus.needForceUpdate) {
+                            CustomDialogs.showCommonAlertDialog(
+                              context: context,
+                              isDismissible: false,
+                              child: AppUpdateDialog(
+                                appVersionModel: appVersionModel,
+                              ),
+                            );
+                          }
                           if (state.status == DashboardStatus.profileSuccess) {
                             context.read<AppBloc>().add(
                               AppEvent.updateUserProfileData(
@@ -119,7 +141,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                     child: BlocBuilder<DashboardBloc, DashboardState>(
                       builder: (context, dashboardState) {
-                        if (dashboardState.userProfileLoading) {
+                        if (dashboardState.userProfileLoading ||
+                            dashboardState.appVersionLoading) {
                           return const Center(child: CustomCircularProgress());
                         }
 
@@ -142,7 +165,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     final dashboardState = context.watch<DashboardBloc>().state;
 
                     return AbsorbPointer(
-                      absorbing: dashboardState.userProfileLoading,
+                      absorbing:
+                          dashboardState.userProfileLoading ||
+                          dashboardState.appVersionLoading,
                       child: CustomBottomBar(
                         backgroundColor: AppColors.secondaryColor,
                         color: AppColors.iconColor,
@@ -155,20 +180,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         },
                         items: [
                           CustomBottomBarItem(
-                            icon: AppImages.calenderIcon,
+                            icon: AppImages.homeTabIcon,
                             text: "Home",
                           ),
                           CustomBottomBarItem(
-                            icon: AppImages.calenderIcon,
-                            text: "Home",
+                            icon: AppImages.essIcon,
+                            text: "ESS",
                           ),
                           CustomBottomBarItem(
-                            icon: AppImages.calenderIcon,
-                            text: "Home",
-                          ),
-                          CustomBottomBarItem(
-                            icon: AppImages.calenderIcon,
-                            text: "Home",
+                            icon: AppImages.profileTabIcon,
+                            text: "Profile",
                           ),
                         ],
                       ),

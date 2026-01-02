@@ -192,6 +192,110 @@ class CommonRepository {
     }
   }
 
+  static Future<ApiResponse<T>> deleteRequest<T>({
+    required String url,
+    required Map<String, dynamic> params,
+    String? byId,
+    required T Function(Map<String, dynamic>?) fromJson,
+    String? docFile,
+  }) async {
+    final tag = url.split('/').last;
+    log(
+      '======================================================================================================',
+    );
+    log("TAG $tag \n REQUEST BODY Common Repo : \n ${jsonEncode(params)}");
+
+    try {
+      final response = await HttpClient.instance().delete(
+        url: byId == null ? url : "$url/$byId",
+        parameters: {},
+      );
+
+      log(
+        '======================================================================================================',
+      );
+      log(
+        "TAG $tag \n RESPONSE Common Repo : \n STATUS : ${response["status"]} \n , DATA : ${response["data"]}",
+      );
+
+      final status = response["status"];
+      final data = response["data"];
+
+      if (status == 200) {
+        final dynamic data = response["data"];
+
+        if (data == null) {
+          // ✅ case: data is null
+          return ApiResponse<T>(
+            statusCode: response["status"],
+            message: response["message"],
+            data: null,
+          );
+        }
+
+        if (data is Map<String, dynamic>) {
+          // ✅ case: data is a single object
+          return ApiResponse<T>(
+            statusCode: response["status"],
+            message: response["message"],
+            data: fromJson(data),
+          );
+        } else if (data is List) {
+          // ✅ case: data is a list — wrap in a map for fromJson
+          return ApiResponse<T>(
+            statusCode: response["status"],
+            message: response["message"],
+            data: fromJson({'list': data}),
+          );
+        } else {
+          // ✅ fallback for unexpected types
+          return ApiResponse<T>(
+            statusCode: response["status"],
+            message: response["message"],
+            data: null,
+          );
+        }
+      } else if (status == 422 && data == null) {
+        // Example of extracting validation errors
+        final errorList = response["errors"] ?? [];
+        final validationMessages = (errorList as List)
+            .map((e) => "${e['message'] ?? ''}")
+            .join('\n'); // <-- combine all messages with newline
+
+        // final validationMessages = (errorList as List)
+        //     .map((e) => "${e['key']}: ${e['message']}")
+        //     .join('\n');
+
+        return ApiResponse<T>(
+          statusCode: status,
+          message: validationMessages, // <-- single string of all messages
+          data: null,
+        );
+      } else {
+        return ApiResponse<T>(
+          statusCode: response["status"],
+          message: response["message"] ?? "An unexpected API error occurred.",
+          data: null,
+        );
+      }
+    } catch (e) {
+      log(
+        '======================================================================================================',
+      );
+      log("TAG $tag \n CATCH ERROR Common Repo : $e ");
+
+      return ApiResponse<T>(
+        statusCode: 500,
+        message: e is NetworkException
+            ? e.message
+            : e is InternetException
+            ? e.message
+            : e.toString(),
+        data: null,
+      );
+    }
+  }
+
   static Future<ApiResponse<T>> postMultipartRequest<T>({
     required String url,
     required Map<String, dynamic> body,

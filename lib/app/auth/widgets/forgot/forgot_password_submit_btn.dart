@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrms_uis/app/dashboard/screens/dashboard_screen.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
 
-import '../../../../common/navigation_service/navigation_service.dart';
-import '../../../../common/utils/app_bloc/app_bloc.dart';
-import '../../../../common/utils/popups/custom_snackbar.dart';
 import '../../../../common/widgets/button/custom_button.dart';
 import '../../bloc/auth_bloc.dart';
 

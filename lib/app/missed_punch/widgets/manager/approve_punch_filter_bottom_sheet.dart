@@ -112,7 +112,9 @@ class _ApprovePunchFilterBottomSheetState
                         );
                         return;
                       }
-                      bloc.add(const MissedPunchEvent.getApprovalPunchList());
+                      bloc.add(
+                        const MissedPunchEvent.getApprovalMissedPunchList(),
+                      );
                       Navigator.pop(context);
                     },
                     text: "Apply",

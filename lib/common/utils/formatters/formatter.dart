@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'date_formats.dart';
@@ -11,6 +12,11 @@ class AppFormatter {
   }) {
     if (date == null) return null;
     return DateFormat(format).format(date);
+  }
+
+  static String formatTimeOfDay(TimeOfDay time) {
+    return '${time.hour.toString().padLeft(2, '0')}:'
+        '${time.minute.toString().padLeft(2, '0')}:00';
   }
 
   /// 🕒 Format a string (time-only or ISO date-time) to time string

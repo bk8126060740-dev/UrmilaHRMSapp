@@ -2,11 +2,22 @@ part of 'missed_punch_bloc.dart';
 
 @freezed
 class MissedPunchEvent with _$MissedPunchEvent {
+  // apply missed punch screen on employee login
   const factory MissedPunchEvent.changeRequestDate(DateTime date) =
       _ChangeRequestDate;
 
+  const factory MissedPunchEvent.selectInOutTime({TimeOfDay? inOutTime,required bool inTime}) =
+  _SelectInOutTime;
+
   const factory MissedPunchEvent.changeMissedPunchType(DropdownModel? type) =
       _ChangeMissedPunchType;
+
+  const factory MissedPunchEvent.getMissedPunchType() = _GetMissedPunchType;
+
+  const factory MissedPunchEvent.applyMissedPunch() = _ApplyMissedPunch;
+
+  // get missed punch data on employee login
+  const factory MissedPunchEvent.getEmployeesMissedPunchList() = _GetEmployeesMissedPunchList;
 
   //==================>> Manager Approval ================>>
   const factory MissedPunchEvent.selectFilterType({
@@ -28,7 +39,7 @@ class MissedPunchEvent with _$MissedPunchEvent {
   const factory MissedPunchEvent.searchEmployeeFromList(String query) =
       _SearchEmployeeFromList;
 
-  const factory MissedPunchEvent.getApprovalPunchList() = _GetApprovalPunchList;
+  const factory MissedPunchEvent.getApprovalMissedPunchList() = _GetApprovalMissedPunchList;
 
   const factory MissedPunchEvent.approvePunchByManager({
     required bool isApprove,

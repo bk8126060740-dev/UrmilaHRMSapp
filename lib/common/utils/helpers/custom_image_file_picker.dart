@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:image/image.dart' as img;
 // import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -78,7 +78,9 @@ class CustomImageFilePicker {
   Future<XFile?> _resizeImageIfNeeded(XFile image) async {
     File file = File(image.path);
     int fileSize = await file.length();
-    print('Original file size: ${fileSize / 1024} KB'); // in KB
+    if (kDebugMode) {
+      print('Original file size: ${fileSize / 1024} KB');
+    } // in KB
 
     // If the file size is more than 100 KB, resize the image
     if (fileSize > 100 * 1024) {
@@ -100,7 +102,9 @@ class CustomImageFilePicker {
         File resizedFile = await file.writeAsBytes(resizedBytes);
         int resizedFileSize = await resizedFile.length();
 
-        print('Resized file size: ${resizedFileSize / 1024} KB'); // in KB
+        if (kDebugMode) {
+          print('Resized file size: ${resizedFileSize / 1024} KB');
+        } // in KB
 
         // Return the resized image as a new XFile
         return XFile(resizedFile.path);

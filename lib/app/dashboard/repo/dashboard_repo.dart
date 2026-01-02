@@ -3,7 +3,7 @@ import 'package:hrms_uis/app/dashboard/model/user_profile_data_model.dart';
 
 import '../../../common/networking/api_url.dart';
 import '../../../common/networking/common_repo.dart';
-import '../../auth/model/user_response_model.dart';
+import '../model/app_version_model.dart';
 
 class DashboardRepo {
   Future<ApiResponse<UserProfileDataModel>> getUserProfileData({
@@ -31,6 +31,19 @@ class DashboardRepo {
         url:
             "${ApiUrl.getMonthlyAttendance}month=$month&year=$year&EmployeeId=${userId ?? ""}",
         fromJson: (json) => MonthlyAttendanceModel.fromJson(json!),
+        params: {},
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse<AppVersionModel>> getLatestVersion() async {
+    try {
+      var response = CommonRepository.getRequest(
+        url: ApiUrl.getLatestVersion,
+        fromJson: (json) => AppVersionModel.fromJson(json!),
         params: {},
       );
       return response;

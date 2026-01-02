@@ -14,7 +14,18 @@ rootProject.layout.buildDirectory.value(newBuildDir)
 subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.android.support"
+                && !requested.name.contains("multidex")
+            ) {
+                useVersion("27.1.1")
+            }
+        }
+    }
+
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
 }

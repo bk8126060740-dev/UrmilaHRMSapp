@@ -1,11 +1,12 @@
 class ApiUrl {
-  // static const String _base = 'http://74.225.150.134:5000/api'; // port
-  // static const String hubUrl =
-  //     'http://74.225.150.134:5000/hubs/NotificationHub?userId='; // port
+  // static const String _base = 'http://74.225.150.134:1001/api'; // UAT
+  // static const String _base2 = 'http://74.225.150.134:5050/api'; // UAT
 
-  static const String _base = 'http://74.225.150.134:1001/api'; // port
-  static const String hubUrl =
-      'http://74.225.150.134:1001/hubs/NotificationHub?userId='; // port
+  static const String _base = 'http://192.168.1.190:2026/api'; // DEV
+  static const String _base2 = 'http://74.225.150.134:5050/api'; // UAT
+
+  // static const String _baseFrontWeb = 'http://192.168.1.190:2026'; // DEV
+  static const String _baseFrontWeb = 'http://74.225.150.134:5051'; // UAT
 
   static const String viewImageBase =
       'https://usiciprodsa.blob.core.windows.net/nirghosh-ems-docs-prod/'; // port
@@ -18,6 +19,8 @@ class ApiUrl {
 
   // mark attendance screen
   static String checkIn = '$_base/Attendance/checkin';
+
+  // static String checkOut = '$_base/Attendance/checkoutMultiple';
   static String checkOut = '$_base/Attendance/checkout';
 
   static String fetchAttendanceDateWise =
@@ -35,16 +38,38 @@ class ApiUrl {
   static String getMangersEmployeesList =
       '$_base/Employee/GetEmployeeListByManagerID?reportingManagerId=';
 
-  static String getSalarySlip = '$_base/Payroll/GetEmployeeSalarySlip?';
-
-  static String privacyPolicyUrl = 'https://hrmsuistech.in/privacypolicy';
-  static String deleteAccountUrl = 'http://hrmsuistech.in/deleteaccount';
-
   // ======================>> LEAVE MANAGEMENT <<==============================
-  static String getLeaveTypeBalanceData = '$_base/Leave/GetLeaveBailanceByEmployeeId?empId=';
+  static String getLeaveTypeBalanceData =
+      '$_base/Leave/GetLeaveBailanceByEmployeeId?empId=';
   static String applyLeave = '$_base/Leave/apply';
   static String getEmployeeLeaveData = '$_base/Leave/LeaveByEmployeeId?empId=';
+  static String cancelEmployeeLeave = '$_base/Leave/CancelLeave/';
   static String getApproveLeaveList = '$_base/Leave/GetLeaveByManagerID/';
   static String approveLeaveByManager =
       '$_base/Leave/record/ApproveLeaves_byLeaveIds';
+
+  // missed punch apis
+  static String getMissedPunchType = '$_base/Code/SwipeTypeList';
+  static String applyMissedPunch = '$_base/Attendance/SwipeRequest';
+  static String getEmployeesMissedPunchList =
+      '$_base/Attendance/GetSwipeRequest/';
+
+  // manager missed punch
+  static String getApproveMissedPunchList =
+      '$_base/Attendance/SwipeRequestByManagerID/';
+  static String approveMissedPunchByManager =
+      '$_base/Attendance/SwipeApprove_bySwipeIds';
+
+  // ess tab
+  static String downloadPaySlip = '$_base2/Payroll/GetEmployeeSalarySlip';
+
+  static String getLatestVersion = '$_base/AppVersion/LatestVersion';
+
+  // profile tab
+  static String privacyPolicy = '$_baseFrontWeb/privacypolicy';
+
+  static String deleteAccount = '$_baseFrontWeb/deleteaccount';
+
+  // holiday
+  static String getHolidayList = '$_base/calendar/HolidaysList';
 }

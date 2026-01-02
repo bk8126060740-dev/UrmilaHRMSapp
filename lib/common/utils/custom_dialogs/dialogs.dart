@@ -104,6 +104,7 @@ class CustomDialogs {
         title: title,
         message: message,
         borderRadius: borderRadius,
+        isDismissible: isDismissible,
         child: child,
       ),
     );

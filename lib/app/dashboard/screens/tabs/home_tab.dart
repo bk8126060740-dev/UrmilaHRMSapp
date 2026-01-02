@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrms_uis/app/attendance/screens/employee/daily_attendance_screen.dart';
 import 'package:hrms_uis/app/attendance/screens/employee/monthly_attendance_screen.dart';
+import 'package:hrms_uis/app/holiday/screens/view_holiday_screen.dart';
 import 'package:hrms_uis/common/navigation_service/navigation_service.dart';
 import 'package:hrms_uis/common/utils/app_bloc/app_bloc.dart';
 import 'package:hrms_uis/common/utils/constants/colors.dart';
 import 'package:hrms_uis/common/utils/constants/sizes.dart';
 import 'package:hrms_uis/common/utils/constants/text_styles.dart';
 import 'package:hrms_uis/common/utils/extensions/extension.dart';
+import 'package:hrms_uis/common/widgets/custom/custom_refresh_indicator.dart';
 
 import '../../../../common/utils/constants/image_strings.dart';
 import '../../../../common/widgets/image/custom_material_icon.dart';
@@ -18,6 +20,7 @@ import '../../../leave/screens/employee/view_leave_screen.dart';
 import '../../../leave/screens/manager/approve_leave_emp_list.dart';
 import '../../../missed_punch/screens/employee/view_missed_punch_screen.dart';
 import '../../../missed_punch/screens/manager/approve_missed_punch_list_screen.dart';
+import '../../bloc/dashboard_bloc.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -29,13 +32,21 @@ class HomeTab extends StatelessWidget {
         vertical: AppSizes.padding16,
         horizontal: AppSizes.padding16,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Text("Services", style: AppTextStyles.w500_14(context)),
-          // SizedBox(height: AppSizes.space16),
-          ServiceBuilder(),
-        ],
+      child: CustomRefreshIndicator(
+        backgroundColor: AppColors.scaffoldBgColor,
+        onRefresh: () async {
+          var dashboardBloc = context.read<DashboardBloc>();
+          dashboardBloc.add(DashboardEvent.getUserProfileData());
+          dashboardBloc.add(DashboardEvent.getAppVersion());
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Text("Services", style: AppTextStyles.w500_14(context)),
+            // SizedBox(height: AppSizes.space16),
+            ServiceBuilder(),
+          ],
+        ),
       ),
     );
   }
@@ -305,6 +316,40 @@ class _ServiceBuilderState extends State<ServiceBuilder> {
           colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
         ),
       ),
+
+      MaterialSquareIcon(
+        squareColor: AppColors.surfaceColor,
+        title: "Holiday",
+        textStyle: serviceTextStyle,
+        iconTextGap: 8.0,
+        onTap: () {
+          NavigationService.navigateTo(ViewHolidayScreen.route);
+        },
+        child: SvgPicture.asset(
+          AppImages.holidayIcon,
+          fit: BoxFit.fill,
+          height: 20,
+          width: 20,
+          colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+        ),
+      ),
+
+      // MaterialSquareIcon(
+      //   squareColor: AppColors.surfaceColor,
+      //   title: "Emp Hierarchy",
+      //   textStyle: serviceTextStyle,
+      //   iconTextGap: 8.0,
+      //   onTap: () {
+      //     NavigationService.navigateTo(EmpHierarchyListScreen.route);
+      //   },
+      //   child: SvgPicture.asset(
+      //     AppImages.missingPunchIcon,
+      //     fit: BoxFit.fill,
+      //     height: 20,
+      //     width: 20,
+      //     colorFilter: ColorFilter.mode(AppColors.iconColor, BlendMode.srcIn),
+      //   ),
+      // ),
     ];
 
     /// ---------------- MANAGER SERVICES ----------------

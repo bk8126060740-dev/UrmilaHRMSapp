@@ -8,7 +8,9 @@ class DashboardState with _$DashboardState {
     @Default('') String message,
     UserProfileDataModel? userProfileDataModel,
     MonthlyAttendanceModel? monthlyAttendanceModel,
+    AppVersionModel? appVersionModel,
     @Default(false) userProfileLoading,
+    @Default(false) appVersionLoading,
     @Default(false) monthlyAttendanceLoading,
   }) = _DashboardState;
 }
@@ -18,7 +20,13 @@ enum DashboardStatus {
   profileLoading,
   profileError,
   profileSuccess,
+
+  appVersionLoading,
+  appVersionError,
+  appVersionSuccess,
+
   monthlyAttendanceLoading,
   monthlyAttendanceError,
   monthlyAttendanceSuccess,
+  needForceUpdate,
 }
