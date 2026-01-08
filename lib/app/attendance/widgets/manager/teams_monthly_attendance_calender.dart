@@ -84,15 +84,18 @@ class _TeamsMonthlyAttendanceCalenderViewState
                   child: TableCalendar<MonthlyAttendanceData>(
                     availableGestures: AvailableGestures.horizontalSwipe,
                     firstDay: DateTime.utc(2020, 1, 1),
-                    // lastDay: DateTime.now(),
-                    lastDay: AppDeviceUtils.lastDayOfMonth(state.focusedDay),
+                    // ✅ FIX HERE
+                    lastDay: AppDeviceUtils.lastDayOfMonth(DateTime.now()),
+                    // lastDay: AppDeviceUtils.lastDayOfMonth(state.focusedDay),
                     focusedDay: state.focusedDay,
                     selectedDayPredicate: (day) =>
                         isSameDay(state.selectedDay, day),
                     headerStyle: HeaderStyle(
                       titleCentered: true,
                       formatButtonVisible: false,
-                      titleTextStyle: AppTextStyles.w500_16(context),
+                      titleTextStyle: AppTextStyles.w500_16(
+                        context,
+                      ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
                       leftChevronIcon: SvgPicture.asset(AppImages.prevIcon),
                       rightChevronIcon: SvgPicture.asset(AppImages.nextIcon),
                       leftChevronMargin: EdgeInsets.zero,
@@ -139,13 +142,15 @@ class _TeamsMonthlyAttendanceCalenderViewState
                           'Fri',
                           'Sat',
                         ][day.weekday % 7];
-                        final isSunday = day.weekday == DateTime.sunday;
+                        // final isSunday = day.weekday == DateTime.sunday;
                         return Center(
                           child: Text(
                             text,
                             style: TextStyle(
-                              color: isSunday ? Colors.red : Colors.black87,
-                              fontWeight: FontWeight.bold,
+                              color: /* isSunday ? Colors.red :*/
+                                  Colors.black87,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         );
@@ -224,7 +229,7 @@ class _TeamsMonthlyAttendanceCalenderViewState
     final reports = events[DateTime.utc(date.year, date.month, date.day)];
     final report = reports?.isNotEmpty == true ? reports!.first : null;
     final dotColor = report != null ? _parseColor(report.color) : null;
-    final isSunday = date.weekday == DateTime.sunday;
+    // final isSunday = date.weekday == DateTime.sunday;
 
     final today = DateTime.now();
     final isRealToday =
@@ -244,9 +249,10 @@ class _TeamsMonthlyAttendanceCalenderViewState
       textColor = AppColors.primaryColor;
     } else if (isRealToday) {
       textColor = AppColors.primaryColor;
-    } else if (isSunday) {
-      textColor = Colors.red;
     }
+    /*else if (isSunday) {
+      textColor = Colors.red;
+    }*/
 
     Border? border;
     if (isSelected) {
@@ -282,17 +288,34 @@ class _TeamsMonthlyAttendanceCalenderViewState
           children: [
             Text(
               '${date.day}',
-              style: TextStyle(color: textColor, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+              ),
             ),
             if (dotColor != null)
-              Container(
-                margin: const EdgeInsets.only(top: 3),
-                width: 6,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: dotColor,
-                  shape: BoxShape.circle,
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    report?.status ?? "",
+                    style: AppTextStyles.w400_12(
+                      context,
+                    ).copyWith(fontSize: 8, color: dotColor),
+                  ),
+                  SizedBox(width: 2),
+                  Container(
+                    margin: const EdgeInsets.only(top: 3),
+                    width: 4,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: dotColor,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ],
               ),
           ],
         ),

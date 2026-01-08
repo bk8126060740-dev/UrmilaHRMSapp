@@ -65,6 +65,7 @@ class LoginButton extends StatelessWidget {
           isLoading: state.loginLoading || state.userResponseLoading,
           onTap: () async {
             if (_formKey.currentState!.validate()) {
+              AppDeviceUtils.unFocus();
               context.read<AuthBloc>().add(const AuthEvent.login());
             }
           },

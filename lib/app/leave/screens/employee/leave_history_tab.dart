@@ -12,56 +12,50 @@ class LeaveHistoryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var leaveBloc = context.read<LeaveBloc>();
     return BlocBuilder<LeaveBloc, LeaveState>(
       builder: (context, state) {
         final leaveHistory = state.employeeLeaveDataModel?.empLeaveData ?? [];
 
-        return Column(
-          children: [
-            // 🔹 Filter By
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: AppSizes.padding16,
-            //     right: AppSizes.padding16,
-            //     top: AppSizes.padding16,
-            //   ),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Expanded(child: Text("Filter By")),
-            //       InkWell(
-            //         child: const Icon(
-            //           Icons.filter_list,
-            //           size: 24,
-            //           color: AppColors.iconColor,
-            //         ),
-            //         onTap: () {
-            //           // CustomBottomSheet.show(
-            //           //   context: context,
-            //           //   title: "Leave Filter",
-            //           //   child: BlocProvider.value(
-            //           //     value: context.read<LeaveBloc>(),
-            //           //     child: LeaveHistoryFilterBottomSheet(),
-            //           //   ),
-            //           // );
-            //         },
-            //       ),
-            //     ],
-            //   ),
-            // ),
+        return Padding(
+          padding: const EdgeInsets.all(AppSizes.padding16),
+          child: Column(
+            children: [
+              // 🔹 Filter + Search Bar
+              TextField(
+                // enabled: approveAttendanceList.isNotEmpty,
+                controller: leaveBloc.searchController,
+                decoration: InputDecoration(
+                  hintText: "Search leave...",
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      leaveBloc.searchController.clear();
+                      leaveBloc.add(LeaveEvent.searchEmployeeLeave(""));
+                    },
+                    child: const Icon(Icons.close, size: AppSizes.iconSize20),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                onChanged: (value) {
+                  leaveBloc.add(LeaveEvent.searchEmployeeLeave(value));
+                },
+              ),
 
-            Expanded(
-              child: state.getEmpLeaveLoading
-                  ? const Center(child: CustomCircularProgress())
-                  : leaveHistory.isEmpty
-                  ? const Center(child: NoDataFound())
-                  : Padding(
-                      padding: const EdgeInsets.only(top: AppSizes.space16),
-                      child: ListView.builder(
-                        padding: const EdgeInsets.only(
-                          left: AppSizes.padding16,
-                          right: AppSizes.padding16,
-                        ),
+              const SizedBox(height: AppSizes.space16),
+
+              Expanded(
+                child: state.getEmpLeaveLoading
+                    ? const Center(child: CustomCircularProgress())
+                    : leaveHistory.isEmpty
+                    ? const Center(child: NoDataFound())
+                    : ListView.builder(
                         itemCount: leaveHistory.length,
                         itemBuilder: (context, index) {
                           final item = leaveHistory[index];
@@ -73,9 +67,9 @@ class LeaveHistoryTab extends StatelessWidget {
                           );
                         },
                       ),
-                    ),
-            ),
-          ],
+              ),
+            ],
+          ),
         );
       },
     );

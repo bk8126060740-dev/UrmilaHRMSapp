@@ -9,6 +9,8 @@ import 'package:hrms_uis/app/leave/repo/leave_repo.dart';
 import 'package:hrms_uis/common/utils/popups/custom_toast.dart';
 
 import '../../../common/networking/common_repo.dart';
+import '../../../common/utils/formatters/date_formats.dart';
+import '../../../common/utils/formatters/formatter.dart';
 import '../../../common/utils/helpers/file_picker_common.dart';
 import '../../../common/widgets/dropdown/dropdown_model.dart';
 import '../model/approval_leave_list_model.dart';
@@ -21,6 +23,7 @@ part 'leave_state.dart';
 
 class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
   final TextEditingController remarkController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   LeaveBloc({required int? empId}) : super(LeaveState(leaveRepo: LeaveRepo())) {
     //==============>> Manager Modules ==================>>
@@ -410,6 +413,7 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
               status: LeaveStatus.getEmpLeaveSuccess,
               getEmpLeaveLoading: false,
               employeeLeaveDataModel: response.data,
+              fetchedLeaveDataModel: response.data,
               message: response.message ?? "",
             ),
           );
@@ -419,6 +423,7 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
               status: LeaveStatus.getEmpLeaveError,
               getEmpLeaveLoading: false,
               employeeLeaveDataModel: null,
+              fetchedLeaveDataModel: null,
               message:
                   response.message ??
                   "Api failed with status ${response.statusCode}",
@@ -431,11 +436,136 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
             status: LeaveStatus.getEmpLeaveError,
             getEmpLeaveLoading: false,
             employeeLeaveDataModel: null,
+            fetchedLeaveDataModel: null,
             message: e.toString(),
           ),
         );
       }
     });
+
+    on<_SearchEmployeeLeave>((event, emit) {
+      debugPrint('🔍 SearchEmployeeLeave triggered');
+
+      final query = event.query.toLowerCase().trim();
+      debugPrint('➡️ Search query: "$query"');
+
+      if (query.isEmpty) {
+        debugPrint('⚠️ Empty query, restoring full list');
+
+        emit(
+          state.copyWith(
+            employeeLeaveDataModel: state.fetchedLeaveDataModel?.copyWith(),
+            status: LeaveStatus.initial,
+          ),
+        );
+        return;
+      }
+
+      final allList = state.fetchedLeaveDataModel?.empLeaveData ?? [];
+      debugPrint('📄 Total items before filter: ${allList.length}');
+
+      final filtered = allList.where((item) {
+        final leaveType = item.leaveTypeName?.toLowerCase() ?? '';
+
+        final status = _statusText(item.status);
+
+        final startDate =
+            AppFormatter.formatDate(
+              item.startDate,
+              format: DateFormats.fullMonth,
+            )?.toLowerCase() ??
+            '';
+
+        final endDate =
+            AppFormatter.formatDate(
+              item.endDate,
+              format: DateFormats.fullMonth,
+            )?.toLowerCase() ??
+            '';
+
+        final duration = item.noOfDays?.toString() ?? '';
+
+        final match =
+            leaveType.contains(query) ||
+            status.contains(query) ||
+            startDate.contains(query) ||
+            endDate.contains(query) ||
+            duration.contains(query);
+
+        debugPrint(
+          '🔎 ${item.leaveTypeName} | '
+          'status=$status | '
+          'date=$startDate → '
+          '${match ? "MATCH" : "NO MATCH"}',
+        );
+
+        return match;
+      }).toList();
+
+      debugPrint('✅ Filtered result count: ${filtered.length}');
+
+      emit(
+        state.copyWith(
+          employeeLeaveDataModel: EmployeeLeaveDataModel(
+            empLeaveData: filtered,
+          ),
+          status: LeaveStatus.initial,
+        ),
+      );
+    });
+
+    /*
+    on<_SearchEmployeeLeave>((event, emit) {
+      debugPrint('🔍 SearchEmployeeLeave triggered');
+
+      final query = event.query.toLowerCase();
+      debugPrint('➡️ Search query: "$query"');
+
+      // If empty -> restore full list
+      if (query.isEmpty) {
+        debugPrint('⚠️ Empty query, restoring full list');
+
+        debugPrint(
+          '📦 Restored list count: '
+              '${state.fetchedLeaveDataModel?.empLeaveData?.length ?? 0}',
+        );
+
+        emit(
+          state.copyWith(
+            employeeLeaveDataModel:
+            state.fetchedLeaveDataModel?.copyWith(),
+            status: LeaveStatus.initial,
+          ),
+        );
+        return;
+      }
+
+      final allList = state.fetchedLeaveDataModel?.empLeaveData ?? [];
+      debugPrint('📄 Total items before filter: ${allList.length}');
+
+      final filtered = allList.where((item) {
+        final name = item.leaveTypeName?.toLowerCase() ?? '';
+        final match = name.contains(query);
+
+        debugPrint(
+          '🔎 Checking "$name" → ${match ? "MATCH" : "NO MATCH"}',
+        );
+
+        return match;
+      }).toList();
+
+      debugPrint('✅ Filtered result count: ${filtered.length}');
+
+      emit(
+        state.copyWith(
+          employeeLeaveDataModel: EmployeeLeaveDataModel(
+            empLeaveData: filtered,
+          ),
+          status: LeaveStatus.initial,
+        ),
+      );
+    });
+*/
 
     on<_CancelEmpLeave>((event, emit) async {
       emit(
@@ -541,4 +671,20 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
       emit(state.copyWith(toDayType: event.type, status: LeaveStatus.initial));
     });
   }
+
+  String _statusText(int? status) {
+    switch (status) {
+      case 0:
+        return 'pending';
+      case 1:
+        return 'approved';
+      case 2:
+        return 'rejected';
+      case 3:
+        return 'canceled';
+      default:
+        return '';
+    }
+  }
+
 }

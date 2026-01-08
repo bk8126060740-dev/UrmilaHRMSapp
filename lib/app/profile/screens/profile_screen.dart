@@ -470,7 +470,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return "Personal Information";
     }
     if (widget.essTabMenuEnum == EssTabMenuEnum.employment) {
-      return "Employment";
+      return "Employment Details";
     }
     if (widget.essTabMenuEnum == EssTabMenuEnum.bank) {
       return "Bank Details";

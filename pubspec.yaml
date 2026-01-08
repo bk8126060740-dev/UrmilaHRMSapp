@@ -3,7 +3,9 @@ description: "A new Flutter project."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+#version: 1.0.0+1 # debug
+#version: 1.0.0+1 # open testing
+version: 1.0.1+2 # internal testing
 
 environment:
   sdk: ^3.9.2
@@ -71,11 +73,8 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/icons/app_icon.png"
 
-
-
 # The following section is specific to Flutter packages.
 flutter:
-
   uses-material-design: true
   generate: true
 

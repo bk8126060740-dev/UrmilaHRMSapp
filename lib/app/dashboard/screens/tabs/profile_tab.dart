@@ -153,16 +153,16 @@ class _ProfileTabState extends State<ProfileTab> {
                               //   onTap: () {},
                               // ),
 
-                              _profileMenuItem(
-                                icon: Icons.delete_outline,
-                                title: "Delete Account",
-                                color: Colors.red,
-                                onTap: () {
-                                  AppHelperFunctions.launchExternal(
-                                    ApiUrl.deleteAccount,
-                                  );
-                                },
-                              ),
+                              // _profileMenuItem(
+                              //   icon: Icons.delete_outline,
+                              //   title: "Delete Account",
+                              //   color: Colors.red,
+                              //   onTap: () {
+                              //     AppHelperFunctions.launchExternal(
+                              //       ApiUrl.deleteAccount,
+                              //     );
+                              //   },
+                              // ),
 
                               _profileMenuItem(
                                 icon: Icons.logout,

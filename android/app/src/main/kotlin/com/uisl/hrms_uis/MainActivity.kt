@@ -1,4 +1,4 @@
-package com.uisl.hrms_uis
+package com.urmila.hrms
 
 import io.flutter.embedding.android.FlutterActivity
 

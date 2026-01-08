@@ -8,6 +8,7 @@ import '../../../../common/utils/constants/decorations.dart';
 import '../../../../common/utils/constants/sizes.dart';
 import '../../../../common/utils/constants/text_styles.dart';
 import '../../../../common/utils/custom_dialogs/dialogs.dart';
+import '../../../../common/utils/helpers/device_utility.dart';
 import '../../../../common/utils/popups/custom_toast.dart';
 import '../../../../common/widgets/button/custom_button.dart';
 
@@ -74,6 +75,7 @@ class PunchApproveRejectView extends StatelessWidget {
                                 );
                                 return;
                               }
+                              AppDeviceUtils.unFocus();
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
                                 title: "Reject Missing-Punch",
@@ -94,6 +96,7 @@ class PunchApproveRejectView extends StatelessWidget {
                           child: CustomButton(
                             text: "Approve",
                             onTap: () {
+                              AppDeviceUtils.unFocus();
                               CustomDialogs.showCommonAlertDialog(
                                 context: context,
                                 title: "Approve Missing-Punch",

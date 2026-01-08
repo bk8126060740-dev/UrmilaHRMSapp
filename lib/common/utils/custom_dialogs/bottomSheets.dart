@@ -22,6 +22,7 @@ class CustomBottomSheet {
       isScrollControlled: true,
       isDismissible: isDismissible,
       backgroundColor: Colors.transparent,
+      showDragHandle: false, // ✅ THIS removes the dash
       builder: (ctx) {
         return CommonBottomSheet(
           title: title,

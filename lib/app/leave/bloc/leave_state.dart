@@ -10,6 +10,7 @@ class LeaveState with _$LeaveState {
     // employee leave
     LeaveTypeBalanceDataModel? leaveTypeDataModel,
     EmployeeLeaveDataModel? employeeLeaveDataModel,
+    EmployeeLeaveDataModel? fetchedLeaveDataModel,
     num? selectedLeaveTypeCount,
 
     // ------------------ UI STATE FOR APPLY LEAVE ------------------

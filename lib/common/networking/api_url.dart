@@ -1,12 +1,13 @@
 class ApiUrl {
   // static const String _base = 'http://74.225.150.134:1001/api'; // UAT
   // static const String _base2 = 'http://74.225.150.134:5050/api'; // UAT
+  // static const String _base = 'http://192.168.1.190:2026/api'; // DEV
 
-  static const String _base = 'http://192.168.1.190:2026/api'; // DEV
-  static const String _base2 = 'http://74.225.150.134:5050/api'; // UAT
+  static const String _base = 'http://74.225.150.134:1001/api'; // UAT app apis
+  static const String _base2 = 'http://74.225.150.134:5050/api'; // UAT salary slip apis
 
   // static const String _baseFrontWeb = 'http://192.168.1.190:2026'; // DEV
-  static const String _baseFrontWeb = 'http://74.225.150.134:5051'; // UAT
+  static const String _baseFrontWeb = 'http://74.225.150.134:5051'; // UAT view front end page delete ac and privacy policy
 
   static const String viewImageBase =
       'https://usiciprodsa.blob.core.windows.net/nirghosh-ems-docs-prod/'; // port
@@ -32,8 +33,11 @@ class ApiUrl {
   static String getApproveAttendanceList =
       '$_base/Attendance/GetAttendanceByManagerID/';
 
+  // static String approveAttendanceByManager =
+  //     '$_base/manager/attendance/record/ApproveAttendances_byAttendenceIds';
+
   static String approveAttendanceByManager =
-      '$_base/manager/attendance/record/ApproveAttendances_byAttendenceIds';
+      '$_base/manager/attendance/ApproveAttendances_byAttendenceIds';
 
   static String getMangersEmployeesList =
       '$_base/Employee/GetEmployeeListByManagerID?reportingManagerId=';
@@ -66,7 +70,8 @@ class ApiUrl {
   static String getLatestVersion = '$_base/AppVersion/LatestVersion';
 
   // profile tab
-  static String privacyPolicy = '$_baseFrontWeb/privacypolicy';
+  // static String privacyPolicy = '$_baseFrontWeb/privacypolicy';
+  static String privacyPolicy = 'https://buntyuistech.github.io/hrms-privacy-policy/';
 
   static String deleteAccount = '$_baseFrontWeb/deleteaccount';
 

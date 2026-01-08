@@ -411,10 +411,11 @@ class HttpClient {
       final request = http.Request('GET', Uri.parse(url));
 
       // 🔐 Add headers if needed (token, accept)
-      request.headers.addAll({
-        'Accept': '*/*',
-        if (headers != null) ...headers,
-      });
+      // request.headers.addAll({
+      //   'Accept': '*/*',
+      //   if (headers != null) ...headers,
+      // });
+      request.headers.addAll(_makeHeader(isDownload: true));
 
       final response = await client.send(request);
 
@@ -752,7 +753,10 @@ class HttpClient {
     return uri.toString();
   }
 
-  Map<String, String> _makeHeader({bool? isMultiPart}) {
+  Map<String, String> _makeHeader({
+    bool? isMultiPart,
+    bool isDownload = false,
+  }) {
     Map<String, String> header;
     BuildContext? context = NavigationService.navigatorKey.currentContext;
     String? userToken;
@@ -762,18 +766,32 @@ class HttpClient {
     }
 
     if (userToken != null) {
-      header = isMultiPart != null
-          ? {
-              // 'Content-Type': 'multipart/form-data',
-              'accept': '*/*',
-              // "Authorization": "Bearer $userToken",
-              "Authorization": userToken,
-            }
-          : {
-              'Content-Type': 'application/json',
-              // "Authorization": "Bearer $userToken",
-              "Authorization": userToken,
-            };
+      if (isDownload) {
+        // 📥 Download API → Bearer token
+        header = {'Accept': '*/*', 'Authorization': 'Bearer $userToken'};
+      } else if (isMultiPart == true) {
+        // 📤 Multipart upload
+        header = {'Accept': '*/*', 'Authorization': userToken};
+      } else {
+        // 📡 Normal JSON API
+        header = {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': userToken,
+        };
+      }
+      // header = isMultiPart != null
+      //     ? {
+      //         // 'Content-Type': 'multipart/form-data',
+      //         'accept': '*/*',
+      //         // "Authorization": "Bearer $userToken",
+      //         "Authorization": userToken,
+      //       }
+      //     : {
+      //         'Content-Type': 'application/json',
+      //         // "Authorization": "Bearer $userToken",
+      //         "Authorization": userToken,
+      //       };
       log('token from: $userToken');
     } else {
       header = {'Content-Type': 'application/json; charset=UTF-8'};

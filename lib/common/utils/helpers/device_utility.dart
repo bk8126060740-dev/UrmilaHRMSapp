@@ -126,7 +126,7 @@ class AppDeviceUtils {
 
   static Future<String> getPackageName() async {
     final info = await PackageInfo.fromPlatform();
-    return info.packageName; // e.g. com.uisl.hrms_uis
+    return info.packageName; // e.g. com.urmila.hrms
   }
 
   static bool isUpdateRequired({

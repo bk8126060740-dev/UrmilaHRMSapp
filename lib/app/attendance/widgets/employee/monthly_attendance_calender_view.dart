@@ -82,15 +82,18 @@ class _MonthlyAttendanceCalenderViewState
                   child: TableCalendar<MonthlyAttendanceData>(
                     availableGestures: AvailableGestures.none,
                     firstDay: DateTime.utc(2020, 1, 1),
-                    // lastDay: DateTime.now(),
-                    lastDay: AppDeviceUtils.lastDayOfMonth(state.focusedDay),
+                    // ✅ FIX HERE
+                    lastDay: AppDeviceUtils.lastDayOfMonth(DateTime.now()),
+                    // lastDay: AppDeviceUtils.lastDayOfMonth(state.focusedDay),
                     focusedDay: state.focusedDay,
                     selectedDayPredicate: (day) =>
                         isSameDay(state.selectedDay, day),
                     headerStyle: HeaderStyle(
                       titleCentered: true,
                       formatButtonVisible: false,
-                      titleTextStyle: AppTextStyles.w500_16(context),
+                      titleTextStyle: AppTextStyles.w500_16(
+                        context,
+                      ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
                       leftChevronIcon: SvgPicture.asset(AppImages.prevIcon),
                       rightChevronIcon: SvgPicture.asset(AppImages.nextIcon),
                       leftChevronMargin: EdgeInsets.zero,
@@ -147,8 +150,8 @@ class _MonthlyAttendanceCalenderViewState
                             style: TextStyle(
                               color: /* isSunday ? Colors.red :*/
                                   Colors.black87,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         );
@@ -295,7 +298,11 @@ class _MonthlyAttendanceCalenderViewState
           children: [
             Text(
               '${date.day}',
-              style: TextStyle(color: textColor, fontWeight: FontWeight.w700,fontSize: 12),
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+              ),
             ),
             if (dotColor != null)
               Row(
@@ -304,7 +311,9 @@ class _MonthlyAttendanceCalenderViewState
                 children: [
                   Text(
                     report?.status ?? "",
-                    style: AppTextStyles.w400_12(context).copyWith(fontSize: 8,color: dotColor),
+                    style: AppTextStyles.w400_12(
+                      context,
+                    ).copyWith(fontSize: 8, color: dotColor),
                   ),
                   SizedBox(width: 2),
                   Container(

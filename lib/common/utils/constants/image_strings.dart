@@ -7,7 +7,7 @@ class AppImages {
   static const String _animPath = "assets/anim/";
 
   // -- App Logos
-  static const String logo = "${_imagePath}app_icon.png";
+  static const String logo = "${_imagePath}app_logo.png";
   static const String loginBg = "${_imagePath}login_bg.png";
   static const String forgotVector = "${_imagePath}forget_vector.png";
 

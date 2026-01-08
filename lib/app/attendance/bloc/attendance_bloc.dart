@@ -219,9 +219,18 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         ),
       );
       try {
-        final formattedDate = event.date
-            .toUtc()
-            .toIso8601String(); // 2025-10-31T11:08:25.250Z
+        final safeUtcDate = DateTime.utc(
+          event.date.year,
+          event.date.month,
+          event.date.day,
+          12, // noon
+        );
+
+        final formattedDate = safeUtcDate.toIso8601String();
+
+        // final formattedDate = event.date
+        //     .toUtc()
+        //     .toIso8601String(); // 2025-10-31T11:08:25.250Z
 
         ApiResponse<DailyAttendanceModel> response = await state.attendanceRepo
             .fetchAttendanceData(userId: userId, isoDateTime: formattedDate);

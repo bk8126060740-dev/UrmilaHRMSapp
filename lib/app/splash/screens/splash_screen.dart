@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var loginResponse = context.read<AppBloc>().state.loginResponse;
       NavigationService.navigateAndRemoveAll(
-        /*loginResponse == null ? LoginScreen.route :*/ DashboardScreen.route,
+        loginResponse == null ? LoginScreen.route : DashboardScreen.route,
       );
       // if (loginResponse == null) {
       //   NavigationService.navigateAndRemoveAll(LoginScreen.route);
